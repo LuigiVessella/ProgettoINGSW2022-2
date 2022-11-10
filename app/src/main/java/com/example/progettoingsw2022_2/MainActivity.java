@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         int ciao = 0;
         int varieprove = 0;
         int siuuu = 0;
+        int provadue = 0;
         for (int i = 0; i < 10; i++) {
             Log.println(Log.INFO, "prova", "ciao");
         }
