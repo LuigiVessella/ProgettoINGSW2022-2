@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         int ciao = 0;
+        int varieprove = 0;
         for (int i = 0; i < 10; i++) {
             Log.println(Log.INFO, "prova", "ciao");
         }
