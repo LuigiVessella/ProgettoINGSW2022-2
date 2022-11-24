@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">ProgettoINGSW2022-2</string>
+    <string name="app_name" translatable="false">Ratatouille23</string>
+    <string name="app_title" translatable="false">RATATOUILLE23</string>
+    <string name="loginBtn">Login</string>
+    <string name="signedQuestion">Already Signed In?</string>
+    <string name="contentDescriptionMainLogo">logo</string>
+    <string name="signupQuestion">Not signed?</string>
+    <string name="registerBtn">register</string>
 </resources>
