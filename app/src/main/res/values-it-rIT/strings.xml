@@ -3,4 +3,5 @@
     <string name="loginBtn">Accedi</string>
     <string name="signedQuestion">Gia Registrato?</string>
     <string name="registerBtn">Registrati</string>
+    <string name="signupQuestion">Nuovo?</string>
 </resources>
