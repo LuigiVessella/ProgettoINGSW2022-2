@@ -1,22 +1,16 @@
 package com.example.progettoingsw2022_2;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int ciao = 0;
-        int varieprove = 0;
-        int siuuu = 0;
-        int provadue = 0;
-        for (int i = 0; i < 10; i++) {
-            Log.println(Log.INFO, "prova", "ciao");
-        }
     }
 }

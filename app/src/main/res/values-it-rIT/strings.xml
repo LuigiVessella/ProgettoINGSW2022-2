@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loginBtn">Accedi</string>
+    <string name="signedQuestion">Gia Registrato?</string>
+    <string name="registerBtn">Registrati</string>
+    <string name="signupQuestion">Nuovo?</string>
+</resources>

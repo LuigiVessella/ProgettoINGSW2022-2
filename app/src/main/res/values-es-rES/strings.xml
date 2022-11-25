@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loginBtn">Iniciar</string>
+    <string name="signedQuestion">¿Ya registrado?</string>
+    <string name="registerBtn">Iniciar</string>
+</resources>
