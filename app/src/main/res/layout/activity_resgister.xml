@@ -5,27 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgMain"
-    tools:context=".SignActivity">
+    tools:context=".ResgisterActivity">
 
     <TextView
-        android:id="@+id/titleSign"
+        android:id="@+id/titleReg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:fontFamily="casual"
-        android:text="Loggati"
+        android:text="@string/register_title"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:fontFamily="casual"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LogoSign"
+        app:layout_constraintTop_toBottomOf="@+id/LogoReg"
         app:layout_constraintVertical_bias="0.007" />
 
     <ImageView
-        android:id="@+id/LogoSign"
+        android:id="@+id/LogoReg"
         android:layout_width="192dp"
         android:layout_height="155dp"
         android:src="@drawable/logobiagio"
@@ -43,12 +43,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleSign">
+        app:layout_constraintTop_toBottomOf="@+id/titleReg">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/FirstNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/register_name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/SecondNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/register_surname"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/PasswordText"
