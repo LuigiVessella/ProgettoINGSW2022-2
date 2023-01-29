@@ -37,13 +37,15 @@
         app:layout_constraintVertical_bias="0.133" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="359dp"
         android:layout_height="197dp"
         android:layout_marginTop="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleReg">
+        app:layout_constraintTop_toBottomOf="@+id/titleReg"
+        app:layout_constraintVertical_bias="0.13999999">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,7 +53,15 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/FirstNameText"
+                android:id="@+id/partitaIvaText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Partita IVA"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/firstNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -60,7 +70,7 @@
                 android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/SecondNameText"
+                android:id="@+id/secondNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -69,16 +79,17 @@
                 android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/PasswordText"
+                android:id="@+id/passwordText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/register_pass"
                 android:inputType="textPassword"
                 android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/EmailText"
+                android:id="@+id/emailText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -87,4 +98,21 @@
                 android:minHeight="48dp" />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/okButton"
+        android:layout_width="144dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/bgButton"
+        android:text="@string/registerBtn"
+        android:textColor="@color/black"
+        app:cornerRadius="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="0.486" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
