@@ -89,30 +89,24 @@
                 android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/emailText"
+                android:id="@+id/emailLoginText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/register_email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/okButton"
+                android:layout_width="144dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="@color/bgButton"
+                android:text="@string/registerBtn"
+                android:textColor="@color/black"
+                app:cornerRadius="40sp" />
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/okButton"
-        android:layout_width="144dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="@color/bgButton"
-        android:text="@string/registerBtn"
-        android:textColor="@color/black"
-        app:cornerRadius="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.486" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

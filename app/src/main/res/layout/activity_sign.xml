@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:fontFamily="casual"
-        android:text="Loggati"
+        android:text="Stai per entrare nell'app"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -37,8 +37,9 @@
         app:layout_constraintVertical_bias="0.133" />
 
     <ScrollView
-        android:layout_width="359dp"
-        android:layout_height="197dp"
+        android:id="@+id/scrollView3"
+        android:layout_width="402dp"
+        android:layout_height="142dp"
         android:layout_marginTop="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,22 +52,35 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/passwordText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/register_pass"
-                android:inputType="textPassword"
-                android:minHeight="48dp" />
-
-            <EditText
-                android:id="@+id/emailText"
+                android:id="@+id/emailLoginText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/register_email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/passwordLoginText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:enabled="false"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/loginActButton"
+                android:layout_width="144dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/bgButton"
+                android:text="@string/loginBtn"
+                android:textColor="@color/black"
+                app:cornerRadius="40sp"
+
+                />
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

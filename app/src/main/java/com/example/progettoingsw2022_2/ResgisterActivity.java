@@ -37,7 +37,7 @@ public class ResgisterActivity extends AppCompatActivity {
 
         nomeText = findViewById(R.id.firstNameText);
         cognomeText = findViewById(R.id.secondNameText);
-        emailText = findViewById(R.id.emailText);
+        emailText = findViewById(R.id.emailLoginText);
         pIvaText = findViewById(R.id.partitaIvaText);
         //la password va implementata per bene
         //passwordText = findViewById(R.id.passwordText);
@@ -56,7 +56,7 @@ public class ResgisterActivity extends AppCompatActivity {
     private void sendRegisterRequest(Editable nome, Editable cognome, Editable pIva) {
 
         try {
-            RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
+           // RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
             String url = "http://20.86.153.84:8080/admin/addNew";
 
 
@@ -79,7 +79,7 @@ public class ResgisterActivity extends AppCompatActivity {
                     params.put("nome", nome.toString());
                     params.put("cognome", cognome.toString());
                     params.put("partitaIva", pIva.toString());
-                    //params.put("email", "filiberto@gmail.com");
+                    params.put("email", "filiberto@gmail.com");
                     return params;
                 }
 
@@ -90,7 +90,7 @@ public class ResgisterActivity extends AppCompatActivity {
                     return params;
                 }
             };
-            queue.add(stringRequest);
+            VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
