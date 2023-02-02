@@ -12,12 +12,21 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35991310-3cc0-42c4-95b0-29be4f04d3f2" name="Changes" comment="Registrazione funziona">
+    <list default="true" id="35991310-3cc0-42c4-95b0-29be4f04d3f2" name="Changes" comment="Login funziona">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/ResgisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/ResgisterActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/SignActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/SignActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/NetworkManager/VolleySingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/NetworkManager/VolleySingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Models/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Models/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Models/Ristorante.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Models/Ristorante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/ResgisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/ResgisterActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/SignActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/SignActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_resgister.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_resgister.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,8 +43,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
-        <option value="Class" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -59,6 +68,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2HMJGNwgI0vh81RZYyI7by03UO1" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -67,15 +79,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
-    <property name="cidr.known.project.marker" value="true" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ProgettoLSOAndroid" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
+    <key name="android.template.847799837">
+      <recent name="com.example.progettoingsw2022_2" />
+    </key>
+    <key name="android.template.-337007781">
+      <recent name="com.example.progettoingsw2022_2" />
+    </key>
     <key name="android.template.-480717127">
       <recent name="com.example.progettoingsw2022_2" />
     </key>
@@ -130,7 +146,6 @@
         <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
         <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
-        <option name="PROFILING_MODE" value="NOT_SET" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -199,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674989245328</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Login funziona">
+      <created>1675075414324</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1675075414324</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -233,6 +255,7 @@
     <MESSAGE value="icona aggiustata" />
     <MESSAGE value="Aggiunta tutta la parte networking" />
     <MESSAGE value="Registrazione funziona" />
-    <option name="LAST_COMMIT_MESSAGE" value="Registrazione funziona" />
+    <MESSAGE value="Login funziona" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login funziona" />
   </component>
 </project>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgMain"
-    tools:context=".SignActivity">
+    tools:context=".Activities.SignActivity">
 
     <TextView
         android:id="@+id/titleSign"
@@ -38,8 +38,8 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="402dp"
-        android:layout_height="142dp"
+        android:layout_width="387dp"
+        android:layout_height="181dp"
         android:layout_marginTop="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

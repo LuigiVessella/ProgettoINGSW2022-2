@@ -1,7 +1,8 @@
-package com.example.progettoingsw2022_2;
+package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -12,22 +13,15 @@ import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
-import com.google.android.material.resources.TextAppearance;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-import NetworkManager.VolleySingleton;
+import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
+import com.example.progettoingsw2022_2.R;
 
 public class SignActivity extends AppCompatActivity {
 
@@ -40,6 +34,7 @@ public class SignActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
+        inizializzaComponenti();
 
     }
 
@@ -63,7 +58,7 @@ public class SignActivity extends AppCompatActivity {
 
     //bisogna implementare bene la password
     private void sendLoginRequest(Editable email) {
-
+        Log.v("info", "sono qui");
 
         try {
             // RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
@@ -75,7 +70,7 @@ public class SignActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             Log.i("VOLLEY", response);
-                            if(response.equals("utente esiste")){titleSign.setText("sei dentro");}
+                            if(response.equals("Utente esiste")){titleSign.setText("sei dentro"); switchToDashboardActivity(email.toString());}
                             else {titleSign.setText("utente non esiste. registrati");}
                         }
                     },
@@ -103,6 +98,14 @@ public class SignActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    private void switchToDashboardActivity(String email){
+        Intent newAct = new Intent(SignActivity.this, DashboardActivity.class);
+        newAct.putExtra("email", email);
+        startActivity(newAct);
+
     }
 
 

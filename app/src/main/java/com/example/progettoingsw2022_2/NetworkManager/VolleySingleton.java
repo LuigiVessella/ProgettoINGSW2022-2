@@ -1,4 +1,4 @@
-package NetworkManager;
+package com.example.progettoingsw2022_2.NetworkManager;
 
 import android.content.Context;
 import android.graphics.Bitmap;
