@@ -32,6 +32,7 @@
         app:layout_constraintVertical_bias="0.394" />
 
     <ScrollView
+        android:id="@+id/scrollViewRistoranti"
         android:layout_width="358dp"
         android:layout_height="238dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +43,7 @@
         app:layout_constraintVertical_bias="0.33">
 
         <LinearLayout
+            android:id="@+id/linearLayoutScroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
@@ -50,7 +52,7 @@
     <Button
         android:id="@+id/aggiungiRistoranteButton"
         android:layout_width="165dp"
-        android:layout_height="51dp"
+        android:layout_height="53dp"
         android:backgroundTint="@color/bgButton"
         android:text="Aggiungi ristorante"
         android:textColor="@color/black"

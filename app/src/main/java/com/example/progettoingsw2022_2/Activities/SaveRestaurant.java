@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Semaphore;
 
 import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
 import com.example.progettoingsw2022_2.R;
@@ -27,6 +28,8 @@ public class SaveRestaurant extends AppCompatActivity {
     private Button saveButton;
 
     private String emailAdmin;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
