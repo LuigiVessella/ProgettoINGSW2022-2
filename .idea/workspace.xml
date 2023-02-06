@@ -12,25 +12,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35991310-3cc0-42c4-95b0-29be4f04d3f2" name="Changes" comment="Modifiche e riorganizzazione del codice. Definizione di un design pattern">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/DashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/DashboardActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/SaveRestaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/SaveRestaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/SignActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/SignActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/HttpRequest/CustomRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/HttpRequest/CustomRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Models/Ristorante.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Models/Ristorante.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_dashboard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-    </list>
+    <list default="true" id="35991310-3cc0-42c4-95b0-29be4f04d3f2" name="Changes" comment="Aggiunta e visualizzazione ristorante" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[54eddef1]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\vesse\.android\avd\Pixel_3a_API_33_x86_64.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -233,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675335943728</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Aggiunta e visualizzazione ristorante">
+      <created>1675526583893</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1675526583893</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -274,6 +269,7 @@
     <MESSAGE value="Registrazione funziona" />
     <MESSAGE value="Login funziona" />
     <MESSAGE value="Modifiche e riorganizzazione del codice. Definizione di un design pattern" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifiche e riorganizzazione del codice. Definizione di un design pattern" />
+    <MESSAGE value="Aggiunta e visualizzazione ristorante" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta e visualizzazione ristorante" />
   </component>
 </project>
