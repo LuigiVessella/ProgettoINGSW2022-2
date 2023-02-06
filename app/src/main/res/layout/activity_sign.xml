@@ -4,7 +4,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgMain"
+    android:background="@color/bianco"
     tools:context=".Activities.SignActivity">
 
     <TextView
@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:fontFamily="casual"
+        android:fontFamily="@font/roboto_medium"
         android:text="Stai per entrare nell'app"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/register_email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp" />
@@ -66,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:enabled="false"
+                android:fontFamily="@font/roboto"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:minHeight="48dp" />
@@ -74,12 +76,12 @@
                 android:id="@+id/loginActButton"
                 android:layout_width="144dp"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/bgButton"
+                android:backgroundTint="@color/blu_scuro"
+                android:fontFamily="@font/roboto"
                 android:text="@string/loginBtn"
-                android:textColor="@color/black"
-                app:cornerRadius="40sp"
+                android:textColor="@color/bianco"
 
-                />
+                app:cornerRadius="40sp" />
         </LinearLayout>
     </ScrollView>
 

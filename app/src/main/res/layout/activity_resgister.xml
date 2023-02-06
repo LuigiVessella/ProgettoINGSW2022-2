@@ -4,7 +4,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgMain"
+    android:background="@color/bianco"
     tools:context=".Activities.ResgisterActivity">
 
     <TextView
@@ -12,11 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
+        android:fontFamily="@font/roboto_medium"
         android:text="@string/register_title"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:fontFamily="casual"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -56,8 +56,9 @@
                 android:id="@+id/partitaIvaText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Partita IVA"
                 android:ems="10"
+                android:fontFamily="@font/roboto"
+                android:hint="Partita IVA"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -65,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/register_name"
                 android:inputType="textPersonName"
                 android:minHeight="48dp" />
@@ -74,6 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/register_surname"
                 android:inputType="textPersonName"
                 android:minHeight="48dp" />
@@ -84,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:enabled="false"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/register_pass"
                 android:inputType="textPassword"
                 android:minHeight="48dp" />
@@ -93,6 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/register_email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp" />
@@ -102,9 +107,10 @@
                 android:layout_width="144dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="4dp"
-                android:backgroundTint="@color/bgButton"
+                android:backgroundTint="@color/blu_scuro"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/registerBtn"
-                android:textColor="@color/black"
+                android:textColor="@color/grigio_scuro"
                 app:cornerRadius="40sp" />
         </LinearLayout>
     </ScrollView>
