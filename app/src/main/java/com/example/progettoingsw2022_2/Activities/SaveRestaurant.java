@@ -19,16 +19,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Semaphore;
 
+import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
+import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
 import com.example.progettoingsw2022_2.R;
 
-public class SaveRestaurant extends AppCompatActivity {
+public class SaveRestaurant extends AppCompatActivity implements VolleyCallback {
 
     private EditText nomeText, copertiText, locazioneText;
     private Button saveButton;
 
     private String emailAdmin;
-
 
 
     @Override
@@ -40,7 +41,7 @@ public class SaveRestaurant extends AppCompatActivity {
     }
 
 
-    private void inizializzaComponenti(){
+    private void inizializzaComponenti() {
         nomeText = findViewById(R.id.nomeRistoranteText);
         copertiText = findViewById(R.id.numeroCopertiText);
         locazioneText = findViewById(R.id.locazioneRistoranteText);
@@ -55,44 +56,25 @@ public class SaveRestaurant extends AppCompatActivity {
     }
 
     private void sendSaveRestaurantRequest(String email, Editable nome, Editable coperti, Editable locazione) {
-        try {
-            // RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
-            String url = "http://20.86.153.84:8080/ristoranti/addNew";
 
+        // RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
+        String url = "http://192.168.1.10:8080/ristorante/addNew";
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Log.i("VOLLEY", response);
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.e("VOLLEY", error.toString());
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("email", email);
-                    params.put("nome", nome.toString());
-                    params.put("coperti", coperti.toString());
-                    params.put("locazione", locazione.toString());
-                    return params;
-                }
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("email", email);
+        params.put("nome", nome.toString());
+        params.put("coperti", coperti.toString());
+        params.put("locazione", locazione.toString());
 
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("Content-Type", "application/x-www-form-urlencoded");
-                    return params;
-                }
-            };
-            VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        CustomRequest newPostRequest = new CustomRequest(url ,params, this, this);
+        newPostRequest.sendPostRequest();
+
+    }
+
+    @Override
+    public void onSuccess(String result) {
+
+        System.out.println("Ristorante salvato correttamente");
+
     }
 }

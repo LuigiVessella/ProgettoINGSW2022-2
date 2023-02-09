@@ -3,8 +3,9 @@ package com.example.progettoingsw2022_2.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -14,20 +15,21 @@ import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DashboardActivity extends AppCompatActivity implements VolleyCallback {
+public class AdminDashboardActivity extends AppCompatActivity implements VolleyCallback {
 
     private Button aggiungiRistoranteButt;
     private String dataFromActivity;
 
     private TextView welcomeTextView;
 
-    private LinearLayout linearLayout;
+    private LinearLayout linearScrollLayout;
 
 
     @Override
@@ -43,13 +45,13 @@ public class DashboardActivity extends AppCompatActivity implements VolleyCallba
 
         aggiungiRistoranteButt = findViewById(R.id.aggiungiRistoranteButton);
         welcomeTextView = findViewById(R.id.welcomeTextDashboard);
-        linearLayout = findViewById(R.id.linearLayoutScroll);
+        linearScrollLayout = findViewById(R.id.linearLayoutScroll);
 
         welcomeTextView.append(dataFromActivity);
         aggiungiRistoranteButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newAct = new Intent(DashboardActivity.this, SaveRestaurant.class);
+                Intent newAct = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);
                 newAct.putExtra("email", dataFromActivity);
                 startActivity(newAct);
             }
@@ -65,7 +67,7 @@ public class DashboardActivity extends AppCompatActivity implements VolleyCallba
         params.put("email", dataFromActivity.trim());
         String url = "http://192.168.1.10:8080/admin/getRistoranti";
 
-        CustomRequest cR2 = new CustomRequest(url, params, DashboardActivity.this, DashboardActivity.this);
+        CustomRequest cR2 = new CustomRequest(url, params, AdminDashboardActivity.this, AdminDashboardActivity.this);
         cR2.sendPostRequest();
     }
 
@@ -73,11 +75,30 @@ public class DashboardActivity extends AppCompatActivity implements VolleyCallba
     public void onSuccess(String result) {
         System.out.println("ho ricevuto" + result);
         Gson gson = new Gson();
-        Ristorante[] ristoranti = gson.fromJson(result, Ristorante[].class);
-        System.out.println(ristoranti[0].getNome());
-        TextView txv = new TextView(this);
-        txv.setText(ristoranti[0].getNome());
-        linearLayout.addView(txv);
+        List<Ristorante> ristoranti = gson.fromJson(result, new TypeToken<List<Ristorante>>(){}.getType());
+        if(!ristoranti.isEmpty()) {
+            for(Ristorante ristorante: ristoranti) {
+                //System.out.println("stampo cameriere: " + ristoranti.get(0).getCamerieri().get(0).getNome());
+
+                TextView txv = new TextView(this);
+                txv.setText(ristorante.getNome());
+                
+                Button btn = new Button(this);
+                btn.setText("Edit");
+                
+                LinearLayout newHorizontalLayout = new LinearLayout(this);
+                newHorizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
+                newHorizontalLayout.addView(txv);
+                newHorizontalLayout.addView(btn);
+                linearScrollLayout.addView(newHorizontalLayout);
+            }
+
+        }
+        else {
+            TextView txv = new TextView(this);
+            txv.setText("Tutto vuoto! Inserisci ora un ristorante!");
+            linearScrollLayout.addView(txv);
+        }
 
 
 

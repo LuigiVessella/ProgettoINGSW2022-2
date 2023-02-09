@@ -11,20 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Semaphore;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
-import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
 import com.example.progettoingsw2022_2.R;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 public class SignActivity extends AppCompatActivity implements VolleyCallback {
 
@@ -50,18 +44,25 @@ public class SignActivity extends AppCompatActivity implements VolleyCallback {
         loginActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendLoginRequest(emailLoginText.getText());
+                sendLoginRequest(emailLoginText.getText(), passwordLoginText.getText());
             }
         });
 
     }
 
     //bisogna implementare bene la password
-    private void sendLoginRequest(Editable email) {
+    private void sendLoginRequest(Editable email, Editable password) {
         Log.v("info", "sono nella funzione login");
+
+        String stringPass = password.toString();
+        String salt = "$2a$10$abcdefghijklmnopqrstuvw$";
+        String hashedPassword = BCrypt.hashpw(stringPass,salt);
+
+        Log.i("info", hashedPassword);
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("email", email.toString());
+        params.put("hashedPassword", hashedPassword);
 
         String url = "http://192.168.1.10:8080/admin/login";
         CustomRequest cR = new CustomRequest(url, params, this, this);
@@ -70,7 +71,7 @@ public class SignActivity extends AppCompatActivity implements VolleyCallback {
 
 
     private void switchToDashboardActivity(String email){
-        Intent newAct = new Intent(SignActivity.this, DashboardActivity.class);
+        Intent newAct = new Intent(SignActivity.this, AdminDashboardActivity.class);
         newAct.putExtra("email", email);
         startActivity(newAct);
     }
@@ -79,7 +80,7 @@ public class SignActivity extends AppCompatActivity implements VolleyCallback {
     @Override
     public void onSuccess(String result) {
         Log.i("VOLLEY", result);
-        if(result.equals("Utente esiste")) {
+        if(result.equals("loggato")) {
             Log.i("INFO", "ok");
             titleSign.setText("Loggato");
             switchToDashboardActivity(String.valueOf(emailLoginText.getText()));

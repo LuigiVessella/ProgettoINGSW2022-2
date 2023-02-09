@@ -18,11 +18,15 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
+import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
 import com.example.progettoingsw2022_2.R;
 
-public class ResgisterActivity extends AppCompatActivity {
-    private EditText nomeText, cognomeText, pIvaText, emailText, passwordText;
+import org.mindrot.jbcrypt.BCrypt;
+
+public class ResgisterActivity extends AppCompatActivity implements VolleyCallback {
+    private EditText nomeText, cognomeText, pIvaText, emailText, passwordText, codiceFiscaleText;
     private Button okButton;
 
     @Override
@@ -39,6 +43,8 @@ public class ResgisterActivity extends AppCompatActivity {
         cognomeText = findViewById(R.id.secondNameText);
         emailText = findViewById(R.id.emailLoginText);
         pIvaText = findViewById(R.id.partitaIvaText);
+        passwordText = findViewById(R.id.passwordText);
+        codiceFiscaleText = findViewById(R.id.codiceFiscaleText);
         //la password va implementata per bene
         //passwordText = findViewById(R.id.passwordText);
 
@@ -47,52 +53,40 @@ public class ResgisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //if(casella1 non vuota && casella2 non vuota && casella3 nonvuota)....
-                sendRegisterRequest(nomeText.getText(), cognomeText.getText(), pIvaText.getText());
+                sendRegisterRequest(nomeText.getText(), cognomeText.getText(), pIvaText.getText(), passwordText.getText(), codiceFiscaleText.getText(), emailText.getText());
             }
         });
     }
 
 
-    private void sendRegisterRequest(Editable nome, Editable cognome, Editable pIva) {
+    private void sendRegisterRequest(Editable nome, Editable cognome, Editable pIva, Editable password, Editable codiceFiscale, Editable email) {
+        //semplice libreria che ci fa l'hash della password e manda al server
+        String stringPass = password.toString();
 
-        try {
-           // RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
-            String url = "http://20.86.153.84:8080/admin/addNew";
+        String salt = "$2a$10$abcdefghijklmnopqrstuvw$";
+        String hashedPassword = BCrypt.hashpw(stringPass,salt);
 
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Log.i("VOLLEY", response);
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.e("VOLLEY", error.toString());
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("nome", nome.toString());
-                    params.put("cognome", cognome.toString());
-                    params.put("partitaIva", pIva.toString());
-                    params.put("email", "filiberto@gmail.com");
-                    return params;
-                }
+        //richiesta custom
+        String url = "http://192.168.1.10:8080/admin/addNew";
 
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("Content-Type", "application/x-www-form-urlencoded");
-                    return params;
-                }
-            };
-            VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("nome", nome.toString());
+        params.put("cognome", cognome.toString());
+        params.put("partitaIva", pIva.toString());
+        params.put("email", email.toString());
+        params.put("hashedPassword", hashedPassword);
+        params.put("codiceFiscale", codiceFiscale.toString());
+
+        CustomRequest newPostRequest = new CustomRequest(url, params, this,this);
+        newPostRequest.sendPostRequest();
+
+    }
+
+
+    @Override
+    public void onSuccess(String result) {
+        Log.i("VOLLEY", result);
+
     }
 }
