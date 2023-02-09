@@ -76,11 +76,12 @@
                 android:id="@+id/loginActButton"
                 android:layout_width="144dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:backgroundTint="@color/blu_scuro"
                 android:fontFamily="@font/roboto"
+
                 android:text="@string/loginBtn"
                 android:textColor="@color/bianco"
-
                 app:cornerRadius="40sp" />
         </LinearLayout>
     </ScrollView>

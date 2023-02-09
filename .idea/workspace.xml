@@ -12,23 +12,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35991310-3cc0-42c4-95b0-29be4f04d3f2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/DashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/AdminDashboardActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/ResgisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/ResgisterActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/SaveRestaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/SaveRestaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/SignActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Activities/SignActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Models/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Models/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Models/Ristorante.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/progettoingsw2022_2/Models/Ristorante.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_dashboard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_resgister.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_resgister.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_save_restaurant.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_save_restaurant.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
-    </list>
+    <list default="true" id="35991310-3cc0-42c4-95b0-29be4f04d3f2" name="Changes" comment="aggiunta cameriere" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +71,8 @@
     "cidr.known.project.marker": "true",
     "project.structure.last.edited": "SDK Location",
     "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "vcs.Subversion"
   }
 }]]></component>
   <component name="PsdUISettings">
@@ -165,6 +150,9 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\vesse\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="35991310-3cc0-42c4-95b0-29be4f04d3f2" name="Changes" comment="" />
@@ -257,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675673896589</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="aggiunta cameriere">
+      <created>1675941218005</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1675941218005</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -299,6 +294,7 @@
     <MESSAGE value="Login funziona" />
     <MESSAGE value="Modifiche e riorganizzazione del codice. Definizione di un design pattern" />
     <MESSAGE value="Aggiunta e visualizzazione ristorante" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta e visualizzazione ristorante" />
+    <MESSAGE value="aggiunta cameriere" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiunta cameriere" />
   </component>
 </project>
