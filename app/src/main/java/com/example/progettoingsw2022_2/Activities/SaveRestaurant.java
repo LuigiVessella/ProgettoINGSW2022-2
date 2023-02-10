@@ -58,7 +58,7 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
     private void sendSaveRestaurantRequest(String email, Editable nome, Editable coperti, Editable locazione) {
 
         // RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
-        String url = "http://192.168.1.10:8080/ristorante/addNew";
+        String url = "http://20.86.153.84:8080/ristorante/addNew";
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("email", email);

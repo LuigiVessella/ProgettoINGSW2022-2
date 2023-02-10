@@ -68,7 +68,7 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
 
 
         //richiesta custom
-        String url = "http://192.168.1.10:8080/admin/addNew";
+        String url = "http://20.86.153.84:8080/admin/addNew";
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("nome", nome.toString());

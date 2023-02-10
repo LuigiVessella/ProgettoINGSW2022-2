@@ -65,7 +65,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("email", dataFromActivity.trim());
-        String url = "http://192.168.1.10:8080/admin/getRistoranti";
+        String url = "http://20.86.153.84:8080/admin/getRistoranti";
 
         CustomRequest cR2 = new CustomRequest(url, params, AdminDashboardActivity.this, AdminDashboardActivity.this);
         cR2.sendPostRequest();

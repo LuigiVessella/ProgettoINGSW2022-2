@@ -64,7 +64,7 @@ public class SignActivity extends AppCompatActivity implements VolleyCallback {
         params.put("email", email.toString());
         params.put("hashedPassword", hashedPassword);
 
-        String url = "http://192.168.1.10:8080/admin/login";
+        String url = "http://20.86.153.84:8080/admin/login";
         CustomRequest cR = new CustomRequest(url, params, this, this);
         cR.sendPostRequest();
     }
