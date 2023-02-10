@@ -85,6 +85,16 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 
                 Button btn = new Button(this);
                 btn.setText("Edit");
+
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent nextAct = new Intent(AdminDashboardActivity.this, RestaurantDashActivity.class);
+                        nextAct.putExtra("nomeRistorante", ristorante.getNome());
+                        startActivity(nextAct);
+
+                    }
+                });
                 
                 LinearLayout newHorizontalLayout = new LinearLayout(this);
                 newHorizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
