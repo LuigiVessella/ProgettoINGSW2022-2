@@ -1,7 +1,9 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -22,6 +24,7 @@ import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
 import com.example.progettoingsw2022_2.R;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -32,8 +35,15 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         setContentView(R.layout.activity_resgister);
         inizializzaComponenti();
+        ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
+        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(1250);
+        animationDrawable.setExitFadeDuration(2500);
+        animationDrawable.start();
     }
 
 

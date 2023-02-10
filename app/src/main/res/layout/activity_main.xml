@@ -8,6 +8,14 @@
     android:id="@+id/mainLayout"
     tools:context=".Activities.MainActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="416dp"
+        android:layout_height="40dp"
+        android:background="@color/blu_scuro"
+        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/registerBtn"
         android:layout_width="144dp"
@@ -69,18 +77,20 @@
         android:id="@+id/loginBtn"
         android:layout_width="144dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="208dp"
         android:backgroundTint="@color/blu_scuro"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/loginBtn"
         android:textColor="@color/grigio_scuro"
         app:cornerRadius="40sp"
+        android:drawableEnd="@drawable/login_nero_2"
+        app:iconTint="@color/grigio_scuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signedQuestion"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0">
+    </Button>
 
     <TextView
         android:id="@+id/signedQuestion"

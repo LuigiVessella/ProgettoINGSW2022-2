@@ -1,8 +1,10 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -17,6 +19,7 @@ import java.util.Map;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.R;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -29,8 +32,15 @@ public class SignActivity extends AppCompatActivity implements VolleyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         setContentView(R.layout.activity_sign);
         inizializzaComponenti();
+        ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
+        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(1250);
+        animationDrawable.setExitFadeDuration(2500);
+        animationDrawable.start();
 
     }
 
