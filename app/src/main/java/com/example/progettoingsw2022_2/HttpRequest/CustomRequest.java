@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.concurrent.Semaphore;
 
 public class CustomRequest {
-    private String url;
+    private String url = "http://192.168.1.10:8080";
 
     private  Map<String, String> params;
 
@@ -30,7 +30,7 @@ public class CustomRequest {
 
 
     public CustomRequest(String url, Map<String, String> params, Context context, VolleyCallback volleyCallback){
-        this.url = url;
+        this.url = this.url.concat(url);
         this.params = params;
         this.context = context;
         this.volleyCallback = volleyCallback;

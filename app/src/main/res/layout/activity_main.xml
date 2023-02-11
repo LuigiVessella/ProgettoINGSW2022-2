@@ -8,13 +8,6 @@
     android:id="@+id/mainLayout"
     tools:context=".Activities.MainActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="416dp"
-        android:layout_height="40dp"
-        android:background="@color/blu_scuro"
-        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/registerBtn"
@@ -25,6 +18,7 @@
         android:fontFamily="@font/roboto_medium"
         android:text="@string/registerBtn"
         android:textColor="@color/grigio_scuro"
+        android:translationY="-40dp"
         app:cornerRadius="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -40,6 +34,7 @@
         android:gravity="center"
         android:text="@string/signupQuestion"
         android:textSize="20sp"
+        android:translationY="-40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
@@ -78,19 +73,19 @@
         android:layout_width="144dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/blu_scuro"
+        android:drawableEnd="@drawable/login_nero_2"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/loginBtn"
         android:textColor="@color/grigio_scuro"
+        android:translationY="-40dp"
         app:cornerRadius="40sp"
-        android:drawableEnd="@drawable/login_nero_2"
         app:iconTint="@color/grigio_scuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signedQuestion"
-        app:layout_constraintVertical_bias="0.0">
-    </Button>
+        app:layout_constraintVertical_bias="0.0"></Button>
 
     <TextView
         android:id="@+id/signedQuestion"
@@ -101,9 +96,37 @@
         android:gravity="center"
         android:text="@string/signedQuestion"
         android:textSize="20sp"
+        android:translationY="-40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/container_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBaseline_toTopOf="parent">
+        
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/blu_scuro"
+            app:navigationIcon="@drawable/baseline_menu_24"/>
+        
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blu_chiaro"
+            android:src = "@drawable/baseline_add_24"
+            android:layout_gravity=""
+            app:layout_anchor="@id/bottom_app_bar"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
