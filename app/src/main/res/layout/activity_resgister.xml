@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="416dp"
         android:layout_height="40dp"
-        android:background="@color/blu_scuro"
+        android:background="#62C9F8"
         app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
         tools:ignore="MissingConstraints" />
 
@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/grigio_scuro"
         android:text="@string/register_title"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -64,8 +65,10 @@
                 android:id="@+id/partitaIvaText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/grigio_scuro"
                 android:ems="10"
                 android:fontFamily="@font/roboto"
+                android:textColorHint="@color/grigio_chiaro"
                 android:hint="Partita IVA"
                 android:inputType="textPersonName" />
 
@@ -73,8 +76,10 @@
                 android:id="@+id/firstNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/grigio_scuro"
                 android:ems="10"
                 android:fontFamily="@font/roboto"
+                android:textColorHint="@color/grigio_chiaro"
                 android:hint="@string/register_name"
                 android:inputType="textPersonName"
                 android:minHeight="48dp" />
@@ -83,8 +88,10 @@
                 android:id="@+id/secondNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/grigio_scuro"
                 android:ems="10"
                 android:fontFamily="@font/roboto"
+                android:textColorHint="@color/grigio_chiaro"
                 android:hint="@string/register_surname"
                 android:inputType="textPersonName"
                 android:minHeight="48dp" />
@@ -93,7 +100,9 @@
                 android:id="@+id/codiceFiscaleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/grigio_scuro"
                 android:ems="10"
+                android:textColorHint="@color/grigio_chiaro"
                 android:hint="Codice Fiscale"
                 android:inputType="textPersonName" />
 
@@ -101,9 +110,11 @@
                 android:id="@+id/passwordText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/grigio_scuro"
                 android:ems="10"
                 android:enabled="true"
                 android:fontFamily="@font/roboto"
+                android:textColorHint="@color/grigio_chiaro"
                 android:hint="@string/register_pass"
                 android:inputType="textPassword"
                 android:minHeight="48dp" />
@@ -112,21 +123,24 @@
                 android:id="@+id/emailLoginText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/grigio_scuro"
                 android:ems="10"
                 android:fontFamily="@font/roboto"
+                android:textColorHint="@color/grigio_chiaro"
                 android:hint="@string/register_email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp" />
 
             <Button
                 android:id="@+id/okButton"
-                android:layout_width="144dp"
+                android:layout_width="170dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="4dp"
+                android:drawableEnd="@drawable/icona_registra"
                 android:backgroundTint="@color/blu_scuro"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/registerBtn"
-                android:textColor="@color/grigio_scuro"
+                android:textColor="@color/bianco"
                 app:cornerRadius="40sp" />
         </LinearLayout>
     </ScrollView>

@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="416dp"
         android:layout_height="40dp"
-        android:background="@color/blu_scuro"
+        android:background="#62C9F8"
         app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
         tools:ignore="MissingConstraints" />
 
@@ -21,6 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:fontFamily="@font/roboto_medium"
+        android:color="@color/grigio_scuro"
+        android:textColor="@color/grigio_scuro"
         android:text="Stai per entrare nell'app"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -65,6 +67,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:fontFamily="@font/roboto"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHint="@color/grigio_chiaro"
                 android:hint="@string/register_email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp" />
@@ -76,18 +80,20 @@
                 android:ems="10"
                 android:enabled="true"
                 android:fontFamily="@font/roboto"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHint="@color/grigio_chiaro"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:minHeight="48dp" />
 
             <Button
                 android:id="@+id/loginActButton"
-                android:layout_width="144dp"
+                android:layout_width="155dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/blu_scuro"
                 android:fontFamily="@font/roboto"
-
+                android:drawableEnd="@drawable/icona_login"
                 android:text="@string/loginBtn"
                 android:textColor="@color/bianco"
                 app:cornerRadius="40sp" />
