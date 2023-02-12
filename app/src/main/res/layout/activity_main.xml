@@ -8,6 +8,16 @@
     android:id="@+id/mainLayout"
     tools:context=".Activities.MainActivity">
 
+    <ImageView
+        android:id="@+id/background_shape"
+        android:layout_width="match_parent"
+        android:layout_height="663dp"
+        android:elevation="1dp"
+        android:rotation="0"
+        android:src="@drawable/background_shape"
+        android:visibility="visible"
+        tools:ignore="MissingConstraints" />
+
 
     <Button
         android:id="@+id/registerBtn"
@@ -20,6 +30,7 @@
         android:text="@string/registerBtn"
         android:textColor="@color/bianco"
         android:translationY="-40dp"
+        android:elevation="10dp"
         app:cornerRadius="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -37,22 +48,24 @@
         android:textColor="@color/grigio_scuro"
         android:textSize="20sp"
         android:translationY="-40dp"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
     <ImageView
         android:id="@+id/Logo"
-        android:layout_width="192dp"
-        android:layout_height="155dp"
+        android:layout_width="140dp"
+        android:layout_height="105dp"
         android:contentDescription="@string/contentDescriptionMainLogo"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.119"
-        app:srcCompat="@drawable/logobiagio"/>
+        app:srcCompat="@drawable/logobiagio" />
 
     <TextView
         android:id="@+id/title"
@@ -63,6 +76,7 @@
         android:textColor="@color/grigio_scuro"
         android:textSize="32sp"
         android:textStyle="bold"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -79,6 +93,7 @@
         android:text="@string/loginBtn"
         android:textColor="@color/bianco"
         android:translationY="-40dp"
+        android:elevation="10dp"
         app:cornerRadius="40sp"
         app:iconTint="@color/bianco"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -99,6 +114,7 @@
         android:text="@string/signedQuestion"
         android:textSize="20sp"
         android:translationY="-40dp"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,26 +124,29 @@
         android:id="@+id/container_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:elevation="10dp"
+        app:layout_constraintBaseline_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBaseline_toTopOf="parent">
-        
+        app:layout_constraintStart_toStartOf="parent">
+
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottom_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:backgroundTint="@color/blu_scuro"
-            app:navigationIcon="@drawable/baseline_menu_24"/>
-        
+            app:navigationIcon="@drawable/baseline_menu_24" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/blu_chiaro"
-            android:src = "@drawable/baseline_add_24"
             android:layout_gravity=""
-            app:layout_anchor="@id/bottom_app_bar"/>
+            android:backgroundTint="@color/blu_chiaro"
+            android:src="@drawable/baseline_add_24"
+            app:layout_anchor="@id/bottom_app_bar" />
+
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
