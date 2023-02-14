@@ -13,6 +13,9 @@
             android:pivotY="45%">
             <shape android:shape="oval">
                 <solid android:color="#ffffff" />
+                <stroke
+                    android:width="0.9dp"
+                    android:color="#776155"/>
             </shape>
         </rotate>
     </item>
@@ -24,6 +27,9 @@
         android:top="12dp">
         <shape>
             <solid android:color="#ffffff" />
+            <stroke
+                android:width="0.7dp"
+                android:color="#776155"/>
             <corners
                 android:topLeftRadius="4dp"
                 android:topRightRadius="4dp"
@@ -32,4 +38,21 @@
         </shape>
 
     </item>
+
+    <item
+        android:width="20dp"
+        android:height="20dp"
+        android:top="14.5dp"
+        android:right="2dp"
+        android:left="0.3dp">
+        <rotate
+            android:fromDegrees="90"
+            android:pivotX="80%"
+            android:pivotY="45%">
+            <shape android:shape="oval">
+                <solid android:color="#ffffff" />
+            </shape>
+        </rotate>
+    </item>
+
 </layer-list>

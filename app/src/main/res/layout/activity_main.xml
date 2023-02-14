@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_list"
+    android:background="@drawable/background_list"
     android:id="@+id/mainLayout"
     tools:context=".Activities.MainActivity">
 
@@ -24,7 +24,7 @@
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="@color/blu_scuro"
+        android:backgroundTint="#EFC88B"
         android:drawableEnd="@drawable/icona_registra"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/registerBtn"
@@ -71,12 +71,12 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
+        android:elevation="10dp"
+        android:fontFamily="@font/petit_formal_script"
         android:text="@string/app_title"
         android:textColor="@color/grigio_scuro"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:elevation="10dp"
+        android:textSize="28sp"
+        android:textStyle="normal|bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -88,7 +88,7 @@
         android:id="@+id/loginBtn"
         android:layout_width="170dp"
         android:layout_height="50dp"
-        android:backgroundTint="@color/blu_scuro"
+        android:backgroundTint="#EFC88B"
         android:drawableEnd="@drawable/icona_login"
         android:text="@string/loginBtn"
         android:textColor="@color/bianco"
@@ -135,14 +135,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:backgroundTint="@color/blu_scuro"
+            android:backgroundTint="#776155"
             app:navigationIcon="@drawable/baseline_menu_24" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity=""
-            android:backgroundTint="@color/blu_chiaro"
+            android:backgroundTint="#EFC88B"
             android:src="@drawable/baseline_add_24"
             app:layout_anchor="@id/bottom_app_bar" />
 
