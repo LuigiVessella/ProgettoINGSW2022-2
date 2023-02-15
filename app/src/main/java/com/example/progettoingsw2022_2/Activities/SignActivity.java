@@ -32,8 +32,6 @@ public class SignActivity extends AppCompatActivity implements VolleyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         setContentView(R.layout.activity_sign);
         inizializzaComponenti();
         ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);

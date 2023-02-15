@@ -89,7 +89,7 @@
         android:id="@+id/loginBtn"
         android:layout_width="170dp"
         android:layout_height="50dp"
-        android:backgroundTint="#EFC88B"
+        android:background="@drawable/button_color_scheme"
         android:drawableEnd="@drawable/icona_login"
         android:text="@string/loginBtn"
         android:textColor="@color/bianco"

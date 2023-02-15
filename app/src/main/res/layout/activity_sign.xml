@@ -3,17 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_list"
+    android:background="@drawable/background_list"
     android:id="@+id/mainLayout"
     tools:context=".Activities.SignActivity">
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="416dp"
-        android:layout_height="40dp"
-        android:background="#62C9F8"
-        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/titleSign"
@@ -59,6 +51,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/bianco"
+            android:alpha="0.65"
             android:orientation="vertical">
 
             <EditText

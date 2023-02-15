@@ -35,8 +35,6 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         setContentView(R.layout.activity_resgister);
         inizializzaComponenti();
         ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
