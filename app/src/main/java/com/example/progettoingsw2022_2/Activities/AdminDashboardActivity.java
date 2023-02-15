@@ -81,7 +81,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 //System.out.println("stampo cameriere: " + ristoranti.get(0).getCamerieri().get(0).getNome());
 
                 TextView txv = new TextView(this);
-                txv.setText(ristorante.getNome());
+                txv.setText(ristorante.getNome() + ristorante.getCodice_ristorante());
                 
                 Button btn = new Button(this);
                 btn.setText("Edit");
@@ -89,8 +89,11 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        System.out.println(ristorante.getCodice_ristorante());
                         Intent nextAct = new Intent(AdminDashboardActivity.this, RestaurantDashActivity.class);
                         nextAct.putExtra("nomeRistorante", ristorante.getNome());
+                        nextAct.putExtra("codiceRistorante", ristorante.getCodice_ristorante().toString());
+
                         startActivity(nextAct);
 
                     }
@@ -109,8 +112,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
             txv.setText("Tutto vuoto! Inserisci ora un ristorante!");
             linearScrollLayout.addView(txv);
         }
-
-
 
     }
 }

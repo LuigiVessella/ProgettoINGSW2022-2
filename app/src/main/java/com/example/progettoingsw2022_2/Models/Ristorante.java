@@ -31,13 +31,7 @@ public class Ristorante {
     }
 
 
-    public Long getCodice_ristorante() {
-        return codice_ristorante;
-    }
 
-    public void setCodice_ristorante(Long codice_ristorante) {
-        this.codice_ristorante = codice_ristorante;
-    }
 
     public String getNome() {
         return nome;
@@ -62,5 +56,15 @@ public class Ristorante {
     public void setLocazione(String locazione) {
         this.locazione = locazione;
     }
+
+
+    public Long getCodice_ristorante() {
+        return codice_ristorante;
+    }
+
+    public void setCodice_ristorante(Long codice_ristorante) {
+        this.codice_ristorante = codice_ristorante;
+    }
+
 
 }

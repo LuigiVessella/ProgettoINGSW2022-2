@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".SaveWaiter"
+            android:name=".Activities.SaveWaiter"
             android:exported="false" />
         <activity
             android:name=".Activities.RestaurantDashActivity"

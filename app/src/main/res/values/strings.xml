@@ -13,4 +13,5 @@
     <string name="register_surname">Surname</string>
     <string name="register_pass" translatable="false">Password</string>
     <string name="register_email" translatable="false">Email</string>
+    <string name = "welcome_register_waiter" translatable="true">You are entering a new waiter</string>
 </resources>

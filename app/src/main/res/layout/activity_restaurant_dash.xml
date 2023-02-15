@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.132" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/addCameriereButt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/blu_scuro"
@@ -31,24 +31,41 @@
         app:cornerRadius="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeRestaurantText"
-        app:layout_constraintVertical_bias="0.355" />
+        app:layout_constraintVertical_bias="0.179" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/addMenuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aggiungi menu"
         android:backgroundTint="@color/blu_scuro"
         android:fontFamily="@font/roboto_medium"
+        android:text="Aggiungi menu"
         android:textColor="@color/grigio_scuro"
         app:cornerRadius="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/addCameriereButt"
         app:layout_constraintVertical_bias="0.153" />
+
+    <ScrollView
+        android:id="@+id/waiterListScroll"
+        android:layout_width="385dp"
+        android:layout_height="208dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addMenuButton"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:id="@+id/waiterListLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
