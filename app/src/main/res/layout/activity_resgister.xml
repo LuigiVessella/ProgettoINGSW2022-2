@@ -3,17 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_list"
+    android:background="@drawable/background_list"
     android:id="@+id/mainLayout"
     tools:context=".Activities.ResgisterActivity">
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="416dp"
-        android:layout_height="40dp"
-        android:background="#62C9F8"
-        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/titleReg"
@@ -137,7 +129,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="4dp"
-                android:backgroundTint="@color/blu_scuro"
+                android:backgroundTint="@drawable/button_color_scheme"
                 android:drawableEnd="@drawable/icona_registra"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/registerBtn"

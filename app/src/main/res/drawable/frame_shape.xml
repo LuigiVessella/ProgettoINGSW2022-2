@@ -12,10 +12,10 @@
             android:pivotX="80%"
             android:pivotY="45%">
             <shape android:shape="oval">
-                <solid android:color="#ffffff" />
+                <solid android:color="@color/bianco" />
                 <stroke
                     android:width="0.9dp"
-                    android:color="#776155"/>
+                    android:color="@color/marrone_terziario"/>
             </shape>
         </rotate>
     </item>
@@ -26,10 +26,10 @@
         android:bottom="4dp"
         android:top="12dp">
         <shape>
-            <solid android:color="#ffffff" />
+            <solid android:color="@color/bianco" />
             <stroke
                 android:width="0.7dp"
-                android:color="#776155"/>
+                android:color="@color/marrone_terziario"/>
             <corners
                 android:topLeftRadius="4dp"
                 android:topRightRadius="4dp"
@@ -50,7 +50,7 @@
             android:pivotX="80%"
             android:pivotY="45%">
             <shape android:shape="oval">
-                <solid android:color="#ffffff" />
+                <solid android:color="@color/bianco" />
             </shape>
         </rotate>
     </item>

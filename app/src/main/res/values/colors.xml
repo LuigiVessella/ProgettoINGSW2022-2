@@ -5,8 +5,11 @@
     <color name="verde">#66BB6A</color>
     <color name="arancione">#FFB74D</color>
     <color name="rosso">#E53935</color>
-    <color name = "bianco">#FFFFFF</color>
-    <color name = "grigio_scuro">#333333</color>
-    <color name = "grigio_chiaro">#9E9E9E</color>
+    <color name ="bianco">#FFFFFF</color>
+    <color name ="grigio_scuro">#333333</color>
+    <color name ="grigio_chiaro">#9E9E9E</color>
+    <color name ="marrone_primario">#776155</color>
+    <color name ="marrone_secondario">#C6AD77</color>
+    <color name="marrone_terziario">#9C7E55</color>
 
 </resources>

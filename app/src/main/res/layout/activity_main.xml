@@ -14,7 +14,7 @@
         android:layout_height="663dp"
         android:elevation="1dp"
         android:rotation="0"
-        android:src="@drawable/background_shape"
+        android:src="@drawable/frame_shape"
         android:visibility="visible"
         tools:ignore="MissingConstraints" />
 
@@ -24,7 +24,7 @@
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#EFC88B"
+        android:backgroundTint="@drawable/button_color_scheme"
         android:drawableEnd="@drawable/icona_registra"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/registerBtn"
@@ -76,7 +76,7 @@
         android:fontFamily="@font/petit_formal_script"
         android:text="@string/app_title"
         android:textColor="@color/grigio_scuro"
-        android:textSize="28sp"
+        android:textSize="26sp"
         android:textStyle="normal|bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +89,7 @@
         android:id="@+id/loginBtn"
         android:layout_width="170dp"
         android:layout_height="50dp"
-        android:background="@drawable/button_color_scheme"
+        android:backgroundTint="@drawable/button_color_scheme"
         android:drawableEnd="@drawable/icona_login"
         android:text="@string/loginBtn"
         android:textColor="@color/bianco"
@@ -136,14 +136,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:backgroundTint="#776155"
+            android:backgroundTint="@color/marrone_primario"
             app:navigationIcon="@drawable/baseline_menu_24" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity=""
-            android:backgroundTint="#EFC88B"
+            android:backgroundTint="@color/marrone_secondario"
             android:src="@drawable/baseline_add_24"
             app:layout_anchor="@id/bottom_app_bar" />
 

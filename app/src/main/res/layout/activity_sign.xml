@@ -85,7 +85,7 @@
                 android:layout_width="155dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/blu_scuro"
+                android:backgroundTint="@drawable/button_color_scheme"
                 android:fontFamily="@font/roboto"
                 android:drawableEnd="@drawable/icona_login"
                 android:text="@string/loginBtn"
