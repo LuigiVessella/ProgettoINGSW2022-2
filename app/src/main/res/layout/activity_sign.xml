@@ -1,22 +1,89 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_list"
-    android:id="@+id/mainLayout"
     tools:context=".Activities.SignActivity">
+
+    <Button
+        android:id="@+id/loginActButton"
+        android:layout_width="155dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="86dp"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:drawableEnd="@drawable/icona_login"
+        android:fontFamily="@font/roboto"
+        android:text="@string/loginBtn"
+        android:textColor="@color/bianco"
+        app:cornerRadius="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailLoginText" />
+
+    <EditText
+        android:id="@+id/passwordLoginText"
+        android:layout_width="333dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="39dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/baseline_lock_24"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:paddingStart="5dp"
+        android:textColor="@color/grigio_scuro"
+        android:textColorHint="@color/grigio_chiaro"
+        android:textCursorDrawable="@drawable/cursor_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailLoginText" />
+
+    <EditText
+        android:id="@+id/emailLoginText"
+        android:layout_width="333dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="383dp"
+        android:layout_marginBottom="164dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/baseline_email_24"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="@string/register_email"
+        android:inputType="textEmailAddress"
+
+        android:minHeight="48dp"
+        android:paddingStart="5dp"
+        android:textColor="@color/grigio_scuro"
+
+        android:textColorHint="@color/grigio_chiaro"
+        android:textCursorDrawable="@drawable/cursor_color"
+        app:layout_constraintBottom_toTopOf="@+id/loginActButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titleSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:fontFamily="@font/roboto_medium"
         android:color="@color/grigio_scuro"
-        android:textColor="@color/grigio_scuro"
-        android:text="Stai per entrare nell'app"
+        android:fontFamily="@font/roboto_light_italic"
+        android:text="Compila i campi per accedere"
         android:textAlignment="center"
+        android:textColor="@color/grigio_scuro"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,61 +104,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.133" />
-
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="387dp"
-        android:layout_height="181dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleSign">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/bianco"
-            android:alpha="0.65"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/emailLoginText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/grigio_scuro"
-                android:textColorHint="@color/grigio_chiaro"
-                android:hint="@string/register_email"
-                android:inputType="textEmailAddress"
-                android:minHeight="48dp" />
-
-            <EditText
-                android:id="@+id/passwordLoginText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:enabled="true"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/grigio_scuro"
-                android:textColorHint="@color/grigio_chiaro"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:minHeight="48dp" />
-
-            <Button
-                android:id="@+id/loginActButton"
-                android:layout_width="155dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@drawable/button_color_scheme"
-                android:fontFamily="@font/roboto"
-                android:drawableEnd="@drawable/icona_login"
-                android:text="@string/loginBtn"
-                android:textColor="@color/bianco"
-                app:cornerRadius="40sp" />
-        </LinearLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
