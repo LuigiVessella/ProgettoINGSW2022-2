@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addMenuButton"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.64">
 
         <LinearLayout
             android:id="@+id/waiterListLinear"

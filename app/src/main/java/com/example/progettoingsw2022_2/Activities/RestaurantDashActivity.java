@@ -10,9 +10,19 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
+import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Cameriere;
+import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-public class RestaurantDashActivity extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class RestaurantDashActivity extends AppCompatActivity implements VolleyCallback {
 
     private TextView welcomeText;
     private String restaurantName, restaurantCode;
@@ -20,18 +30,18 @@ public class RestaurantDashActivity extends AppCompatActivity {
     private Button addCameriereButton, addMenuButton;
 
     private LinearLayout waiterLinearL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_dash);
-
 
         inizializzaComponenti();
 
     }
 
 
-    private void inizializzaComponenti(){
+    private void inizializzaComponenti() {
         restaurantName = getIntent().getStringExtra("nomeRistorante");
         restaurantCode = getIntent().getStringExtra("codiceRistorante");
 
@@ -51,5 +61,39 @@ public class RestaurantDashActivity extends AppCompatActivity {
             }
         });
 
+
+        visualizzaCamerieri();
+
+    }
+
+
+    private void visualizzaCamerieri() {
+        System.out.println(restaurantCode);
+        String url = "/ristorante/getCamerieri";
+        Map<String, String> params = new HashMap<>();
+        params.put("codiceRistorante", restaurantCode);
+        CustomRequest customRequest = new CustomRequest(url, params, RestaurantDashActivity.this, RestaurantDashActivity.this);
+        customRequest.sendPostRequest();
+    }
+
+    @Override
+    public void onSuccess(String result) {
+
+        Gson gson = new Gson();
+        List<Cameriere> camerieri = gson.fromJson(result, new TypeToken<List<Cameriere>>() {
+        }.getType());
+        if (!camerieri.isEmpty()) {
+            int i = 0;
+            for (Cameriere cameriere : camerieri) {
+                i++;
+                TextView txv = new TextView(this);
+                txv.setText("Cameriere " + i +": " +  cameriere.getNome());
+                txv.setTextSize(17);
+
+                waiterLinearL.addView(txv);
+            }
+
+
+        }
     }
 }
