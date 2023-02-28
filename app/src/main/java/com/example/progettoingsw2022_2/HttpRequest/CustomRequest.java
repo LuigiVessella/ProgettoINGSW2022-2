@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.concurrent.Semaphore;
 
 public class CustomRequest {
-    private String url = "http://192.168.1.10:8080";
+    private String url = "http://20.86.153.84:8080";
 
     private  Map<String, String> params;
 
