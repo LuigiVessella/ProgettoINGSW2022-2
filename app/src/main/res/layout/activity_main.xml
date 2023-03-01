@@ -14,7 +14,6 @@
         android:layout_height="663dp"
         android:elevation="1dp"
         android:rotation="0"
-
         android:src="@drawable/frame_shape"
         android:visibility="visible"
         tools:ignore="MissingConstraints" />
