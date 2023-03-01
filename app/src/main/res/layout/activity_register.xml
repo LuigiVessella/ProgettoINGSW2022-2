@@ -8,9 +8,24 @@
     android:background="@drawable/sfondo_1_con_patina"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/welcomeRegisterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="BENVENUTO" />
+
+    <ImageView
+        android:id="@+id/logoBiagioTest"
+        android:layout_width="129dp"
+        android:layout_height="130dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/logobiagio" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="550dp">
+        android:layout_height="350dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,24 +40,6 @@
 
                 >
 
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/logoBiagioTest"
-                        android:layout_width="80dp"
-                        android:layout_height="130dp"
-                        android:layout_marginTop="20dp"
-                        app:srcCompat="@drawable/logobiagio" />
-
-                    <TextView
-                        android:id="@+id/welcomeRegisterText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="BENVENUTO" />
-                </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
