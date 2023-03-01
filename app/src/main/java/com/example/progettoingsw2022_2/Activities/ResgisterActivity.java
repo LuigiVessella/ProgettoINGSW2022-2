@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -31,6 +32,7 @@ import org.mindrot.jbcrypt.BCrypt;
 public class ResgisterActivity extends AppCompatActivity implements VolleyCallback {
     private EditText nomeText, cognomeText, pIvaText, emailText, passwordText, codiceFiscaleText;
     private Button okButton;
+    private TextView welcomeTexView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,19 +55,22 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
         pIvaText = findViewById(R.id.partitaIvaText);
         passwordText = findViewById(R.id.passwordText);
         codiceFiscaleText = findViewById(R.id.codiceFiscaleText);
-        //la password va implementata per bene
-        //passwordText = findViewById(R.id.passwordText);
-
+        welcomeTexView = findViewById(R.id.titleReg);
         okButton = findViewById(R.id.okButton);
+
+
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if(casella1 non vuota && casella2 non vuota && casella3 nonvuota)....
-                sendRegisterRequest(nomeText.getText(), cognomeText.getText(), pIvaText.getText(), passwordText.getText(), codiceFiscaleText.getText(), emailText.getText());
+               if(nomeText.getText().length() > 0 && cognomeText.getText().length()>0 && pIvaText.getText().length()>0
+                       && passwordText.getText().length()>0 && codiceFiscaleText.getText().length()>0 && emailText.getText().length()>0)
+                   sendRegisterRequest(nomeText.getText(), cognomeText.getText(), pIvaText.getText(), passwordText.getText(), codiceFiscaleText.getText(), emailText.getText());
+               else {
+                   emailText.setError("riempire tutti i campi!");
+               }
             }
         });
     }
-
 
     private void sendRegisterRequest(Editable nome, Editable cognome, Editable pIva, Editable password, Editable codiceFiscale, Editable email) {
         //semplice libreria che ci fa l'hash della password e manda al server
@@ -95,6 +100,12 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
     @Override
     public void onSuccess(String result) {
         Log.i("VOLLEY", result);
+        if(result.equals("Succefully saved")) {
+            welcomeTexView.setText("Registrato correttamente!");
+        }
+        else {
+            emailText.setError("qualcosa non va!");
+        }
 
     }
 }

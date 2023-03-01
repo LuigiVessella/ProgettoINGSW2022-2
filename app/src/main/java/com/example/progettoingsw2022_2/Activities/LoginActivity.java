@@ -19,11 +19,10 @@ import java.util.Map;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.R;
-import com.google.android.material.appbar.MaterialToolbar;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-public class SignActivity extends AppCompatActivity implements VolleyCallback {
+public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
     private EditText emailLoginText, passwordLoginText;
     private Button loginActivityButton;
@@ -52,7 +51,11 @@ public class SignActivity extends AppCompatActivity implements VolleyCallback {
         loginActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendLoginRequest(emailLoginText.getText(), passwordLoginText.getText());
+                if(emailLoginText.getText().length() < 5 || passwordLoginText.getText().length() < 2) {
+                    emailLoginText.setError("compilare i campi correttamente");
+                    passwordLoginText.setText("");
+                }else
+                    sendLoginRequest(emailLoginText.getText(), passwordLoginText.getText());
             }
         });
 
@@ -78,20 +81,36 @@ public class SignActivity extends AppCompatActivity implements VolleyCallback {
     }
 
 
-    private void switchToDashboardActivity(String email){
-        Intent newAct = new Intent(SignActivity.this, AdminDashboardActivity.class);
+    private void switchToAdminDashboardActivity(String email){
+        Intent newAct = new Intent(LoginActivity.this, AdminDashboardActivity.class);
+        newAct.putExtra("email", email);
+        startActivity(newAct);
+    }
+
+    private void switchToWaiterDashboardActivity(String email){
+        Intent newAct = new Intent(LoginActivity.this, WaiterDashboard.class);
         newAct.putExtra("email", email);
         startActivity(newAct);
     }
 
 
+
     @Override
     public void onSuccess(String result) {
         Log.i("VOLLEY", result);
-        if(result.equals("loggato")) {
-            Log.i("INFO", "ok");
+        if(result.equals("admin")) {
+            Log.i("INFO LOGIN", "admin ok");
             titleSign.setText("Loggato");
-            switchToDashboardActivity(String.valueOf(emailLoginText.getText()));
+            switchToAdminDashboardActivity(String.valueOf(emailLoginText.getText()));
+        }
+        else if(result.equals("cameriere")){
+            Log.i("INFO LOGIN", "cameriere ok");
+            titleSign.setText("Loggato");
+            switchToWaiterDashboardActivity(String.valueOf(emailLoginText.getText()));
+        }
+        else {
+            emailLoginText.setError("Credenziali non valide");
+            passwordLoginText.setText("");
         }
 
     }

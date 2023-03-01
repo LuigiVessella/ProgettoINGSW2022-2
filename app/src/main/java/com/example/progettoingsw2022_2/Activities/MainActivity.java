@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.progettoingsw2022_2.R;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomappbar.BottomAppBar;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Setta il onClickListener per il bottone "registrati"
         registerButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ResgisterActivity.class)));
-        loginButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SignActivity.class)));
+        loginButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, LoginActivity.class)));
     }
 
     @Override
