@@ -9,7 +9,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="500dp">
+        android:layout_height="550dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,6 +35,12 @@
                         android:layout_height="130dp"
                         android:layout_marginTop="20dp"
                         app:srcCompat="@drawable/logobiagio" />
+
+                    <TextView
+                        android:id="@+id/welcomeRegisterText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BENVENUTO" />
                 </TableRow>
 
                 <TableRow
@@ -58,7 +64,7 @@
                     android:layout_marginTop="10dp">
 
                     <EditText
-                        android:id="@+id/firstNameTest"
+                        android:id="@+id/firstNameText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
@@ -72,7 +78,7 @@
                         android:textColorHint="@color/grigio_chiaro" />
 
                     <EditText
-                        android:id="@+id/secondNameTest"
+                        android:id="@+id/secondNameText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
@@ -109,7 +115,7 @@
                     android:layout_marginTop="10dp">
 
                     <EditText
-                        android:id="@+id/editTextEmailTest"
+                        android:id="@+id/emailRegisterText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
@@ -147,7 +153,7 @@
                     android:layout_marginTop="10dp">
 
                     <EditText
-                        android:id="@+id/editTextTextPartitaIVA"
+                        android:id="@+id/partitaIvaText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
@@ -185,7 +191,7 @@
                     android:layout_marginTop="10dp">
 
                     <EditText
-                        android:id="@+id/editTextTextCodiceFiscale"
+                        android:id="@+id/codiceFiscaleText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
@@ -225,7 +231,7 @@
                     android:paddingBottom="20dp">
 
                     <EditText
-                        android:id="@+id/editTextTextPassword"
+                        android:id="@+id/passwordText"
                         android:layout_width="118dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
@@ -240,7 +246,7 @@
                         android:textColorHint="@color/grigio_chiaro" />
 
                     <Button
-                        android:id="@+id/okButtonTest"
+                        android:id="@+id/showPassButton"
                         android:layout_width="161dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
@@ -255,5 +261,18 @@
             </TableLayout>
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/okButtonRegister"
+        android:layout_width="155dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:drawableEnd="@drawable/icona_login"
+        android:fontFamily="@font/roboto"
+        android:text="@string/registerBtn"
+        android:textColor="@color/bianco"
+        app:cornerRadius="40sp" />
 
 </LinearLayout>

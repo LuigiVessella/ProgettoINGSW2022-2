@@ -29,7 +29,7 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resgister);
+        setContentView(R.layout.activity_register);
         inizializzaComponenti();
         ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
         AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
@@ -43,12 +43,13 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
 
         nomeText = findViewById(R.id.firstNameText);
         cognomeText = findViewById(R.id.secondNameText);
-        emailText = findViewById(R.id.emailLoginText);
+        emailText = findViewById(R.id.emailRegisterText);
         pIvaText = findViewById(R.id.partitaIvaText);
         passwordText = findViewById(R.id.passwordText);
         codiceFiscaleText = findViewById(R.id.codiceFiscaleText);
-        welcomeTexView = findViewById(R.id.titleReg);
-        okButton = findViewById(R.id.okButtonTest);
+
+        welcomeTexView = findViewById(R.id.welcomeRegisterText);
+        okButton = findViewById(R.id.okButtonRegister);
 
 
         okButton.setOnClickListener(new View.OnClickListener() {
