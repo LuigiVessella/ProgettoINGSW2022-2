@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -31,26 +32,19 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         inizializzaComponenti();
-        ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
-        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
-        animationDrawable.setEnterFadeDuration(1250);
-        animationDrawable.setExitFadeDuration(2500);
-        animationDrawable.start();
+        LinearLayout linearLayout = findViewById(R.id.linearLayoutRegister);
     }
 
 
     private void inizializzaComponenti() {
-
         nomeText = findViewById(R.id.firstNameText);
         cognomeText = findViewById(R.id.secondNameText);
         emailText = findViewById(R.id.emailRegisterText);
         pIvaText = findViewById(R.id.partitaIvaText);
         passwordText = findViewById(R.id.passwordText);
         codiceFiscaleText = findViewById(R.id.codiceFiscaleText);
-
         welcomeTexView = findViewById(R.id.welcomeRegisterText);
         okButton = findViewById(R.id.okButtonRegister);
-
 
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         loginButton.animate().alpha(1.0f).setDuration(4000).start();
         accediText.animate().alpha(1.0f).setDuration(4000).start();
         registraText.animate().alpha(1.0f).setDuration(4000).start();
-
         //Setta il onClickListener per il bottone "registrati"
         registerButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ResgisterActivity.class)));
         loginButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, LoginActivity.class)));
