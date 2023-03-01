@@ -12,20 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
-import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
 import com.example.progettoingsw2022_2.R;
-import com.google.android.material.appbar.MaterialToolbar;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -56,7 +48,7 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
         passwordText = findViewById(R.id.passwordText);
         codiceFiscaleText = findViewById(R.id.codiceFiscaleText);
         welcomeTexView = findViewById(R.id.titleReg);
-        okButton = findViewById(R.id.okButton);
+        okButton = findViewById(R.id.okButtonTest);
 
 
         okButton.setOnClickListener(new View.OnClickListener() {
