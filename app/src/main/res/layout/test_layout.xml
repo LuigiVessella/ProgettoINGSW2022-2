@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_list">
+    android:background="@drawable/sfondo_1_con_patina"
+    >
 
     <TableLayout
         android:id="@+id/testTableLayout"
@@ -15,24 +16,28 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+
+        >
+
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            >
 
             <ImageView
                 android:id="@+id/logoBiagioTest"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                app:srcCompat="@drawable/logobiagio" />
+                android:layout_width="80dp"
+                android:layout_height="130dp"
+                app:srcCompat="@drawable/logobiagio"
+                android:layout_marginTop="20dp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="80dp">
+            android:layout_marginTop="25dp">
 
             <TextView
                 android:id="@+id/nameTextViewTest"
@@ -82,7 +87,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="30dp">
+            android:paddingTop="15dp">
 
             <TextView
                 android:id="@+id/textViewEmailTest"
@@ -119,6 +124,128 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:id="@+id/textViewPartitaIVATest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="Partita IVA:*"
+                android:textSize="16sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="221dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/editTextTextPartitaIVA"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_input"
+                android:ems="8"
+                android:hint="Partita IVA"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHint="@color/grigio_chiaro" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:id="@+id/textViewCodiceFiscaleTest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="Codice Fiscale:*"
+                android:textSize="16sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="221dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/editTextTextCodiceFiscale"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_input"
+                android:ems="8"
+                android:hint="Codice Fiscale"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHint="@color/grigio_chiaro" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:id="@+id/textViewPasswordTest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="Password:*"
+                android:textSize="16sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="221dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/editTextTextPassword"
+                android:layout_width="118dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_input"
+                android:ems="8"
+                android:hint="Password"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHint="@color/grigio_chiaro" />
+
+            <Button
+                android:id="@+id/okButton"
+                android:layout_width="161dp"
+                android:layout_height="40dp"
+                android:layout_weight="0.1"
+                android:layout_gravity="center"
+                android:backgroundTint="@drawable/button_color_scheme"
+                android:drawableTop="@drawable/ic_baseline_remove_red_eye_24"
+                android:textColor="@color/bianco"
+                app:cornerRadius="40sp" />
+
+        </TableRow>
+
     </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

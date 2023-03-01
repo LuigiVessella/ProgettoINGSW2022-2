@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.progettoingsw2022_2.R;
+import com.skydoves.balloon.Balloon;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -12,5 +13,7 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_layout);
+
+
     }
 }
