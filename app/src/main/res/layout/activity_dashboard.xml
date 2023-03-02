@@ -16,9 +16,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.152" />
 
     <TextView
         android:id="@+id/textView2"
@@ -63,8 +64,26 @@
         app:cornerRadius="40sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeTextDashboard"
-        app:layout_constraintVertical_bias="0.401" />
+        app:layout_constraintVertical_bias="0.176" />
+
+    <Button
+        android:id="@+id/buttonLogoutAdDash"
+        android:layout_width="109dp"
+        android:layout_height="53dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:drawableEnd="@drawable/mylogouticon"
+        android:fontFamily="@font/roboto"
+        android:text="Esci"
+        android:textColor="@color/bianco"
+        app:cornerRadius="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/welcomeTextDashboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.368" />
 </androidx.constraintlayout.widget.ConstraintLayout>

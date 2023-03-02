@@ -122,7 +122,7 @@
                         android:background="@drawable/custom_input"
                         android:ems="8"
                         android:hint="Email"
-                        android:inputType="textPersonName"
+                        android:inputType="textEmailAddress"
                         android:paddingLeft="5dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
@@ -198,7 +198,7 @@
                         android:background="@drawable/custom_input"
                         android:ems="8"
                         android:hint="Codice Fiscale"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapCharacters"
                         android:paddingLeft="5dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
@@ -238,7 +238,7 @@
                         android:background="@drawable/custom_input"
                         android:ems="8"
                         android:hint="Password"
-                        android:inputType="textPersonName"
+                        android:inputType="textPassword"
                         android:paddingLeft="5dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
@@ -265,7 +265,7 @@
         android:layout_width="155dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="@drawable/button_color_scheme"
         android:drawableEnd="@drawable/icona_login"
         android:fontFamily="@font/roboto"

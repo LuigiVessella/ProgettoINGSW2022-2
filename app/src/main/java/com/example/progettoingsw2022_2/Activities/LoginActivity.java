@@ -85,14 +85,15 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         Intent newAct = new Intent(LoginActivity.this, AdminDashboardActivity.class);
         newAct.putExtra("email", email);
         startActivity(newAct);
+        finish();
     }
 
     private void switchToWaiterDashboardActivity(String email){
         Intent newAct = new Intent(LoginActivity.this, WaiterDashboard.class);
         newAct.putExtra("email", email);
         startActivity(newAct);
+        finish();
     }
-
 
 
     @Override

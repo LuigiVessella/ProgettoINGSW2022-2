@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class AdminDashboardActivity extends AppCompatActivity implements VolleyCallback {
 
-    private Button aggiungiRistoranteButt;
+    private Button aggiungiRistoranteButt, logoutButt;
     private String dataFromActivity;
 
     private TextView welcomeTextView;
@@ -46,6 +46,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
         aggiungiRistoranteButt = findViewById(R.id.aggiungiRistoranteButton);
         welcomeTextView = findViewById(R.id.welcomeTextDashboard);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
+        logoutButt = findViewById(R.id.buttonLogoutAdDash);
 
         welcomeTextView.append(dataFromActivity);
         aggiungiRistoranteButt.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +55,12 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 Intent newAct = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);
                 newAct.putExtra("email", dataFromActivity);
                 startActivity(newAct);
+            }
+        });
+        logoutButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToLoginActivity();
             }
         });
 
@@ -113,5 +120,11 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
             linearScrollLayout.addView(txv);
         }
 
+    }
+
+    private void backToLoginActivity(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

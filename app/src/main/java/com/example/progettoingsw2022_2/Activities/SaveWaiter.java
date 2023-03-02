@@ -31,7 +31,6 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         inizializeComponent();
     }
 
-
     private void inizializeComponent() {
 
         nomeText = findViewById(R.id.waiterFirstNameText);
