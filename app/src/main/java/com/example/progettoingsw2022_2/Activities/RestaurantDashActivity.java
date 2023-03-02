@@ -49,21 +49,24 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
         addCameriereButton = findViewById(R.id.addCameriereButt);
         addMenuButton = findViewById(R.id.addMenuButton);
         waiterLinearL = findViewById(R.id.waiterListLinear);
+        addMenuButton = findViewById(R.id.addMenuButton);
 
         welcomeText.setText("Sei il proprietario di " + restaurantName + restaurantCode);
 
         addCameriereButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newAct = new Intent(RestaurantDashActivity.this, SaveWaiter.class);
-                newAct.putExtra("codiceRistorante", restaurantCode);
-                startActivity(newAct);
+                switchToAddCameriere();
+            }
+        });
+        addMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switchToMenuActivity();
             }
         });
 
-
         visualizzaCamerieri();
-
     }
 
 
@@ -96,4 +99,16 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
 
         }
     }
+
+
+    private void switchToAddCameriere(){
+        Intent newAct = new Intent(RestaurantDashActivity.this, SaveWaiter.class);
+        newAct.putExtra("codiceRistorante", restaurantCode);
+        startActivity(newAct);
+
+    };
+    private void switchToMenuActivity(){
+        Intent newAct = new Intent(RestaurantDashActivity.this, MenuManager.class);
+        startActivity(newAct);
+    };
 }
