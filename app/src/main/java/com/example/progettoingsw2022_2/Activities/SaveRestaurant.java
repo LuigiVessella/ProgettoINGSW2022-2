@@ -2,12 +2,14 @@ package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -74,7 +76,15 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
     @Override
     public void onSuccess(String result) {
 
-        System.out.println("Ristorante salvato correttamente");
+        Toast.makeText(this, "Ristorante salvato", Toast.LENGTH_SHORT).show();
+        switchBackToAdminDash();
+
+    }
+
+
+    private void switchBackToAdminDash() {
+        startActivity(new Intent(this, AdminDashboardActivity.class));
+        finish();
 
     }
 }
