@@ -70,8 +70,8 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="257dp"
+        android:layout_height="30dp"
         android:elevation="10dp"
         android:fontFamily="@font/petit_formal_script"
         android:text="@string/app_title"
@@ -129,24 +129,8 @@
         app:layout_constraintBaseline_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottom_app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:backgroundTint="@color/marrone_primario"
-            app:navigationIcon="@drawable/baseline_menu_24" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity=""
-            android:backgroundTint="@color/marrone_secondario"
-            android:src="@drawable/baseline_add_24"
-            app:layout_anchor="@id/bottom_app_bar" />
-
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

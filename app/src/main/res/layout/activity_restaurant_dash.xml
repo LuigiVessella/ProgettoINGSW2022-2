@@ -16,10 +16,9 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintVertical_bias="0.059" />
 
     <Button
         android:id="@+id/addCameriereButt"
@@ -27,14 +26,15 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/blu_scuro"
         android:fontFamily="@font/roboto_medium"
-        android:text="Aggiungi cameriere"
+        android:text="@string/addWaiterBtn"
         android:textColor="@color/grigio_scuro"
         app:cornerRadius="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeRestaurantText"
-        app:layout_constraintVertical_bias="0.179" />
+        app:layout_constraintVertical_bias="0.065" />
 
     <Button
         android:id="@+id/addMenuButton"
@@ -42,26 +42,26 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/blu_scuro"
         android:fontFamily="@font/roboto_medium"
-        android:text="Aggiungi menu"
+        android:text="@string/addMenuBtn"
         android:textColor="@color/grigio_scuro"
         app:cornerRadius="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addCameriereButt"
-        app:layout_constraintVertical_bias="0.153" />
+        app:layout_constraintVertical_bias="0.028" />
 
     <ScrollView
         android:id="@+id/waiterListScroll"
-        android:layout_width="385dp"
-        android:layout_height="208dp"
+        android:layout_width="388dp"
+        android:layout_height="444dp"
         android:layout_marginTop="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addMenuButton"
-        app:layout_constraintVertical_bias="0.64">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.943">
 
         <LinearLayout
             android:id="@+id/waiterListLinear"

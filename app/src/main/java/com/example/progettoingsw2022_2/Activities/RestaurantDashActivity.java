@@ -51,7 +51,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
         waiterLinearL = findViewById(R.id.waiterListLinear);
         addMenuButton = findViewById(R.id.addMenuButton);
 
-        welcomeText.setText("Sei il proprietario di " + restaurantName);
+        welcomeText.setText(getString(R.string.resturantString)+": "+ restaurantName);
 
         addCameriereButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +90,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
             for (Cameriere cameriere : camerieri) {
                 i++;
                 TextView txv = new TextView(this);
-                txv.setText("Cameriere " + i +": " +  cameriere.getNome());
+                txv.setText(getString(R.string.WaiterString)+" "+ i +": " +  cameriere.getNome());
                 txv.setTextSize(17);
 
                 waiterLinearL.addView(txv);

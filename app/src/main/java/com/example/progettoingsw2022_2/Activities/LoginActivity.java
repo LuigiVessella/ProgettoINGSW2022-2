@@ -101,16 +101,14 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         Log.i("VOLLEY", result);
         if(result.equals("admin")) {
             Log.i("INFO LOGIN", "admin ok");
-            titleSign.setText("Loggato");
             switchToAdminDashboardActivity(String.valueOf(emailLoginText.getText()));
         }
         else if(result.equals("cameriere")){
             Log.i("INFO LOGIN", "cameriere ok");
-            titleSign.setText("Loggato");
             switchToWaiterDashboardActivity(String.valueOf(emailLoginText.getText()));
         }
         else {
-            emailLoginText.setError("Credenziali non valide");
+            emailLoginText.setError(getString(R.string.loginWrongCred));
             passwordLoginText.setText("");
         }
 

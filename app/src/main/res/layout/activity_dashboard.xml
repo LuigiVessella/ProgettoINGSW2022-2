@@ -12,7 +12,8 @@
         android:layout_width="373dp"
         android:layout_height="60dp"
         android:fontFamily="@font/roboto"
-        android:text="Pannello di controllo di: "
+        android:textStyle="bold"
+        android:text="@string/AdminControlPanelText"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,17 +24,17 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="103dp"
-        android:layout_height="25dp"
+        android:layout_width="123dp"
+        android:layout_height="35dp"
         android:fontFamily="@font/roboto"
-        android:text="I tuoi ristoranti:"
+        android:text="@string/AdminResturant"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/scrollViewRistoranti"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTextDashboard"
-        app:layout_constraintVertical_bias="0.394" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.946" />
 
     <ScrollView
         android:id="@+id/scrollViewRistoranti"
@@ -43,8 +44,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.33">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.935">
 
         <LinearLayout
             android:id="@+id/linearLayoutScroll"
@@ -59,31 +60,33 @@
         android:layout_height="56dp"
         android:backgroundTint="@color/blu_scuro"
         android:fontFamily="@font/roboto"
-        android:text="Aggiungi ristorante"
-        android:textColor="@color/bianco"
+        android:text="@string/addResturantBtn"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:cornerRadius="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTextDashboard"
-        app:layout_constraintVertical_bias="0.176" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.274" />
 
     <Button
         android:id="@+id/buttonLogoutAdDash"
-        android:layout_width="109dp"
-        android:layout_height="53dp"
+        android:layout_width="130dp"
+        android:layout_height="49dp"
         android:layout_gravity="center"
         android:backgroundTint="@drawable/button_color_scheme"
         android:drawableEnd="@drawable/mylogouticon"
         android:fontFamily="@font/roboto"
-        android:text="Esci"
-        android:textColor="@color/bianco"
+        android:text="@string/ExitBtn"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:cornerRadius="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/welcomeTextDashboard"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.368" />
+        app:layout_constraintVertical_bias="0.023" />
 </androidx.constraintlayout.widget.ConstraintLayout>

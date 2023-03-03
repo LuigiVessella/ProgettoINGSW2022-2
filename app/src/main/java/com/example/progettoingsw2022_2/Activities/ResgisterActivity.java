@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
@@ -88,10 +89,17 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
     public void onSuccess(String result) {
         Log.i("VOLLEY", result);
         if(result.equals("Succefully saved")) {
-            welcomeTexView.setText("Registrato correttamente!");
+            welcomeTexView.setText(R.string.registerOK);
+            //Handler usato per aspettare un attimo prima di tornare indietro alla main activity
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finishAfterTransition();
+                }
+            }, 800);
         }
         else {
-            emailText.setError("qualcosa non va!");
+            emailText.setError(getString(R.string.registerWrong));
         }
 
     }

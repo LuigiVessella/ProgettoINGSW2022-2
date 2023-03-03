@@ -91,7 +91,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 txv.setText(ristorante.getNome());
                 
                 Button btn = new Button(this);
-                btn.setText("Edit");
+                btn.setText(R.string.EditSting);
 
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -116,7 +116,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
         }
         else {
             TextView txv = new TextView(this);
-            txv.setText("Tutto vuoto! Inserisci ora un ristorante!");
+            txv.setText(R.string.AdminDBNoResturant);
             linearScrollLayout.addView(txv);
         }
 
