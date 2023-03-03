@@ -88,7 +88,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 //System.out.println("stampo cameriere: " + ristoranti.get(0).getCamerieri().get(0).getNome());
 
                 TextView txv = new TextView(this);
-                txv.setText(ristorante.getNome() + ristorante.getCodice_ristorante());
+                txv.setText(ristorante.getNome());
                 
                 Button btn = new Button(this);
                 btn.setText("Edit");
