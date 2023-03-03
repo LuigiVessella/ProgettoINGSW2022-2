@@ -4,14 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import android.os.Bundle;
 import android.os.Environment;
+import android.widget.Toast;
+
 import com.example.progettoingsw2022_2.R;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
@@ -49,37 +60,33 @@ public class MenuManager extends AppCompatActivity {
 
             // apre il documento
             document.open();
+            document.newPage();
 
-            // crea una tabella con tre colonne
-            PdfPTable table = new PdfPTable(3);
+            // Aggiungi il titolo al centro della pagina
+            Font titleFont = FontFactory.getFont(FontFactory.TIMES_BOLD, 36, BaseColor.BLACK);
+            Paragraph title = new Paragraph("Menu del Ristorante", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+
+            // Aggiungi la descrizione del piatto
+            Font dishFont = FontFactory.getFont(FontFactory.TIMES, 24, BaseColor.BLACK);
+            Paragraph dish = new Paragraph("Pasta al Sugo", dishFont);
+            dish.setAlignment(Element.ALIGN_CENTER);
+            dish.setSpacingBefore(50);
+            document.add(dish);
+
+            document.close();
 
 
-            // aggiunge le intestazioni delle colonne
-            table.addCell("Colonna 1");
-            table.addCell("Colonna 2");
-            table.addCell("Colonna 3");
-
-
-            ArrayList<String> stringhe = new ArrayList<>();
-            stringhe.add("ciao");stringhe.add("luigi"); stringhe.add("biagio");
-            // aggiunge i dati alla tabella
-            for (String dato : stringhe) {
-                table.addCell(dato);
-                table.addCell(dato);
-                table.addCell(dato);
-            }
-
-            // aggiunge la tabella al documento
-            document.add(table);
         }
         catch (DocumentException | FileNotFoundException e) {
             e.printStackTrace();
-        }
-        finally {
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
             // chiude il documento
-            document.close();
 
-            System.out.println("sono qui\n");
+            Toast.makeText(this, "Menu creato in Download", Toast.LENGTH_SHORT).show();
 
         }
     }
