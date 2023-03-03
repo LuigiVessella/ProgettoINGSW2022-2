@@ -29,9 +29,7 @@
         android:layout_width="333dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="39dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/custom_input"
         android:drawableStart="@drawable/baseline_lock_24"
         android:drawablePadding="10dp"
@@ -46,10 +44,9 @@
         android:textCursorDrawable="@drawable/cursor_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/emailLoginText"
