@@ -2,23 +2,31 @@ package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
 
 import com.example.progettoingsw2022_2.R;
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -51,16 +59,19 @@ public class MenuManager extends AppCompatActivity {
         File downloadFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         // Crea il percorso completo del file PDF utilizzando il nome del file e la cartella "Download"
         File file = new File(downloadFolder, fileName);
-        Document document = new Document();
+
 
         try {
 
+            Document document = new Document(PageSize.A4, 36, 36, 36, 36);
             // crea un oggetto PdfWriter per scrivere il documento su un file
-            PdfWriter.getInstance(document, new FileOutputStream(file));
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file));
 
             // apre il documento
             document.open();
             document.newPage();
+
+
 
             // Aggiungi il titolo al centro della pagina
             Font titleFont = FontFactory.getFont(FontFactory.TIMES_BOLD, 36, BaseColor.BLACK);
@@ -69,14 +80,32 @@ public class MenuManager extends AppCompatActivity {
             document.add(title);
 
             // Aggiungi la descrizione del piatto
-            Font dishFont = FontFactory.getFont(FontFactory.TIMES, 24, BaseColor.BLACK);
-            Paragraph dish = new Paragraph("Pasta al Sugo", dishFont);
-            dish.setAlignment(Element.ALIGN_CENTER);
-            dish.setSpacingBefore(50);
-            document.add(dish);
+            // Aggiunge la descrizione del piatto "Pasta al Sugo" centrata nella pagina con un font personalizzato e uno spazio di 50 punti prima della descrizione
+            Font plateFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.NORMAL);
+            Paragraph plate = new Paragraph("\n\nPasta al Sugo\n\nPrezzo: 10€", plateFont);
+            plate.setAlignment(Element.ALIGN_CENTER);
+            document.add(plate);
+
+
+            PdfContentByte canvas = writer.getDirectContentUnder();
+
+            Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.sfondo_1);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            Image img = null;
+            byte[] byteArray = stream.toByteArray();
+            try {
+                img = Image.getInstance(byteArray);
+                img.scaleAbsolute(PageSize.A4.rotate());
+                img.setAbsolutePosition(0, 0);
+                canvas.addImage(img);
+            } catch (BadElementException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             document.close();
-
 
         }
         catch (DocumentException | FileNotFoundException e) {
