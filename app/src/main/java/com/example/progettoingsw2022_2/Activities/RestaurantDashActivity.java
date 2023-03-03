@@ -51,7 +51,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
         waiterLinearL = findViewById(R.id.waiterListLinear);
         addMenuButton = findViewById(R.id.addMenuButton);
 
-        welcomeText.setText("Sei il proprietario di " + restaurantName + restaurantCode);
+        welcomeText.setText("Sei il proprietario di " + restaurantName);
 
         addCameriereButton.setOnClickListener(new View.OnClickListener() {
             @Override
