@@ -95,8 +95,6 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
 
                 waiterLinearL.addView(txv);
             }
-
-
         }
     }
 

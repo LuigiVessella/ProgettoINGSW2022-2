@@ -47,7 +47,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
         welcomeTextView = findViewById(R.id.welcomeTextDashboard);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
         logoutButt = findViewById(R.id.buttonLogoutAdDash);
-
         welcomeTextView.append(dataFromActivity);
         aggiungiRistoranteButt.setOnClickListener(new View.OnClickListener() {
             @Override
