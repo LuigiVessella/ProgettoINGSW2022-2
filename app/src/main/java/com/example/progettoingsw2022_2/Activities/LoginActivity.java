@@ -33,11 +33,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
         inizializzaComponenti();
-        ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
-        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
-        animationDrawable.setEnterFadeDuration(1250);
-        animationDrawable.setExitFadeDuration(2500);
-        animationDrawable.start();
+
 
     }
 
