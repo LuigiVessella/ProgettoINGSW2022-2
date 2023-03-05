@@ -221,31 +221,26 @@
                     android:layout_marginBottom="50dp"
                     android:paddingBottom="20dp">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/passwordText"
                         android:layout_width="118dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/custom_input"
-                        android:ems="8"
-                        android:hint="@string/register_pass"
-                        android:inputType="textPassword"
-                        android:paddingLeft="5dp"
-                        android:textColor="@color/grigio_scuro"
-                        android:textColorHint="@color/grigio_chiaro" />
+                        app:passwordToggleEnabled="true">
 
-                    <Button
-                        android:id="@+id/showPassButton"
-                        android:layout_width="161dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.1"
-                        android:backgroundTint="@drawable/button_color_scheme"
-                        android:drawableTop="@drawable/ic_baseline_remove_red_eye_24"
-                        android:textColor="@color/bianco"
-                        app:cornerRadius="40sp" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="textPassword"
+                            android:hint="@string/register_pass"
+                            android:background="@drawable/custom_input"
+                            android:textColor="@color/grigio_scuro"
+                            android:textColorHint="@color/grigio_chiaro"
+                            android:ems="8" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
                 </TableRow>
 
