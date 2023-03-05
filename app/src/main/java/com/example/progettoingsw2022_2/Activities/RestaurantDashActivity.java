@@ -26,9 +26,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
 
     private TextView welcomeText;
     private String restaurantName, restaurantCode;
-
     private Button addCameriereButton, addMenuButton;
-
     private LinearLayout waiterLinearL;
 
     @Override
