@@ -8,5 +8,24 @@
     <string name="register_name">Nome</string>
     <string name="register_surname">Cognome</string>
     <string name = "welcome_register_waiter">Stai registrando un nuovo cameriere</string>
+    <string name="welcome">BENVENUTO</string>
+    <string name="registerOK">Registrato correttamente!</string>
+    <string name="registerWrong">Qualcosa non va!</string>
+    <string name="loginWrongCred">Credenziali non valide</string>
+    <string name="loginInsertCred">Inserisci le credenziali</string>
+    <string name="AdminControlPanelText">"Pannello di controllo di: "</string>
+    <string name="AdminResturant">I tuoi ristoranti:</string>
+    <string name="addResturantBtn">Aggiungi ristorante</string>
+    <string name="ExitBtn">Esci</string>
+    <string name="resturantString">Ristorante</string>
+    <string name="addWaiterBtn">Aggiungi cameriere</string>
+    <string name="addMenuBtn">Aggiungi menu</string>
+    <string name="WaiterString">Cameriere</string>
+    <string name="Save">Salva</string>
+    <string name="location">località</string>
+    <string name="place_sittings">coperti</string>
+    <string name="Name">Nome</string>
+    <string name="AdminDBNoResturant">Non hai ristoranti!</string>
+    <string name="EditSting">Modifica</string>
 
 </resources>

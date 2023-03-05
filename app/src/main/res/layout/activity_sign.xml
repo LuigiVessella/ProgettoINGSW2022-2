@@ -4,15 +4,14 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_list"
+    android:background="@drawable/sfondo_1_con_patina"
     tools:context=".Activities.LoginActivity">
 
     <Button
         android:id="@+id/loginActButton"
-        android:layout_width="155dp"
-        android:layout_height="0dp"
+        android:layout_width="165dp"
+        android:layout_height="59dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="86dp"
         android:backgroundTint="@drawable/button_color_scheme"
         android:drawableEnd="@drawable/icona_login"
         android:fontFamily="@font/roboto"
@@ -22,16 +21,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLoginText" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
 
     <EditText
         android:id="@+id/passwordLoginText"
         android:layout_width="333dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
-        android:layout_marginStart="39dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="39dp"
         android:background="@drawable/custom_input"
         android:drawableStart="@drawable/baseline_lock_24"
         android:drawablePadding="10dp"
@@ -44,16 +42,17 @@
         android:textColor="@color/grigio_scuro"
         android:textColorHint="@color/grigio_chiaro"
         android:textCursorDrawable="@drawable/cursor_color"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLoginText" />
+        app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/emailLoginText"
         android:layout_width="333dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
-        android:layout_marginTop="383dp"
         android:layout_marginBottom="164dp"
         android:background="@drawable/custom_input"
         android:drawableStart="@drawable/baseline_email_24"
@@ -62,17 +61,16 @@
         android:fontFamily="@font/roboto"
         android:hint="@string/register_email"
         android:inputType="textEmailAddress"
-
         android:minHeight="48dp"
         android:paddingStart="5dp"
         android:textColor="@color/grigio_scuro"
-
         android:textColorHint="@color/grigio_chiaro"
         android:textCursorDrawable="@drawable/cursor_color"
-        app:layout_constraintBottom_toTopOf="@+id/loginActButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.693" />
 
     <TextView
         android:id="@+id/titleSign"
@@ -81,17 +79,16 @@
         android:layout_marginTop="56dp"
         android:color="@color/grigio_scuro"
         android:fontFamily="@font/roboto_light_italic"
-        android:text="Compila i campi per accedere"
+        android:text="@string/loginInsertCred"
         android:textAlignment="center"
         android:textColor="@color/grigio_scuro"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LogoSign"
-        app:layout_constraintVertical_bias="0.007" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.357" />
 
     <ImageView
         android:id="@+id/LogoSign"

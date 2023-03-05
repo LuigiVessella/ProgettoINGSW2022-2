@@ -8,13 +8,6 @@
     android:background="@drawable/sfondo_1_con_patina"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/welcomeRegisterText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="BENVENUTO" />
-
     <ImageView
         android:id="@+id/logoBiagioTest"
         android:layout_width="129dp"
@@ -69,7 +62,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/custom_input"
                         android:ems="8"
-                        android:hint="First"
+                        android:hint="@string/register_name"
                         android:inputType="textPersonName"
                         android:paddingLeft="5dp"
                         android:textColor="@color/grigio_scuro"
@@ -84,7 +77,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/custom_input"
                         android:ems="8"
-                        android:hint="Last"
+                        android:hint="@string/register_surname"
                         android:inputType="textPersonName"
                         android:paddingLeft="5dp"
                         android:textColor="@color/grigio_scuro"
@@ -121,7 +114,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/custom_input"
                         android:ems="8"
-                        android:hint="Email"
+                        android:hint="@string/register_email"
                         android:inputType="textEmailAddress"
                         android:paddingLeft="5dp"
                         android:textColor="@color/grigio_scuro"
@@ -237,7 +230,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/custom_input"
                         android:ems="8"
-                        android:hint="Password"
+                        android:hint="@string/register_pass"
                         android:inputType="textPassword"
                         android:paddingLeft="5dp"
                         android:textColor="@color/grigio_scuro"
@@ -260,17 +253,28 @@
         </LinearLayout>
     </ScrollView>
 
+    <TextView
+        android:id="@+id/welcomeRegisterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/welcome"
+        android:textSize="30dp" />
+
     <Button
         android:id="@+id/okButtonRegister"
         android:layout_width="155dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@drawable/button_color_scheme"
         android:drawableEnd="@drawable/icona_login"
         android:fontFamily="@font/roboto"
         android:text="@string/registerBtn"
         android:textColor="@color/bianco"
         app:cornerRadius="40sp" />
+
 
 </LinearLayout>

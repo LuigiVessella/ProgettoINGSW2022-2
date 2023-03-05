@@ -9,10 +9,10 @@
     tools:context=".Activities.WaiterDashboard">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/welcomeWaiterDash"
         android:layout_width="match_parent"
-        android:layout_height="101dp"
+        android:layout_height="125dp"
         android:gravity="center"
-        android:text="BENVENUTO CAMERIERE"
-        android:textSize="34sp" />
+        android:text="@string/welcome"
+        android:textSize="30dp" />
 </LinearLayout>

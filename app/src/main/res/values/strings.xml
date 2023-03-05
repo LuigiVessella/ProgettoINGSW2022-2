@@ -14,4 +14,23 @@
     <string name="register_pass" translatable="false"> Password</string>
     <string name="register_email" translatable="false"> Email</string>
     <string name="welcome_register_waiter" translatable="true">You are entering a new waiter</string>
+    <string name="welcome">WELCOME</string>
+    <string name="registerOK">Register succesful!</string>
+    <string name="registerWrong">Something Wrong!</string>
+    <string name="loginWrongCred">Invalid credentials</string>
+    <string name="loginInsertCred">Insert credentials</string>
+    <string name="AdminControlPanelText">"Panel of: "</string>
+    <string name="AdminResturant">Your resturant:</string>
+    <string name="addResturantBtn">Add resturant</string>
+    <string name="ExitBtn">Exit</string>
+    <string name="resturantString">Resturant</string>
+    <string name="addWaiterBtn">Add waiter</string>
+    <string name="addMenuBtn">Add Menu</string>
+    <string name="WaiterString">Waiter</string>
+    <string name="Save">Save</string>
+    <string name="location">location</string>
+    <string name="place_sittings">place sittings</string>
+    <string name="Name">Name</string>
+    <string name="AdminDBNoResturant">You don\'t have a resturant!</string>
+    <string name="EditSting">Edit</string>
 </resources>
