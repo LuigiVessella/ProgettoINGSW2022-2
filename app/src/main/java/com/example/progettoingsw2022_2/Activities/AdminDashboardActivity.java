@@ -1,11 +1,16 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -88,11 +93,11 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
                 TextView txv = new TextView(this);
                 txv.setText(ristorante.getNome());
-                
-                Button btn = new Button(this);
-                btn.setText(R.string.EditSting);
 
-                btn.setOnClickListener(new View.OnClickListener() {
+                Button myButton = new Button(this);
+                myButton.setText("Edit");
+
+                myButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         System.out.println(ristorante.getCodice_ristorante());
@@ -108,7 +113,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 LinearLayout newHorizontalLayout = new LinearLayout(this);
                 newHorizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
                 newHorizontalLayout.addView(txv);
-                newHorizontalLayout.addView(btn);
+                newHorizontalLayout.addView(myButton);
                 linearScrollLayout.addView(newHorizontalLayout);
             }
 

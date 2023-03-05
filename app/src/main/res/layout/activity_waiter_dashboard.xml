@@ -15,4 +15,10 @@
         android:gravity="center"
         android:text="@string/welcome"
         android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/buttonPrendiOrdine"
+        android:layout_width="334dp"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 </LinearLayout>
