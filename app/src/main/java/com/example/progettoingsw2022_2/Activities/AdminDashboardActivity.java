@@ -91,11 +91,25 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
             for(Ristorante ristorante: ristoranti) {
                 //System.out.println("stampo cameriere: " + ristoranti.get(0).getCamerieri().get(0).getNome());
 
-                TextView txv = new TextView(this);
+                TextView txv = new TextView(AdminDashboardActivity.this);
                 txv.setText(ristorante.getNome());
+                LinearLayout.LayoutParams layoutParamsTxt = new  LinearLayout.LayoutParams(
+                        300, 100
+                );
+                txv.setLayoutParams(layoutParamsTxt);
 
-                Button myButton = new Button(this);
+                Button myButton = new Button(AdminDashboardActivity.this);
                 myButton.setText("Edit");
+                myButton.setBackgroundColor(Color.parseColor("#C6AD77"));
+
+
+
+                LinearLayout.LayoutParams layoutParams = new  LinearLayout.LayoutParams(
+                        180, 100
+                );
+
+                layoutParams.setMarginStart(500);
+                myButton.setLayoutParams(layoutParams);
 
                 myButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -109,9 +123,17 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
                     }
                 });
-                
-                LinearLayout newHorizontalLayout = new LinearLayout(this);
+
+                LinearLayout newHorizontalLayout = new LinearLayout(AdminDashboardActivity.this);
+
+                LinearLayout.LayoutParams layoutParams2 = new  LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT, // Larghezza, in questo caso MATCH_PARENT
+                        LinearLayout.LayoutParams.WRAP_CONTENT // Altezza, in questo caso WRAP_CONTENT
+                );
+                layoutParams2.setMargins(0,0,0,30);
                 newHorizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+                newHorizontalLayout.setLayoutParams(layoutParams2);
                 newHorizontalLayout.addView(txv);
                 newHorizontalLayout.addView(myButton);
                 linearScrollLayout.addView(newHorizontalLayout);

@@ -143,6 +143,7 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
         newPostRequest.sendPostRequest();
 
     }
+
     //Sta funzione che controlla il codice fiscale non so dove metterla anche perchè non credorispetti al 100% il pattern richiesto da Di Martino
     private boolean isCodiceFiscaleValido(String cf)
     {

@@ -118,7 +118,7 @@ public class MenuManager extends AppCompatActivity {
 
 
             // Aggiungi il titolo al centro della pagina
-            Font titleFont = FontFactory.getFont(FontFactory.SYMBOL, 36, BaseColor.BLACK);
+            Font titleFont = FontFactory.getFont(FontFactory.COURIER_BOLD, 36, BaseColor.BLACK);
             Paragraph title = new Paragraph("Menu del Ristorante", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
@@ -137,6 +137,10 @@ public class MenuManager extends AppCompatActivity {
             Paragraph plate3 = new Paragraph("\n\nAragosta qui sotto\nPrezzo: 30€", plateFont);
             plate3.setAlignment(Element.ALIGN_CENTER);
             document.add(plate3);
+
+            Paragraph plate4 = new Paragraph("\n\nTiramisù\nPrezzo: GRATIS", plateFont);
+            plate4.setAlignment(Element.ALIGN_CENTER);
+            document.add(plate4);
 
 
 
