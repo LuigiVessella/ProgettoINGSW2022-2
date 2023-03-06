@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_list"
+    android:background="@drawable/sfondo_2"
     tools:context=".Activities.RestaurantDashActivity">
 
     <TextView
@@ -23,11 +23,13 @@
     <Button
         android:id="@+id/addCameriereButt"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/blu_scuro"
-        android:fontFamily="@font/roboto_medium"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:drawableEnd="@drawable/baseline_person_add_24"
+        android:fontFamily="@font/roboto"
         android:text="@string/addWaiterBtn"
-        android:textColor="@color/grigio_scuro"
+        android:textColor="@color/bianco"
         app:cornerRadius="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,11 +41,12 @@
     <Button
         android:id="@+id/addMenuButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/blu_scuro"
-        android:fontFamily="@font/roboto_medium"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:drawableEnd="@drawable/baseline_restaurant_menu_24"
+        android:fontFamily="@font/roboto"
         android:text="@string/addMenuBtn"
-        android:textColor="@color/grigio_scuro"
         app:cornerRadius="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

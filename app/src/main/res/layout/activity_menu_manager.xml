@@ -4,7 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_list"
+    android:background="@drawable/sfondo_2"
     tools:context=".Activities.MenuManager">
 
+    <Button
+        android:id="@+id/generaMenuButt"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:drawableEnd="@drawable/baseline_restaurant_menu_24"
+        android:fontFamily="@font/roboto"
+        app:cornerRadius="40sp"
+        android:text="Genera menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.763" />
+
+    <Button
+        android:id="@+id/aggiungiPiattoButt"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:drawableEnd="@drawable/baseline_restaurant_24"
+        android:fontFamily="@font/roboto"
+        app:cornerRadius="40sp"
+        android:text="Aggiungi piatto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

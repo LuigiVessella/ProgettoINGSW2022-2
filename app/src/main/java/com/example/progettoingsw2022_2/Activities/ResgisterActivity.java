@@ -72,7 +72,7 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
                 }
                 if (pIvaText.getText().length() != 0) {
                     String pIva = pIvaText.getText().toString();
-                    if (!pIva.matches("^[0-9]{11}$")) {
+                    if (!pIva.matches("^[0-9]{3}$")) {
                         pIvaText.setError("Campo non corretto!");
                         hasError = true;
                     }
@@ -97,7 +97,7 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
                 } else if (password.length() < 6) {
                     passwordText.setError("Password troppo corta!");
                     hasError = true;
-                } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.,_?!])[a-zA-Z0-9.,_?!]+$")) {
+                } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.,_?!#])[a-zA-Z0-9.,_?!#]+$")) {
                     passwordText.setError("Password troppo semplice!");
                     hasError = true;
                 }

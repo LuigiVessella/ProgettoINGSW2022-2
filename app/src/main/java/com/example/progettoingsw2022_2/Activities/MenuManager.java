@@ -7,6 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +37,9 @@ import java.io.IOException;
 
 public class MenuManager extends AppCompatActivity {
 
+    private Button aggiungiPiattoButt, generaMenuButt;
+    private EditText sample;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +51,22 @@ public class MenuManager extends AppCompatActivity {
 
     private void inizializzaComponenti(){
         ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 200);
-        createMenu();
+
+        aggiungiPiattoButt = findViewById(R.id.aggiungiPiattoButt);
+        generaMenuButt = findViewById(R.id.generaMenuButt);
+
+        generaMenuButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createMenu();
+            }
+        });
+        aggiungiPiattoButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void createMenu(){
@@ -76,7 +97,7 @@ public class MenuManager extends AppCompatActivity {
             byte[] byteArray = stream.toByteArray();
             try {
                 img = Image.getInstance(byteArray);
-                img.scaleAbsolute(PageSize.A4.rotate());
+                img.scaleAbsolute(PageSize.A4);
                 img.setAbsolutePosition(0, 0);
                 canvas.addImage(img);
             } catch (BadElementException e) {
@@ -87,21 +108,25 @@ public class MenuManager extends AppCompatActivity {
 
 
             // Aggiungi il titolo al centro della pagina
-            Font titleFont = FontFactory.getFont(FontFactory.TIMES_BOLD, 36, BaseColor.BLACK);
+            Font titleFont = FontFactory.getFont(FontFactory.SYMBOL, 36, BaseColor.BLACK);
             Paragraph title = new Paragraph("Menu del Ristorante", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
 
             // Aggiungi la descrizione del piatto
             // Aggiunge la descrizione del piatto "Pasta al Sugo" centrata nella pagina con un font personalizzato e uno spazio di 50 punti prima della descrizione
-            Font plateFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.NORMAL);
-            Paragraph plate = new Paragraph("\n\nPasta al Sugo\n\nPrezzo: 10€", plateFont);
+            Font plateFont = new Font(Font.FontFamily.COURIER, 18, Font.ITALIC);
+            Paragraph plate = new Paragraph("\n\nPasta al Sugo\nPrezzo: 10€", plateFont);
             plate.setAlignment(Element.ALIGN_CENTER);
             document.add(plate);
 
-            Paragraph plate2 = new Paragraph("\n\nGnocchi\n\nPrezzo: 15€", plateFont);
+            Paragraph plate2 = new Paragraph("\n\nGnocchi alla sorrentina\nPrezzo: 15€", plateFont);
             plate2.setAlignment(Element.ALIGN_CENTER);
             document.add(plate2);
+
+            Paragraph plate3 = new Paragraph("\n\nAragosta qui sotto\nPrezzo: 30€", plateFont);
+            plate3.setAlignment(Element.ALIGN_CENTER);
+            document.add(plate3);
 
 
 
