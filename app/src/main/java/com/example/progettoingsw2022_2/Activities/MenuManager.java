@@ -138,7 +138,7 @@ public class MenuManager extends AppCompatActivity {
             plate3.setAlignment(Element.ALIGN_CENTER);
             document.add(plate3);
 
-            Paragraph plate4 = new Paragraph("\n\nTiramisù\nPrezzo: GRATIS", plateFont);
+            Paragraph plate4 = new Paragraph("\n\nTiramisù\nPrezzo: 50098€", plateFont);
             plate4.setAlignment(Element.ALIGN_CENTER);
             document.add(plate4);
 
