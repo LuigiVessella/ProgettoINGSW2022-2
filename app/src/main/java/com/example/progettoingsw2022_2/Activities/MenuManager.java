@@ -3,10 +3,14 @@ package com.example.progettoingsw2022_2.Activities;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,6 +43,7 @@ public class MenuManager extends AppCompatActivity {
 
     private Button aggiungiPiattoButt, generaMenuButt;
     private EditText sample;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +51,13 @@ public class MenuManager extends AppCompatActivity {
         setContentView(R.layout.activity_menu_manager);
 
         inizializzaComponenti();
-
     }
 
     private void inizializzaComponenti(){
+
         ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 200);
+        dialog = new Dialog(MenuManager.this);
+        dialog.setContentView(R.layout.dialog_input_string);
 
         aggiungiPiattoButt = findViewById(R.id.aggiungiPiattoButt);
         generaMenuButt = findViewById(R.id.generaMenuButt);
@@ -64,6 +71,9 @@ public class MenuManager extends AppCompatActivity {
         aggiungiPiattoButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                dialog.show();
+
 
             }
         });
