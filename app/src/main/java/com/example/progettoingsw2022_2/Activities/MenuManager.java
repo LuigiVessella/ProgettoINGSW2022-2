@@ -67,6 +67,23 @@ public class MenuManager extends AppCompatActivity {
             document.open();
             document.newPage();
 
+            PdfContentByte canvas = writer.getDirectContentUnder();
+
+            Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.sfondo_menu);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            Image img = null;
+            byte[] byteArray = stream.toByteArray();
+            try {
+                img = Image.getInstance(byteArray);
+                img.scaleAbsolute(PageSize.A4.rotate());
+                img.setAbsolutePosition(0, 0);
+                canvas.addImage(img);
+            } catch (BadElementException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 
             // Aggiungi il titolo al centro della pagina
@@ -82,24 +99,13 @@ public class MenuManager extends AppCompatActivity {
             plate.setAlignment(Element.ALIGN_CENTER);
             document.add(plate);
 
+            Paragraph plate2 = new Paragraph("\n\nGnocchi\n\nPrezzo: 15€", plateFont);
+            plate2.setAlignment(Element.ALIGN_CENTER);
+            document.add(plate2);
 
-            PdfContentByte canvas = writer.getDirectContentUnder();
 
-            Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.sfondo_1);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            Image img = null;
-            byte[] byteArray = stream.toByteArray();
-            try {
-                img = Image.getInstance(byteArray);
-                img.scaleAbsolute(PageSize.A4.rotate());
-                img.setAbsolutePosition(0, 0);
-                canvas.addImage(img);
-            } catch (BadElementException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+
 
             document.close();
 

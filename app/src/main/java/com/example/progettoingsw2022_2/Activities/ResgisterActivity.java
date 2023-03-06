@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.mindrot.jbcrypt.BCrypt;
@@ -23,7 +24,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ResgisterActivity extends AppCompatActivity implements VolleyCallback {
-    private EditText nomeText, cognomeText, pIvaText, emailText, passwordText, codiceFiscaleText;
+    private EditText nomeText, cognomeText, pIvaText, emailText, codiceFiscaleText;
+
+    private TextInputEditText passwordText;
     private Button okButton;
     private TextView welcomeTexView;
 
@@ -41,7 +44,7 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
         cognomeText = findViewById(R.id.secondNameText);
         emailText = findViewById(R.id.emailRegisterText);
         pIvaText = findViewById(R.id.partitaIvaText);
-        passwordText = findViewById(R.id.passwordText);
+        passwordText = (TextInputEditText) findViewById(R.id.textInputEditTextLayout);
         codiceFiscaleText = findViewById(R.id.codiceFiscaleText);
         welcomeTexView = findViewById(R.id.welcomeRegisterText);
         okButton = findViewById(R.id.okButtonRegister);

@@ -20,5 +20,6 @@
         android:id="@+id/buttonPrendiOrdine"
         android:layout_width="334dp"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_gravity="center"
+        android:text="Prendi ordinazione" />
 </LinearLayout>

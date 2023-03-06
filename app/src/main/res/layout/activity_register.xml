@@ -221,24 +221,27 @@
                     android:layout_marginBottom="50dp"
                     android:paddingBottom="20dp">
 
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/passwordText"
                         android:layout_width="118dp"
-                        android:layout_height="40dp"
+                        android:layout_height="48dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputEditTextLayout"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:inputType="textPassword"
-                            android:hint="@string/register_pass"
+                            android:layout_height="48dp"
                             android:background="@drawable/custom_input"
+                            android:ems="8"
+                            android:hint="@string/register_pass"
+                            android:inputType="textPassword"
                             android:textColor="@color/grigio_scuro"
-                            android:textColorHint="@color/grigio_chiaro"
-                            android:ems="8" />
+                            android:textColorHint="@color/grigio_chiaro" />
+
                     </com.google.android.material.textfield.TextInputLayout>
 
 
