@@ -11,7 +11,7 @@
         android:id="@+id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Inserisci la stringa qui" />
+        android:hint="Nome del piatto" />
 
     <LinearLayout
         android:layout_width="match_parent"
