@@ -78,10 +78,6 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
                 android.R.layout.simple_dropdown_item_1line, COUNTRIES);
 
         autoCompleteTextView.setAdapter(adapter);
-
-
-
-
         aggiungiPiattoButt = findViewById(R.id.aggiungiPiattoButt);
         generaMenuButt = findViewById(R.id.generaMenuButt);
 
@@ -200,9 +196,6 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     @Override
     public void onSuccess(String result) {
-
-
-
 
 
     }

@@ -30,6 +30,7 @@ public class CustomRequest {
 
 
     public CustomRequest(String url, Map<String, String> params, Context context, VolleyCallback volleyCallback){
+        this.url = this.url.concat(url);
         this.url = url;
         this.params = params;
         this.context = context;
