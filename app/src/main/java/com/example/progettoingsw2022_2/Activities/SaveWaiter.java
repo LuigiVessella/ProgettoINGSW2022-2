@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.mindrot.jbcrypt.BCrypt;
@@ -23,10 +24,11 @@ import java.util.Map;
 
 public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
 
-    private EditText nomeText, cognomeText, emailText, passwordText, codiceFiscaleText;
+    private EditText nomeText, cognomeText, emailText, codiceFiscaleText;
     private Button okButton;
     private String codiceRistorante;
     private TextView waiterWelcomeRegisterText;
+    private TextInputEditText passwordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         nomeText = findViewById(R.id.waiterFirstNameText);
         cognomeText = findViewById(R.id.waiterSecondNameText);
         emailText = findViewById(R.id.waiterEmailLoginText);
-        passwordText = findViewById(R.id.waiterPasswordText);
+        passwordText = (TextInputEditText) findViewById(R.id.textInputEditTextLayoutwaiter);
         codiceFiscaleText = findViewById(R.id.waiterCodiceFiscaleText);
         waiterWelcomeRegisterText = findViewById(R.id.waiterWelcomeRegisterText);
         okButton = findViewById(R.id.waiterOkButton);

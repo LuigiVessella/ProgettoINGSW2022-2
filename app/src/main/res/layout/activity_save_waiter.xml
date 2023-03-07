@@ -205,7 +205,7 @@
                         app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditTextLayout"
+                            android:id="@+id/textInputEditTextLayoutwaiter"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
                             android:background="@drawable/custom_input"
