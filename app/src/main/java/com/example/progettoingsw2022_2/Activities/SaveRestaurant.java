@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
@@ -78,13 +79,14 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
 
         Toast.makeText(this, "Ristorante salvato", Toast.LENGTH_SHORT).show();
         switchBackToAdminDash();
-
     }
 
 
     private void switchBackToAdminDash() {
         startActivity(new Intent(this, AdminDashboardActivity.class));
-        finish();
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() { finishAfterTransition(); }
+        },800);
     }
 }
