@@ -3,27 +3,27 @@ package com.example.progettoingsw2022_2.Activities;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-import android.app.AlertDialog;
+
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.R;
+import com.google.gson.Gson;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -80,6 +80,25 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         autoCompleteTextView.setAdapter(adapter);
         aggiungiPiattoButt = findViewById(R.id.aggiungiPiattoButt);
         generaMenuButt = findViewById(R.id.generaMenuButt);
+
+        autoCompleteTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+               // Toast.makeText(MenuManager.this, autoCompleteTextView.getText().toString(), Toast.LENGTH_SHORT).show();
+                if(autoCompleteTextView.getText().length() > 3) sendHttpRequestOpenFood(autoCompleteTextView.getText().toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         generaMenuButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,6 +199,8 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     private void sendHttpRequestOpenFood(String foodName){
 
+        //questo funziona
+
         String url = "https://it.openfoodfacts.org/cgi/search.pl";
         Map<String, String> params = new HashMap<>();
 
@@ -196,7 +217,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     @Override
     public void onSuccess(String result) {
-
+        System.out.println(result);
 
     }
 }

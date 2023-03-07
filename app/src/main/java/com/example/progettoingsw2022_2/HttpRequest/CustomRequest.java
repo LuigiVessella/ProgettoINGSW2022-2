@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.concurrent.Semaphore;
 
 public class CustomRequest {
-    private String url = "http://192.168.1.10:8080";
+    private String url = "http://20.86.153.84:8080";
     private  Map<String, String> params;
     private Context context;
 
@@ -59,7 +59,9 @@ public class CustomRequest {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/x-www-form-urlencoded");
+
+                if(url.contains("openfoodfacts"))params.put("Content-Type", "application/json");
+                else params.put("Content-Type", "application/x-www-form-urlencoded");
                 return params;
 
             }
@@ -94,7 +96,8 @@ public class CustomRequest {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/x-www-form-urlencoded");
+                if(url.contains("openfoodfacts"))params.put("Content-Type", "application/json");
+                else params.put("Content-Type", "application/x-www-form-urlencoded");
                 return params;
 
             }
