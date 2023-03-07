@@ -77,13 +77,14 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
     @Override
     public void onSuccess(String result) {
 
-        Toast.makeText(this, "Ristorante salvato", Toast.LENGTH_SHORT).show();
         switchBackToAdminDash();
     }
 
 
     private void switchBackToAdminDash() {
-        startActivity(new Intent(this, AdminDashboardActivity.class));
+        Toast.makeText(this, "Ristorante salvato", Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(this, AdminDashboardActivity.class).putExtra("email", emailAdmin));
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() { finishAfterTransition(); }

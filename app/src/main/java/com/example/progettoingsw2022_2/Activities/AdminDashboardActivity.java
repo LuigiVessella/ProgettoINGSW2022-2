@@ -30,7 +30,7 @@ import java.util.Map;
 public class AdminDashboardActivity extends AppCompatActivity implements VolleyCallback {
 
     private Button aggiungiRistoranteButt, logoutButt;
-    private String dataFromActivity;
+    private String dataFromActivity = null;
 
     private TextView welcomeTextView;
 
@@ -52,7 +52,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
         welcomeTextView = findViewById(R.id.welcomeTextDashboard);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
         logoutButt = findViewById(R.id.buttonLogoutAdDash);
-        welcomeTextView.append(dataFromActivity);
+        if(dataFromActivity != null) welcomeTextView.append(dataFromActivity);
         aggiungiRistoranteButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
