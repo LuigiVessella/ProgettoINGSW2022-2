@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -41,9 +43,11 @@ import java.io.IOException;
 
 public class MenuManager extends AppCompatActivity {
 
-    private Button aggiungiPiattoButt, generaMenuButt;
+    private Button aggiungiPiattoButt, generaMenuButt, okButtonDialog, cancelButtonDialog;
     private EditText sample;
     private Dialog dialog;
+
+    private AutoCompleteTextView autoCompleteTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +58,25 @@ public class MenuManager extends AppCompatActivity {
     }
 
     private void inizializzaComponenti(){
+        String[] COUNTRIES = new String[] {
+                "Estathe", "Coca-Cola", "Pepsi", "Fanta", "Sprite"
+        };
 
         ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 200);
         dialog = new Dialog(MenuManager.this);
         dialog.setContentView(R.layout.dialog_input_string);
+
+        autoCompleteTextView = dialog.findViewById(R.id.autoCompleteTextView);
+        okButtonDialog = dialog.findViewById(R.id.btn_ok_dialog);
+        cancelButtonDialog = dialog.findViewById(R.id.btn_cancel_dialog);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, COUNTRIES);
+
+        autoCompleteTextView.setAdapter(adapter);
+
+
+
 
         aggiungiPiattoButt = findViewById(R.id.aggiungiPiattoButt);
         generaMenuButt = findViewById(R.id.generaMenuButt);
