@@ -19,19 +19,16 @@ import java.util.concurrent.Semaphore;
 
 public class CustomRequest {
     private String url = "http://192.168.1.10:8080";
-
     private  Map<String, String> params;
-
     private Context context;
 
     private String resultString = null;
-
     private VolleyCallback volleyCallback;
 
 
     public CustomRequest(String url, Map<String, String> params, Context context, VolleyCallback volleyCallback){
         this.url = this.url.concat(url);
-        this.url = url;
+        if(url.contains("openfoodfacts")) this.url = url;
         this.params = params;
         this.context = context;
         this.volleyCallback = volleyCallback;

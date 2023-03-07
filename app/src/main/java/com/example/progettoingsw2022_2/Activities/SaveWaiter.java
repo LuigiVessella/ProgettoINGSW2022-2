@@ -156,7 +156,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     @Override
     public void onSuccess(String result) {
         Log.i("VOLLEY", result);
-        if(result.equals("Succefully saved")) {
+        if(result.equals("cameriere salvato correttamente")) {
             waiterWelcomeRegisterText.setText(R.string.registerOK);
             //Handler usato per aspettare un attimo prima di tornare indietro alla main activity
             new Handler().postDelayed(new Runnable() {
