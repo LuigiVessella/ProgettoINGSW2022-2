@@ -66,6 +66,7 @@
                         android:hint="@string/register_name"
                         android:inputType="textPersonName"
                         android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
 
@@ -81,6 +82,7 @@
                         android:hint="@string/register_surname"
                         android:inputType="textPersonName"
                         android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
                 </TableRow>
@@ -118,6 +120,7 @@
                         android:hint="@string/register_email"
                         android:inputType="textEmailAddress"
                         android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
 
@@ -156,6 +159,7 @@
                         android:hint="Partita IVA"
                         android:inputType="textPersonName"
                         android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
 
@@ -194,6 +198,7 @@
                         android:hint="Codice Fiscale"
                         android:inputType="textCapCharacters"
                         android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
 
@@ -241,7 +246,8 @@
                             android:hint="@string/register_pass"
                             android:inputType="textPassword"
                             android:textColor="@color/grigio_scuro"
-                            android:textColorHint="@color/grigio_chiaro" />
+                            android:textColorHint="@color/grigio_chiaro"
+                            android:textCursorDrawable="@drawable/cursor_color"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
