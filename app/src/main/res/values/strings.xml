@@ -19,7 +19,7 @@
     <string name="registerWrong">Something Wrong!</string>
     <string name="loginWrongCred">Invalid credentials</string>
     <string name="loginInsertCred">Insert credentials</string>
-    <string name="AdminControlPanelText">"Panel of: "</string>
+    <string name="AdminControlPanelText">Panel of:</string>
     <string name="AdminResturant">Your resturant:</string>
     <string name="addResturantBtn">Add resturant</string>
     <string name="ExitBtn">Exit</string>
@@ -33,4 +33,8 @@
     <string name="Name">Name</string>
     <string name="AdminDBNoResturant">You don\'t have a resturant!</string>
     <string name="EditSting">Edit</string>
+    <string name="saveResturantTitle">Register your resturant</string>
+    <string name="takeOrder">Take order</string>
+    <string name="newOrder">New Order</string>
+    <string name="tableNumber">Table Number</string>
 </resources>
