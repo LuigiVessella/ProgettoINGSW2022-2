@@ -8,6 +8,7 @@
     android:background="@drawable/sfondo_1_con_patina"
     android:orientation="vertical">
 
+
     <ImageView
         android:id="@+id/logoBiagioTest"
         android:layout_width="129dp"

@@ -21,6 +21,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
+import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.R;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
@@ -40,8 +42,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
-public class MenuManager extends AppCompatActivity {
+public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     private Button aggiungiPiattoButt, generaMenuButt, okButtonDialog, cancelButtonDialog;
     private EditText sample;
@@ -176,5 +180,27 @@ public class MenuManager extends AppCompatActivity {
             Toast.makeText(this, "Menu creato in Download", Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    private void sendHttpRequestOpenFood(String foodName){
+
+        String url = "https://it.openfoodfacts.org/cgi/search.pl";
+        Map<String, String> params = new HashMap<>();
+
+        params.put("action", "process");
+        params.put("tagtype_0", "categories");
+        params.put("tag_contains_0", "contains");
+        params.put("tag_0", foodName);
+        params.put("json", "true");
+
+        CustomRequest newRequest = new CustomRequest(url, params, this, this);
+        newRequest.sendGetRequest();
+
+    }
+
+    @Override
+    public void onSuccess(String result) {
+
+
     }
 }

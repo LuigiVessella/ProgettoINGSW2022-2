@@ -30,7 +30,8 @@ public class CustomRequest {
 
 
     public CustomRequest(String url, Map<String, String> params, Context context, VolleyCallback volleyCallback){
-        this.url = this.url.concat(url);
+        if(url.contains("192.") || url.contains("20."))this.url = this.url.concat(url);
+        else this.url = url;
         this.params = params;
         this.context = context;
         this.volleyCallback = volleyCallback;
