@@ -72,6 +72,7 @@
                         android:hint="First"
                         android:inputType="textPersonName"
                         android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
 
@@ -87,6 +88,7 @@
                         android:hint="Last"
                         android:inputType="textPersonName"
                         android:paddingStart="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
                 </TableRow>
@@ -124,6 +126,7 @@
                         android:hint="Email"
                         android:inputType="textEmailAddress"
                         android:paddingStart="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
 
@@ -163,6 +166,7 @@
                         android:hint="Codice Fiscale"
                         android:inputType="textCapCharacters"
                         android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
                         android:textColorHint="@color/grigio_chiaro" />
 
@@ -191,32 +195,28 @@
                     android:layout_marginBottom="50dp"
                     android:paddingBottom="20dp">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/waiterPasswordText"
                         android:layout_width="118dp"
                         android:layout_height="48dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/custom_input"
-                        android:ems="8"
-                        android:hint="Password"
-                        android:inputType="textPassword"
-                        android:paddingStart="5dp"
-                        android:textColor="@color/grigio_scuro"
-                        android:textColorHint="@color/grigio_chiaro" />
+                        app:passwordToggleEnabled="true">
 
-                    <Button
-                        android:id="@+id/waiterShowPassButton"
-                        android:layout_width="161dp"
-                        android:contentDescription="Mostra password"
-                        android:layout_height="48dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.1"
-                        android:backgroundTint="@drawable/button_color_scheme"
-                        android:drawableTop="@drawable/ic_baseline_remove_red_eye_24"
-                        android:textColor="@color/bianco"
-                        app:cornerRadius="40sp" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputEditTextLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/custom_input"
+                            android:ems="8"
+                            android:hint="@string/register_pass"
+                            android:inputType="textPassword"
+                            android:textColor="@color/grigio_scuro"
+                            android:textColorHint="@color/grigio_chiaro"
+                            android:textCursorDrawable="@drawable/cursor_color"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </TableRow>
 
