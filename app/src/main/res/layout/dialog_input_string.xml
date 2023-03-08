@@ -11,7 +11,31 @@
         android:id="@+id/autoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_input"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:paddingStart="5dp"
+        android:textColor="@color/grigio_scuro"
+        android:textColorHint="@color/grigio_chiaro"
+        android:textCursorDrawable="@drawable/cursor_color"
         android:hint="Nome prodotto..." />
+
+    <TextView
+        android:id="@+id/descriptionItemMenu"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/roboto"
+        android:hint="Descrizione..."
+        android:paddingStart="5dp"
+        android:textColor="@color/grigio_scuro"
+        android:textColorHint="@color/grigio_chiaro"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:id="@+id/linearLayoutDialog2"

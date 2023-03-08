@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -24,6 +26,10 @@ import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.R;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -49,6 +55,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     private Button aggiungiPiattoButt, generaMenuButt, okButtonDialog, cancelButtonDialog;
     private EditText sample;
+    private TextView itemMenuDescription;
     private Dialog dialog;
 
     private AutoCompleteTextView autoCompleteTextView;
@@ -70,6 +77,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         dialog = new Dialog(MenuManager.this);
         dialog.setContentView(R.layout.dialog_input_string);
 
+        itemMenuDescription = dialog.findViewById(R.id.descriptionItemMenu);
         autoCompleteTextView = dialog.findViewById(R.id.autoCompleteTextView);
         okButtonDialog = dialog.findViewById(R.id.btn_ok_dialog);
         cancelButtonDialog = dialog.findViewById(R.id.btn_cancel_dialog);
@@ -90,7 +98,9 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                // Toast.makeText(MenuManager.this, autoCompleteTextView.getText().toString(), Toast.LENGTH_SHORT).show();
-                if(autoCompleteTextView.getText().length() > 3) sendHttpRequestOpenFood(autoCompleteTextView.getText().toString());
+                if(autoCompleteTextView.getText().length() > 3) {
+                    sendHttpRequestOpenFood(autoCompleteTextView.getText().toString());
+                }
 
             }
 
@@ -109,10 +119,20 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         aggiungiPiattoButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 dialog.show();
+            }
+        });
+        okButtonDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
-
+        cancelButtonDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
             }
         });
     }
@@ -201,23 +221,43 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
         //questo funziona
 
-        String url = "https://it.openfoodfacts.org/cgi/search.pl";
+        String url = "https://it.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0="+foodName.trim()+"&json=true";
         Map<String, String> params = new HashMap<>();
 
-        params.put("action", "process");
-        params.put("tagtype_0", "categories");
-        params.put("tag_contains_0", "contains");
-        params.put("tag_0", foodName);
-        params.put("json", "true");
-
         CustomRequest newRequest = new CustomRequest(url, params, this, this);
-        newRequest.sendGetRequest();
+        try {
+            newRequest.sendGetRequest();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Network exception", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
     @Override
     public void onSuccess(String result) {
         System.out.println(result);
+        try{
+            JsonParser parser = new JsonParser();
+            JsonElement jsonTree = parser.parse(result);
+            JsonArray productArray = jsonTree.getAsJsonObject().get("products").getAsJsonArray();
+            String id = productArray.get(1).getAsJsonObject().get("_id").getAsString();
+            itemMenuDescription.setText("id prodotto: " + id);
+
+        }catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+            dialog.dismiss();
+        }
+        catch (JsonParseException e) {
+            e.printStackTrace();
+            dialog.dismiss();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            dialog.dismiss();
+            Toast.makeText(this, "Generic error", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 }
