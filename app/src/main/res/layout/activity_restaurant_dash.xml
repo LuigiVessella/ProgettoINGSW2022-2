@@ -11,7 +11,7 @@
         android:id="@+id/welcomeRestaurantText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
+        android:fontFamily="@font/lobster"
         android:text="Ciao"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

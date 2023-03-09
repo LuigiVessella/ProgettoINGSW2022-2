@@ -7,6 +7,8 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
@@ -158,7 +161,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
             PdfContentByte canvas = writer.getDirectContentUnder();
 
-            Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.sfondo_menu);
+            Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.menu_background_2);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
             Image img = null;
@@ -176,29 +179,33 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
 
             // Aggiungi il titolo al centro della pagina
-            Font titleFont = FontFactory.getFont(FontFactory.COURIER_BOLD, 36, BaseColor.BLACK);
-            Paragraph title = new Paragraph("Menu del Ristorante", titleFont);
+
+            FontFactory.register("res/font/lobster2.ttf", "Lobster");
+            Font titleFont = FontFactory.getFont("Lobster", "Cp1253", true);
+            titleFont.setColor(BaseColor.WHITE);
+            titleFont.setSize(36);
+
+            Paragraph space = new Paragraph("\n\n\n", titleFont);
+            space.setAlignment(Element.ALIGN_CENTER);
+
+            document.add(space);
+
+
+            Paragraph title = new Paragraph("Ristorante Da Gigi", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
+
             document.add(title);
 
             // Aggiungi la descrizione del piatto
             // Aggiunge la descrizione del piatto "Pasta al Sugo" centrata nella pagina con un font personalizzato e uno spazio di 50 punti prima della descrizione
-            Font plateFont = new Font(Font.FontFamily.COURIER, 18, Font.ITALIC);
-            Paragraph plate = new Paragraph("\n\nPasta al Sugo\nPrezzo: 10€", plateFont);
+            Font plateFont = new Font(Font.FontFamily.COURIER, 18, Font.ITALIC, BaseColor.WHITE);
+            Paragraph plate = new Paragraph("\n\nPasta al Sugo\nPrezzo: 9,99€\n\n" +
+                    "Gnocchi alla sorrentina\nPrezzo: 15€" +
+                    "\n\nAragosta \nPrezzo: 30€"+
+                    "\n\nTiramisù \nPrezzo: gratis\n", plateFont);
             plate.setAlignment(Element.ALIGN_CENTER);
             document.add(plate);
 
-            Paragraph plate2 = new Paragraph("\n\nGnocchi alla sorrentina\nPrezzo: 15€", plateFont);
-            plate2.setAlignment(Element.ALIGN_CENTER);
-            document.add(plate2);
-
-            Paragraph plate3 = new Paragraph("\n\nAragosta qui sotto\nPrezzo: 30€", plateFont);
-            plate3.setAlignment(Element.ALIGN_CENTER);
-            document.add(plate3);
-
-            Paragraph plate4 = new Paragraph("\n\nTiramisù\nPrezzo: 50098€", plateFont);
-            plate4.setAlignment(Element.ALIGN_CENTER);
-            document.add(plate4);
 
 
 
