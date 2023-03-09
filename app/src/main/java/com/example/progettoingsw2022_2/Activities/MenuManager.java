@@ -206,11 +206,6 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             plate.setAlignment(Element.ALIGN_CENTER);
             document.add(plate);
 
-
-
-
-
-
             document.close();
 
         }
