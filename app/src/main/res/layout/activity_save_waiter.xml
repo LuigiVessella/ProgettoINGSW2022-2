@@ -150,13 +150,12 @@
 
                     <Spinner
                         android:id="@+id/ruoloSpinner"
-                        android:layout_width="383dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginStart="10dp"
                         android:background="@drawable/custom_input"
-                        android:textColor="@color/grigio_scuro"
-                        android:entries="@array/Roles"
-                        />
+                        android:entries="@array/spinner_items"
+                        android:textColor="@color/grigio_scuro" />
 
                 </TableRow>
 
