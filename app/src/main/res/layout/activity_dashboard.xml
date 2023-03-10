@@ -4,45 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_list"
+    android:background="@drawable/sfondo_1_con_patina"
     tools:context=".Activities.AdminDashboardActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutRegisterTop"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.108">
+
+        <ImageView
+            android:id="@+id/logoBiagioTest"
+            android:layout_width="129dp"
+            android:layout_height="130dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="12dp"
+            app:srcCompat="@drawable/logobiagio" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/welcomeTextDashboard"
         android:layout_width="373dp"
         android:layout_height="60dp"
         android:fontFamily="@font/roboto"
-        android:textStyle="bold"
         android:text="@string/AdminControlPanelText"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.152" />
+        app:layout_constraintVertical_bias="0.336" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="123dp"
         android:layout_height="35dp"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/roboto_medium"
         android:text="@string/AdminResturant"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/scrollViewRistoranti"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.946" />
+        app:layout_constraintTop_toBottomOf="@+id/aggiungiRistoranteButton"
+        app:layout_constraintVertical_bias="0.764" />
 
     <ScrollView
         android:id="@+id/scrollViewRistoranti"
-        android:layout_width="358dp"
-        android:layout_height="238dp"
+        android:layout_width="340dp"
+        android:layout_height="189dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.422"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.935">
@@ -70,24 +91,23 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.274" />
+        app:layout_constraintVertical_bias="0.533" />
 
     <Button
         android:id="@+id/buttonLogoutAdDash"
-        android:layout_width="130dp"
-        android:layout_height="49dp"
+        android:layout_width="55dp"
+        android:layout_height="39dp"
         android:layout_gravity="center"
         android:backgroundTint="@drawable/button_color_scheme"
         android:drawableEnd="@drawable/mylogouticon"
         android:fontFamily="@font/roboto"
-        android:text="@string/ExitBtn"
         android:textColor="#000000"
         android:textStyle="bold"
         app:cornerRadius="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.01" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,11 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LifecycleOwner;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
@@ -28,7 +26,7 @@ import com.skydoves.balloon.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResgisterActivity extends AppCompatActivity implements VolleyCallback {
+public class RegisterActivity extends AppCompatActivity implements VolleyCallback {
     private EditText nomeText, cognomeText, pIvaText, emailText, codiceFiscaleText;
 
     private ImageView logo;

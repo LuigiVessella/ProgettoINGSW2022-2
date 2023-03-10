@@ -39,7 +39,7 @@
             android:name=".Activities.AdminDashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.ResgisterActivity"
+            android:name=".Activities.RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustNothing">
             >

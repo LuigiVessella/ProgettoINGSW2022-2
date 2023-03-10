@@ -7,12 +7,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.progettoingsw2022_2.R;
-import com.google.android.material.bottomappbar.BottomAppBar;
 
 public class MainActivity extends AppCompatActivity {
     private Button registerButton, loginButton;
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         registraText.animate().alpha(1.0f).setDuration(2000).start();
 
         //Setta il onClickListener per il bottone "registrati" e il bottone "Accedi"
-        registerButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ResgisterActivity.class)));
+        registerButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, RegisterActivity.class)));
         loginButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, LoginActivity.class)));
     }
 
