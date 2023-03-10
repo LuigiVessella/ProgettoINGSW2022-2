@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.skydoves.balloon.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,8 +31,10 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     private EditText nomeText, cognomeText, emailText, codiceFiscaleText;
     private Button okButton;
     private String codiceRistorante;
+    private ImageView logo;
     private TextView waiterWelcomeRegisterText;
     private TextInputEditText passwordText;
+    private Balloon myBalloon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,12 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         setContentView(R.layout.activity_save_waiter);
         codiceRistorante = getIntent().getStringExtra("codiceRistorante");
         inizializeComponent();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                myBalloon.showAlignRight(logo);
+            }
+        }, 500);
     }
 
     private void inizializeComponent() {
@@ -45,8 +57,27 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         emailText = findViewById(R.id.waiterEmailLoginText);
         passwordText = (TextInputEditText) findViewById(R.id.textInputEditTextLayoutwaiter);
         codiceFiscaleText = findViewById(R.id.waiterCodiceFiscaleText);
-        waiterWelcomeRegisterText = findViewById(R.id.waiterWelcomeRegisterText);
+        //waiterWelcomeRegisterText = findViewById(R.id.waiterWelcomeRegisterText);
+        logo = findViewById(R.id.waiterLogoBiagioTest);
         okButton = findViewById(R.id.waiterOkButton);
+        myBalloon = new Balloon.Builder(getApplicationContext())
+                .setArrowOrientation(ArrowOrientation.START)
+                .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+                .setArrowPosition(0.01f)
+                //.setWidth(BalloonSizeSpec.WRAP)
+                .setHeight(100)
+                .setWidth(250)
+                .setTextSize(15f)
+                .setCornerRadius(30f)
+                .setAlpha(0.9f)
+                .setText(getString(R.string.balloonRegisterEmployeeText))
+                .setTextSize(16)
+                .setTextColor(Color.WHITE)
+                .setBackgroundColor(Color.rgb(198,173,119))
+                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
+                .setDismissWhenTouchOutside(false)
+                //.setLifecycleOwner(this)
+                .build();
 
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,7 +190,6 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     public void onSuccess(String result) {
         Log.i("VOLLEY", result);
         if(result.equals("cameriere salvato correttamente")) {
-            waiterWelcomeRegisterText.setText(R.string.registerOK);
             //Handler usato per aspettare un attimo prima di tornare indietro alla main activity
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -169,7 +199,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
             }, 800);
         }
         else {
-            waiterWelcomeRegisterText.setError(getString(R.string.registerWrong));
+            //waiterWelcomeRegisterText.setError(getString(R.string.registerWrong));
         }
     }
 }

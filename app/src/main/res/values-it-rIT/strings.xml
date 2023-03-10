@@ -32,6 +32,8 @@
     <string name="tableNumber">Numero Tavolo</string>
     <string name="orderStatus">Stato Ordine</string>
     <string name="welcomeWaiter">Benvenuto: </string>
-    <string name="balloonRegisterText">"Registra il tuo account da Amministratore!"</string>
+    <string name="balloonRegisterText">\"Registra il tuo account da Amministratore!\"</string>
+    <string name="balloonRegisterEmployeeText">\"Registra qui il tuo dipendente!\"</string>
+
 
 </resources>

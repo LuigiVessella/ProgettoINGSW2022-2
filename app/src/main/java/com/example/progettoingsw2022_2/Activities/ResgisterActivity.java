@@ -74,7 +74,7 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
                 .setTextSize(16)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(Color.rgb(198,173,119))
-                .setBalloonAnimation(BalloonAnimation.ELASTIC)
+                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
                 .setDismissWhenTouchOutside(false)
                 //.setLifecycleOwner(this)
                 .build();

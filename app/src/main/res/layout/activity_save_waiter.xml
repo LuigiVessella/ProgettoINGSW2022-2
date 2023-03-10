@@ -8,19 +8,14 @@
     android:background="@drawable/sfondo_1_con_patina"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/waiterWelcomeRegisterText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="BENVENUTO" />
 
     <ImageView
         android:id="@+id/waiterLogoBiagioTest"
         android:layout_width="129dp"
         android:layout_height="130dp"
-        android:layout_gravity="center"
+        android:layout_gravity="left"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="12dp"
         app:srcCompat="@drawable/logobiagio" />
 
     <ScrollView
