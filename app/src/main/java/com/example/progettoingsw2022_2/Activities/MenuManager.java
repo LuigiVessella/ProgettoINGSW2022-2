@@ -231,7 +231,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
         //questo funziona
 
-        String url = "https://it.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0="+foodName.trim()+"&json=true";
+        String url = "https://it.openfoodfacts.org/cgi/search.pl?action=process&search_simple=1&search_terms="+foodName.trim() +"&json=true";
         Map<String, String> params = new HashMap<>();
 
         CustomRequest newRequest = new CustomRequest(url, params, this, this);
@@ -248,11 +248,14 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     public void onSuccess(String result) {
         System.out.println(result);
         try{
+            itemMenuDescription.setText("");
             JsonParser parser = new JsonParser();
             JsonElement jsonTree = parser.parse(result);
-            JsonArray productArray = jsonTree.getAsJsonObject().get("products").getAsJsonArray();
-            String product_name = productArray.get(1).getAsJsonObject().get("allergens").getAsString();
-            itemMenuDescription.setText("" + product_name);
+            for(int i = 0; i < 5; i++) {
+                JsonArray productArray = jsonTree.getAsJsonObject().get("products").getAsJsonArray();
+                String product_name = productArray.get(i).getAsJsonObject().get("product_name").getAsString();
+                itemMenuDescription.append(product_name + "\n");
+            }
 
         }catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
