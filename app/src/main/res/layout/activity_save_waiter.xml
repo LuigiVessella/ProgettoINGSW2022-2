@@ -156,7 +156,6 @@
                         android:background="@drawable/custom_input"
                         android:textColor="@color/grigio_scuro"
                         android:entries="@array/Roles"
-
                         />
 
                 </TableRow>
