@@ -221,8 +221,6 @@
                         android:id="@+id/ruoloSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
-                        android:entries="@array/Roles"
-
                     />
 
                 </TableRow>

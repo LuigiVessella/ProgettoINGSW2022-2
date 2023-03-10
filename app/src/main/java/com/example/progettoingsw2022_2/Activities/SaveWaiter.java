@@ -69,7 +69,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         ruoli = findViewById(R.id.ruoloSpinner);
 
         //GESTIONE SPINNER
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_items, android.R.layout.simple_spinner_item );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ruoli.setAdapter(adapter);
 

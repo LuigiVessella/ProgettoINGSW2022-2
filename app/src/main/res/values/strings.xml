@@ -1,10 +1,12 @@
 <resources>
-    <string-array name="Roles">
+    <string-array name="spinner_items">
         <item> Waiter </item>
         <item> Chef </item>
         <item> Kitchen Assistant </item>
         <item> Supervisor </item>
     </string-array>
+
+
     <string name="app_name" translatable="false">Ratatouille23</string>
     <string name="app_title" translatable="false">RATATOUILLE23</string>
     <string name="loginBtn">Login</string>
