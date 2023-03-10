@@ -131,6 +131,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 Button myButton = new Button(AdminDashboardActivity.this);
                 myButton.setText("Edit");
                 myButton.setBackgroundColor(Color.parseColor("#C6AD77"));
+                myButton.setTextColor(Color.WHITE);
 
 
                 LinearLayout.LayoutParams layoutParams = new  LinearLayout.LayoutParams(
