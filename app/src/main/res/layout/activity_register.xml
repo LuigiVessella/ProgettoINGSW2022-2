@@ -8,14 +8,21 @@
     android:background="@drawable/sfondo_1_con_patina"
     android:orientation="vertical">
 
-
-    <ImageView
-        android:id="@+id/logoBiagioTest"
-        android:layout_width="129dp"
+    <LinearLayout
+        android:id="@+id/linearLayoutRegisterTop"
+        android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/logobiagio" />
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/logoBiagioTest"
+            android:layout_width="129dp"
+            android:layout_height="130dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="12dp"
+            app:srcCompat="@drawable/logobiagio" />
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"

@@ -37,4 +37,7 @@
     <string name="takeOrder">Take order</string>
     <string name="newOrder">New Order</string>
     <string name="tableNumber">Table Number</string>
+    <string name="orderStatus">Order Status</string>
+    <string name="welcomeWaiter">Welcome: </string>
+    <string name="balloonRegisterText">"Get started as an Administrator!"</string>
 </resources>

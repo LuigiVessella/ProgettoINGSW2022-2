@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -7,10 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
@@ -20,24 +23,32 @@ import com.google.android.material.textfield.TextInputEditText;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.skydoves.balloon.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ResgisterActivity extends AppCompatActivity implements VolleyCallback {
     private EditText nomeText, cognomeText, pIvaText, emailText, codiceFiscaleText;
 
+    private ImageView logo;
     private TextInputEditText passwordText;
     private Button okButton;
     private TextView welcomeTexView;
+    private Balloon myBalloon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         inizializzaComponenti();
-        LinearLayout linearLayout = findViewById(R.id.linearLayoutRegister);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                myBalloon.showAlignRight(logo);
+            }
+        }, 500);
     }
-
 
     private void inizializzaComponenti() {
         nomeText = findViewById(R.id.firstNameText);
@@ -48,6 +59,25 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
         codiceFiscaleText = findViewById(R.id.codiceFiscaleText);
         welcomeTexView = findViewById(R.id.welcomeRegisterText);
         okButton = findViewById(R.id.okButtonRegister);
+        logo = findViewById(R.id.logoBiagioTest);
+        myBalloon = new Balloon.Builder(getApplicationContext())
+                .setArrowOrientation(ArrowOrientation.START)
+                .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+                .setArrowPosition(0.01f)
+                //.setWidth(BalloonSizeSpec.WRAP)
+                .setHeight(100)
+                .setWidth(250)
+                .setTextSize(15f)
+                .setCornerRadius(30f)
+                .setAlpha(0.9f)
+                .setText(getString(R.string.balloonRegisterText))
+                .setTextSize(16)
+                .setTextColor(Color.WHITE)
+                .setBackgroundColor(Color.rgb(198,173,119))
+                .setBalloonAnimation(BalloonAnimation.ELASTIC)
+                .setDismissWhenTouchOutside(false)
+                //.setLifecycleOwner(this)
+                .build();
 
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +102,9 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
                 }
                 if (pIvaText.getText().length() != 0) {
                     String pIva = pIvaText.getText().toString();
+
+                    //*************Da ricordare di modificare il 3 con l'11*********************//
+
                     if (!pIva.matches("^[0-9]{3}$")) {
                         pIvaText.setError("Campo non corretto!");
                         hasError = true;
@@ -115,6 +148,8 @@ public class ResgisterActivity extends AppCompatActivity implements VolleyCallba
                 if (!hasError) {
                     sendRegisterRequest(nomeText.getText(), cognomeText.getText(), pIvaText.getText(), passwordText.getText(), codiceFiscaleText.getText(), emailText.getText());
                 }
+                myBalloon.showAlignRight(logo);
+
             }
         });
     }

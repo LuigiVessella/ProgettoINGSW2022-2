@@ -27,5 +27,11 @@
     <string name="Name">Nome</string>
     <string name="AdminDBNoResturant">Non hai ristoranti!</string>
     <string name="EditSting">Modifica</string>
+    <string name="takeOrder">Prendi Ordine</string>
+    <string name="newOrder">Nuovo Ordiner</string>
+    <string name="tableNumber">Numero Tavolo</string>
+    <string name="orderStatus">Stato Ordine</string>
+    <string name="welcomeWaiter">Benvenuto: </string>
+    <string name="balloonRegisterText">"Registra il tuo account da Amministratore!"</string>
 
 </resources>

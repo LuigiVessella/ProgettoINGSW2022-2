@@ -1,36 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_list"
-    android:orientation="vertical"
-    tools:context=".Activities.WaiterDashboard">
+    android:id="@+id/mainLayout"
+    tools:context=".Activities.MainActivity">
+
+    <ImageView
+        android:id="@+id/background_shape_waiter"
+        android:layout_width="match_parent"
+        android:layout_height="663dp"
+        android:src="@drawable/frame_shape"
+        android:visibility="visible"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/Logo_waiter"
+        android:layout_width="140dp"
+        android:layout_height="105dp"
+        android:contentDescription="@string/contentDescriptionMainLogo"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.119"
+        app:srcCompat="@drawable/logobiagio"
+        />
 
     <TextView
-        android:id="@+id/welcomeWaiterDash"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:gravity="top"
-        android:text="@string/welcome"
-        android:textAlignment="center"
-        android:textSize="30dp" />
+        android:id="@+id/title_waiter"
+        android:layout_width="257dp"
+        android:layout_height="30dp"
+        android:elevation="10dp"
+        android:fontFamily="@font/petit_formal_script"
+        android:text="@string/app_title"
+        android:textColor="@color/grigio_scuro"
+        android:textSize="26sp"
+        android:textStyle="normal|bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Logo_waiter"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/waiterName"
+        android:layout_width="257dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:elevation="10dp"
+        android:fontFamily="@font/petit_formal_script"
+        android:text="@string/welcomeWaiter"
+        android:textColor="@color/grigio_scuro"
+        android:textSize="14sp"
+        android:textStyle="normal|bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_waiter"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/buttonPrendiOrdine"
-        android:layout_width="334dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/takeOrder" />
+        android:id="@+id/newOrderBtn"
+        android:layout_width="210dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="113dp"
+        android:layout_marginBottom="288dp"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:text="@string/takeOrder"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:cornerRadius="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_shape_waiter"
+        app:layout_constraintEnd_toEndOf="@+id/background_shape_waiter"
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintStart_toEndOf="@+id/background_shape_waiter"
+        app:layout_constraintStart_toStartOf="@+id/background_shape_waiter"
+        app:layout_constraintTop_toTopOf="@+id/background_shape_waiter" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Button
+        android:id="@+id/orderStatusBtn"
+        android:layout_width="210dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="590dp"
+        android:layout_marginEnd="113dp"
+        android:layout_marginBottom="288dp"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:text="@string/orderStatus"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:cornerRadius="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_shape_waiter"
+        app:layout_constraintEnd_toEndOf="@+id/background_shape_waiter"
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintStart_toEndOf="@+id/background_shape_waiter"
+        app:layout_constraintStart_toStartOf="@+id/background_shape_waiter"
+        app:layout_constraintTop_toTopOf="@+id/background_shape_waiter" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
