@@ -128,23 +128,19 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 );
                 txv.setLayoutParams(layoutParamsTxt);
 
-                GradientDrawable shape =  new GradientDrawable();
-                shape.setCornerRadius(30);
-
-                Button myButton = new Button(AdminDashboardActivity.this);
-                myButton.setText("Edit");
-                myButton.setBackground(shape);
-                myButton.setBackgroundColor(Color.parseColor("#C6AD77"));
-                myButton.setTextColor(Color.WHITE);
-
 
 
                 LinearLayout.LayoutParams layoutParams = new  LinearLayout.LayoutParams(
-                        180, 100
-                );
+                        200, 90
+                );layoutParams.setMarginStart(500);
 
-                layoutParams.setMarginStart(500);
+                Button myButton = new Button(AdminDashboardActivity.this);
                 myButton.setLayoutParams(layoutParams);
+                myButton.setText("Modifica");
+                myButton.setBackgroundResource(R.drawable.corner_radius_botton);
+                myButton.setTextColor(Color.WHITE);
+                myButton.setTextSize(10);
+
 
                 myButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -158,6 +154,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
                     }
                 });
+
 
                 LinearLayout newHorizontalLayout = new LinearLayout(AdminDashboardActivity.this);
 
