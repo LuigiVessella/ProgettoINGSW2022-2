@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -56,7 +57,7 @@ import java.util.Map;
 
 public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
-    private Button aggiungiPiattoButt, generaMenuButt, okButtonDialog, cancelButtonDialog;
+    private Button aggiungiPiattoButt, generaMenuButt, okButtonDialog, cancelButtonDialog, goProductButton;
     private EditText sample;
     private TextView itemMenuDescription;
     private Dialog dialog;
@@ -84,6 +85,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         autoCompleteTextView = dialog.findViewById(R.id.autoCompleteTextView);
         okButtonDialog = dialog.findViewById(R.id.btn_ok_dialog);
         cancelButtonDialog = dialog.findViewById(R.id.btn_cancel_dialog);
+        goProductButton = dialog.findViewById(R.id.searchProductButton);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, COUNTRIES);
@@ -101,9 +103,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                // Toast.makeText(MenuManager.this, autoCompleteTextView.getText().toString(), Toast.LENGTH_SHORT).show();
-                if(autoCompleteTextView.getText().length() > 3) {
-                    sendHttpRequestOpenFood(autoCompleteTextView.getText().toString());
-                }
+
 
             }
 
@@ -113,6 +113,14 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             }
         });
 
+        goProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(autoCompleteTextView.getText().length() > 3) {
+                    sendHttpRequestOpenFood(autoCompleteTextView.getText().toString());
+                }
+            }
+        });
         generaMenuButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -243,20 +251,20 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             JsonParser parser = new JsonParser();
             JsonElement jsonTree = parser.parse(result);
             JsonArray productArray = jsonTree.getAsJsonObject().get("products").getAsJsonArray();
-            String id = productArray.get(1).getAsJsonObject().get("_id").getAsString();
-            itemMenuDescription.setText("id prodotto: " + id);
+            String product_name = productArray.get(1).getAsJsonObject().get("allergens").getAsString();
+            itemMenuDescription.setText("" + product_name);
 
         }catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
-            dialog.dismiss();
+            Log.i("warning", "nessun risultato");
         }
         catch (JsonParseException e) {
             e.printStackTrace();
-            dialog.dismiss();
+            Log.i("warning", "nessun risultato");
         }
         catch(Exception e) {
             e.printStackTrace();
-            dialog.dismiss();
+            Log.i("warning", "nessun risultato");
             Toast.makeText(this, "Generic error", Toast.LENGTH_SHORT).show();
         }
 
