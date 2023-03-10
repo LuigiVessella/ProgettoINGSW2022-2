@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,10 +34,13 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     private Button okButton;
     private String codiceRistorante;
     private ImageView logo;
-    private TextView waiterWelcomeRegisterText;
+
     private TextInputEditText passwordText;
     private Balloon myBalloon;
     private Spinner ruoli;
+
+    //Array di stringhe per lo spinner, tipo final
+    private final String[] items = {"Cameriere", "Supervisore", "Cuoco"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +58,22 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
 
     private void inizializeComponent() {
 
+        //INIZIALIZZO LE COMPONENTI
         nomeText = findViewById(R.id.waiterFirstNameText);
         cognomeText = findViewById(R.id.waiterSecondNameText);
         emailText = findViewById(R.id.waiterEmailLoginText);
         passwordText = (TextInputEditText) findViewById(R.id.textInputEditTextLayoutwaiter);
         codiceFiscaleText = findViewById(R.id.waiterCodiceFiscaleText);
-        //waiterWelcomeRegisterText = findViewById(R.id.waiterWelcomeRegisterText);
         logo = findViewById(R.id.waiterLogoBiagioTest);
         okButton = findViewById(R.id.waiterOkButton);
         ruoli = findViewById(R.id.ruoloSpinner);
+
+        //GESTIONE SPINNER
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ruoli.setAdapter(adapter);
+
+
         myBalloon = new Balloon.Builder(getApplicationContext())
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
@@ -76,7 +87,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                 .setText(getString(R.string.balloonRegisterEmployeeText))
                 .setTextSize(16)
                 .setTextColor(Color.WHITE)
-                .setBackgroundColor(Color.rgb(198,173,119))
+                .setBackgroundColor(Color.rgb(198, 173, 119))
                 .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
                 .setDismissWhenTouchOutside(false)
                 //.setLifecycleOwner(this)
@@ -109,7 +120,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                         codiceFiscaleText.setError("Campo non corretto!");
                         hasError = true;
                     }
-                } else if (codiceFiscaleText.getText().length() == 0){
+                } else if (codiceFiscaleText.getText().length() == 0) {
                     codiceFiscaleText.setError("Campo obbligatorio!");
                     hasError = true;
                 }
@@ -130,7 +141,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                         emailText.setError("Email non valida");
                         hasError = true;
                     }
-                } else if (emailText.getText().length() == 0){
+                } else if (emailText.getText().length() == 0) {
                     emailText.setError("Campo obbligatorio!");
                     hasError = true;
                 }
@@ -140,30 +151,30 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                 }
             }
         });
-        ruoli.setOnItemClickListener( new View.OnItemClickListener(){;
-    });
-
-    private boolean isCodiceFiscaleValido(String cf)
-    {
-        if( ! cf.matches("^[0-9A-Z]{16}$") )
-            return false;
-        int s = 0;
-        String even_map = "BAFHJNPRTVCESULDGIMOQKWZYX";
-        for(int i = 0; i < 15; i++){
-            int c = cf.charAt(i);
-            int n;
-            if( '0' <= c && c <= '9' )
-                n = c - '0';
-            else
-                n = c - 'A';
-            if( (i & 1) == 0 )
-                n = even_map.charAt(n) - 'A';
-            s += n;
-        }
-        if( s%26 + 'A' != cf.charAt(15) )
-            return false;
-        return true;
     }
+        private boolean isCodiceFiscaleValido (String cf)
+        {
+            if (!cf.matches("^[0-9A-Z]{16}$"))
+                return false;
+            int s = 0;
+            String even_map = "BAFHJNPRTVCESULDGIMOQKWZYX";
+            for (int i = 0; i < 15; i++) {
+                int c = cf.charAt(i);
+                int n;
+                if ('0' <= c && c <= '9')
+                    n = c - '0';
+                else
+                    n = c - 'A';
+                if ((i & 1) == 0)
+                    n = even_map.charAt(n) - 'A';
+                s += n;
+            }
+            if (s % 26 + 'A' != cf.charAt(15))
+                return false;
+            return true;
+        }
+
+
 
 
 
