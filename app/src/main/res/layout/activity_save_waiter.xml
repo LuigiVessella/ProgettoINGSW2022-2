@@ -127,6 +127,39 @@
 
                 </TableRow>
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
+
+                    <TextView
+                        android:id="@+id/waiterTextViewRuoloTest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="Ruolo:*"
+                        android:textSize="16sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
+
+                    <Spinner
+                        android:id="@+id/ruoloSpinner"
+                        android:layout_width="383dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/custom_input"
+                        android:textColor="@color/grigio_scuro"
+                        android:entries="@array/Roles"
+
+                        />
+
+                </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -143,6 +176,7 @@
                         android:textSize="16sp" />
 
                 </TableRow>
+
 
                 <TableRow
                     android:layout_width="221dp"
@@ -212,18 +246,6 @@
                             android:textCursorDrawable="@drawable/cursor_color"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
-
-                </TableRow>
-
-                <TableRow>
-
-                    <Spinner
-                        android:id="@+id/ruoloSpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:entries="@array/Roles"
-
-                    />
 
                 </TableRow>
 
