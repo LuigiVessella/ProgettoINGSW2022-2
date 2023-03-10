@@ -124,13 +124,14 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 TextView txv = new TextView(AdminDashboardActivity.this);
                 txv.setText(ristorante.getNome());
                 LinearLayout.LayoutParams layoutParamsTxt = new  LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+                     200, 130
                 );
                 txv.setLayoutParams(layoutParamsTxt);
 
                 Button myButton = new Button(AdminDashboardActivity.this);
                 myButton.setText("Edit");
                 myButton.setBackgroundColor(Color.parseColor("#C6AD77"));
+
 
                 LinearLayout.LayoutParams layoutParams = new  LinearLayout.LayoutParams(
                         180, 100
