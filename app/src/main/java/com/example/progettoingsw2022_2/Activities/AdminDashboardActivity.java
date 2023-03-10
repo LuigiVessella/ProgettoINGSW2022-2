@@ -41,8 +41,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
     private ImageView logo;
     private Balloon myBalloon;
 
-    private TextView welcomeTextView;
-
     private LinearLayout linearScrollLayout;
 
 
@@ -68,7 +66,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
         logoutButt = findViewById(R.id.buttonLogoutAdDash);
         logo = findViewById(R.id.logoBiagioTestAdmin);
         myBalloon = new Balloon.Builder(getApplicationContext())
-                .setArrowOrientation(ArrowOrientation.START)
+                .setArrowOrientation(ArrowOrientation.END)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
                 .setArrowPosition(0.01f)
                 //.setWidth(BalloonSizeSpec.WRAP)
@@ -85,7 +83,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 .setDismissWhenTouchOutside(false)
                 //.setLifecycleOwner(this)
                 .build();
-        if(dataFromActivity != null) welcomeTextView.append(dataFromActivity);
         aggiungiRistoranteButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
