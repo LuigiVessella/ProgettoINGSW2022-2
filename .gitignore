@@ -10,6 +10,8 @@ build/
 # Local configuration file (sdk path, etc)
 local.properties
 *local.properties
+*local\.properties
+workspace.xml
 
 # Log/OS Files
 *.log
