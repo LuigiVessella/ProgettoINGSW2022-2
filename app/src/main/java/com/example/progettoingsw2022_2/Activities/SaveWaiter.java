@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     private TextView waiterWelcomeRegisterText;
     private TextInputEditText passwordText;
     private Balloon myBalloon;
+    private Spinner ruoli;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         //waiterWelcomeRegisterText = findViewById(R.id.waiterWelcomeRegisterText);
         logo = findViewById(R.id.waiterLogoBiagioTest);
         okButton = findViewById(R.id.waiterOkButton);
+        ruoli = findViewById(R.id.ruoloSpinner);
         myBalloon = new Balloon.Builder(getApplicationContext())
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
@@ -137,7 +140,8 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                 }
             }
         });
-    }
+        ruoli.setOnItemClickListener( new View.OnItemClickListener(){;
+    });
 
     private boolean isCodiceFiscaleValido(String cf)
     {
