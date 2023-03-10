@@ -8,7 +8,7 @@
     tools:context=".Activities.AdminDashboardActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayoutRegisterTop"
+        android:id="@+id/linearLayoutAdminTop"
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:layout_marginStart="16dp"
@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.108">
 
         <ImageView
-            android:id="@+id/logoBiagioTest"
+            android:id="@+id/logoBiagioTestAdmin"
             android:layout_width="129dp"
             android:layout_height="130dp"
             android:layout_gravity="left"
@@ -26,21 +26,6 @@
             app:srcCompat="@drawable/logobiagio" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/welcomeTextDashboard"
-        android:layout_width="373dp"
-        android:layout_height="60dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/AdminControlPanelText"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.336" />
 
     <TextView
         android:id="@+id/textView2"

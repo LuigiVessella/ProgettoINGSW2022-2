@@ -34,6 +34,8 @@
     <string name="welcomeWaiter">Benvenuto: </string>
     <string name="balloonRegisterText">\"Registra il tuo account da Amministratore!\"</string>
     <string name="balloonRegisterEmployeeText">\"Registra qui il tuo dipendente!\"</string>
+    <string name="balloonAdminDashboardText">\"Qui puoi gestire i tuoi Ristoranti!\"</string>
+
 
 
 </resources>

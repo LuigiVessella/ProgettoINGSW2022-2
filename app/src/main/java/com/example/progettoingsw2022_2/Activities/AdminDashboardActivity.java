@@ -9,11 +9,13 @@ import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,6 +25,10 @@ import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.skydoves.balloon.ArrowOrientation;
+import com.skydoves.balloon.ArrowPositionRules;
+import com.skydoves.balloon.Balloon;
+import com.skydoves.balloon.BalloonAnimation;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +38,8 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
     private Button aggiungiRistoranteButt, logoutButt;
     private String dataFromActivity = null;
+    private ImageView logo;
+    private Balloon myBalloon;
 
     private TextView welcomeTextView;
 
@@ -44,15 +52,39 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
         setContentView(R.layout.activity_dashboard);
         dataFromActivity = getIntent().getStringExtra("email");
         inizializzaComponenti();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                myBalloon.showAlignRight(logo);
+            }
+        }, 500);
 
     }
 
     private void inizializzaComponenti(){
 
         aggiungiRistoranteButt = findViewById(R.id.aggiungiRistoranteButton);
-        welcomeTextView = findViewById(R.id.welcomeTextDashboard);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
         logoutButt = findViewById(R.id.buttonLogoutAdDash);
+        logo = findViewById(R.id.logoBiagioTestAdmin);
+        myBalloon = new Balloon.Builder(getApplicationContext())
+                .setArrowOrientation(ArrowOrientation.START)
+                .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+                .setArrowPosition(0.01f)
+                //.setWidth(BalloonSizeSpec.WRAP)
+                .setHeight(100)
+                .setWidth(250)
+                .setTextSize(15f)
+                .setCornerRadius(30f)
+                .setAlpha(0.9f)
+                .setText(getString(R.string.balloonAdminDashboardText))
+                .setTextSize(16)
+                .setTextColor(Color.WHITE)
+                .setBackgroundColor(Color.rgb(198,173,119))
+                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
+                .setDismissWhenTouchOutside(false)
+                //.setLifecycleOwner(this)
+                .build();
         if(dataFromActivity != null) welcomeTextView.append(dataFromActivity);
         aggiungiRistoranteButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,8 +134,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 Button myButton = new Button(AdminDashboardActivity.this);
                 myButton.setText("Edit");
                 myButton.setBackgroundColor(Color.parseColor("#C6AD77"));
-
-
 
                 LinearLayout.LayoutParams layoutParams = new  LinearLayout.LayoutParams(
                         180, 100
