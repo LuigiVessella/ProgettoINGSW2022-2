@@ -128,10 +128,15 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 );
                 txv.setLayoutParams(layoutParamsTxt);
 
+                GradientDrawable shape =  new GradientDrawable();
+                shape.setCornerRadius(30);
+
                 Button myButton = new Button(AdminDashboardActivity.this);
                 myButton.setText("Edit");
+                myButton.setBackground(shape);
                 myButton.setBackgroundColor(Color.parseColor("#C6AD77"));
                 myButton.setTextColor(Color.WHITE);
+
 
 
                 LinearLayout.LayoutParams layoutParams = new  LinearLayout.LayoutParams(
