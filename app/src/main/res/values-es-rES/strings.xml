@@ -4,8 +4,8 @@
     <string name="signedQuestion">¿Ya registrado?</string>
     <string name="registerBtn">Iniciar</string>
     <string name="register_title">ha elegido registrarse. serás un administrador</string>
-    <string name="register_name">Nombre</string>
-    <string name="register_surname">Apellido</string>
+    <string name="register_name">Nombre*</string>
+    <string name="register_surname">Apellido*</string>
     <string name="signupQuestion">¿Nuevo?</string>
     <string name="welcome">BIENVENIDO</string>
     <string name="registerOK">Registrato correctamente!</string>
@@ -13,7 +13,7 @@
     <string name="registerWrong">¡Ocurre algo!</string>
     <string name="loginWrongCred">Credenciales no válidas</string>
     <string name="loginInsertCred">Ingrese sus credenciales</string>
-    <string name="AdminControlPanelText">"panel de control de: "</string>
+    <string name="AdminControlPanelText">panel de control de:</string>
     <string name="AdminResturant">tus restaurantes:</string>
     <string name="addResturantBtn">añadir restaurante</string>
     <string name="ExitBtn">sales</string>
@@ -27,4 +27,8 @@
     <string name="Name">Nombre</string>
     <string name="AdminDBNoResturant">No tiene resturantes!</string>
     <string name="EditSting">Editar</string>
+    <string name="saveResturantTitle">Registra tu restaurante</string>
+    <string name="takeOrder">tomar orden</string>
+    <string name="newOrder">Nuevo orden</string>
+    <string name="tableNumber">Número de mesa</string>
 </resources>

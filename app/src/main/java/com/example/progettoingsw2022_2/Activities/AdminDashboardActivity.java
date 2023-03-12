@@ -25,10 +25,7 @@ import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
-import com.skydoves.balloon.ArrowOrientation;
-import com.skydoves.balloon.ArrowPositionRules;
-import com.skydoves.balloon.Balloon;
-import com.skydoves.balloon.BalloonAnimation;
+import com.skydoves.balloon.*;
 
 import java.util.HashMap;
 import java.util.List;
