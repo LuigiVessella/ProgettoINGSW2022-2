@@ -6,7 +6,8 @@
     <string name="signupQuestion">Nuovo?</string>
     <string name="register_title">Hai scelto di registrarti. Sarai un admin</string>
     <string name="register_name">Nome*</string>
-    <string name="register_surname">Cognome*</string>
+    <string name="register_name_editText">Nome</string>
+    <string name="register_surname_editText">Cognome</string>
     <string name = "welcome_register_waiter">Stai registrando un nuovo cameriere</string>
     <string name="welcome">BENVENUTO</string>
     <string name="registerOK">Registrato correttamente!</string>

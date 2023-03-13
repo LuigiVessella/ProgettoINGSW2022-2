@@ -22,84 +22,137 @@
         android:layout_width="match_parent"
         android:layout_height="350dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <TableLayout
                 android:id="@+id/waiterTestTableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:baselineAligned="false">
+                android:baselineAligned="false"
+
+                >
+
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/waiterFirstNameText"
-                            android:layout_width="160dp"
-                            android:layout_height="55dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="30dp"
-                            android:layout_gravity="center"
-                            android:paddingLeft="15dp"
-                            android:background="@drawable/custom_input"
-                            android:ems="8"
-                            android:hint="@string/register_name"
-                            android:inputType="textPersonName"
-                            android:textColor="@color/grigio_scuro"
-                            android:textColorHint="@color/grigio_chiaro"
-                            android:textCursorDrawable="@drawable/cursor_color" />
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/waiterSecondNameText"
-                            android:layout_width="160dp"
-                            android:layout_height="55dp"
-                            android:layout_gravity="center"
-                            android:paddingLeft="15dp"
-                            android:background="@drawable/custom_input"
-                            android:ems="8"
-                            android:hint="@string/register_surname"
-                            android:inputType="text"
-                            android:textColor="@color/grigio_scuro"
-                            android:textColorHint="@color/grigio_chiaro"
-                            android:textCursorDrawable="@drawable/cursor_color" />
-                    </LinearLayout>
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/waiterEmailLoginText"
-                        android:layout_width="300dp"
-                        android:layout_height="55dp"
-                        android:layout_marginLeft="10dp"
-                        android:paddingLeft="15dp"
-                        android:background="@drawable/custom_input"
-                        android:ems="8"
-                        android:hint="@string/register_email"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/grigio_scuro"
-                        android:textColorHint="@color/grigio_chiaro"
-                        android:textCursorDrawable="@drawable/cursor_color" />
+                    <TextView
+                        android:id="@+id/waiterNameTextViewTest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/register_name"
+                        android:textSize="16sp" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/waiterFirstNameText"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_input"
+                        android:ems="8"
+                        android:hint="@string/register_name_editText"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
+                        android:textColor="@color/grigio_scuro"
+                        android:textColorHint="@color/grigio_chiaro" />
+
+                    <EditText
+                        android:id="@+id/waiterSecondNameText"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_input"
+                        android:ems="8"
+                        android:hint="@string/register_surname_editText"
+                        android:inputType="textPersonName"
+                        android:paddingStart="5dp"
+                        android:paddingRight="15dp"
+                        android:textColor="@color/grigio_scuro"
+                        android:textColorHint="@color/grigio_chiaro" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
+
+                    <TextView
+                        android:id="@+id/waiterTextViewEmailTest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/register_email"
+                        android:textSize="16sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="221dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/waiterEmailLoginText"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_input"
+                        android:ems="8"
+                        android:hint="@string/register_email_editText"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="5dp"
+                        android:paddingRight="15dp"
+                        android:textColor="@color/grigio_scuro"
+                        android:textColorHint="@color/grigio_chiaro" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
+
+                    <TextView
+                        android:id="@+id/waiterTextViewRuoloTest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/register_Ruolo"
+                        android:textSize="16sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
 
                     <Spinner
                         android:id="@+id/ruoloSpinner"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
-                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
                         android:background="@drawable/custom_input"
                         android:entries="@array/spinner_items"
                         android:textColor="@color/grigio_scuro" />
@@ -107,36 +160,67 @@
                 </TableRow>
 
                 <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
+
+                    <TextView
+                        android:id="@+id/waiterTextViewCodiceFiscaleTest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/register_CodiceFiscale"
+                        android:textSize="16sp" />
+
+                </TableRow>
+
+
+                <TableRow
                     android:layout_width="221dp"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="10dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <EditText
                         android:id="@+id/waiterCodiceFiscaleText"
-                        android:layout_width="350dp"
-                        android:layout_height="55dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
                         android:layout_marginLeft="10dp"
-                        android:paddingLeft="15dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
                         android:background="@drawable/custom_input"
                         android:ems="8"
-                        android:hint="Codice Fiscale*"
+                        android:hint="@string/register_CodiceFiscale_editText"
                         android:inputType="textCapCharacters"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
-                        android:textColorHint="@color/grigio_chiaro"
-                        android:textCursorDrawable="@drawable/cursor_color" />
+                        android:textColorHint="@color/grigio_chiaro" />
 
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="15dp"/>
+                    android:paddingTop="15dp">
+
+                    <TextView
+                        android:id="@+id/waiterTextViewPasswordTest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="Password:*"
+                        android:textSize="16sp" />
+
+                </TableRow>
 
                 <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="221dp"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
-                    android:paddingBottom="30dp">
+                    android:layout_marginBottom="50dp"
+                    android:paddingBottom="20dp">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/waiterPasswordText"
@@ -150,8 +234,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textInputEditTextLayoutwaiter"
                             android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_height="48dp"
                             android:background="@drawable/custom_input"
                             android:ems="8"
                             android:hint="@string/register_pass"
@@ -163,7 +246,9 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </TableRow>
+
             </TableLayout>
+        </LinearLayout>
     </ScrollView>
 
     <Button

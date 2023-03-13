@@ -28,117 +28,211 @@
         android:layout_width="match_parent"
         android:layout_height="350dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <TableLayout
                 android:id="@+id/testTableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false">
+                android:baselineAligned="false"
+
+                >
+
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/nameTextViewTest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/register_name"
+                        android:textSize="16sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/firstNameText"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_input"
+                        android:ems="8"
+                        android:hint="@string/register_name_editText"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
+                        android:textColor="@color/grigio_scuro"
+                        android:textColorHint="@color/grigio_chiaro" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/firstNameText"
-                            android:layout_width="180dp"
-                            android:layout_height="55dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="30dp"
-                            android:paddingLeft="15dp"
-                            android:background="@drawable/custom_input"
-                            android:ems="8"
-                            android:hint="@string/register_name"
-                            android:inputType="textPersonName"
-                            android:textColor="@color/grigio_scuro"
-                            android:textColorHint="@color/grigio_chiaro"
-                            android:textCursorDrawable="@drawable/cursor_color" />
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/secondNameText"
-                            android:layout_width="160dp"
-                            android:layout_height="55dp"
-                            android:paddingLeft="15dp"
-                            android:background="@drawable/custom_input"
-                            android:ems="8"
-                            android:hint="@string/register_surname"
-                            android:inputType="text"
-                            android:textColor="@color/grigio_scuro"
-                            android:textColorHint="@color/grigio_chiaro"
-                            android:textCursorDrawable="@drawable/cursor_color" />
-                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/secondNameText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_input"
+                        android:ems="8"
+                        android:hint="@string/register_surname_editText"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
+                        android:textColor="@color/grigio_scuro"
+                        android:textColorHint="@color/grigio_chiaro" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <TextView
+                        android:id="@+id/textViewEmailTest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/register_email"
+                        android:textSize="16sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="221dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
                         android:id="@+id/emailRegisterText"
-                        android:layout_width="300dp"
-                        android:layout_height="55dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
-                        android:paddingLeft="15dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
                         android:background="@drawable/custom_input"
                         android:ems="8"
-                        android:hint="@string/register_email"
+                        android:hint="@string/register_email_editText"
                         android:inputType="textEmailAddress"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
-                        android:textColorHint="@color/grigio_chiaro"
-                        android:textCursorDrawable="@drawable/cursor_color" />
+                        android:textColorHint="@color/grigio_chiaro" />
+
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <TextView
+                        android:id="@+id/textViewPartitaIVATest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/register_PartitaIVA"
+                        android:textSize="16sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="221dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
                         android:id="@+id/partitaIvaText"
-                        android:layout_width="350dp"
-                        android:layout_height="55dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
-                        android:paddingLeft="15dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
                         android:background="@drawable/custom_input"
                         android:ems="8"
-                        android:hint="Partita IVA*"
-                        android:inputType="text"
+                        android:hint="@string/register_PartitaIVA_editText"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
-                        android:textColorHint="@color/grigio_chiaro"
-                        android:textCursorDrawable="@drawable/cursor_color" />
+                        android:textColorHint="@color/grigio_chiaro" />
 
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <TextView
+                        android:id="@+id/textViewCodiceFiscaleTest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/register_CodiceFiscale"
+                        android:textSize="16sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="221dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
                         android:id="@+id/codiceFiscaleText"
-                        android:layout_width="350dp"
-                        android:layout_height="55dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
-                        android:paddingLeft="15dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
                         android:background="@drawable/custom_input"
                         android:ems="8"
-                        android:hint="Codice Fiscale*"
+                        android:hint="@string/register_CodiceFiscale_editText"
                         android:inputType="textCapCharacters"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="15dp"
                         android:textColor="@color/grigio_scuro"
-                        android:textColorHint="@color/grigio_chiaro"
-                        android:textCursorDrawable="@drawable/cursor_color" />
+                        android:textColorHint="@color/grigio_chiaro" />
 
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
+
+                    <TextView
+                        android:id="@+id/textViewPasswordTest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/register_pass"
+                        android:textSize="16sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="221dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="50dp"
+                    android:paddingBottom="20dp">
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -158,16 +252,21 @@
                             android:background="@drawable/custom_input"
                             android:ems="10"
                             android:fontFamily="@font/roboto"
-                            android:hint="@string/register_pass"
+                            android:hint="@string/register_pass_editText"
                             android:inputType="textPassword"
                             android:singleLine="true"
                             android:textColor="@color/grigio_scuro"
                             android:textColorHighlight="#42260A"
                             android:textColorHint="@color/grigio_chiaro"
                             android:textCursorDrawable="@drawable/cursor_color" />
+
                     </com.google.android.material.textfield.TextInputLayout>
+
+
                 </TableRow>
+
             </TableLayout>
+        </LinearLayout>
     </ScrollView>
 
     <TextView

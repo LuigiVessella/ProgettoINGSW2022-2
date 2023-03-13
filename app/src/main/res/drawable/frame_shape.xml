@@ -40,17 +40,20 @@
     </item>
 
     <item
-        android:width="20.25dp"
+        android:width="20.13dp"
         android:height="20dp"
         android:top="14.5dp"
         android:right="2dp"
-        android:left="0.3dp">
+        android:left="0.1dp">
         <rotate
             android:fromDegrees="90"
             android:pivotX="80%"
             android:pivotY="45%">
             <shape android:shape="oval">
                 <solid android:color="@color/bianco" />
+                <stroke
+                    android:width="10dp"
+                    android:color="@color/bianco"/>
             </shape>
         </rotate>
     </item>
