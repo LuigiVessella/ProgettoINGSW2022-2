@@ -58,6 +58,7 @@
     <string name="balloonRegisterText">"Get started as an Administrator!"</string>
     <string name="balloonRegisterEmployeeText">\"Register your employee here!\"</string>
     <string name="balloonAdminDashboardText">\"Here you can manage your Restaurants!\"</string>
+    <string name="register_surname">Cognome*</string>
 
 
 </resources>
