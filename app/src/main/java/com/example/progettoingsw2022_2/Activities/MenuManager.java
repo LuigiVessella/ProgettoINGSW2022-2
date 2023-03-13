@@ -102,14 +102,12 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-               // Toast.makeText(MenuManager.this, autoCompleteTextView.getText().toString(), Toast.LENGTH_SHORT).show();
-
 
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                //Toast.makeText(MenuManager.this, autoCompleteTextView.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -223,14 +221,11 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             // chiude il documento
 
             Toast.makeText(this, "Menu creato in Download", Toast.LENGTH_SHORT).show();
-
         }
     }
 
     private void sendHttpRequestOpenFood(String foodName){
-
         //questo funziona
-
         String url = "https://it.openfoodfacts.org/cgi/search.pl?action=process&search_simple=1&search_terms="+foodName.trim() +"&json=true";
         Map<String, String> params = new HashMap<>();
 
@@ -244,20 +239,52 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     }
 
+
+
+    private void sendAddMenuRequest(String name, String description, String prezzo, String contiene, String allergeni){
+
+        String url = "/menu/addMenu";
+
+        Map<String, String> params = new HashMap<>();
+
+    }
+
     @Override
     public void onSuccess(String result) {
         System.out.println(result);
+
+        if(!result.equals("menu ok")){
+            //se non è "menu ok", vuol dire che si tratta della risposta di open food facts.
+            parseJsonResponse(result);
+        }
+
+        else {
+            //se lo è, si tratta della risposta di Spring che salva il menu
+        }
+
+
+    }
+
+
+    private void parseJsonResponse(String result) {
+
         try{
             itemMenuDescription.setText("");
             JsonParser parser = new JsonParser();
             JsonElement jsonTree = parser.parse(result);
-            for(int i = 0; i < 5; i++) {
+            for(int i = 0; i < 1; i++) {
                 JsonArray productArray = jsonTree.getAsJsonObject().get("products").getAsJsonArray();
                 String product_name = productArray.get(i).getAsJsonObject().get("product_name").getAsString();
+                JsonArray ingredients = productArray.get(i).getAsJsonObject().get("ingredients").getAsJsonArray();
                 itemMenuDescription.append(product_name + "\n");
+                for(int j = 0; j < ingredients.size(); j++) {
+                    String ingrediente = ingredients.get(j).getAsJsonObject().get("id").getAsString();
+                    String[] splits = ingrediente.split("en:");
+                    itemMenuDescription.append(splits[1]+"\n");
+                }
             }
-
-        }catch (ArrayIndexOutOfBoundsException e) {
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
             Log.i("warning", "nessun risultato");
         }
