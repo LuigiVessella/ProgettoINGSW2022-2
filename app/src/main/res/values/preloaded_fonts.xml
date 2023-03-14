@@ -3,7 +3,10 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/la_belle_aurore</item>
         <item>@font/lobster</item>
+        <item>@font/lobster_two_italic</item>
+        <item>@font/pacifico</item>
         <item>@font/petit_formal_script</item>
+        <item>@font/playfair_display</item>
         <item>@font/roboto</item>
         <item>@font/roboto_light</item>
         <item>@font/roboto_light_italic</item>

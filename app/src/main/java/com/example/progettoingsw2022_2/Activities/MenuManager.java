@@ -62,6 +62,8 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     private TextView itemMenuDescription;
     private Dialog dialog;
 
+    private String ingredients_list = null, product_name = null;
+
     private AutoCompleteTextView autoCompleteTextView;
 
     @Override
@@ -87,6 +89,8 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         cancelButtonDialog = dialog.findViewById(R.id.btn_cancel_dialog);
         goProductButton = dialog.findViewById(R.id.searchProductButton);
 
+        okButtonDialog.setEnabled(false);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, COUNTRIES);
 
@@ -94,28 +98,12 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         aggiungiPiattoButt = findViewById(R.id.aggiungiPiattoButt);
         generaMenuButt = findViewById(R.id.generaMenuButt);
 
-        autoCompleteTextView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                //Toast.makeText(MenuManager.this, autoCompleteTextView.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
         goProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(autoCompleteTextView.getText().length() > 3) {
                     sendHttpRequestOpenFood(autoCompleteTextView.getText().toString());
+                    okButtonDialog.setEnabled(true);
                 }
             }
         });
@@ -131,10 +119,14 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
                 dialog.show();
             }
         });
+
         okButtonDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sendAddMenuRequest(product_name, "Pepsi in lattina", "15€", "lattosio", ingredients_list);
+                okButtonDialog.setEnabled(false);
                 dialog.dismiss();
+
             }
         });
 
@@ -241,11 +233,19 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
 
 
-    private void sendAddMenuRequest(String name, String description, String prezzo, String contiene, String allergeni){
+    private void sendAddMenuRequest(String name, String description, String prezzo, String allergeni, String contiene){
 
         String url = "/menu/addMenu";
 
         Map<String, String> params = new HashMap<>();
+        params.put("nome_piatto", name);
+        params.put("descrizione", description);
+        params.put("prezzo", prezzo);
+        params.put("allergeni", allergeni);
+        params.put("contiene", contiene);
+
+        CustomRequest ct = new CustomRequest(url, params, this, this);
+        ct.sendPostRequest();
 
     }
 
@@ -253,13 +253,14 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     public void onSuccess(String result) {
         System.out.println(result);
 
-        if(!result.equals("menu ok")){
+        if(!result.equals("piatto salvato")){
             //se non è "menu ok", vuol dire che si tratta della risposta di open food facts.
             parseJsonResponse(result);
         }
 
         else {
             //se lo è, si tratta della risposta di Spring che salva il menu
+            System.out.println("piatto aggiunto\n");
         }
 
 
@@ -273,15 +274,20 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             JsonParser parser = new JsonParser();
             JsonElement jsonTree = parser.parse(result);
             for(int i = 0; i < 1; i++) {
+                ingredients_list = "";
                 JsonArray productArray = jsonTree.getAsJsonObject().get("products").getAsJsonArray();
-                String product_name = productArray.get(i).getAsJsonObject().get("product_name").getAsString();
+                product_name = productArray.get(i).getAsJsonObject().get("product_name").getAsString();
                 JsonArray ingredients = productArray.get(i).getAsJsonObject().get("ingredients").getAsJsonArray();
                 itemMenuDescription.append(product_name + "\n");
                 for(int j = 0; j < ingredients.size(); j++) {
                     String ingrediente = ingredients.get(j).getAsJsonObject().get("id").getAsString();
                     String[] splits = ingrediente.split("en:");
                     itemMenuDescription.append(splits[1]+"\n");
+                    ingredients_list += splits[1] + " ";
                 }
+                //al momento il listener è qui, ma vanno dichiarate le varibili di classe e rimesso il listener su
+
+
             }
         }
         catch (ArrayIndexOutOfBoundsException e) {
