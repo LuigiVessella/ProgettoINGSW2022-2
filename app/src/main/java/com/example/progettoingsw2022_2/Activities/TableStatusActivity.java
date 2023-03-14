@@ -14,16 +14,18 @@ import java.util.ArrayList;
 
 public class TableStatusActivity extends AppCompatActivity {
 
-    ArrayList<Tavolo> tavoli = new ArrayList<>();
+    private ArrayList<Tavolo> tavoli = new ArrayList<>();
+    private RecyclerView recycleView;
+    private Table_RecycleViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_status);
 
-        RecyclerView recycleView = findViewById(R.id.activity_table_status);
+        recycleView = findViewById(R.id.activity_table_rvw);
         setUpTables();
-        Table_RecycleViewAdapter adapter = new Table_RecycleViewAdapter(this, tavoli);
+        adapter = new Table_RecycleViewAdapter(TableStatusActivity.this, tavoli);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
 

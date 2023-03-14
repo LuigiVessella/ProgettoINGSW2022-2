@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class Table_RecycleViewAdapter extends RecyclerView.Adapter<Table_RecycleViewAdapter.MyViewHolder> {
 
-    Context context;
-    ArrayList<Tavolo> tavoli;
+    private Context context;
+    private ArrayList<Tavolo> tavoli;
 
     public Table_RecycleViewAdapter(Context context, ArrayList<Tavolo> tavol){
         this.context = context;
@@ -35,8 +35,8 @@ public class Table_RecycleViewAdapter extends RecyclerView.Adapter<Table_Recycle
     @Override
     public void onBindViewHolder(@NonNull Table_RecycleViewAdapter.MyViewHolder holder, int position) {
 
-        holder.tableNumber.setText(tavoli.get(position).getTableNumber());
-        holder.orderDescription.setText(tavoli.get(position).getOrderName());
+        holder.tableNumber.setText(String.valueOf(tavoli.get(position).getTableNumber()));
+        holder.orderDescription.setText(String.valueOf(tavoli.get(position).getOrderName()));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Table_RecycleViewAdapter extends RecyclerView.Adapter<Table_Recycle
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tableNumber, orderDescription;
+        private TextView tableNumber, orderDescription;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
