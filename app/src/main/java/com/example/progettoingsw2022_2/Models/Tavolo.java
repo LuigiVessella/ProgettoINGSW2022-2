@@ -1,11 +1,11 @@
 package com.example.progettoingsw2022_2.Models;
 
-public class TableModel {
+public class Tavolo {
     private String orderName;
     private int tableNumber;
     private int progress;
 
-    public TableModel(String orderName, int tableNumber, int progress) {
+    public Tavolo(String orderName, int tableNumber, int progress) {
         this.orderName = orderName;
         this.tableNumber = tableNumber;
         this.progress = progress;

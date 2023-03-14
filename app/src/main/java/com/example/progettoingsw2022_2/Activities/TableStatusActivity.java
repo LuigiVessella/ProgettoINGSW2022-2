@@ -6,16 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
-import com.example.progettoingsw2022_2.Models.TableModel;
-import com.example.progettoingsw2022_2.Models.Table_RecycleViewAdapter;
+import com.example.progettoingsw2022_2.Models.Tavolo;
+import com.example.progettoingsw2022_2.Adapter.Table_RecycleViewAdapter;
 import com.example.progettoingsw2022_2.R;
 
 import java.util.ArrayList;
 
 public class TableStatusActivity extends AppCompatActivity {
 
-    ArrayList<TableModel> tableModels = new ArrayList<>();
+    ArrayList<Tavolo> tavoli = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -24,7 +23,7 @@ public class TableStatusActivity extends AppCompatActivity {
 
         RecyclerView recycleView = findViewById(R.id.activity_table_status);
         setUpTables();
-        Table_RecycleViewAdapter adapter = new Table_RecycleViewAdapter(this, tableModels);
+        Table_RecycleViewAdapter adapter = new Table_RecycleViewAdapter(this, tavoli);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -36,7 +35,7 @@ public class TableStatusActivity extends AppCompatActivity {
         int[] percentage = {10, 0, 75};
 
         for(int i = 0; i < orderName.length; i++){
-            tableModels.add(new TableModel(orderName[i], tableNumber[i], percentage[i]));
+            tavoli.add(new Tavolo(orderName[i], tableNumber[i], percentage[i]));
         }
     }
 

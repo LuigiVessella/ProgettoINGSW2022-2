@@ -1,17 +1,15 @@
-package com.example.progettoingsw2022_2.Models;
+package com.example.progettoingsw2022_2.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.progettoingsw2022_2.Models.Tavolo;
 import com.example.progettoingsw2022_2.R;
 
 import java.util.ArrayList;
@@ -19,11 +17,11 @@ import java.util.ArrayList;
 public class Table_RecycleViewAdapter extends RecyclerView.Adapter<Table_RecycleViewAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<TableModel> tableModels;
+    ArrayList<Tavolo> tavoli;
 
-    public Table_RecycleViewAdapter(Context context, ArrayList<TableModel> tableModels){
+    public Table_RecycleViewAdapter(Context context, ArrayList<Tavolo> tavol){
         this.context = context;
-        this.tableModels = tableModels;
+        this.tavoli = tavol;
     }
     @NonNull
     @Override
@@ -37,13 +35,13 @@ public class Table_RecycleViewAdapter extends RecyclerView.Adapter<Table_Recycle
     @Override
     public void onBindViewHolder(@NonNull Table_RecycleViewAdapter.MyViewHolder holder, int position) {
 
-        holder.tableNumber.setText(tableModels.get(position).getTableNumber());
-        holder.orderDescription.setText(tableModels.get(position).getOrderName());
+        holder.tableNumber.setText(tavoli.get(position).getTableNumber());
+        holder.orderDescription.setText(tavoli.get(position).getOrderName());
     }
 
     @Override
     public int getItemCount() {
-        return tableModels.size();
+        return tavoli.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
