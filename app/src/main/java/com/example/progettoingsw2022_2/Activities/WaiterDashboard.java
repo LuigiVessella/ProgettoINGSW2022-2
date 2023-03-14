@@ -2,7 +2,9 @@ package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.progettoingsw2022_2.R;
@@ -10,6 +12,7 @@ import com.example.progettoingsw2022_2.R;
 public class WaiterDashboard extends AppCompatActivity {
     private TextView welcomeTextView;
     private String nameFromActivity, surnameFromActivity;
+    private Button takeOrderButton, orderStatusButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +23,14 @@ public class WaiterDashboard extends AppCompatActivity {
         nameFromActivity = getIntent().getStringExtra("name");
         surnameFromActivity = getIntent().getStringExtra("surname");
         welcomeTextView.append(nameFromActivity+" "+surnameFromActivity);
+        inizializzaComponenti();
+    }
+
+    private void inizializzaComponenti(){
+        takeOrderButton = findViewById(R.id.newOrderBtn);
+        orderStatusButton = findViewById(R.id.orderStatusBtn);
+
+       orderStatusButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, TableStatusActivity.class)));
+
     }
 }

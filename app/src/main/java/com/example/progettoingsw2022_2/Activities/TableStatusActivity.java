@@ -13,7 +13,7 @@ import com.example.progettoingsw2022_2.R;
 
 import java.util.ArrayList;
 
-public class TableStatusActivity extends AppCompatActivity implements VolleyCallback {
+public class TableStatusActivity extends AppCompatActivity {
 
     ArrayList<TableModel> tableModels = new ArrayList<>();
 
@@ -40,8 +40,4 @@ public class TableStatusActivity extends AppCompatActivity implements VolleyCall
         }
     }
 
-    @Override
-    public void onSuccess(String result) {
-
-    }
 }
