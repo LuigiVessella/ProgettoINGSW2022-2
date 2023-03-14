@@ -15,7 +15,7 @@
         android:backgroundTint="@color/marrone_primario"
         app:cardCornerRadius="18dp"
         app:cardElevation="8dp"
-        app:strokeColor="@color/marrone_secondario"
+        app:strokeColor="@color/bianco"
         app:strokeWidth="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
