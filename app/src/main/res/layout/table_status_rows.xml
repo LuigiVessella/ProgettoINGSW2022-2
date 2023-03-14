@@ -85,31 +85,33 @@
 
             <Button
                 android:id="@+id/button_1_table_stat"
-                android:layout_width="89dp"
-                android:layout_height="28dp"
-                android:layout_marginBottom="16dp"
+                android:layout_width="91dp"
+                android:layout_height="32dp"
                 android:backgroundTint="@drawable/button_color_scheme"
                 android:fontFamily="@font/roboto"
-                android:text="Button1"
+                android:text="EVASO"
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.962"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.96"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.777" />
 
             <Button
                 android:id="@+id/button_2_table_stat"
-                android:layout_width="90dp"
-                android:layout_height="28dp"
-                android:layout_marginBottom="52dp"
+                android:layout_width="91dp"
+                android:layout_height="32dp"
                 android:backgroundTint="@drawable/button_color_scheme"
                 android:fontFamily="@font/roboto"
-                android:text="Button2"
+                android:text="Sollecita"
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.962"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.963"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.166" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
