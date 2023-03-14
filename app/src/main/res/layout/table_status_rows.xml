@@ -8,17 +8,17 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/marrone_secondario"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/marrone_primario"
         app:cardCornerRadius="18dp"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,15 +32,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.012"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/ic_table"/>
+                app:srcCompat="@drawable/ic_table" />
 
             <TextView
                 android:id="@+id/editTextNumber"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="68dp"
-                android:background="@color/marrone_terziario"
                 android:ems="10"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.215"
@@ -56,7 +57,7 @@
                 android:indeterminate="false"
                 android:max="100"
                 android:progress="25"
-                android:progressTint="@color/grigio_scuro"
+                android:progressTint="@color/marrone_secondario"
 
                 android:scaleY="4"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -69,7 +70,10 @@
                 android:layout_width="161dp"
                 android:layout_height="22dp"
                 android:layout_marginBottom="60dp"
+                android:fontFamily="@font/roboto_light_italic"
                 android:text="Nome_Ordine_o_boh"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -80,6 +84,7 @@
                 android:layout_height="28dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@drawable/button_color_scheme"
+                android:fontFamily="@font/roboto"
                 android:text="Button1"
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -93,6 +98,7 @@
                 android:layout_height="28dp"
                 android:layout_marginBottom="52dp"
                 android:backgroundTint="@drawable/button_color_scheme"
+                android:fontFamily="@font/roboto"
                 android:text="Button2"
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="parent"
