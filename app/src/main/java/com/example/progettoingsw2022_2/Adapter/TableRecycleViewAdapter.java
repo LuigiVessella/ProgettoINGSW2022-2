@@ -4,11 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.progettoingsw2022_2.Activities.TableStatusActivity;
 import com.example.progettoingsw2022_2.Models.Tavolo;
 import com.example.progettoingsw2022_2.R;
 
@@ -37,6 +40,16 @@ public class TableRecycleViewAdapter extends RecyclerView.Adapter<TableRecycleVi
 
         holder.tableNumber.setText(String.valueOf(tavoli.get(position).getTableNumber()));
         holder.orderDescription.setText(String.valueOf(tavoli.get(position).getOrderName()));
+        holder.removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(context, String.valueOf(tavoli.get(position)), Toast.LENGTH_SHORT).show();
+                tavoli.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, tavoli.size());
+            }
+        });
+
     }
 
     @Override
@@ -47,12 +60,17 @@ public class TableRecycleViewAdapter extends RecyclerView.Adapter<TableRecycleVi
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tableNumber, orderDescription;
+        private Button removeButton, sollecitaButton;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tableNumber = itemView.findViewById(R.id.editTextNumber);
             orderDescription = itemView.findViewById(R.id.textViewOrderDescription);
+
+            removeButton = itemView.findViewById(R.id.button_2_table_remove);
+            sollecitaButton = itemView.findViewById(R.id.button_1_table_sollecita);
+
 
         }
     }

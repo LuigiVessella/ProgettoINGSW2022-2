@@ -1,6 +1,9 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,9 +32,10 @@ public class TableStatusActivity extends AppCompatActivity {
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
 
+
     }
 
-    private void setUpTables(){
+    private void setUpTables() {
 
         //chiamata a spring getOrdinazioni
         //riempiamo gli array
@@ -39,9 +43,10 @@ public class TableStatusActivity extends AppCompatActivity {
         int[] tableNumber = {10, 7, 4, 5, 3, 8, 12, 6, 9, 1, 11, 2, 14, 15, 18, 16, 13, 17};
         int[] percentage = {10, 0, 75, 50, 20, 30, 40, 70, 90, 5, 15, 25, 35, 45, 55, 65, 80, 95};
 
-        for(int i = 0; i < orderName.length; i++){
+        for (int i = 0; i < orderName.length; i++) {
             tavoli.add(new Tavolo(orderName[i], tableNumber[i], percentage[i]));
         }
     }
+
 
 }
