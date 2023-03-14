@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.progettoingsw2022_2.Models.Tavolo;
-import com.example.progettoingsw2022_2.Adapter.Table_RecycleViewAdapter;
+import com.example.progettoingsw2022_2.Adapter.TableRecycleViewAdapter;
 import com.example.progettoingsw2022_2.R;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class TableStatusActivity extends AppCompatActivity {
 
     private ArrayList<Tavolo> tavoli = new ArrayList<>();
     private RecyclerView recycleView;
-    private Table_RecycleViewAdapter adapter;
+    private TableRecycleViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -25,7 +25,7 @@ public class TableStatusActivity extends AppCompatActivity {
 
         recycleView = findViewById(R.id.activity_table_rvw);
         setUpTables();
-        adapter = new Table_RecycleViewAdapter(TableStatusActivity.this, tavoli);
+        adapter = new TableRecycleViewAdapter(TableStatusActivity.this, tavoli);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
 

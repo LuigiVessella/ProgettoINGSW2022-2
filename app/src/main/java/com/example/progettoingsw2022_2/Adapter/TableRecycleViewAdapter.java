@@ -14,26 +14,26 @@ import com.example.progettoingsw2022_2.R;
 
 import java.util.ArrayList;
 
-public class Table_RecycleViewAdapter extends RecyclerView.Adapter<Table_RecycleViewAdapter.MyViewHolder> {
+public class TableRecycleViewAdapter extends RecyclerView.Adapter<TableRecycleViewAdapter.MyViewHolder> {
 
     private Context context;
     private ArrayList<Tavolo> tavoli;
 
-    public Table_RecycleViewAdapter(Context context, ArrayList<Tavolo> tavol){
+    public TableRecycleViewAdapter(Context context, ArrayList<Tavolo> tavol){
         this.context = context;
         this.tavoli = tavol;
     }
     @NonNull
     @Override
-    public Table_RecycleViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TableRecycleViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View view  = inflater.inflate(R.layout.table_status_rows, parent, false);
-        return new Table_RecycleViewAdapter.MyViewHolder(view);
+        return new TableRecycleViewAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Table_RecycleViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TableRecycleViewAdapter.MyViewHolder holder, int position) {
 
         holder.tableNumber.setText(String.valueOf(tavoli.get(position).getTableNumber()));
         holder.orderDescription.setText(String.valueOf(tavoli.get(position).getOrderName()));
