@@ -46,10 +46,12 @@
                 android:layout_width="170dp"
                 android:layout_height="16dp"
                 android:layout_marginBottom="32dp"
+                android:alpha="0.7"
                 android:indeterminate="false"
                 android:max="100"
                 android:progress="25"
                 android:progressTint="@color/grigio_scuro"
+
                 android:scaleY="4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
