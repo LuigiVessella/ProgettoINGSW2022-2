@@ -92,7 +92,7 @@
                 android:layout_height="32dp"
                 android:backgroundTint="@drawable/button_color_scheme"
                 android:fontFamily="@font/roboto"
-                android:text="EVASO"
+                android:text="RIMUOVI"
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
