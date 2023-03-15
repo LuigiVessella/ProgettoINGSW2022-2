@@ -7,6 +7,27 @@
     android:background="@drawable/sfondo_1_con_patina"
     tools:context=".Activities.LoginActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayoutLoginTop"
+        android:layout_width="match_parent"
+        android:layout_height="126dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.355"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.062">
+
+        <ImageView
+            android:id="@+id/logoBiagioTestLogin"
+            android:layout_width="129dp"
+            android:layout_height="130dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="12dp"
+            app:srcCompat="@drawable/logobiagio" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/loginActButton"
         android:layout_width="165dp"
@@ -82,24 +103,12 @@
         android:text="@string/loginInsertCred"
         android:textAlignment="center"
         android:textColor="@color/grigio_scuro"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.357" />
-
-    <ImageView
-        android:id="@+id/LogoSign"
-        android:layout_width="192dp"
-        android:layout_height="155dp"
-        android:src="@drawable/logobiagio"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133" />
+        app:layout_constraintVertical_bias="0.31" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

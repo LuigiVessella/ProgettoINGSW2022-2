@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_list"
+    android:background="@drawable/sfondo_1_con_patina"
     android:id="@+id/mainLayout"
     tools:context=".Activities.MainActivity">
 
@@ -75,6 +75,7 @@
         android:layout_marginEnd="113dp"
         android:layout_marginBottom="288dp"
         android:backgroundTint="@drawable/button_color_scheme"
+        android:fontFamily="@font/roboto_light"
         android:text="@string/takeOrder"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -95,6 +96,7 @@
         android:layout_marginEnd="113dp"
         android:layout_marginBottom="288dp"
         android:backgroundTint="@drawable/button_color_scheme"
+        android:fontFamily="@font/roboto_light"
         android:text="@string/orderStatus"
         android:textSize="30dp"
         android:textStyle="bold"

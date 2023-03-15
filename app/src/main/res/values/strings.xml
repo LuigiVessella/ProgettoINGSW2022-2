@@ -34,7 +34,7 @@
     <string name="registerOK">Register succesful!</string>
     <string name="registerWrong">Something Wrong!</string>
     <string name="loginWrongCred">Invalid credentials</string>
-    <string name="loginInsertCred">Insert credentials</string>
+    <string name="loginInsertCred">Se sei un dipendente, le credenziali sono state fornite dall\'admin!</string>
     <string name="AdminControlPanelText">Panel of:</string>
     <string name="AdminResturant">Your resturant:</string>
     <string name="addResturantBtn">Add resturant</string>
