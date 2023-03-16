@@ -59,16 +59,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MenuManager extends AppCompatActivity implements VolleyCallback {
-
     private Button aggiungiPiattoButt, generaMenuButt, okButtonDialog, cancelButtonDialog, goProductButton;
-    private EditText sample;
-    private EditText itemMenuDescription;
+    private EditText itemMenuDescription, price;
     private Dialog dialog;
     private Switch preconfSwitch;
-    private String ingredients_list = null, product_name = null;
+
+    //le stringhe usate per aggiungere un prodotto nel menu
+    private String ingredients_list = null, product_name = null, description = null, allergens = null;
     private Balloon myBalloon;
     private ImageView logo;
-
     private AutoCompleteTextView autoCompleteTextView;
 
     @Override
@@ -170,7 +169,11 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         okButtonDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendAddMenuRequest(product_name, "Pepsi in lattina", "15€", "lattosio", ingredients_list);
+                //il prezzo lo posso dichiarare qui perchè non viene modificato fuori da qui
+
+                //product_name e descrizione invece dipendono da openfood oppure dal contenuto personalizzato
+                String prezzo = price.getText().toString();
+                sendAddMenuRequest(product_name, "Pepsi in lattina", prezzo, "lattosio", ingredients_list);
                 okButtonDialog.setEnabled(false);
                 dialog.dismiss();
 
@@ -281,8 +284,6 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         }
 
     }
-
-
 
     private void sendAddMenuRequest(String name, String description, String prezzo, String allergeni, String contiene){
 
