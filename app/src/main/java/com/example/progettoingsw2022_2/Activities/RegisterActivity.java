@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         codiceFiscaleText = findViewById(R.id.codiceFiscaleText);
         welcomeTexView = findViewById(R.id.welcomeRegisterText);
         okButton = findViewById(R.id.okButtonRegister);
-        logo = findViewById(R.id.logoBiagioTestLogin);
+        logo = findViewById(R.id.logoBiagioTestMenu);
         myBalloon = new Balloon.Builder(RegisterActivity.this)
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)

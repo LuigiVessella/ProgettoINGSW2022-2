@@ -7,6 +7,27 @@
     android:background="@drawable/sfondo_2"
     tools:context=".Activities.MenuManager">
 
+    <LinearLayout
+        android:id="@+id/linearLayoutMenuTop"
+        android:layout_width="match_parent"
+        android:layout_height="126dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.355"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.062">
+
+        <ImageView
+            android:id="@+id/logoBiagioTestMenu"
+            android:layout_width="129dp"
+            android:layout_height="130dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="12dp"
+            app:srcCompat="@drawable/logobiagio" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/generaMenuButt"
         android:layout_width="wrap_content"
@@ -25,15 +46,15 @@
         app:layout_constraintVertical_bias="0.735" />
 
     <Button
-        android:id="@+id/aggiungiPiattoButt"
+        android:id="@+id/aggiungiPreconfButt"
         android:layout_width="wrap_content"
         android:layout_height="59dp"
         android:layout_gravity="center"
         android:backgroundTint="@drawable/button_color_scheme"
-        android:drawableEnd="@drawable/baseline_restaurant_24"
+        android:drawableEnd="@drawable/baseline_emoji_food_beverage_24"
         android:fontFamily="@font/roboto"
+        android:text="Aggiungi prodotto"
         app:cornerRadius="40sp"
-        android:text="Aggiungi piatto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -41,18 +62,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="386dp"
-        android:layout_height="70dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Da qui puoi gestire il menu del tuo ristorante:"
-        android:textAlignment="center"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16" />
 </androidx.constraintlayout.widget.ConstraintLayout>

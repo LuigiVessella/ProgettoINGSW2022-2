@@ -28,11 +28,9 @@ import com.skydoves.balloon.BalloonAnimation;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginActivity extends AppCompatActivity implements VolleyCallback {
-
     private EditText emailLoginText, passwordLoginText;
     private Button loginActivityButton;
     private TextView titleSign;
-
     private Balloon myBalloon;
     private ImageView logo;
 
@@ -41,15 +39,12 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         inizializzaComponenti();
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 myBalloon.showAlignRight(logo);
             }
         }, 500);
-
-
     }
 
     private void inizializzaComponenti(){
@@ -59,7 +54,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         passwordLoginText = findViewById(R.id.passwordLoginText);
         titleSign = findViewById(R.id.titleSign);
 
-        logo = findViewById(R.id.logoBiagioTestLogin);
+        logo = findViewById(R.id.logoBiagioTestMenu);
         myBalloon = new Balloon.Builder(LoginActivity.this)
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)

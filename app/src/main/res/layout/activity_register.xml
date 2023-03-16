@@ -9,13 +9,13 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/linearLayoutLoginTop"
+        android:id="@+id/linearLayoutMenuTop"
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:layout_marginTop="16dp">
 
         <ImageView
-            android:id="@+id/logoBiagioTestLogin"
+            android:id="@+id/logoBiagioTestMenu"
             android:layout_width="129dp"
             android:layout_height="130dp"
             android:layout_gravity="left"

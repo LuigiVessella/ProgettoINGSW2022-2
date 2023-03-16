@@ -4,12 +4,14 @@
     android:id="@+id/linearLayoutDialog1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/dialog_border_view"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="18dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <AutoCompleteTextView
@@ -36,11 +38,11 @@
             android:layout_weight="1"
             android:backgroundTint="@drawable/button_color_scheme"
             android:fontFamily="@font/roboto"
-            android:text="Go"
+            android:text="Search"
             app:cornerRadius="40sp" />
     </LinearLayout>
 
-    <TextView
+    <EditText
         android:id="@+id/descriptionItemMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,6 +50,22 @@
         android:background="@drawable/custom_input"
         android:fontFamily="@font/roboto_thin"
         android:hint="Descrizione..."
+        android:minHeight="40dp"
+        android:paddingStart="5dp"
+        android:textColor="@color/grigio_scuro"
+        android:textColorHint="@color/grigio_chiaro"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/priceItemMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/roboto_thin"
+        android:hint="Prezzo..."
+        android:minHeight="40dp"
         android:paddingStart="5dp"
         android:textColor="@color/grigio_scuro"
         android:textColorHint="@color/grigio_chiaro"
@@ -58,6 +76,7 @@
         android:id="@+id/linearLayoutDialog2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -81,5 +100,17 @@
             app:cornerRadius="40sp" />
 
     </LinearLayout>
+
+    <Switch
+        android:id="@+id/menuPreconfSwitch"
+        style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:text="Preconfezionato"
+        android:textSize="14sp"
+        android:thumbTint="@color/marrone_primario"
+        android:trackTint="@color/marrone_secondario" />
 
 </LinearLayout>

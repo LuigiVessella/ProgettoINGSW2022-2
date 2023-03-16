@@ -8,28 +8,27 @@ import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.DialogFragment;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.R;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
@@ -46,6 +45,10 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.skydoves.balloon.ArrowOrientation;
+import com.skydoves.balloon.ArrowPositionRules;
+import com.skydoves.balloon.Balloon;
+import com.skydoves.balloon.BalloonAnimation;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -59,10 +62,12 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     private Button aggiungiPiattoButt, generaMenuButt, okButtonDialog, cancelButtonDialog, goProductButton;
     private EditText sample;
-    private TextView itemMenuDescription;
+    private EditText itemMenuDescription;
     private Dialog dialog;
-
+    private Switch preconfSwitch;
     private String ingredients_list = null, product_name = null;
+    private Balloon myBalloon;
+    private ImageView logo;
 
     private AutoCompleteTextView autoCompleteTextView;
 
@@ -70,8 +75,14 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_manager);
-
         inizializzaComponenti();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                myBalloon.showAlignRight(logo);
+            }
+        }, 500);
     }
 
     private void inizializzaComponenti(){
@@ -88,14 +99,50 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         okButtonDialog = dialog.findViewById(R.id.btn_ok_dialog);
         cancelButtonDialog = dialog.findViewById(R.id.btn_cancel_dialog);
         goProductButton = dialog.findViewById(R.id.searchProductButton);
+        preconfSwitch = dialog.findViewById(R.id.menuPreconfSwitch);
+        logo = findViewById(R.id.logoBiagioTestMenu);
+        myBalloon = new Balloon.Builder(MenuManager.this)
+                .setArrowOrientation(ArrowOrientation.START)
+                .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+                .setArrowPosition(0.01f)
+                //.setWidth(BalloonSizeSpec.WRAP)
+                .setHeight(100)
+                .setWidth(250)
+                .setTextSize(15f)
+                .setCornerRadius(30f)
+                .setAlpha(0.9f)
+                .setText("Aggiungi elementi al menu, oppure visualizzalo in PDF")
+                .setTextSize(16)
+                .setTextColor(Color.WHITE)
+                .setBackgroundColor(Color.rgb(198,173,119))
+                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
+                .setDismissWhenTouchOutside(false)
+                //.setLifecycleOwner(this)
+                .build();
 
         okButtonDialog.setEnabled(false);
+        goProductButton.setEnabled(false);
+
+        preconfSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+                    goProductButton.setEnabled(true);
+                }
+                else {
+                    goProductButton.setEnabled(false);
+                    itemMenuDescription.setText("");
+                    autoCompleteTextView.setText("");
+                }
+             }
+        });
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, COUNTRIES);
 
         autoCompleteTextView.setAdapter(adapter);
-        aggiungiPiattoButt = findViewById(R.id.aggiungiPiattoButt);
+        aggiungiPiattoButt = findViewById(R.id.aggiungiPreconfButt);
         generaMenuButt = findViewById(R.id.generaMenuButt);
 
         goProductButton.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +180,11 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         cancelButtonDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                itemMenuDescription.setText("");
+                autoCompleteTextView.setText("");
+
                 dialog.dismiss();
+
             }
         });
     }

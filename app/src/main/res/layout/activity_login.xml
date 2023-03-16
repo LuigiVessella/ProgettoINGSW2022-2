@@ -8,7 +8,7 @@
     tools:context=".Activities.LoginActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayoutLoginTop"
+        android:id="@+id/linearLayoutMenuTop"
         android:layout_width="match_parent"
         android:layout_height="126dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.062">
 
         <ImageView
-            android:id="@+id/logoBiagioTestLogin"
+            android:id="@+id/logoBiagioTestMenu"
             android:layout_width="129dp"
             android:layout_height="130dp"
             android:layout_gravity="left"
