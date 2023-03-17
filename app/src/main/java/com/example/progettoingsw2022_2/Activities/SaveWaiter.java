@@ -59,11 +59,11 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     private void inizializeComponent() {
 
         //INIZIALIZZO LE COMPONENTI
-        nomeText = findViewById(R.id.waiterFirstNameText);
-        cognomeText = findViewById(R.id.waiterSecondNameText);
-        emailText = findViewById(R.id.waiterEmailLoginText);
+        nomeText = findViewById(R.id.waiterTextInputEditTextLayoutName);
+        cognomeText = findViewById(R.id.waiterTextInputEditTextLayoutSurname);
+        emailText = findViewById(R.id.waiterTextInputEditTextLayoutEmail);
         passwordText = (TextInputEditText) findViewById(R.id.textInputEditTextLayoutwaiter);
-        codiceFiscaleText = findViewById(R.id.waiterCodiceFiscaleText);
+        codiceFiscaleText = findViewById(R.id.waiterTextInputEditTextLayoutCodiceFiscale);
         logo = findViewById(R.id.waiterLogoBiagioTest);
         okButton = findViewById(R.id.waiterOkButton);
         ruoli = findViewById(R.id.ruoloSpinner);

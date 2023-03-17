@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/title_waiter"
-        android:layout_width="257dp"
+        android:layout_width="280dp"
         android:layout_height="30dp"
         android:elevation="10dp"
         android:fontFamily="@font/petit_formal_script"

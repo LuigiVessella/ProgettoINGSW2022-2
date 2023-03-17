@@ -31,4 +31,7 @@
     <string name="takeOrder">tomar orden</string>
     <string name="newOrder">Nuevo orden</string>
     <string name="tableNumber">Número de mesa</string>
+    <string name="register_name_editText">Nombre</string>
+    <string name="register_surname_editText">Apellido</string>
+    <string name="welcomeWaiter">Bienvenido:</string>
 </resources>

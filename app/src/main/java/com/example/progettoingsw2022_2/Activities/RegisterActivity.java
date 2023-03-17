@@ -49,12 +49,12 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
     }
 
     private void inizializzaComponenti() {
-        nomeText = findViewById(R.id.firstNameText);
-        cognomeText = findViewById(R.id.secondNameText);
-        emailText = findViewById(R.id.emailRegisterText);
-        pIvaText = findViewById(R.id.partitaIvaText);
-        passwordText = (TextInputEditText) findViewById(R.id.textInputEditTextLayout);
-        codiceFiscaleText = findViewById(R.id.codiceFiscaleText);
+        nomeText = findViewById(R.id.textInputEditTextLayoutName);
+        cognomeText = findViewById(R.id.textInputEditTextLayoutSurname);
+        emailText = findViewById(R.id.textInputEditTextLayoutEmail);
+        pIvaText = findViewById(R.id.textInputEditTextLayoutPartitaIva);
+        passwordText = (TextInputEditText) findViewById(R.id.textInputEditTextLayoutPass);
+        codiceFiscaleText = findViewById(R.id.textInputEditTextLayoutCodiceFiscale);
         welcomeTexView = findViewById(R.id.welcomeRegisterText);
         okButton = findViewById(R.id.okButtonRegister);
         logo = findViewById(R.id.logoBiagioTestMenu);
