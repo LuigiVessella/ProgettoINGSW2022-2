@@ -60,7 +60,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
         aggiungiRistoranteButt = findViewById(R.id.aggiungiRistoranteButton);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
-        logoutButt = findViewById(R.id.buttonLogoutAdDash);
         logo = findViewById(R.id.logoBiagioTestAdmin);
         myBalloon = new Balloon.Builder(getApplicationContext())
                 .setArrowOrientation(ArrowOrientation.END)

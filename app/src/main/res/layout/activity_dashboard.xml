@@ -11,18 +11,15 @@
         android:id="@+id/linearLayoutAdminTop"
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.103">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <ImageView
             android:id="@+id/logoBiagioTestAdmin"
             android:layout_width="129dp"
             android:layout_height="130dp"
             android:layout_gravity="left"
-            android:layout_marginLeft="6dp"
+            android:layout_marginLeft="12dp"
             app:srcCompat="@drawable/logobiagio" />
 
     </LinearLayout>
@@ -78,21 +75,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.533" />
 
-    <Button
-        android:id="@+id/buttonLogoutAdDash"
-        android:layout_width="55dp"
-        android:layout_height="39dp"
-        android:layout_gravity="center"
-        android:backgroundTint="@drawable/button_color_scheme"
-        android:drawableEnd="@drawable/mylogouticon"
-        android:fontFamily="@font/roboto"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:cornerRadius="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01" />
 </androidx.constraintlayout.widget.ConstraintLayout>

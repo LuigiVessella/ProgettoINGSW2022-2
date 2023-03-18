@@ -34,7 +34,7 @@
     <string name="registerOK">Register succesful!</string>
     <string name="registerWrong">Something Wrong!</string>
     <string name="loginWrongCred">Invalid credentials</string>
-    <string name="loginInsertCred">Insert credentials</string>
+    <string name="loginInsertCred">Se sei un dipendente, le credenziali sono state fornite dall\'admin!</string>
     <string name="AdminControlPanelText">Panel of:</string>
     <string name="AdminResturant">Your resturant:</string>
     <string name="addResturantBtn">Add resturant</string>
@@ -58,7 +58,11 @@
     <string name="balloonRegisterText">"Get started as an Administrator!"</string>
     <string name="balloonRegisterEmployeeText">\"Register your employee here!\"</string>
     <string name="balloonAdminDashboardText">\"Here you can manage your Restaurants!\"</string>
-    <string name="register_surname">Surname*</string>
+    <string name="register_surname">Cognome*</string>
+    <string name="addRestaurantBtn">Add Restaurant</string>
+    <string name="modifyRestaurantBtn">Modify Restaurant</string>
+    <string name="profileBtn">Profile</string>
+    <string name="showStats">Show Statistics</string>
 
 
 </resources>
