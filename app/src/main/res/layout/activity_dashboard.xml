@@ -7,12 +7,88 @@
     android:background="@drawable/sfondo_1_con_patina"
     tools:context=".Activities.AdminDashboardActivity">
 
+    <Button
+        android:id="@+id/modifyProfileBtn2"
+        android:layout_width="145dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:fontFamily="@font/roboto_light"
+        android:text="@string/profileBtn"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:cornerRadius="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.534" />
+
+    <Button
+        android:id="@+id/modifyRestaurantBtn2"
+        android:layout_width="145dp"
+        android:layout_height="55dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:fontFamily="@font/roboto_light"
+        android:text="@string/showStats"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:cornerRadius="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.534" />
+
+    <Button
+        android:id="@+id/addRestaurantBtn2"
+        android:layout_width="145dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:fontFamily="@font/roboto_light"
+        android:text="@string/addRestaurantBtn"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:cornerRadius="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.344" />
+
+    <Button
+        android:id="@+id/visBtn2"
+        android:layout_width="145dp"
+        android:layout_height="55dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:fontFamily="@font/roboto_light"
+        android:text="@string/modifyRestaurantBtn"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:cornerRadius="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayoutAdminTop"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.346" />
+
     <LinearLayout
         android:id="@+id/linearLayoutAdminTop"
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="16dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043">
 
         <ImageView
             android:id="@+id/logoBiagioTestAdmin"
@@ -30,19 +106,21 @@
         android:layout_height="35dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/AdminResturant"
-        android:textSize="16sp"
+        android:textColor="@color/bianco"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/scrollViewRistoranti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aggiungiRistoranteButton"
-        app:layout_constraintVertical_bias="0.764" />
+        app:layout_constraintTop_toBottomOf="@+id/modifyProfileBtn2" />
 
     <ScrollView
         android:id="@+id/scrollViewRistoranti"
-        android:layout_width="340dp"
-        android:layout_height="189dp"
+        android:layout_width="361dp"
+        android:layout_height="184dp"
+        android:background="@drawable/dialog_border_view"
+        android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.422"
@@ -56,23 +134,5 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
-
-    <Button
-        android:id="@+id/aggiungiRistoranteButton"
-        android:layout_width="202dp"
-        android:layout_height="53dp"
-        android:layout_gravity="center"
-        android:backgroundTint="@drawable/button_color_scheme"
-        android:drawableEnd="@drawable/baseline_add_24"
-        android:fontFamily="@font/roboto"
-        android:text="@string/addResturantBtn"
-        android:textColor="@color/bianco"
-        app:cornerRadius="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.533" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

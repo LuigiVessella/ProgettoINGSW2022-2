@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class AdminDashboardActivity extends AppCompatActivity implements VolleyCallback {
 
-    private Button aggiungiRistoranteButt, logoutButt;
+    private Button aggiungiRistoranteButt;
     private String dataFromActivity = null;
     private ImageView logo;
     private Balloon myBalloon;
@@ -58,7 +58,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
     private void inizializzaComponenti(){
 
-        aggiungiRistoranteButt = findViewById(R.id.aggiungiRistoranteButton);
+        aggiungiRistoranteButt = findViewById(R.id.addRestaurantBtn2);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
         logo = findViewById(R.id.logoBiagioTestAdmin);
         myBalloon = new Balloon.Builder(getApplicationContext())
@@ -87,12 +87,12 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 startActivity(newAct);
             }
         });
-        logoutButt.setOnClickListener(new View.OnClickListener() {
+       /* logoutButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 backToLoginActivity();
             }
-        });
+        });*/
 
         visualizzaRistoranti();
     }

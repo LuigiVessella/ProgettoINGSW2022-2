@@ -28,31 +28,21 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/background_shape_waiter"
-            android:layout_width="392dp"
-            android:layout_height="544dp"
-            android:src="@drawable/frame_shape_2"
-            android:visibility="visible"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="57dp" />
-
         <Button
-            android:id="@+id/addRestaurantBtn"
+            android:id="@+id/modifyProfileBtn"
             android:layout_width="120dp"
             android:layout_height="100dp"
-            android:layout_marginTop="112dp"
+            android:layout_marginStart="72dp"
             android:backgroundTint="@drawable/button_color_scheme"
             android:fontFamily="@font/roboto_light"
-            android:text="@string/addRestaurantBtn"
+            android:text="@string/profileBtn"
             android:textSize="20dp"
             android:textStyle="bold"
             app:cornerRadius="40sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.247"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutAdminTop" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.599" />
 
         <Button
             android:id="@+id/modifyRestaurantBtn"
@@ -72,21 +62,15 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutAdminTop"
             app:layout_constraintVertical_bias="0.817" />
 
-        <Button
-            android:id="@+id/modifyProfileBtn"
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="72dp"
-            android:backgroundTint="@drawable/button_color_scheme"
-            android:fontFamily="@font/roboto_light"
-            android:text="@string/profileBtn"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:cornerRadius="40sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.599" />
+        <ImageView
+            android:id="@+id/background_shape_waiter"
+            android:layout_width="match_parent"
+            android:layout_height="544dp"
+            android:src="@drawable/frame_shape_2"
+            android:visibility="visible"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="57dp" />
 
         <Button
             android:id="@+id/visBtn"
@@ -104,6 +88,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutAdminTop"
             app:layout_constraintVertical_bias="0.228" />
+
+        <Button
+            android:id="@+id/addRestaurantBtn"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="112dp"
+            android:backgroundTint="@drawable/button_color_scheme"
+            android:fontFamily="@font/roboto_light"
+            android:text="@string/addRestaurantBtn"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:cornerRadius="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.247"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutAdminTop" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
