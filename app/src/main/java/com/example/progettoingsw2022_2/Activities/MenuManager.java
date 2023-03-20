@@ -60,12 +60,13 @@ import java.util.Map;
 
 public class MenuManager extends AppCompatActivity implements VolleyCallback {
     private Button aggiungiPiattoButt, generaMenuButt, okButtonDialog, cancelButtonDialog, goProductButton;
-    private EditText itemMenuDescription, price;
+    //EditText presenti nel layout:
+    private EditText itemMenuDescription, price, allergensEditText;
     private Dialog dialog;
     private Switch preconfSwitch;
 
-    //le stringhe usate per aggiungere un prodotto nel menu
-    private String ingredients_list = null, product_name = null, description = null, allergens = null;
+    //le stringhe usate per aggiungere un prodotto nel menu, quindi gli attributi:
+    private String ingredients_list = null, product_name = null, description = null, allergens = null, prezzo = null;
     private Balloon myBalloon;
     private ImageView logo;
     private AutoCompleteTextView autoCompleteTextView;
@@ -99,6 +100,9 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         cancelButtonDialog = dialog.findViewById(R.id.btn_cancel_dialog);
         goProductButton = dialog.findViewById(R.id.searchProductButton);
         preconfSwitch = dialog.findViewById(R.id.menuPreconfSwitch);
+        price = dialog.findViewById(R.id.priceItemMenu);
+        allergensEditText = dialog.findViewById(R.id.allergensItemMenu);
+
         logo = findViewById(R.id.logoBiagioTestMenu);
         myBalloon = new Balloon.Builder(MenuManager.this)
                 .setArrowOrientation(ArrowOrientation.START)
@@ -119,7 +123,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
                 //.setLifecycleOwner(this)
                 .build();
 
-        okButtonDialog.setEnabled(false);
+
         goProductButton.setEnabled(false);
 
         preconfSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -127,11 +131,17 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b) {
                     goProductButton.setEnabled(true);
+                    itemMenuDescription.setEnabled(false);
+                    allergensEditText.setEnabled(false);
                 }
                 else {
                     goProductButton.setEnabled(false);
                     itemMenuDescription.setText("");
                     autoCompleteTextView.setText("");
+
+                    goProductButton.setEnabled(true);
+                    itemMenuDescription.setEnabled(true);
+                    allergensEditText.setEnabled(true);
                 }
              }
         });
@@ -169,13 +179,24 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         okButtonDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //il prezzo lo posso dichiarare qui perchè non viene modificato fuori da qui
 
-                //product_name e descrizione invece dipendono da openfood oppure dal contenuto personalizzato
-                String prezzo = price.getText().toString();
-                sendAddMenuRequest(product_name, "Pepsi in lattina", prezzo, "lattosio", ingredients_list);
-                okButtonDialog.setEnabled(false);
-                dialog.dismiss();
+                //product_name e descrizione dipendono da openfood oppure dal contenuto personalizzato
+                product_name = autoCompleteTextView.getText().toString();
+                description = itemMenuDescription.getText().toString();
+                prezzo = price.getText().toString();
+
+                //da rivedere qui
+                if(allergens==null) allergens = allergensEditText.getText().toString();
+                if(ingredients_list == null) ingredients_list = "sample_string";
+
+                if(product_name.equals("") || description.equals("") || prezzo.equals("")){
+                    autoCompleteTextView.setError("Riempi tutti i campi!");
+                }
+                else {
+                    //quando premiamo ok prendiamo prima tutti i dati e poi mandiamo la richeista
+                    sendAddMenuRequest(product_name, description, prezzo, allergens, ingredients_list);
+                    dialog.dismiss();
+                }
 
             }
         });
@@ -289,6 +310,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
         String url = "/menu/addMenu";
 
+
         Map<String, String> params = new HashMap<>();
         params.put("nome_piatto", name);
         params.put("descrizione", description);
@@ -321,6 +343,8 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     private void parseJsonResponse(String result) {
 
+
+        //qui abbiamo tutto il parsing del JSON proveniente da open food consultabile sul sito
         try{
             itemMenuDescription.setText("");
             JsonParser parser = new JsonParser();
@@ -329,6 +353,8 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
                 ingredients_list = "";
                 JsonArray productArray = jsonTree.getAsJsonObject().get("products").getAsJsonArray();
                 product_name = productArray.get(i).getAsJsonObject().get("product_name").getAsString();
+                allergens = productArray.get(i).getAsJsonObject().get("ingredients_text_with_allergens_it").getAsString();
+                allergensEditText.setText(allergens);
                 JsonArray ingredients = productArray.get(i).getAsJsonObject().get("ingredients").getAsJsonArray();
                 itemMenuDescription.append(product_name + "\n");
                 for(int j = 0; j < ingredients.size(); j++) {
@@ -337,8 +363,6 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
                     itemMenuDescription.append(splits[1]+"\n");
                     ingredients_list += splits[1] + " ";
                 }
-                //al momento il listener è qui, ma vanno dichiarate le varibili di classe e rimesso il listener su
-
 
             }
         }
