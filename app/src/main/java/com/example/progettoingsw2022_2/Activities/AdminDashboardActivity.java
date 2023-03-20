@@ -1,19 +1,14 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import android.os.Handler;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,7 +28,7 @@ import java.util.Map;
 
 public class AdminDashboardActivity extends AppCompatActivity implements VolleyCallback {
 
-    private Button aggiungiRistoranteButt;
+    private CardView addRestaurantCard;
     private String dataFromActivity = null;
     private ImageView logo;
     private Balloon myBalloon;
@@ -58,7 +53,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
     private void inizializzaComponenti(){
 
-        aggiungiRistoranteButt = findViewById(R.id.addRestaurantBtn2);
+        addRestaurantCard = findViewById(R.id.addRestaurantCard);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
         logo = findViewById(R.id.logoBiagioTestAdmin);
         myBalloon = new Balloon.Builder(getApplicationContext())
@@ -79,7 +74,8 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 .setDismissWhenTouchOutside(false)
                 //.setLifecycleOwner(this)
                 .build();
-        aggiungiRistoranteButt.setOnClickListener(new View.OnClickListener() {
+
+        addRestaurantCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent newAct = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);

@@ -63,6 +63,7 @@
     <string name="modifyRestaurantBtn">Modify Restaurant</string>
     <string name="profileBtn">Profile</string>
     <string name="showStats">Show Statistics</string>
+    <string name="Logout" translatable="false">Logout</string>
 
 
 </resources>
