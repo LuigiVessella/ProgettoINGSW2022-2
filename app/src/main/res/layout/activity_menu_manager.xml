@@ -7,6 +7,90 @@
     android:background="@drawable/sfondo_2"
     tools:context=".Activities.MenuManager">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/addProductCard"
+        android:layout_width="202dp"
+        android:layout_height="164dp"
+        android:layout_row="0"
+        android:layout_rowWeight="1"
+        android:layout_column="0"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        android:backgroundTint="@color/marrone_terziario"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.38">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/baseline_emoji_food_beverage_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Add product" />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/generateMenuCard"
+        android:layout_width="202dp"
+        android:layout_height="164dp"
+        android:layout_row="0"
+        android:layout_rowWeight="1"
+        android:layout_column="0"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        android:backgroundTint="@color/marrone_terziario"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.71000004">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/baseline_restaurant_menu_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Download Menu" />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
     <LinearLayout
         android:id="@+id/linearLayoutMenuTop"
         android:layout_width="match_parent"
@@ -27,39 +111,5 @@
             app:srcCompat="@drawable/logobiagio" />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/generaMenuButt"
-        android:layout_width="wrap_content"
-        android:layout_height="59dp"
-        android:layout_gravity="center"
-        android:backgroundTint="@drawable/button_color_scheme"
-        android:drawableEnd="@drawable/baseline_restaurant_menu_24"
-        android:fontFamily="@font/roboto"
-        android:text="Genera menu"
-        app:cornerRadius="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735" />
-
-    <Button
-        android:id="@+id/aggiungiPreconfButt"
-        android:layout_width="wrap_content"
-        android:layout_height="59dp"
-        android:layout_gravity="center"
-        android:backgroundTint="@drawable/button_color_scheme"
-        android:drawableEnd="@drawable/baseline_emoji_food_beverage_24"
-        android:fontFamily="@font/roboto"
-        android:text="Aggiungi prodotto"
-        app:cornerRadius="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

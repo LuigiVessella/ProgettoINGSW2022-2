@@ -23,6 +23,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 
@@ -64,7 +65,9 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuManager extends AppCompatActivity implements VolleyCallback {
-    private Button aggiungiPiattoButt, generaMenuButt, okButtonDialog, cancelButtonDialog, goProductButton;
+    private Button okButtonDialog, cancelButtonDialog, goProductButton;
+
+    private CardView generateMenuCard, addProductCard;
     //EditText presenti nel layout:
     private EditText itemMenuDescription, price, allergensEditText;
     private Dialog dialog;
@@ -162,8 +165,8 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
                 android.R.layout.simple_dropdown_item_1line, COUNTRIES);
 
         autoCompleteTextView.setAdapter(adapter);
-        aggiungiPiattoButt = findViewById(R.id.aggiungiPreconfButt);
-        generaMenuButt = findViewById(R.id.generaMenuButt);
+        addProductCard = findViewById(R.id.addProductCard);
+        generateMenuCard = findViewById(R.id.generateMenuCard);
 
         goProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,13 +177,13 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
                 }
             }
         });
-        generaMenuButt.setOnClickListener(new View.OnClickListener() {
+        generateMenuCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createMenu();
             }
         });
-        aggiungiPiattoButt.setOnClickListener(new View.OnClickListener() {
+        addProductCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.show();
