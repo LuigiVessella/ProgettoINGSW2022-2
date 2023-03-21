@@ -1,8 +1,10 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminDashboardActivity extends AppCompatActivity implements VolleyCallback {
-    private CardView addRestaurantCard;
+    private CardView addRestaurantCard, logOutCard;
     private String dataFromActivity = null;
     private ImageView logo;
     private Balloon myBalloon;
@@ -49,6 +51,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
     private void inizializzaComponenti(){
 
+        logOutCard = findViewById(R.id.logoutCard);
         addRestaurantCard = findViewById(R.id.addRestaurantCard);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
         logo = findViewById(R.id.logoBiagioTestAdmin);
@@ -79,12 +82,13 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 startActivity(newAct);
             }
         });
-       /* logoutButt.setOnClickListener(new View.OnClickListener() {
+
+        logOutCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 backToLoginActivity();
             }
-        });*/
+        });
 
         visualizzaRistoranti();
     }
@@ -169,8 +173,33 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
     }
 
     private void backToLoginActivity(){
-        Intent intent = new Intent(this, LoginActivity.class);
+        AlertDialog.Builder builder = new AlertDialog.Builder(AdminDashboardActivity.this, R.style.MyAlertDialogStyle);
+
+        // Impostare il messaggio di conferma
+        builder.setMessage(R.string.LogoutDialog);
+
+        // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
+        builder.setPositiveButton(R.string.YesUpper, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Avviare l'Activity desiderata
+        Intent intent = new Intent(AdminDashboardActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+            }
+        });
+
+        // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
+        builder.setNegativeButton(R.string.NoUpper, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Chiudere il dialogo e non fare nulla
+                dialog.dismiss();
+            }
+        });
+
+        // Creare e mostrare il dialogo
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
-}
+    }

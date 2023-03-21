@@ -46,6 +46,8 @@
     <string name="modifyRestaurantBtn">Modifica Ristorante</string>
     <string name="profileBtn">Profilo</string>
     <string name="showStats">Mostra Statistiche</string>
+    <string name="YesUpper">SI</string>
+    <string name="LogoutDialog">Sei sicuro di voler uscire?</string>
 
 
 </resources>

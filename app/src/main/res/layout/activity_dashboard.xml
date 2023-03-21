@@ -35,7 +35,7 @@
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
-                android:backgroundTint="@color/marrone_terziario"
+                android:backgroundTint="@color/marrone_secondario"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">
@@ -72,7 +72,7 @@
                 android:layout_column="1"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
-                android:backgroundTint="@color/marrone_terziario"
+                android:backgroundTint="@color/marrone_secondario"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">
@@ -109,7 +109,7 @@
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
-                android:backgroundTint="@color/marrone_terziario"
+                android:backgroundTint="@color/marrone_secondario"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">
@@ -146,7 +146,7 @@
                 android:layout_column="1"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
-                android:backgroundTint="@color/marrone_terziario"
+                android:backgroundTint="@color/marrone_secondario"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">

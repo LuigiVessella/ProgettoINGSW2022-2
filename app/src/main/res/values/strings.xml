@@ -64,6 +64,9 @@
     <string name="profileBtn">Profile</string>
     <string name="showStats">Show Statistics</string>
     <string name="Logout" translatable="false">Logout</string>
+    <string name="LogoutDialog">Are you sure you want to exit?</string>
+    <string name="YesUpper">YES</string>
+    <string name="NoUpper" translatable="false">NO</string>
 
 
 </resources>
