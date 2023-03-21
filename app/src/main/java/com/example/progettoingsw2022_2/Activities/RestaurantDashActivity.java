@@ -105,6 +105,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
     };
     private void switchToMenuActivity(){
         Intent newAct = new Intent(RestaurantDashActivity.this, MenuManager.class);
+        newAct.putExtra("codiceRistorante", restaurantCode);
         startActivity(newAct);
     };
 }

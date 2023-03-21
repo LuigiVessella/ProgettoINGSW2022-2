@@ -28,11 +28,15 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Menu;
+import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -56,6 +60,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MenuManager extends AppCompatActivity implements VolleyCallback {
@@ -71,11 +76,17 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     private ImageView logo;
     private AutoCompleteTextView autoCompleteTextView;
 
+    private String codiceRistorante;
+
+    private List<Menu> menus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_manager);
         inizializzaComponenti();
+
+        codiceRistorante = getIntent().getStringExtra("codiceRistorante");
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -215,6 +226,10 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     private void createMenu(){
 
+        if(menus == null) {
+            sendGetMenusRequest();
+            return;
+        }
         String fileName = "output.pdf";
         // Definisci il percorso della cartella "Download"
         File downloadFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -269,18 +284,16 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
             document.add(title);
 
-            // Aggiungi la descrizione del piatto
-            // Aggiunge la descrizione del piatto "Pasta al Sugo" centrata nella pagina con un font personalizzato e uno spazio di 50 punti prima della descrizione
             Font plateFont = new Font(Font.FontFamily.COURIER, 18, Font.ITALIC, BaseColor.WHITE);
-            Paragraph plate = new Paragraph("\n\nPasta al Sugo\nPrezzo: 9,99€\n\n" +
-                    "Gnocchi alla sorrentina\nPrezzo: 15€" +
-                    "\n\nAragosta \nPrezzo: 30€"+
-                    "\n\nTiramisù \nPrezzo: gratis\n", plateFont);
-            plate.setAlignment(Element.ALIGN_CENTER);
-            document.add(plate);
+            for (Menu menu : menus) {
+                // Aggiungi la descrizione del piatto
+                // Aggiunge la descrizione del piatto "Pasta al Sugo" centrata nella pagina con un font personalizzato e uno spazio di 50 punti prima della descrizione
+                Paragraph plate = new Paragraph("\n\n"+ menu.getNome_piatto() + "   " + menu.getPrezzo() + "\n\n", plateFont);
+                plate.setAlignment(Element.ALIGN_CENTER);
+                document.add(plate);
+            }
 
             document.close();
-
         }
         catch (DocumentException | FileNotFoundException e) {
             e.printStackTrace();
@@ -317,29 +330,12 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         params.put("prezzo", prezzo);
         params.put("allergeni", allergeni);
         params.put("contiene", contiene);
+        params.put("codice_ristorante", codiceRistorante);
 
         CustomRequest ct = new CustomRequest(url, params, this, this);
         ct.sendPostRequest();
 
     }
-
-    @Override
-    public void onSuccess(String result) {
-        System.out.println(result);
-
-        if(!result.equals("piatto salvato")){
-            //se non è "menu ok", vuol dire che si tratta della risposta di open food facts.
-            parseJsonResponse(result);
-        }
-
-        else {
-            //se lo è, si tratta della risposta di Spring che salva il menu
-            System.out.println("piatto aggiunto\n");
-        }
-
-
-    }
-
 
     private void parseJsonResponse(String result) {
 
@@ -381,5 +377,40 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         }
 
 
+    }
+
+    private void sendGetMenusRequest(){
+
+        String url = "/menu/getMenu";
+        Map<String, String> params = new HashMap<>();
+        params.put("codice_ristorante", codiceRistorante);
+        CustomRequest newRequest = new CustomRequest(url ,params, this, this);
+        newRequest.sendPostRequest();
+    }
+
+    private void parseGetMenuResponse(String volleyResult){
+
+        //prendo il menu da Spring, riempio la lista dei piatti, richiamo createMenu()
+        Gson gson = new Gson();
+        menus = gson.fromJson(volleyResult, new TypeToken<List<Menu>>(){}.getType());
+        createMenu();
+    }
+
+
+
+    @Override
+    public void onSuccess(String result) {
+        //tengo traccia dei vari risultati delle varie richieste
+
+        if(result.equals("piatto salvato")){
+            System.out.println("piatto aggiunto\n");
+        }
+        else if (result.contains("id_menu")){
+            parseGetMenuResponse(result);
+        }
+        else {
+            parseJsonResponse(result);
+
+        }
     }
 }
