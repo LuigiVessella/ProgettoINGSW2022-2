@@ -79,7 +79,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     private ImageView logo;
     private AutoCompleteTextView autoCompleteTextView;
 
-    private String codiceRistorante;
+    private String codiceRistorante, nomeRistorante;
 
     private List<Menu> menus;
 
@@ -90,6 +90,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         inizializzaComponenti();
 
         codiceRistorante = getIntent().getStringExtra("codiceRistorante");
+        nomeRistorante = getIntent().getStringExtra("nomeRistorante");
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -291,7 +292,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             for (Menu menu : menus) {
                 // Aggiungi la descrizione del piatto
                 // Aggiunge la descrizione del piatto "Pasta al Sugo" centrata nella pagina con un font personalizzato e uno spazio di 50 punti prima della descrizione
-                Paragraph plate = new Paragraph("\n\n"+ menu.getNome_piatto() + "   " + menu.getPrezzo() + "\n\n", plateFont);
+                Paragraph plate = new Paragraph("\n\n"+ menu.getNome_piatto() + "   " + menu.getPrezzo() + "€\n\n", plateFont);
                 plate.setAlignment(Element.ALIGN_CENTER);
                 document.add(plate);
             }

@@ -1,6 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,7 +27,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
 
     private TextView welcomeText;
     private String restaurantName, restaurantCode;
-    private Button addCameriereButton, addMenuButton;
+    private CardView addCameriereButton, addMenuButton;
     private LinearLayout waiterLinearL;
 
     @Override
@@ -44,10 +45,10 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
         restaurantCode = getIntent().getStringExtra("codiceRistorante");
 
         welcomeText = findViewById(R.id.welcomeRestaurantText);
-        addCameriereButton = findViewById(R.id.addCameriereButt);
-        addMenuButton = findViewById(R.id.addMenuButton);
+        addCameriereButton = findViewById(R.id.addWaiterCard);
+        addMenuButton = findViewById(R.id.manageMenuCard);
         waiterLinearL = findViewById(R.id.waiterListLinear);
-        addMenuButton = findViewById(R.id.addMenuButton);
+
 
         welcomeText.setText(getString(R.string.resturantString)+": "+ restaurantName);
 
@@ -106,6 +107,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
     private void switchToMenuActivity(){
         Intent newAct = new Intent(RestaurantDashActivity.this, MenuManager.class);
         newAct.putExtra("codiceRistorante", restaurantCode);
+        newAct.putExtra("nomeRistorante", restaurantName);
         startActivity(newAct);
     };
 }

@@ -27,15 +27,11 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminDashboardActivity extends AppCompatActivity implements VolleyCallback {
-
     private CardView addRestaurantCard;
     private String dataFromActivity = null;
     private ImageView logo;
     private Balloon myBalloon;
-
     private LinearLayout linearScrollLayout;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

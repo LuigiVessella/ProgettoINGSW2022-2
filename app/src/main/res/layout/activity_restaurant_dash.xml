@@ -7,6 +7,92 @@
     android:background="@drawable/sfondo_2"
     tools:context=".Activities.RestaurantDashActivity">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/addWaiterCard"
+        android:layout_width="202dp"
+        android:layout_height="164dp"
+        android:layout_row="0"
+        android:layout_rowWeight="1"
+        android:layout_column="0"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        android:backgroundTint="@color/marrone_terziario"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/baseline_person_add_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="Add waiter" />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/manageMenuCard"
+        android:layout_width="202dp"
+        android:layout_height="164dp"
+        android:layout_row="0"
+        android:layout_rowWeight="1"
+        android:layout_column="0"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        android:backgroundTint="@color/marrone_terziario"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/baseline_emoji_food_beverage_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="Manage Menu" />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/welcomeRestaurantText"
         android:layout_width="wrap_content"
@@ -20,45 +106,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.059" />
 
-    <Button
-        android:id="@+id/addCameriereButt"
-        android:layout_width="wrap_content"
-        android:layout_height="59dp"
-        android:layout_gravity="center"
-        android:backgroundTint="@drawable/button_color_scheme"
-        android:drawableEnd="@drawable/baseline_person_add_24"
-        android:fontFamily="@font/roboto"
-        android:text="@string/addWaiterBtn"
-        android:textColor="@color/bianco"
-        app:cornerRadius="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeRestaurantText"
-        app:layout_constraintVertical_bias="0.065" />
-
-    <Button
-        android:id="@+id/addMenuButton"
-        android:layout_width="wrap_content"
-        android:layout_height="59dp"
-        android:layout_gravity="center"
-        android:backgroundTint="@drawable/button_color_scheme"
-        android:drawableEnd="@drawable/baseline_restaurant_menu_24"
-        android:fontFamily="@font/roboto"
-        android:text="@string/addMenuBtn"
-        app:cornerRadius="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addCameriereButt"
-        app:layout_constraintVertical_bias="0.028" />
-
     <ScrollView
         android:id="@+id/waiterListScroll"
         android:layout_width="388dp"
-        android:layout_height="444dp"
+        android:layout_height="243dp"
         android:layout_marginTop="2dp"
+        android:background="@drawable/dialog_border_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
@@ -72,4 +125,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_slab"
+        android:text="Il tuo personale:"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/waiterListScroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manageMenuCard"
+        app:layout_constraintVertical_bias="0.521" />
 </androidx.constraintlayout.widget.ConstraintLayout>

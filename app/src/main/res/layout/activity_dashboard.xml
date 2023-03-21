@@ -204,7 +204,7 @@
         android:id="@+id/textView2"
         android:layout_width="123dp"
         android:layout_height="35dp"
-        android:fontFamily="@font/roboto_medium"
+        android:fontFamily="@font/roboto_slab"
         android:text="@string/AdminResturant"
         android:textColor="@color/bianco"
         android:textSize="17sp"
