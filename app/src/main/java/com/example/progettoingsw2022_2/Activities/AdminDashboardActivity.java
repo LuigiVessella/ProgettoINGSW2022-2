@@ -124,7 +124,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
                 Button myButton = new Button(AdminDashboardActivity.this);
                 myButton.setLayoutParams(layoutParams);
-                myButton.setText("Modifica");
+                myButton.setText("Gestisci");
                 myButton.setBackgroundResource(R.drawable.corner_radius_botton);
                 myButton.setTextColor(Color.WHITE);
                 myButton.setTextSize(10);
