@@ -1,16 +1,19 @@
 package com.example.progettoingsw2022_2.Activities;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import android.os.Handler;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,11 +32,15 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminDashboardActivity extends AppCompatActivity implements VolleyCallback {
-    private CardView addRestaurantCard, logOutCard;
+
+    private Button aggiungiRistoranteButt, logoutButt;
     private String dataFromActivity = null;
     private ImageView logo;
     private Balloon myBalloon;
+
     private LinearLayout linearScrollLayout;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +58,9 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
     private void inizializzaComponenti(){
 
-        logOutCard = findViewById(R.id.logoutCard);
-        addRestaurantCard = findViewById(R.id.addRestaurantCard);
+        aggiungiRistoranteButt = findViewById(R.id.addRestaurantCard);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
+        logoutButt = findViewById(R.id.logoutCard);
         logo = findViewById(R.id.logoBiagioTestAdmin);
         myBalloon = new Balloon.Builder(getApplicationContext())
                 .setArrowOrientation(ArrowOrientation.END)
@@ -73,8 +80,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 .setDismissWhenTouchOutside(false)
                 //.setLifecycleOwner(this)
                 .build();
-
-        addRestaurantCard.setOnClickListener(new View.OnClickListener() {
+        aggiungiRistoranteButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent newAct = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);
@@ -82,8 +88,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 startActivity(newAct);
             }
         });
-
-        logOutCard.setOnClickListener(new View.OnClickListener() {
+        logoutButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 backToLoginActivity();
@@ -128,7 +133,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
                 Button myButton = new Button(AdminDashboardActivity.this);
                 myButton.setLayoutParams(layoutParams);
-                myButton.setText("Gestisci");
+                myButton.setText(R.string.edit);
                 myButton.setBackgroundResource(R.drawable.corner_radius_botton);
                 myButton.setTextColor(Color.WHITE);
                 myButton.setTextSize(10);
@@ -173,33 +178,8 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
     }
 
     private void backToLoginActivity(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(AdminDashboardActivity.this, R.style.MyAlertDialogStyle);
-
-        // Impostare il messaggio di conferma
-        builder.setMessage(R.string.LogoutDialog);
-
-        // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
-        builder.setPositiveButton(R.string.YesUpper, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Avviare l'Activity desiderata
-        Intent intent = new Intent(AdminDashboardActivity.this, LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
-            }
-        });
-
-        // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
-        builder.setNegativeButton(R.string.NoUpper, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Chiudere il dialogo e non fare nulla
-                dialog.dismiss();
-            }
-        });
-
-        // Creare e mostrare il dialogo
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
-    }
+}
