@@ -179,7 +179,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
         builder.setMessage("Vuoi uscire?");
 
         // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
-        builder.setPositiveButton(R.string.YesUpper, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Avviare l'Activity desiderata
@@ -190,7 +190,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
         });
 
         // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
-        builder.setNegativeButton(R.string.NoUpper, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Chiudere il dialogo e non fare nulla
