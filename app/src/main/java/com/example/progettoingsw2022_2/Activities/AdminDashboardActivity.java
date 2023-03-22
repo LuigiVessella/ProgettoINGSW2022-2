@@ -199,8 +199,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
         });
 
 
-
-
         // Creare e mostrare il dialogo
         AlertDialog dialog = builder.create();
         dialog.show();
