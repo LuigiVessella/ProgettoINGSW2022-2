@@ -19,11 +19,11 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="135dp">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tableNumberLabel"
@@ -35,28 +35,11 @@
                 android:textSize="20dp" />
 
             <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
+                android:id="@+id/spinnerTableNumberOrder"
+                android:layout_width="91dp"
+                android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Primo Piatto"
-                android:textSize="20sp" />
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
         </TableRow>
 
         <TableRow
@@ -67,5 +50,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </TableLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="127dp">
+
+        <LinearLayout
+            android:id="@+id/linearScrollOrderAct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/buttonAddPlateOrder"
+        android:layout_width="394dp"
+        android:layout_height="wrap_content"
+        android:text="Aggiungi portata" />
 
 </LinearLayout>
