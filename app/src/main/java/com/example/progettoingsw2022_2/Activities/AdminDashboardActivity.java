@@ -215,6 +215,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
         cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario));
 
 
+
         // Impostazione del colore di sfondo e del colore del testo
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         dialog.setMessage(Html.fromHtml("<font color='#000000'>Sei sicuro di voler uscire?</font>"));
