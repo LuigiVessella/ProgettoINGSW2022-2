@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -117,6 +118,9 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         preconfSwitch = dialog.findViewById(R.id.menuPreconfSwitch);
         price = dialog.findViewById(R.id.priceItemMenu);
         allergensEditText = dialog.findViewById(R.id.allergensItemMenu);
+
+        goProductButton.setText(Html.fromHtml("<b><big>" + "Search" + "</big></b>" +  "<br />" +
+                "<small>" + "on OpenFoodFacts" + "</small>" + "<br />"));
 
         logo = findViewById(R.id.logoBiagioTestMenu);
         myBalloon = new Balloon.Builder(MenuManager.this)
