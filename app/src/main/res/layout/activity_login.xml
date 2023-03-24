@@ -24,7 +24,7 @@
             android:layout_height="130dp"
             android:layout_gravity="left"
             android:layout_marginLeft="12dp"
-            app:srcCompat="@drawable/logobiagio" />
+            app:srcCompat="@drawable/logobiagio"/>
 
     </LinearLayout>
 
@@ -56,7 +56,7 @@
         android:drawablePadding="10dp"
         android:ems="10"
         android:fontFamily="@font/roboto"
-        android:hint="@string/register_pass_editText"
+        android:hint="@string/Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingStart="5dp"
@@ -80,7 +80,7 @@
         android:drawablePadding="10dp"
         android:ems="10"
         android:fontFamily="@font/roboto"
-        android:hint="@string/register_email_editText"
+        android:hint="@string/Email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingStart="5dp"
@@ -110,5 +110,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.31" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loadingGIF"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/loading"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/emailLoginText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleSign"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

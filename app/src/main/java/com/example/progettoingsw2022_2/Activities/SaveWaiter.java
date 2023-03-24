@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -84,7 +83,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                 .setTextSize(15f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
-                .setText(getString(R.string.balloonRegisterEmployeeText))
+                .setText(getString(R.string.balloonRegisterEmployee))
                 .setTextSize(16)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(Color.rgb(198, 173, 119))
