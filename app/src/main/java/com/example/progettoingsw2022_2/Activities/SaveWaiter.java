@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -29,11 +31,13 @@ import java.util.Map;
 public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
 
     private EditText nomeText, cognomeText, emailText, codiceFiscaleText;
-    private String codiceRistorante;
+    private Button okButton;
+    private Ristorante ristorante;
     private ImageView logo;
 
     private TextInputEditText passwordText;
     private Balloon myBalloon;
+    private Spinner ruoli;
 
     //Array di stringhe per lo spinner, tipo final
     private final String[] items = {"Cameriere", "Supervisore", "Cuoco"};
@@ -42,9 +46,14 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_waiter);
-        codiceRistorante = getIntent().getStringExtra("codiceRistorante");
+        ristorante = (Ristorante) getIntent().getSerializableExtra("ristorante");
         inizializeComponent();
-        new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                myBalloon.showAlignRight(logo);
+            }
+        }, 500);
     }
 
     private void inizializeComponent() {
@@ -56,8 +65,8 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         passwordText = (TextInputEditText) findViewById(R.id.textInputEditTextLayoutwaiter);
         codiceFiscaleText = findViewById(R.id.waiterTextInputEditTextLayoutCodiceFiscale);
         logo = findViewById(R.id.waiterLogoBiagioTest);
-        Button okButton = findViewById(R.id.waiterOkButton);
-        Spinner ruoli = findViewById(R.id.ruoloSpinner);
+        okButton = findViewById(R.id.waiterOkButton);
+        ruoli = findViewById(R.id.ruoloSpinner);
 
         //GESTIONE SPINNER
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_items, android.R.layout.simple_spinner_item );
@@ -84,59 +93,62 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                 //.setLifecycleOwner(this)
                 .build();
 
-        okButton.setOnClickListener(view -> {
-            boolean hasError = false;
-            EmailValidator validator_mail = EmailValidator.getInstance();
-            if (nomeText.getText().length() == 1) {
-                nomeText.setError("Nome troppo corto!");
-                hasError = true;
-            }
-            if (nomeText.getText().length() == 0) {
-                nomeText.setError("Campo obbligatorio!");
-                hasError = true;
-            }
-            if (cognomeText.getText().length() == 1) {
-                cognomeText.setError("Cognome troppo corto!");
-                hasError = true;
-            }
-            if (cognomeText.getText().length() == 0) {
-                cognomeText.setError("Campo obbligatorio!");
-                hasError = true;
-            }
-            if (codiceFiscaleText.getText().length() != 0) {
-                String cf = codiceFiscaleText.getText().toString();
-                if (!isCodiceFiscaleValido(cf)) {
-                    codiceFiscaleText.setError("Campo non corretto!");
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean hasError = false;
+                EmailValidator validator_mail = EmailValidator.getInstance();
+                if (nomeText.getText().length() == 1) {
+                    nomeText.setError("Nome troppo corto!");
                     hasError = true;
                 }
-            } else if (codiceFiscaleText.getText().length() == 0) {
-                codiceFiscaleText.setError("Campo obbligatorio!");
-                hasError = true;
-            }
-            String password = passwordText.getText().toString();
-            if (password.isEmpty()) {
-                passwordText.setError("Campo obbligatorio!");
-                hasError = true;
-            } else if (password.length() < 6) {
-                passwordText.setError("Password troppo corta!");
-                hasError = true;
-            } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.,_?!])[a-zA-Z0-9.,_?!]+$")) {
-                passwordText.setError("Password troppo semplice!");
-                hasError = true;
-            }
-            if (emailText.getText().length() != 0) {
-                String mail = emailText.getText().toString();
-                if (!validator_mail.isValid(mail)) {
-                    emailText.setError("Email non valida");
+                if (nomeText.getText().length() == 0) {
+                    nomeText.setError("Campo obbligatorio!");
                     hasError = true;
                 }
-            } else if (emailText.getText().length() == 0) {
-                emailText.setError("Campo obbligatorio!");
-                hasError = true;
-            }
+                if (cognomeText.getText().length() == 1) {
+                    cognomeText.setError("Cognome troppo corto!");
+                    hasError = true;
+                }
+                if (cognomeText.getText().length() == 0) {
+                    cognomeText.setError("Campo obbligatorio!");
+                    hasError = true;
+                }
+                /*if (codiceFiscaleText.getText().length() != 0) {
+                    String cf = codiceFiscaleText.getText().toString();
+                    if (!isCodiceFiscaleValido(cf)) {
+                        codiceFiscaleText.setError("Campo non corretto!");
+                        hasError = true;
+                    }
+                } else if (codiceFiscaleText.getText().length() == 0) {
+                    codiceFiscaleText.setError("Campo obbligatorio!");
+                    hasError = true;
+                } */
+                String password = passwordText.getText().toString();
+                if (password.isEmpty()) {
+                    passwordText.setError("Campo obbligatorio!");
+                    hasError = true;
+                } else if (password.length() < 6) {
+                    passwordText.setError("Password troppo corta!");
+                    hasError = true;
+                } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.,_?!])[a-zA-Z0-9.,_?!]+$")) {
+                    passwordText.setError("Password troppo semplice!");
+                    hasError = true;
+                }
+                if (emailText.getText().length() != 0) {
+                    String mail = emailText.getText().toString();
+                    if (!validator_mail.isValid(mail)) {
+                        emailText.setError("Email non valida");
+                        hasError = true;
+                    }
+                } else if (emailText.getText().length() == 0) {
+                    emailText.setError("Campo obbligatorio!");
+                    hasError = true;
+                }
 
-            if (!hasError) {
-                sendRegisterRequest(nomeText.getText(), cognomeText.getText(), passwordText.getText(), codiceFiscaleText.getText(), emailText.getText());
+                if (!hasError) {
+                    sendRegisterRequest(nomeText.getText(), cognomeText.getText(), passwordText.getText(), codiceFiscaleText.getText(), emailText.getText());
+                }
             }
         });
     }
@@ -176,8 +188,8 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         //richiesta custom
         String url = "/camerieri/addNew";
 
-        Map<String, String> params = new HashMap<>();
-        params.put("codiceRistorante", codiceRistorante);
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("codiceRistorante", ristorante.getCodice_ristorante().toString());
         params.put("nome", nome.toString());
         params.put("cognome", cognome.toString());
         params.put("email", email.toString());
@@ -194,7 +206,12 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         Log.i("VOLLEY", result);
         if(result.equals("cameriere salvato correttamente")) {
             //Handler usato per aspettare un attimo prima di tornare indietro alla main activity
-            new Handler().postDelayed(() -> finishAfterTransition(), 800);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finishAfterTransition();
+                }
+            }, 800);
         }
         else {
             //waiterWelcomeRegisterText.setError(getString(R.string.registerWrong));
