@@ -127,11 +127,9 @@ public class AdminDashboardActivity extends AppCompatActivity {
                 myButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        System.out.println(ristorante.getCodice_ristorante());
                         Intent nextAct = new Intent(AdminDashboardActivity.this, RestaurantDashActivity.class);
-                        nextAct.putExtra("nomeRistorante", ristorante);
+                        nextAct.putExtra("ristorante", ristorante);
                         startActivity(nextAct);
-
                     }
                 });
 

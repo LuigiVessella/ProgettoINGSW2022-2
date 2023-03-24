@@ -130,19 +130,18 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
     @Override
     public void onSuccess(String result) {
-        Log.i("VOLLEY", result);
-        if(result.equals("")) {
+        Gson gson = new Gson();
+        Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
+
+        if(admin == null) {
             Log.i("INFO LOGIN", "ricevuto null");
             emailLoginText.setError(getString(R.string.loginWrongCred));
             passwordLoginText.setText("");
         }
         else{
-            Gson gson = new Gson();
-            Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
             System.out.println(admin.getNome());
             switchToAdminDashboardActivity(admin);
         }
-
 
     }
 }

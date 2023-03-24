@@ -41,9 +41,7 @@ public class RestaurantDashActivity extends AppCompatActivity {
     }
 
     private void inizializzaComponenti() {
-        ristorante = (Ristorante) getIntent().getSerializableExtra("nomeRistorante");
-
-
+        ristorante = (Ristorante) getIntent().getSerializableExtra("ristorante");
         welcomeText = findViewById(R.id.welcomeRestaurantText);
         addCameriereButton = findViewById(R.id.addWaiterCard);
         addMenuButton = findViewById(R.id.manageMenuCard);
@@ -84,6 +82,7 @@ public class RestaurantDashActivity extends AppCompatActivity {
 
 
     private void switchToAddCameriere(){
+        System.out.println(ristorante.getCodice_ristorante());
         Intent newAct = new Intent(RestaurantDashActivity.this, SaveWaiter.class);
         newAct.putExtra("codiceRistorante", ristorante.getCodice_ristorante());
         startActivity(newAct);
