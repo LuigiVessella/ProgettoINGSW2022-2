@@ -31,12 +31,14 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical|center_horizontal"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/baseline_emoji_food_beverage_24" />
+                android:src="@drawable/baseline_emoji_food_beverage_24"
+                android:contentDescription="@string/add_product_label" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -73,12 +75,14 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical|center_horizontal"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/baseline_restaurant_menu_24" />
+                android:src="@drawable/baseline_restaurant_menu_24"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -106,9 +110,10 @@
             android:id="@+id/logoBiagioTestMenu"
             android:layout_width="129dp"
             android:layout_height="130dp"
-            android:layout_gravity="left"
-            android:layout_marginLeft="12dp"
-            app:srcCompat="@drawable/logobiagio" />
+            android:layout_gravity="start"
+            android:layout_marginStart="12dp"
+            app:srcCompat="@drawable/logobiagio"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 

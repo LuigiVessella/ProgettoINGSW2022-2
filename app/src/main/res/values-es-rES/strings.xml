@@ -65,4 +65,6 @@
     <string name="Food_type">Tipo de comida</string>
     <string name="Prepackaged">preenvasado</string>
     <string name="Search">Cerca</string>
+    <string name="add_course">Agregar alcance</string>
+    <string name="your_workers">Tu personal:</string>
 </resources>

@@ -65,7 +65,7 @@
     <string name="download_menu">Download Menu</string>
     <string name="add_product">Add product</string>
     <string name="ballonLogin">\"Start with login!\"</string>
-    <string name="app_logo_for_balloon" translatable="false">App Logo for balloon</string>
+    <string name="app_logo" translatable="false">App Logo</string>
     <string name="profileBalloon">\"Here there is your profile\"</string>
     <string name="nameLabel">Name:</string>
     <string name="surnameLabel">Surname:</string>
@@ -85,6 +85,14 @@
     <string name="Food_type">Food type</string>
     <string name="Search">Search</string>
     <string name="Prepackaged">Prepackaged</string>
+    <string name="add_resturant_label" translatable="false">Add Resturant Label</string>
+    <string name="show_profile_label" translatable="false">Show profile label</string>
+    <string name="stats_label" translatable="false">Stats label</string>
+    <string name="logout_label" translatable="false">logout label</string>
+    <string name="biagioshape" translatable="false">BiagioShape</string>
+    <string name="add_product_label" translatable="false">Add product label</string>
+    <string name="add_course">Add course</string>
+    <string name="your_workers">Your workers:</string>
 
 
 </resources>

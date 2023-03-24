@@ -16,7 +16,8 @@
         android:rotation="0"
         android:src="@drawable/frame_shape"
         android:visibility="visible"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/biagioshape" />
 
 
     <Button

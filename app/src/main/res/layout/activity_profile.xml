@@ -32,7 +32,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/profilePartitaIVATextField"
@@ -88,7 +89,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/profileCodiceFiscaleTextField"
@@ -143,7 +145,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/profileEmailTextField"
@@ -199,7 +202,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/profileSurnameTextField"
@@ -247,7 +251,7 @@
             android:layout_height="130dp"
             android:layout_gravity="start"
             android:layout_marginStart="12dp"
-            android:contentDescription="@string/app_logo_for_balloon"
+            android:contentDescription="@string/app_logo"
             app:srcCompat="@drawable/logobiagio" />
 
     </LinearLayout>
@@ -277,7 +281,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/profileNameTextField"
@@ -322,6 +327,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profilePartitaIVALayout"
-        app:layout_constraintVertical_bias="0.095" />
+        app:layout_constraintVertical_bias="0.095"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

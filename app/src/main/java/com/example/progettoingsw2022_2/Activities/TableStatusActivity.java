@@ -1,9 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,17 +15,15 @@ import java.util.ArrayList;
 public class TableStatusActivity extends AppCompatActivity {
 
     private ArrayList<Tavolo> tavoli = new ArrayList<>();
-    private RecyclerView recycleView;
-    private TableRecycleViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_status);
 
-        recycleView = findViewById(R.id.activity_table_rvw);
+        RecyclerView recycleView = findViewById(R.id.activity_table_rvw);
         setUpTables();
-        adapter = new TableRecycleViewAdapter(TableStatusActivity.this, tavoli);
+        TableRecycleViewAdapter adapter = new TableRecycleViewAdapter(TableStatusActivity.this, tavoli);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
 

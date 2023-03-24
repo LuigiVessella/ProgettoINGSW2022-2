@@ -22,9 +22,10 @@
             android:id="@+id/logoBiagioTestMenu"
             android:layout_width="129dp"
             android:layout_height="130dp"
-            android:layout_gravity="left"
-            android:layout_marginLeft="12dp"
-            app:srcCompat="@drawable/logobiagio"/>
+            android:layout_gravity="start"
+            android:layout_marginStart="12dp"
+            app:srcCompat="@drawable/logobiagio"
+            android:contentDescription="@string/app_logo" />
 
     </LinearLayout>
 
@@ -67,7 +68,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/emailLoginText"
@@ -91,7 +93,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.693" />
+        app:layout_constraintVertical_bias="0.693"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/titleSign"

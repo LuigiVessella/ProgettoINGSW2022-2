@@ -30,11 +30,11 @@
             android:textColor="@color/grigio_scuro"
             android:textColorHint="@color/grigio_chiaro"
             android:textCursorDrawable="@drawable/cursor_color"
-            tools:ignore="TextContrastCheck" />
+            tools:ignore="RtlSymmetry,TextContrastCheck" />
 
         <Button
             android:id="@+id/searchProductButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
@@ -57,7 +57,10 @@
         android:textColor="@color/grigio_scuro"
         android:textColorHint="@color/grigio_chiaro"
         android:textCursorDrawable="@drawable/cursor_color"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:autofillHints=""
+        android:inputType="text"
+        tools:ignore="RtlSymmetry" />
 
     <EditText
         android:id="@+id/allergensItemMenu"
@@ -72,7 +75,10 @@
         android:textColor="@color/grigio_scuro"
         android:textColorHint="@color/grigio_chiaro"
         android:textCursorDrawable="@drawable/cursor_color"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:autofillHints=""
+        android:inputType="text"
+        tools:ignore="RtlSymmetry" />
 
     <EditText
         android:id="@+id/priceItemMenu"
@@ -88,7 +94,9 @@
         android:textColor="@color/grigio_scuro"
         android:textColorHint="@color/grigio_chiaro"
         android:textCursorDrawable="@drawable/cursor_color"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:autofillHints=""
+        tools:ignore="RtlSymmetry" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,7 +112,7 @@
             <TextView
                 android:id="@+id/tipoDialogMenuTextView"
                 android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/Type" />
 
@@ -125,8 +133,8 @@
             <TextView
                 android:id="@+id/tipoAlimentoDialogTxt"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_height="0dp"
+                android:layout_gravity="end"
                 android:layout_weight="1"
                 android:text="@string/Food_type" />
 

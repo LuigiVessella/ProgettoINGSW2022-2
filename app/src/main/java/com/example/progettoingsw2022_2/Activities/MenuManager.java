@@ -66,7 +66,6 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     //EditText presenti nel layout:
     private EditText itemMenuDescription, price, allergensEditText;
     private Dialog dialog;
-    private Switch preconfSwitch;
 
     //le stringhe usate per aggiungere un prodotto nel menu, quindi gli attributi:
     private String ingredients_list = null, product_name = null, description = null, allergens = null, prezzo = null;
@@ -94,6 +93,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     private void inizializzaComponenti(){
         Button cancelButtonDialog;
         CardView generateMenuCard, addProductCard;
+        Switch preconfSwitch;
 
         String[] COUNTRIES = new String[] {
                 "Estathe", "Coca-Cola", "Pepsi", "Fanta", "Sprite"

@@ -18,9 +18,10 @@
             android:id="@+id/logoBiagioTestMenu"
             android:layout_width="129dp"
             android:layout_height="130dp"
-            android:layout_gravity="left"
-            android:layout_marginLeft="12dp"
-            app:srcCompat="@drawable/logobiagio" />
+            android:layout_gravity="start"
+            android:layout_marginStart="12dp"
+            app:srcCompat="@drawable/logobiagio"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -37,7 +38,8 @@
                 android:id="@+id/testTableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false">
+                android:baselineAligned="false"
+                tools:ignore="UselessParent">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -48,7 +50,7 @@
                         android:id="@+id/firstNameText"
                         android:layout_width="50dp"
                         android:layout_height="55dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:layout_weight="0.5">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -239,7 +241,8 @@
         android:layout_marginTop="70dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/welcome"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        tools:ignore="SpUsage" />
 
     <Button
         android:id="@+id/okButtonRegister"

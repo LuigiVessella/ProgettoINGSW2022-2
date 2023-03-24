@@ -65,6 +65,8 @@
     <string name="Food_type">Tipo alimento</string>
     <string name="Search">Cerca</string>
     <string name="Prepackaged">Preconfezionato</string>
+    <string name="add_course">Aggiungi portata</string>
+    <string name="your_workers">Il tuo personale:</string>
 
 
 </resources>

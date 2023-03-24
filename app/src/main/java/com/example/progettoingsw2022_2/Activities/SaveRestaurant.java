@@ -6,31 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Semaphore;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
-import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
 import com.example.progettoingsw2022_2.R;
 
 public class SaveRestaurant extends AppCompatActivity implements VolleyCallback {
 
     private EditText nomeText, copertiText, locazioneText;
-    private Button saveButton;
 
     private String emailAdmin;
 
@@ -48,14 +37,9 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
         nomeText = findViewById(R.id.nomeRistoranteText);
         copertiText = findViewById(R.id.numeroCopertiText);
         locazioneText = findViewById(R.id.locazioneRistoranteText);
-        saveButton = findViewById(R.id.saveRestaurantButton);
+        Button saveButton = findViewById(R.id.saveRestaurantButton);
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendSaveRestaurantRequest(emailAdmin, nomeText.getText(), copertiText.getText(), locazioneText.getText());
-            }
-        });
+        saveButton.setOnClickListener(view -> sendSaveRestaurantRequest(emailAdmin, nomeText.getText(), copertiText.getText(), locazioneText.getText()));
     }
 
     private void sendSaveRestaurantRequest(String email, Editable nome, Editable coperti, Editable locazione) {
@@ -63,7 +47,7 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
         // RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
         String url = "/ristorante/addNew";
 
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("email", email);
         params.put("nome", nome.toString());
         params.put("coperti", coperti.toString());
@@ -85,9 +69,6 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
         Toast.makeText(this, "Ristorante salvato", Toast.LENGTH_SHORT).show();
 
         startActivity(new Intent(this, AdminDashboardActivity.class).putExtra("email", emailAdmin));
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() { finishAfterTransition(); }
-        },800);
+        new Handler().postDelayed(() -> finishAfterTransition(),800);
     }
 }

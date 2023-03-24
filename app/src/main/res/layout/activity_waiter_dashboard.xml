@@ -14,7 +14,7 @@
         android:layout_height="663dp"
         android:src="@drawable/frame_shape"
         android:visibility="visible"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="ContentDescription,MissingConstraints" />
 
     <ImageView
         android:id="@+id/Logo_waiter"
@@ -85,7 +85,8 @@
         app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toEndOf="@+id/background_shape_waiter"
         app:layout_constraintStart_toStartOf="@+id/background_shape_waiter"
-        app:layout_constraintTop_toTopOf="@+id/background_shape_waiter" />
+        app:layout_constraintTop_toTopOf="@+id/background_shape_waiter"
+        tools:ignore="SpUsage" />
 
     <Button
         android:id="@+id/orderStatusBtn"
@@ -106,7 +107,8 @@
         app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toEndOf="@+id/background_shape_waiter"
         app:layout_constraintStart_toStartOf="@+id/background_shape_waiter"
-        app:layout_constraintTop_toTopOf="@+id/background_shape_waiter" />
+        app:layout_constraintTop_toTopOf="@+id/background_shape_waiter"
+        tools:ignore="SpUsage" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,8 @@
             android:layout_marginRight="50dp"
             android:layout_marginBottom="50dp"
             android:columnCount="2"
-            android:rowCount="2">
+            android:rowCount="2"
+            tools:ignore="UselessParent">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/addRestaurantCard"
@@ -45,18 +46,22 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    tools:ignore="UselessParent">
 
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_rest" />
+                        android:contentDescription="@string/add_resturant_label"
+                        android:src="@drawable/ic_rest"
+                        tools:ignore="ImageContrastCheck" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="@string/addResturant" />
+                        android:text="@string/addResturant"
+                        tools:ignore="TextContrastCheck" />
 
                 </LinearLayout>
 
@@ -87,13 +92,16 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_profile" />
+                        android:contentDescription="@string/show_profile_label"
+                        android:src="@drawable/ic_profile"
+                        tools:ignore="ImageContrastCheck" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="@string/profile" />
+                        android:text="@string/profile"
+                        tools:ignore="TextContrastCheck" />
 
                 </LinearLayout>
 
@@ -124,13 +132,16 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_stats" />
+                        android:src="@drawable/ic_stats"
+                        tools:ignore="ImageContrastCheck"
+                        android:contentDescription="@string/stats_label" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="@string/showStats" />
+                        android:text="@string/showStats"
+                        android:textColor="#4E342E" />
 
                 </LinearLayout>
 
@@ -161,13 +172,16 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_bye" />
+                        android:src="@drawable/ic_bye"
+                        tools:ignore="ImageContrastCheck"
+                        android:contentDescription="@string/logout_label" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="@string/Logout" />
+                        android:text="@string/Logout"
+                        tools:ignore="TextContrastCheck" />
 
                 </LinearLayout>
 
@@ -194,9 +208,11 @@
             android:id="@+id/logoBiagioTestAdmin"
             android:layout_width="129dp"
             android:layout_height="130dp"
-            android:layout_gravity="left"
-            android:layout_marginLeft="12dp"
-            app:srcCompat="@drawable/logobiagio" />
+            android:layout_gravity="start"
+            android:layout_marginStart="12dp"
+            app:srcCompat="@drawable/logobiagio"
+            tools:ignore="ImageContrastCheck"
+            android:contentDescription="@string/app_logo" />
 
     </LinearLayout>
 
@@ -227,7 +243,8 @@
         app:layout_constraintHorizontal_bias="0.422"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.935">
+        app:layout_constraintVertical_bias="0.935"
+        tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
             android:id="@+id/linearLayoutScroll"

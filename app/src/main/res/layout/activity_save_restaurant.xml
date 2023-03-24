@@ -29,7 +29,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintVertical_bias="0.244"
+        android:autofillHints=""
+        tools:ignore="RtlSymmetry" />
 
     <EditText
         android:id="@+id/numeroCopertiText"
@@ -51,7 +53,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintVertical_bias="0.291"
+        android:autofillHints=""
+        tools:ignore="RtlSymmetry" />
 
     <EditText
         android:id="@+id/locazioneRistoranteText"
@@ -73,7 +77,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.407" />
+        app:layout_constraintVertical_bias="0.407"
+        android:autofillHints=""
+        tools:ignore="RtlSymmetry" />
 
     <Button
         android:id="@+id/saveRestaurantButton"

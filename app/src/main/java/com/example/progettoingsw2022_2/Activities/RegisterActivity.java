@@ -30,7 +30,6 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
 
     private ImageView logo;
     private TextInputEditText passwordText;
-    private Button okButton;
     private TextView welcomeTexView;
     private Balloon myBalloon;
 
@@ -50,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         passwordText = (TextInputEditText) findViewById(R.id.textInputEditTextLayoutPass);
         codiceFiscaleText = findViewById(R.id.textInputEditTextLayoutCodiceFiscale);
         welcomeTexView = findViewById(R.id.welcomeRegisterText);
-        okButton = findViewById(R.id.okButtonRegister);
+        Button okButton = findViewById(R.id.okButtonRegister);
         logo = findViewById(R.id.logoBiagioTestMenu);
         myBalloon = new Balloon.Builder(RegisterActivity.this)
                 .setArrowOrientation(ArrowOrientation.START)
