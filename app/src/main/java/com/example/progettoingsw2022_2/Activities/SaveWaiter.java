@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -31,7 +32,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
 
     private EditText nomeText, cognomeText, emailText, codiceFiscaleText;
     private Button okButton;
-    private String codiceRistorante;
+    private Ristorante ristorante;
     private ImageView logo;
 
     private TextInputEditText passwordText;
@@ -45,7 +46,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_waiter);
-        codiceRistorante = getIntent().getStringExtra("codiceRistorante");
+        ristorante = (Ristorante) getIntent().getSerializableExtra("ristorante");
         inizializeComponent();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -188,7 +189,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         String url = "/camerieri/addNew";
 
         Map<String, String> params = new HashMap<String, String>();
-        params.put("codiceRistorante", codiceRistorante);
+        params.put("codiceRistorante", ristorante.getCodice_ristorante().toString());
         params.put("nome", nome.toString());
         params.put("cognome", cognome.toString());
         params.put("email", email.toString());

@@ -8,11 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.R;
 
 public class WaiterDashboard extends AppCompatActivity {
     private TextView welcomeTextView;
-    private String nameFromActivity, surnameFromActivity;
+    private Cameriere cameriere;
     private Button takeOrderButton, orderStatusButton;
 
     @Override
@@ -21,9 +22,8 @@ public class WaiterDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_waiter_dashboard);
         welcomeTextView = findViewById(R.id.waiterName);
         //Ci aggiungo benvenuto con nome e cognome che viene meglio della mail (ovviamente va fatta la query che dalla mail che prende dall'intent ricava nome e cognome, ma ho scritto così giusto per ricordarmelo)
-        nameFromActivity = getIntent().getStringExtra("name");
-        surnameFromActivity = getIntent().getStringExtra("surname");
-        welcomeTextView.append(nameFromActivity+" "+surnameFromActivity);
+        cameriere = (Cameriere) getIntent().getSerializableExtra("cameriere");
+        welcomeTextView.append(cameriere.getNome()+" "+cameriere.getCognome());
         inizializzaComponenti();
     }
 

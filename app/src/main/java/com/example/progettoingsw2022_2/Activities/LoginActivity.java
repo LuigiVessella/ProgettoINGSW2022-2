@@ -19,6 +19,7 @@ import java.util.Map;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Admin;
+import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -113,9 +114,9 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         finish();
     }
 
-    private void switchToWaiterDashboardActivity(Admin admin){
+    private void switchToWaiterDashboardActivity(Cameriere cameriere){
         Intent newAct = new Intent(LoginActivity.this, WaiterDashboard.class);
-        newAct.putExtra("admin", admin);
+        newAct.putExtra("cameriere", cameriere);
         startActivity(newAct);
         finish();
     }
@@ -126,6 +127,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         Gson gson = new Gson();
         Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
 
+
         if(admin == null) {
             Log.i("INFO LOGIN", "ricevuto null");
             emailLoginText.setError(getString(R.string.loginWrongCred));
@@ -133,8 +135,13 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             loginActivityButton.setEnabled(true);
             loading.setVisibility(View.INVISIBLE);
         }
+        else if(admin.getRistoranti() == null) {
+            Cameriere cameriere = gson.fromJson(result, new TypeToken<Cameriere>(){}.getType());
+            System.out.println(cameriere.getNome());
+            switchToWaiterDashboardActivity(cameriere);
+        }
         else{
-            System.out.println(admin.getNome());
+
             switchToAdminDashboardActivity(admin);
         }
 

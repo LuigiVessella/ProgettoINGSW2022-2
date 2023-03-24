@@ -43,6 +43,9 @@
             android:name=".Activities.AdminDashboardActivity"
             android:exported="false" />
         <activity
+            android:name=".Activities.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustNothing">
