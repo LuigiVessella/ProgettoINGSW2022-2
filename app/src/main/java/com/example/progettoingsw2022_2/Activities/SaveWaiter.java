@@ -113,7 +113,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                     cognomeText.setError("Campo obbligatorio!");
                     hasError = true;
                 }
-                if (codiceFiscaleText.getText().length() != 0) {
+                /*if (codiceFiscaleText.getText().length() != 0) {
                     String cf = codiceFiscaleText.getText().toString();
                     if (!isCodiceFiscaleValido(cf)) {
                         codiceFiscaleText.setError("Campo non corretto!");
@@ -122,7 +122,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                 } else if (codiceFiscaleText.getText().length() == 0) {
                     codiceFiscaleText.setError("Campo obbligatorio!");
                     hasError = true;
-                }
+                } */
                 String password = passwordText.getText().toString();
                 if (password.isEmpty()) {
                     passwordText.setError("Campo obbligatorio!");
