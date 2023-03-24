@@ -7,8 +7,6 @@
         <item name="colorAccent">@color/marrone_terziario</item>
         <!-- Imposta il colore del testo dei pulsanti -->
         <item name="android:textColor">@color/marrone_secondario</item>
-        <!-- Imposta il colore del testo del messaggio -->
-        <item name="android:textColor">@color/bianco</item>
 
     </style>
 </resources>
