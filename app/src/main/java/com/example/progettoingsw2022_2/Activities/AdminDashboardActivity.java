@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,27 +13,19 @@ import android.os.Bundle;
 
 import android.os.Handler;
 import android.text.Html;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
-import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.Gson;
 import com.skydoves.balloon.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-public class AdminDashboardActivity extends AppCompatActivity implements VolleyCallback {
-    private CardView addRestaurantCard, logOutCard;
-    private String dataFromActivity = null;
+public class AdminDashboardActivity extends AppCompatActivity {
+    private CardView addRestaurantCard, logOutCard, profileCard;
+    private Admin admin = null;
     private ImageView logo;
     private Balloon myBalloon;
     private LinearLayout linearScrollLayout;
@@ -40,19 +33,14 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        dataFromActivity = getIntent().getStringExtra("email");
+        admin = (Admin) getIntent().getSerializableExtra("admin");
         inizializzaComponenti();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                myBalloon.showAlignRight(logo);
-            }
-        }, 500);
-
+        new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }
 
     private void inizializzaComponenti(){
 
+        profileCard = findViewById(R.id.profileCard);
         logOutCard = findViewById(R.id.logoutCard);
         addRestaurantCard = findViewById(R.id.addRestaurantCard);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
@@ -67,7 +55,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 .setTextSize(15f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
-                .setText(getString(R.string.balloonAdminDashboardText))
+                .setText(getString(R.string.balloonAdminDashboard))
                 .setTextSize(16)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(Color.rgb(198,173,119))
@@ -76,43 +64,28 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                 //.setLifecycleOwner(this)
                 .build();
 
-        addRestaurantCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent newAct = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);
-                newAct.putExtra("email", dataFromActivity);
-                startActivity(newAct);
-            }
+        addRestaurantCard.setOnClickListener(view -> {
+            Intent newAct = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);
+            newAct.putExtra("email", admin.getEmail());
+            startActivity(newAct);
         });
 
-        logOutCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                backToLoginActivity();
-            }
+        logOutCard.setOnClickListener(view -> backToLoginActivity());
+
+        profileCard.setOnClickListener(view -> {
+            Intent goProfile = new Intent(AdminDashboardActivity.this, ProfileActivity.class);
+            goProfile.putExtra("admin",admin);
+            startActivity(goProfile);
         });
 
         visualizzaRistoranti();
     }
 
 
-    private void visualizzaRistoranti() {
 
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("email", dataFromActivity.trim());
-        String url = "/admin/getRistoranti";
-
-        CustomRequest cR2 = new CustomRequest(url, params, AdminDashboardActivity.this, AdminDashboardActivity.this);
-        cR2.sendPostRequest();
-    }
-
-    @Override
-    public void onSuccess(String result) {
-        System.out.println("ho ricevuto" + result);
-        Gson gson = new Gson();
-        List<Ristorante> ristoranti = gson.fromJson(result, new TypeToken<List<Ristorante>>(){}.getType());
-        if(!ristoranti.isEmpty()) {
-            for(Ristorante ristorante: ristoranti) {
+    public void visualizzaRistoranti() {
+        if(!admin.getRistoranti().isEmpty()) {
+            for(Ristorante ristorante: admin.getRistoranti()) {
                 //System.out.println("stampo cameriere: " + ristoranti.get(0).getCamerieri().get(0).getNome());
 
                 TextView txv = new TextView(AdminDashboardActivity.this);
@@ -130,23 +103,15 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
                 Button myButton = new Button(AdminDashboardActivity.this);
                 myButton.setLayoutParams(layoutParams);
-                myButton.setText("Gestisci");
+                myButton.setText(R.string.Manage);
                 myButton.setBackgroundResource(R.drawable.corner_radius_botton);
                 myButton.setTextColor(Color.WHITE);
                 myButton.setTextSize(10);
 
-
-                myButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        System.out.println(ristorante.getCodice_ristorante());
-                        Intent nextAct = new Intent(AdminDashboardActivity.this, RestaurantDashActivity.class);
-                        nextAct.putExtra("nomeRistorante", ristorante.getNome());
-                        nextAct.putExtra("codiceRistorante", ristorante.getCodice_ristorante().toString());
-
-                        startActivity(nextAct);
-
-                    }
+                myButton.setOnClickListener(view -> {
+                    Intent nextAct = new Intent(AdminDashboardActivity.this, RestaurantDashActivity.class);
+                    nextAct.putExtra("ristorante", ristorante);
+                    startActivity(nextAct);
                 });
 
 
@@ -174,31 +139,24 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
     }
 
+    @SuppressLint("ResourceAsColor")
     private void backToLoginActivity(){
         AlertDialog.Builder builder = new AlertDialog.Builder(AdminDashboardActivity.this);
         builder.setMessage("Vuoi uscire?");
 
         // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Avviare l'Activity desiderata
-                Intent intent = new Intent(AdminDashboardActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        builder.setPositiveButton("YES", (dialog, which) -> {
+            // Avviare l'Activity desiderata
+            Intent intent = new Intent(AdminDashboardActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Chiudere il dialogo e non fare nulla
-                dialog.dismiss();
-            }
+        builder.setNegativeButton("NO", (dialog, which) -> {
+            // Chiudere il dialogo e non fare nulla
+            dialog.dismiss();
         });
-
-
 
 
         // Creare e mostrare il dialogo
@@ -207,7 +165,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
 
         // Impostazione del colore del pulsante Positivo
         Button okButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
-        okButton.setTextColor(getResources().getColor(R.color.bianco));
+        okButton.setTextColor(R.color.bianco);
         okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario));
 
         Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);

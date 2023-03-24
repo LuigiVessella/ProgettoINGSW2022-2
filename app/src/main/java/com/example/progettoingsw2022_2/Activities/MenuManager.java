@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,6 +81,8 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     private ImageView logo;
     private AutoCompleteTextView autoCompleteTextView;
 
+
+    private Spinner tipo, tipoAlimento;
     private String codiceRistorante, nomeRistorante;
 
     private List<Menu> menus;
@@ -117,6 +121,19 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         preconfSwitch = dialog.findViewById(R.id.menuPreconfSwitch);
         price = dialog.findViewById(R.id.priceItemMenu);
         allergensEditText = dialog.findViewById(R.id.allergensItemMenu);
+        tipo = dialog.findViewById(R.id.spinnerTipoMenu);
+        tipoAlimento = dialog.findViewById(R.id.spinnerTipoAlimentoMenu);
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Antipasto","Primo", "Secondo", "Dessert", "Frutta"});
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tipo.setAdapter(adapter1);
+
+        adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Pesce","Carne", "Vegano", "Vegetariano", "Gluten-Free"});
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tipoAlimento.setAdapter(adapter1);
+
+
+
 
         logo = findViewById(R.id.logoBiagioTestMenu);
         myBalloon = new Balloon.Builder(MenuManager.this)
@@ -200,6 +217,9 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
                 description = itemMenuDescription.getText().toString();
                 prezzo = price.getText().toString();
 
+                String tipoo = tipo.getSelectedItem().toString();
+                String tipAlimento = tipoAlimento.getSelectedItem().toString();
+
                 //da rivedere qui
                 if(allergens==null) allergens = allergensEditText.getText().toString();
                 if(ingredients_list == null) ingredients_list = "sample_string";
@@ -209,7 +229,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
                 }
                 else {
                     //quando premiamo ok prendiamo prima tutti i dati e poi mandiamo la richeista
-                    sendAddMenuRequest(product_name, description, prezzo, allergens, ingredients_list);
+                    sendAddMenuRequest(product_name, description, prezzo, allergens, ingredients_list, tipoo, tipAlimento);
                     dialog.dismiss();
                 }
 
@@ -323,7 +343,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     }
 
-    private void sendAddMenuRequest(String name, String description, String prezzo, String allergeni, String contiene){
+    private void sendAddMenuRequest(String name, String description, String prezzo, String allergeni, String contiene, String tipoo, String tipoAlimento){
 
         String url = "/menu/addMenu";
 
@@ -335,6 +355,8 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         params.put("allergeni", allergeni);
         params.put("contiene", contiene);
         params.put("codice_ristorante", codiceRistorante);
+        params.put("tipo", tipoo);
+        params.put("tipoPietanza", tipoAlimento);
 
         CustomRequest ct = new CustomRequest(url, params, this, this);
         ct.sendPostRequest();

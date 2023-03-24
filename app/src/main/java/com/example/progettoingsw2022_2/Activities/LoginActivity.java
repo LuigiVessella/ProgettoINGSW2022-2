@@ -19,7 +19,10 @@ import java.util.Map;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
@@ -27,29 +30,29 @@ import com.skydoves.balloon.BalloonAnimation;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class LoginActivity extends AppCompatActivity implements VolleyCallback {
     private EditText emailLoginText, passwordLoginText;
     private Button loginActivityButton;
     private TextView titleSign;
     private Balloon myBalloon;
     private ImageView logo;
+    private GifImageView loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         inizializzaComponenti();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                myBalloon.showAlignRight(logo);
-            }
-        }, 500);
+        new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }
 
     private void inizializzaComponenti(){
 
         loginActivityButton = findViewById(R.id.loginActButton);
+        loginActivityButton.setEnabled(true);
+        loading = findViewById(R.id.loadingGIF);
         emailLoginText = findViewById(R.id.emailLoginText);
         passwordLoginText = findViewById(R.id.passwordLoginText);
         titleSign = findViewById(R.id.titleSign);
@@ -59,30 +62,29 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
                 .setArrowPosition(0.01f)
-                //.setWidth(BalloonSizeSpec.WRAP)
                 .setHeight(100)
                 .setWidth(250)
                 .setTextSize(15f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
-                .setText("Inizia facendo il login!")
+                .setText(getString(R.string.ballonLogin))
                 .setTextSize(16)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(Color.rgb(198,173,119))
                 .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
                 .setDismissWhenTouchOutside(false)
-                //.setLifecycleOwner(this)
                 .build();
 
-        loginActivityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(emailLoginText.getText().length() < 5 || passwordLoginText.getText().length() < 2) {
-                    emailLoginText.setError("compilare i campi correttamente");
-                    passwordLoginText.setText("");
-                }else
-                    sendLoginRequest(emailLoginText.getText(), passwordLoginText.getText());
-            }
+        loginActivityButton.setOnClickListener(view -> {
+            loginActivityButton.setEnabled(false);
+            loading.setVisibility(View.VISIBLE);
+            if(emailLoginText.getText().length() < 5 || passwordLoginText.getText().length() < 2) {
+                emailLoginText.setError("compilare i campi correttamente");
+                passwordLoginText.setText("");
+                loginActivityButton.setEnabled(true);
+                loading.setVisibility(View.INVISIBLE);
+            }else
+                sendLoginRequest(emailLoginText.getText(), passwordLoginText.getText());
         });
 
     }
@@ -97,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
         Log.i("info", hashedPassword);
 
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("email", email.toString());
         params.put("hashedPassword", hashedPassword);
 
@@ -107,16 +109,16 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
     }
 
 
-    private void switchToAdminDashboardActivity(String email){
+    private void switchToAdminDashboardActivity(Admin admin){
         Intent newAct = new Intent(LoginActivity.this, AdminDashboardActivity.class);
-        newAct.putExtra("email", email);
+        newAct.putExtra("admin", admin);
         startActivity(newAct);
         finish();
     }
 
-    private void switchToWaiterDashboardActivity(String email){
+    private void switchToWaiterDashboardActivity(Admin admin){
         Intent newAct = new Intent(LoginActivity.this, WaiterDashboard.class);
-        newAct.putExtra("email", email);
+        newAct.putExtra("admin", admin);
         startActivity(newAct);
         finish();
     }
@@ -124,18 +126,19 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
     @Override
     public void onSuccess(String result) {
-        Log.i("VOLLEY", result);
-        if(result.equals("admin")) {
-            Log.i("INFO LOGIN", "admin ok");
-            switchToAdminDashboardActivity(String.valueOf(emailLoginText.getText()));
-        }
-        else if(result.equals("cameriere")){
-            Log.i("INFO LOGIN", "cameriere ok");
-            switchToWaiterDashboardActivity(String.valueOf(emailLoginText.getText()));
-        }
-        else {
+        Gson gson = new Gson();
+        Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
+
+        if(admin == null) {
+            Log.i("INFO LOGIN", "ricevuto null");
             emailLoginText.setError(getString(R.string.loginWrongCred));
             passwordLoginText.setText("");
+            loginActivityButton.setEnabled(true);
+            loading.setVisibility(View.INVISIBLE);
+        }
+        else{
+            System.out.println(admin.getNome());
+            switchToAdminDashboardActivity(admin);
         }
 
     }

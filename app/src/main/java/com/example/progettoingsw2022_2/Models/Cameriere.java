@@ -1,6 +1,8 @@
 package com.example.progettoingsw2022_2.Models;
 
-public class Cameriere extends Lavoratore {
+import java.io.Serializable;
+
+public class Cameriere extends Lavoratore implements Serializable {
 
     public Cameriere(){}
 

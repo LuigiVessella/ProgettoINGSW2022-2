@@ -16,32 +16,29 @@
     <string name="registerBtn">register</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="register_title">You choose to register. You\'ll be resturant admin</string>
-    <string name="register_name">Name*</string>
-    <string name="register_name_editText">Name</string>
-    <string name="register_surname_editText">Surname</string>
-    <string name="register_pass" translatable="false">Password*</string>
-    <string name="register_pass_editText" translatable="false">Password</string>
-    <string name="register_email" translatable="false">Email*</string>
-    <string name="register_email_editText" translatable="false">Email</string>
-    <string name="register_PartitaIVA">VAT Number*</string>
-    <string name="register_PartitaIVA_editText">VAT Number</string>
-    <string name="register_CodiceFiscale">Fiscal Code*</string>
-    <string name="register_CodiceFiscale_editText">Fiscal Code</string>
-    <string name="register_Ruolo">Position*</string>
+    <string name="nameRequired">Name*</string>
+    <string name="PasswordRequired" translatable="false">Password*</string>
+    <string name="Password" translatable="false">Password</string>
+    <string name="EmailRequired" translatable="false">Email*</string>
+    <string name="Email" translatable="false">Email</string>
+    <string name="PartitaIVARequired">VAT Number*</string>
+    <string name="PartitaIVA">VAT Number</string>
+    <string name="CodiceFiscaleRequired">Fiscal Code*</string>
+    <string name="CodiceFiscale">Fiscal Code</string>
+    <string name="RoleRequired">Position*</string>
     <string name="welcome_register_waiter" translatable="true">You are entering a new waiter</string>
     <string name="welcome">WELCOME</string>
     <string name="registerOK">Register succesful!</string>
     <string name="registerWrong">Something Wrong!</string>
     <string name="loginWrongCred">Invalid credentials</string>
-    <string name="loginInsertCred">Se sei un dipendente, le credenziali sono state fornite dall\'admin!</string>
+    <string name="loginInsertCred">Insert credentials</string>
     <string name="AdminControlPanelText">Panel of:</string>
     <string name="AdminResturant">Your resturant:</string>
-    <string name="addResturantBtn">Add resturant</string>
-    <string name="ExitBtn">Exit</string>
+    <string name="addResturant">Add resturant</string>
+    <string name="Exit">Exit</string>
     <string name="resturantString">Resturant</string>
-    <string name="addWaiterBtn">Add waiter</string>
-    <string name="addMenuBtn">Add Menu</string>
+    <string name="addWaiter">Add waiter</string>
+    <string name="addMenu">Add Menu</string>
     <string name="WaiterString">Waiter</string>
     <string name="Save">Save</string>
     <string name="location">Address</string>
@@ -55,17 +52,28 @@
     <string name="tableNumber">Table Number</string>
     <string name="orderStatus">Order Status</string>
     <string name="welcomeWaiter">Welcome: </string>
-    <string name="balloonRegisterText">"Get started as an Administrator!"</string>
-    <string name="balloonRegisterEmployeeText">\"Register your employee here!\"</string>
-    <string name="balloonAdminDashboardText">\"Here you can manage your Restaurants!\"</string>
-    <string name="register_surname">Cognome*</string>
-    <string name="addRestaurantBtn">Add Restaurant</string>
-    <string name="modifyRestaurantBtn">Modify Restaurant</string>
-    <string name="profileBtn">Profile</string>
-    <string name="showStats">Show Statistics</string>
-    <string name="Logout" translatable="false">Logout</string>
-    <string name="LogoutDialog">Are you sure you want to exit?</string>
-    <string name="YesUpper">YES</string>
-    <string name="NoUpper" translatable="false">NO</string>
+    <string name="balloonRegister">\"Get started as an Administrator!\"</string>
+    <string name="balloonRegisterEmployee">\"Register your employee here!\"</string>
+    <string name="balloonAdminDashboard">\"Here you can manage your Restaurants!\"</string>
+    <string name="SurnameRequired">Surname*</string>
+    <string name="edit">Edit</string>
+    <string name="profile">Profile</string>
+    <string name="showStats">Statistics</string>
+    <string name="Logout">Logout</string>
+    <string name="add_waiter">Add waiter</string>
+    <string name="manage_menu">Manage Menu</string>
+    <string name="download_menu">Download Menu</string>
+    <string name="add_product">Add product</string>
+    <string name="ballonLogin">\"Start with login!\"</string>
+    <string name="app_logo_for_balloon" translatable="false">App Logo for balloon</string>
+    <string name="profileBalloon">\"Here there is your profile\"</string>
+    <string name="nameLabel">Name:</string>
+    <string name="surnameLabel">Surname:</string>
+    <string name="CodiceFiscaleLabel">Fiscal Code:</string>
+    <string name="emailLabel" translatable="false">Email:</string>
+    <string name="PartitaIVALabel">VAT Number:</string>
+    <string name="Manage">Manage</string>
+    <string name="passwordLabel" translatable="false">Password:</string>
+
 
 </resources>

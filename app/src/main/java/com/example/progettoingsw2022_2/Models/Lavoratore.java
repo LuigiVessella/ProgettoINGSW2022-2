@@ -1,6 +1,8 @@
 package com.example.progettoingsw2022_2.Models;
 
-public abstract class Lavoratore {
+import java.io.Serializable;
+
+public abstract class Lavoratore implements Serializable {
     private String codiceFiscale;
 
     private String nome;

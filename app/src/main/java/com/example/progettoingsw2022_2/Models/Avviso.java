@@ -1,4 +1,6 @@
 package com.example.progettoingsw2022_2.Models;
 
-public class Avviso {
+import java.io.Serializable;
+
+public class Avviso implements Serializable {
 }

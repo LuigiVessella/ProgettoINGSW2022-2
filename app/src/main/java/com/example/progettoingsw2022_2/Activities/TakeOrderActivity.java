@@ -2,7 +2,9 @@ package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
@@ -38,6 +40,13 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
         addPlateOrder = findViewById(R.id.buttonAddPlateOrder);
         tableNumberSpinner = findViewById(R.id.spinnerTableNumberOrder);
+        tableNumberSpinner = findViewById(R.id.spinnerTableNumberOrder);
+
+        Integer[] numeri = {1,2,3,4,5};
+
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, numeri);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tableNumberSpinner.setAdapter(adapter);
 
         getMenu();
 

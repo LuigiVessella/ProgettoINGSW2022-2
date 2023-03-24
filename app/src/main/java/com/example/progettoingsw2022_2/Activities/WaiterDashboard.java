@@ -38,5 +38,13 @@ public class WaiterDashboard extends AppCompatActivity {
            }
        });
 
+       takeOrderButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               startActivity(new Intent(WaiterDashboard.this, TakeOrderActivity.class));
+
+           }
+       });
+
     }
 }

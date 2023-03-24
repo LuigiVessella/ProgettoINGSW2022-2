@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Add product" />
+                android:text="@string/add_product" />
 
         </LinearLayout>
 
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Download Menu" />
+                android:text="@string/download_menu" />
 
         </LinearLayout>
 

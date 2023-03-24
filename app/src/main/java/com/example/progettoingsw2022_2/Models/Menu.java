@@ -1,6 +1,8 @@
 package com.example.progettoingsw2022_2.Models;
 
-public class Menu {
+import java.io.Serializable;
+
+public class Menu implements Serializable {
 
     private Long id_menu;
     private String nome_piatto;
@@ -9,6 +11,12 @@ public class Menu {
     private String contiene;
     private String prezzo;
     private Ristorante ristorante;
+
+
+
+    private String tipo; //primo, secondo, dessert, ecc
+    private String tipoPietanza; //pesce, carne, ecc
+    //quindi primo di pesce, secondo di carne, ecc
 
     public Menu() {
     }
@@ -67,5 +75,22 @@ public class Menu {
 
     public void setRistorante(Ristorante ristorante) {
         this.ristorante = ristorante;
+    }
+
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipoPietanza() {
+        return tipoPietanza;
+    }
+
+    public void setTipoPietanza(String tipoPietanza) {
+        this.tipoPietanza = tipoPietanza;
     }
 }

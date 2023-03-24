@@ -18,7 +18,7 @@
         android:drawablePadding="10dp"
         android:ems="10"
         android:fontFamily="@font/roboto"
-        android:hint="@string/register_name_editText"
+        android:hint="@string/Name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:paddingStart="5dp"

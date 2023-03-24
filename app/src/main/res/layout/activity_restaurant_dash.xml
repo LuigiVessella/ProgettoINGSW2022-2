@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto"
-                android:text="Add waiter" />
+                android:text="@string/add_waiter" />
 
         </LinearLayout>
 
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto"
-                android:text="Manage Menu" />
+                android:text="@string/manage_menu" />
 
         </LinearLayout>
 
@@ -112,6 +112,7 @@
         android:layout_height="243dp"
         android:layout_marginTop="2dp"
         android:background="@drawable/dialog_border_view"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"

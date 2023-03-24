@@ -23,10 +23,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RestaurantDashActivity extends AppCompatActivity implements VolleyCallback {
+public class RestaurantDashActivity extends AppCompatActivity {
 
     private TextView welcomeText;
-    private String restaurantName, restaurantCode;
+
+    private Ristorante ristorante;
     private CardView addCameriereButton, addMenuButton;
     private LinearLayout waiterLinearL;
 
@@ -39,18 +40,13 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
 
     }
 
-
     private void inizializzaComponenti() {
-        restaurantName = getIntent().getStringExtra("nomeRistorante");
-        restaurantCode = getIntent().getStringExtra("codiceRistorante");
-
+        ristorante = (Ristorante) getIntent().getSerializableExtra("ristorante");
         welcomeText = findViewById(R.id.welcomeRestaurantText);
         addCameriereButton = findViewById(R.id.addWaiterCard);
         addMenuButton = findViewById(R.id.manageMenuCard);
         waiterLinearL = findViewById(R.id.waiterListLinear);
-
-
-        welcomeText.setText(getString(R.string.resturantString)+": "+ restaurantName);
+        welcomeText.setText(getString(R.string.resturantString)+": "+ ristorante.getNome());
 
         addCameriereButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,24 +65,11 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
     }
 
 
-    private void visualizzaCamerieri() {
-        System.out.println(restaurantCode);
-        String url = "/ristorante/getCamerieri";
-        Map<String, String> params = new HashMap<>();
-        params.put("codiceRistorante", restaurantCode);
-        CustomRequest customRequest = new CustomRequest(url, params, RestaurantDashActivity.this, RestaurantDashActivity.this);
-        customRequest.sendPostRequest();
-    }
+    public void visualizzaCamerieri() {
 
-    @Override
-    public void onSuccess(String result) {
-
-        Gson gson = new Gson();
-        List<Cameriere> camerieri = gson.fromJson(result, new TypeToken<List<Cameriere>>() {
-        }.getType());
-        if (!camerieri.isEmpty()) {
+        if (!ristorante.getCamerieri().isEmpty()) {
             int i = 0;
-            for (Cameriere cameriere : camerieri) {
+            for (Cameriere cameriere : ristorante.getCamerieri()) {
                 i++;
                 TextView txv = new TextView(this);
                 txv.setText(getString(R.string.WaiterString)+" "+ i +": " +  cameriere.getNome());
@@ -99,15 +82,16 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
 
 
     private void switchToAddCameriere(){
+        System.out.println(ristorante.getCodice_ristorante());
         Intent newAct = new Intent(RestaurantDashActivity.this, SaveWaiter.class);
-        newAct.putExtra("codiceRistorante", restaurantCode);
+        newAct.putExtra("codiceRistorante", ristorante.getCodice_ristorante());
         startActivity(newAct);
 
     };
     private void switchToMenuActivity(){
         Intent newAct = new Intent(RestaurantDashActivity.this, MenuManager.class);
-        newAct.putExtra("codiceRistorante", restaurantCode);
-        newAct.putExtra("nomeRistorante", restaurantName);
+        newAct.putExtra("codiceRistorante", ristorante.getCodice_ristorante());
+        newAct.putExtra("nomeRistorante", ristorante.getNome());
         startActivity(newAct);
     };
 }

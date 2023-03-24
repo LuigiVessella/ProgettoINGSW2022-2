@@ -28,7 +28,7 @@
             <TextView
                 android:id="@+id/tableNumberLabel"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/tableNumber"
