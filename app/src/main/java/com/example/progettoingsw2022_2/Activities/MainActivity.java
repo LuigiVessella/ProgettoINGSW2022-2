@@ -13,13 +13,13 @@ import android.widget.TextView;
 import com.example.progettoingsw2022_2.R;
 
 public class MainActivity extends AppCompatActivity {
-    private Button registerButton, loginButton;
-    private TextView accediText, registraText;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Button registerButton, loginButton;
+        TextView accediText, registraText;
 
         setContentView(R.layout.activity_main);
 

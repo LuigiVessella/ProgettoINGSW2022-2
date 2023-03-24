@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sfondo_1_con_patina"
+    tools:context=".Activities.ProfileActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profilePartitaIVALayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileCodiceFiscaleLayout"
+        app:layout_constraintVertical_bias="0.015">
+
+        <TextView
+            android:id="@+id/profilePartitaIVA"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lobster"
+            android:text="@string/PartitaIVALabel"
+            android:textColor="@color/bianco"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profilePartitaIVATextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toEndOf="@+id/profilePartitaIVA"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ProfileTextInputPartitaIVA"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:fontFamily="@font/roboto"
+                android:inputType="none"
+                android:singleLine="true"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHighlight="#42260A"
+                android:textColorHint="@color/grigio_chiaro"
+                android:textCursorDrawable="@drawable/cursor_color"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileCodiceFiscaleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileEmailLayout"
+        app:layout_constraintVertical_bias="0.015">
+
+        <TextView
+            android:id="@+id/profileCodiceFiscale"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lobster"
+            android:text="@string/CodiceFiscaleLabel"
+            android:textColor="@color/bianco"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileCodiceFiscaleTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profileCodiceFiscale"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.2">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ProfileTextInputCodiceFiscale"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:fontFamily="@font/roboto"
+                android:inputType="none"
+                android:singleLine="true"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHighlight="#42260A"
+                android:textColorHint="@color/grigio_chiaro"
+                android:textCursorDrawable="@drawable/cursor_color"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileEmailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileSurnameLayout"
+        app:layout_constraintVertical_bias="0.018">
+
+        <TextView
+            android:id="@+id/profileEmail"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lobster"
+            android:text="@string/emailLabel"
+            android:textColor="@color/bianco"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileEmailTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toEndOf="@+id/profileEmail"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ProfileTextInputEmail"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:fontFamily="@font/roboto"
+                android:inputType="none"
+                android:singleLine="true"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHighlight="#42260A"
+                android:textColorHint="@color/grigio_chiaro"
+                android:textCursorDrawable="@drawable/cursor_color"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileSurnameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileNameLayout"
+        app:layout_constraintVertical_bias="0.015">
+
+        <TextView
+            android:id="@+id/profileSurname"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lobster"
+            android:text="@string/surnameLabel"
+            android:textColor="@color/bianco"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileSurnameTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toEndOf="@+id/profileSurname"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ProfileTextInputSurname"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:fontFamily="@font/roboto"
+                android:inputType="none"
+                android:singleLine="true"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHighlight="#42260A"
+                android:textColorHint="@color/grigio_chiaro"
+                android:textCursorDrawable="@drawable/cursor_color"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutAdminTop"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03">
+
+        <ImageView
+            android:id="@+id/logoBiagioProfile"
+            android:layout_width="129dp"
+            android:layout_height="130dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="12dp"
+            android:contentDescription="@string/app_logo_for_balloon"
+            app:srcCompat="@drawable/logobiagio" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileNameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutAdminTop"
+        app:layout_constraintVertical_bias="0.027">
+
+        <TextView
+            android:id="@+id/profileName"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lobster"
+            android:text="@string/nameLabel"
+            android:textColor="@color/bianco"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileNameTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profileName"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.2">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ProfileTextInputName"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:fontFamily="@font/roboto"
+                android:inputType="none"
+                android:singleLine="true"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHighlight="#42260A"
+                android:textColorHint="@color/grigio_chiaro"
+                android:textCursorDrawable="@drawable/cursor_color"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/ProfileEditBtn"
+        android:layout_width="155dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:fontFamily="@font/roboto"
+        android:text="@string/edit"
+        android:textColor="@color/bianco"
+        app:cornerRadius="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePartitaIVALayout"
+        app:layout_constraintVertical_bias="0.095" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

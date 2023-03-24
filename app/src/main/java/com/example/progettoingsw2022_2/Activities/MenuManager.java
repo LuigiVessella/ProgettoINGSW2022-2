@@ -11,28 +11,22 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.text.Html;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.DialogFragment;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Menu;
-import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -67,9 +61,8 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuManager extends AppCompatActivity implements VolleyCallback {
-    private Button okButtonDialog, cancelButtonDialog, goProductButton;
+    private Button okButtonDialog, goProductButton;
 
-    private CardView generateMenuCard, addProductCard;
     //EditText presenti nel layout:
     private EditText itemMenuDescription, price, allergensEditText;
     private Dialog dialog;
@@ -83,7 +76,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
 
     private Spinner tipo, tipoAlimento;
-    private String codiceRistorante, nomeRistorante;
+    private String codiceRistorante;
 
     private List<Menu> menus;
 
@@ -94,17 +87,14 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         inizializzaComponenti();
 
         codiceRistorante = getIntent().getStringExtra("codiceRistorante");
-        nomeRistorante = getIntent().getStringExtra("nomeRistorante");
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                myBalloon.showAlignRight(logo);
-            }
-        }, 500);
+        new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }
 
     private void inizializzaComponenti(){
+        Button cancelButtonDialog;
+        CardView generateMenuCard, addProductCard;
+
         String[] COUNTRIES = new String[] {
                 "Estathe", "Coca-Cola", "Pepsi", "Fanta", "Sprite"
         };
@@ -158,93 +148,71 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
         goProductButton.setEnabled(false);
 
-        preconfSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b) {
-                    goProductButton.setEnabled(true);
-                    itemMenuDescription.setEnabled(false);
-                    allergensEditText.setEnabled(false);
-                }
-                else {
-                    goProductButton.setEnabled(false);
-                    itemMenuDescription.setText("");
-                    autoCompleteTextView.setText("");
+        preconfSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(b) {
+                goProductButton.setEnabled(true);
+                itemMenuDescription.setEnabled(false);
+                allergensEditText.setEnabled(false);
+            }
+            else {
+                goProductButton.setEnabled(false);
+                itemMenuDescription.setText("");
+                autoCompleteTextView.setText("");
 
-                    goProductButton.setEnabled(true);
-                    itemMenuDescription.setEnabled(true);
-                    allergensEditText.setEnabled(true);
-                }
-             }
-        });
+                goProductButton.setEnabled(true);
+                itemMenuDescription.setEnabled(true);
+                allergensEditText.setEnabled(true);
+            }
+         });
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, COUNTRIES);
 
         autoCompleteTextView.setAdapter(adapter);
         addProductCard = findViewById(R.id.addProductCard);
         generateMenuCard = findViewById(R.id.generateMenuCard);
 
-        goProductButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(autoCompleteTextView.getText().length() > 3) {
-                    sendHttpRequestOpenFood(autoCompleteTextView.getText().toString());
-                    okButtonDialog.setEnabled(true);
-                }
+        goProductButton.setOnClickListener(view -> {
+            if(autoCompleteTextView.getText().length() > 3) {
+                sendHttpRequestOpenFood(autoCompleteTextView.getText().toString());
+                okButtonDialog.setEnabled(true);
             }
         });
-        generateMenuCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createMenu();
+        generateMenuCard.setOnClickListener(view -> createMenu());
+        addProductCard.setOnClickListener(view -> dialog.show());
+
+        okButtonDialog.setOnClickListener(view -> {
+
+            //product_name e descrizione dipendono da openfood oppure dal contenuto personalizzato
+            product_name = autoCompleteTextView.getText().toString();
+            description = itemMenuDescription.getText().toString();
+            prezzo = price.getText().toString();
+
+            String tipoo = tipo.getSelectedItem().toString();
+            String tipAlimento = tipoAlimento.getSelectedItem().toString();
+
+            //da rivedere qui
+            if(allergens==null) allergens = allergensEditText.getText().toString();
+            if(ingredients_list == null) ingredients_list = "sample_string";
+
+            if(product_name.equals("") || description.equals("") || prezzo.equals("")){
+                autoCompleteTextView.setError("Riempi tutti i campi!");
             }
-        });
-        addProductCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.show();
-            }
-        });
-
-        okButtonDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //product_name e descrizione dipendono da openfood oppure dal contenuto personalizzato
-                product_name = autoCompleteTextView.getText().toString();
-                description = itemMenuDescription.getText().toString();
-                prezzo = price.getText().toString();
-
-                String tipoo = tipo.getSelectedItem().toString();
-                String tipAlimento = tipoAlimento.getSelectedItem().toString();
-
-                //da rivedere qui
-                if(allergens==null) allergens = allergensEditText.getText().toString();
-                if(ingredients_list == null) ingredients_list = "sample_string";
-
-                if(product_name.equals("") || description.equals("") || prezzo.equals("")){
-                    autoCompleteTextView.setError("Riempi tutti i campi!");
-                }
-                else {
-                    //quando premiamo ok prendiamo prima tutti i dati e poi mandiamo la richeista
-                    sendAddMenuRequest(product_name, description, prezzo, allergens, ingredients_list, tipoo, tipAlimento);
-                    dialog.dismiss();
-                }
-
-            }
-        });
-
-        cancelButtonDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                itemMenuDescription.setText("");
-                autoCompleteTextView.setText("");
-
+            else {
+                //quando premiamo ok prendiamo prima tutti i dati e poi mandiamo la richeista
+                sendAddMenuRequest(product_name, description, prezzo, allergens, ingredients_list, tipoo, tipAlimento);
                 dialog.dismiss();
-
             }
+
+        });
+
+        cancelButtonDialog.setOnClickListener(view -> {
+            itemMenuDescription.setText("");
+            autoCompleteTextView.setText("");
+
+            dialog.dismiss();
+
         });
     }
 
@@ -276,16 +244,14 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.menu_background_2);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            Image img = null;
+            Image img;
             byte[] byteArray = stream.toByteArray();
             try {
                 img = Image.getInstance(byteArray);
                 img.scaleAbsolute(PageSize.A4);
                 img.setAbsolutePosition(0, 0);
                 canvas.addImage(img);
-            } catch (BadElementException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (BadElementException | IOException e) {
                 e.printStackTrace();
             }
 
@@ -388,15 +354,10 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
             }
         }
-        catch (ArrayIndexOutOfBoundsException e) {
+        catch (ArrayIndexOutOfBoundsException | JsonParseException e) {
             e.printStackTrace();
             Log.i("warning", "nessun risultato");
-        }
-        catch (JsonParseException e) {
-            e.printStackTrace();
-            Log.i("warning", "nessun risultato");
-        }
-        catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
             Log.i("warning", "nessun risultato");
             Toast.makeText(this, "Generic error", Toast.LENGTH_SHORT).show();

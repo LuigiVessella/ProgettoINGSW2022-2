@@ -55,4 +55,14 @@
     <string name="CodiceFiscaleLabel">Código de Identificación Fiscal:</string>
     <string name="PartitaIVALabel">Número de Identificación Fiscal:</string>
     <string name="Manage">Administrar</string>
+    <string name="loginWrongCred2">llenar los campos correctamente!</string>
+    <string name="dialogAddProduct_name">Nombre de producto ...</string>
+    <string name="dialogAddProduct_description">Descripciòn ...</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="dialogAddProduct_allergens">Alérgenos ...</string>
+    <string name="dialogAddProduct_price">Precio ...</string>
+    <string name="Type">Chico</string>
+    <string name="Food_type">Tipo de comida</string>
+    <string name="Prepackaged">preenvasado</string>
+    <string name="Search">Cerca</string>
 </resources>

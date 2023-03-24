@@ -74,6 +74,17 @@
     <string name="PartitaIVALabel">VAT Number:</string>
     <string name="Manage">Manage</string>
     <string name="passwordLabel" translatable="false">Password:</string>
+    <string name="loginWrongCred2">Fill the fields correctly!</string>
+    <string name="dialogAddProduct_name">Product name ...</string>
+    <string name="dialogAddProduct_description">Description ...</string>
+    <string name="dialogAddProduct_allergens">Allergens ...</string>
+    <string name="dialogAddProduct_price">Price ...</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Ok" translatable="false">Ok</string>
+    <string name="Type">Type</string>
+    <string name="Food_type">Food type</string>
+    <string name="Search">Search</string>
+    <string name="Prepackaged">Prepackaged</string>
 
 
 </resources>

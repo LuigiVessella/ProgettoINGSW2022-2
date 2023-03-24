@@ -55,6 +55,16 @@
     <string name="CodiceFiscaleLabel">Codice Fiscale:</string>
     <string name="PartitaIVALabel">Partita IVA:</string>
     <string name="Manage">Gestisci</string>
+    <string name="loginWrongCred2">Compilare i campi correttamente!</string>
+    <string name="dialogAddProduct_name">Nome prodotto ...</string>
+    <string name="dialogAddProduct_description">Descrizione ...</string>
+    <string name="Cancel">Annulla</string>
+    <string name="dialogAddProduct_price">Prezzo ...</string>
+    <string name="dialogAddProduct_allergens">Allergeni ...</string>
+    <string name="Type">Tipo</string>
+    <string name="Food_type">Tipo alimento</string>
+    <string name="Search">Cerca</string>
+    <string name="Prepackaged">Preconfezionato</string>
 
 
 </resources>

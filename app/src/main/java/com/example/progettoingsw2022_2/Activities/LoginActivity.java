@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +34,6 @@ import pl.droidsonroids.gif.GifImageView;
 public class LoginActivity extends AppCompatActivity implements VolleyCallback {
     private EditText emailLoginText, passwordLoginText;
     private Button loginActivityButton;
-    private TextView titleSign;
     private Balloon myBalloon;
     private ImageView logo;
     private GifImageView loading;
@@ -55,7 +53,6 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         loading = findViewById(R.id.loadingGIF);
         emailLoginText = findViewById(R.id.emailLoginText);
         passwordLoginText = findViewById(R.id.passwordLoginText);
-        titleSign = findViewById(R.id.titleSign);
 
         logo = findViewById(R.id.logoBiagioTestMenu);
         myBalloon = new Balloon.Builder(LoginActivity.this)
@@ -79,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             loginActivityButton.setEnabled(false);
             loading.setVisibility(View.VISIBLE);
             if(emailLoginText.getText().length() < 5 || passwordLoginText.getText().length() < 2) {
-                emailLoginText.setError("compilare i campi correttamente");
+                emailLoginText.setError(getString(R.string.loginWrongCred2));
                 passwordLoginText.setText("");
                 loginActivityButton.setEnabled(true);
                 loading.setVisibility(View.INVISIBLE);

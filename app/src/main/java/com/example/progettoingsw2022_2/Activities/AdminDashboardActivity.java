@@ -24,7 +24,6 @@ import com.example.progettoingsw2022_2.R;
 import com.skydoves.balloon.*;
 
 public class AdminDashboardActivity extends AppCompatActivity {
-    private CardView addRestaurantCard, logOutCard, profileCard;
     private Admin admin = null;
     private ImageView logo;
     private Balloon myBalloon;
@@ -39,7 +38,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
     }
 
     private void inizializzaComponenti(){
-
+        CardView addRestaurantCard, logOutCard, profileCard;
         profileCard = findViewById(R.id.profileCard);
         logOutCard = findViewById(R.id.logoutCard);
         addRestaurantCard = findViewById(R.id.addRestaurantCard);
