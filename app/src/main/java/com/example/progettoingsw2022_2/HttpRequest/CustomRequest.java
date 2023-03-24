@@ -1,29 +1,20 @@
 package com.example.progettoingsw2022_2.HttpRequest;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Semaphore;
 
 public class CustomRequest {
-    //private String url = "http://20.86.153.84:8080";
-    private String url = "http://192.168.1.9:8080";
+    private String url = "http://20.86.153.84:8080";
     private  Map<String, String> params;
     private Context context;
 
-    private String resultString = null;
     private VolleyCallback volleyCallback;
 
 
@@ -36,30 +27,20 @@ public class CustomRequest {
     }
 
     public void sendGetRequest() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.i("VOLLEY", response);
-                        volleyCallback.onSuccess(response);
-                    }
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
+                    Log.i("VOLLEY", response);
+                    volleyCallback.onSuccess(response);
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("VOLLEY", error.toString());
-
-                    }
-                }) {
+                error -> Log.e("VOLLEY", error.toString())) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Log.i("INFO Params", params.get(0));
                 return params;
             }
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
 
                 if(url.contains("openfoodfacts"))params.put("Content-Type", "application/json");
                 else params.put("Content-Type", "application/x-www-form-urlencoded");
@@ -75,28 +56,19 @@ public class CustomRequest {
 
     public void sendPostRequest() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.i("VOLLEY", response);
-                        volleyCallback.onSuccess(response);
+                response -> {
+                    Log.i("VOLLEY", response);
+                    volleyCallback.onSuccess(response);
 
-                    }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("VOLLEY", error.toString());
-
-                    }
-                }) {
+                error -> Log.e("VOLLEY", error.toString())) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 return params;
             }
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
                 if(url.contains("openfoodfacts"))params.put("Content-Type", "application/json");
                 else params.put("Content-Type", "application/x-www-form-urlencoded");
                 return params;
