@@ -1,6 +1,8 @@
 package com.example.progettoingsw2022_2.Models;
 
-public class Menu {
+import java.io.Serializable;
+
+public class Menu implements Serializable {
 
     private Long id_menu;
     private String nome_piatto;

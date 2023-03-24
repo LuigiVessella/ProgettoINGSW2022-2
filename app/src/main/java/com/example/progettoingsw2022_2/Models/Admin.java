@@ -1,8 +1,9 @@
 package com.example.progettoingsw2022_2.Models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Admin extends Lavoratore {
+public class Admin extends Lavoratore implements Serializable {
     private String partita_iva;
     private List<Ristorante> ristoranti;
 

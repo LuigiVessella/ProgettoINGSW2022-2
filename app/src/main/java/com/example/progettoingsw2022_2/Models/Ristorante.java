@@ -1,8 +1,9 @@
 package com.example.progettoingsw2022_2.Models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Ristorante {
+public class Ristorante implements Serializable {
 
     private Long codice_ristorante;
     private String nome;

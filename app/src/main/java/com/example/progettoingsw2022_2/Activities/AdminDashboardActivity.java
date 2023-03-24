@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.google.gson.reflect.TypeToken;
@@ -30,9 +31,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AdminDashboardActivity extends AppCompatActivity implements VolleyCallback {
+public class AdminDashboardActivity extends AppCompatActivity {
     private CardView addRestaurantCard, logOutCard;
-    private String dataFromActivity = null;
+    private Admin admin = null;
     private ImageView logo;
     private Balloon myBalloon;
     private LinearLayout linearScrollLayout;
@@ -40,7 +41,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        dataFromActivity = getIntent().getStringExtra("email");
+        admin = (Admin) getIntent().getSerializableExtra("admin");
         inizializzaComponenti();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -80,7 +81,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
             @Override
             public void onClick(View view) {
                 Intent newAct = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);
-                newAct.putExtra("email", dataFromActivity);
+                newAct.putExtra("email", admin.getEmail());
                 startActivity(newAct);
             }
         });
@@ -96,23 +97,10 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
     }
 
 
-    private void visualizzaRistoranti() {
 
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("email", dataFromActivity.trim());
-        String url = "/admin/getRistoranti";
-
-        CustomRequest cR2 = new CustomRequest(url, params, AdminDashboardActivity.this, AdminDashboardActivity.this);
-        cR2.sendPostRequest();
-    }
-
-    @Override
-    public void onSuccess(String result) {
-        System.out.println("ho ricevuto" + result);
-        Gson gson = new Gson();
-        List<Ristorante> ristoranti = gson.fromJson(result, new TypeToken<List<Ristorante>>(){}.getType());
-        if(!ristoranti.isEmpty()) {
-            for(Ristorante ristorante: ristoranti) {
+    public void visualizzaRistoranti() {
+        if(!admin.getRistoranti().isEmpty()) {
+            for(Ristorante ristorante: admin.getRistoranti()) {
                 //System.out.println("stampo cameriere: " + ristoranti.get(0).getCamerieri().get(0).getNome());
 
                 TextView txv = new TextView(AdminDashboardActivity.this);
@@ -141,9 +129,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements VolleyC
                     public void onClick(View view) {
                         System.out.println(ristorante.getCodice_ristorante());
                         Intent nextAct = new Intent(AdminDashboardActivity.this, RestaurantDashActivity.class);
-                        nextAct.putExtra("nomeRistorante", ristorante.getNome());
-                        nextAct.putExtra("codiceRistorante", ristorante.getCodice_ristorante().toString());
-
+                        nextAct.putExtra("nomeRistorante", ristorante);
                         startActivity(nextAct);
 
                     }

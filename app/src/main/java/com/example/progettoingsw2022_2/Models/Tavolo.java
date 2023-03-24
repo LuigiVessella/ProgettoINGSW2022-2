@@ -1,6 +1,8 @@
 package com.example.progettoingsw2022_2.Models;
 
-public class Tavolo {
+import java.io.Serializable;
+
+public class Tavolo implements Serializable {
     private String orderName;
     private int tableNumber;
     private int progress;

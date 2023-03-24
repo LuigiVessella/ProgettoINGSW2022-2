@@ -15,11 +15,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Admin;
+import com.example.progettoingsw2022_2.Models.Cameriere;
+import com.example.progettoingsw2022_2.Models.Lavoratore;
 import com.example.progettoingsw2022_2.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
@@ -107,16 +113,16 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
     }
 
 
-    private void switchToAdminDashboardActivity(String email){
+    private void switchToAdminDashboardActivity(Admin admin){
         Intent newAct = new Intent(LoginActivity.this, AdminDashboardActivity.class);
-        newAct.putExtra("email", email);
+        newAct.putExtra("admin", admin);
         startActivity(newAct);
         finish();
     }
 
-    private void switchToWaiterDashboardActivity(String email){
+    private void switchToWaiterDashboardActivity(Admin admin){
         Intent newAct = new Intent(LoginActivity.this, WaiterDashboard.class);
-        newAct.putExtra("email", email);
+        newAct.putExtra("admin", admin);
         startActivity(newAct);
         finish();
     }
@@ -125,18 +131,18 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
     @Override
     public void onSuccess(String result) {
         Log.i("VOLLEY", result);
-        if(result.equals("admin")) {
-            Log.i("INFO LOGIN", "admin ok");
-            switchToAdminDashboardActivity(String.valueOf(emailLoginText.getText()));
-        }
-        else if(result.equals("cameriere")){
-            Log.i("INFO LOGIN", "cameriere ok");
-            switchToWaiterDashboardActivity(String.valueOf(emailLoginText.getText()));
-        }
-        else {
+        if(result.equals("")) {
+            Log.i("INFO LOGIN", "ricevuto null");
             emailLoginText.setError(getString(R.string.loginWrongCred));
             passwordLoginText.setText("");
         }
+        else{
+            Gson gson = new Gson();
+            Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
+            System.out.println(admin.getNome());
+            switchToAdminDashboardActivity(admin);
+        }
+
 
     }
 }
