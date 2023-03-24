@@ -3,7 +3,7 @@ package com.example.progettoingsw2022_2.Activities;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -29,12 +30,10 @@ import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Menu;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -61,6 +60,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("ALL")
 public class MenuManager extends AppCompatActivity implements VolleyCallback {
     private Button okButtonDialog, goProductButton;
 
@@ -91,7 +91,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     private void inizializzaComponenti(){
         Button cancelButtonDialog;
         CardView generateMenuCard, addProductCard;
-        Switch preconfSwitch;
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch preconfSwitch;
 
         String[] COUNTRIES = new String[] {
                 "Estathe", "Coca-Cola", "Pepsi", "Fanta", "Sprite"

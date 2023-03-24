@@ -69,6 +69,6 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
         Toast.makeText(this, "Ristorante salvato", Toast.LENGTH_SHORT).show();
 
         startActivity(new Intent(this, AdminDashboardActivity.class).putExtra("email", emailAdmin));
-        new Handler().postDelayed(() -> finishAfterTransition(),800);
+        new Handler().postDelayed(this::finishAfterTransition,800);
     }
 }

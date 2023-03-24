@@ -23,6 +23,7 @@ import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.skydoves.balloon.*;
 
+@SuppressWarnings("ALL")
 public class AdminDashboardActivity extends AppCompatActivity {
     private Admin admin = null;
     private ImageView logo;

@@ -17,14 +17,7 @@ import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
 
 public class ProfileActivity extends AppCompatActivity {
-    private Admin admin;
-    private TextInputEditText name;
-    private TextInputEditText surname;
-    private TextInputEditText codiceFiscale;
-    private TextInputEditText email;
-    private TextInputEditText partitaIVA;
     private Balloon myBalloon;
-    private Button edit;
     private ImageView logo;
 
     @Override
@@ -36,19 +29,19 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void inizializzaComponenti(){
-        admin = (Admin) getIntent().getSerializableExtra("admin");
-        name = findViewById(R.id.ProfileTextInputName);
-        surname = findViewById(R.id.ProfileTextInputSurname);
-        email = findViewById(R.id.ProfileTextInputEmail);
-        codiceFiscale = findViewById(R.id.ProfileTextInputCodiceFiscale);
-        partitaIVA = findViewById(R.id.ProfileTextInputPartitaIVA);
+        Admin admin = (Admin) getIntent().getSerializableExtra("admin");
+        TextInputEditText name = findViewById(R.id.ProfileTextInputName);
+        TextInputEditText surname = findViewById(R.id.ProfileTextInputSurname);
+        TextInputEditText email = findViewById(R.id.ProfileTextInputEmail);
+        TextInputEditText codiceFiscale = findViewById(R.id.ProfileTextInputCodiceFiscale);
+        TextInputEditText partitaIVA = findViewById(R.id.ProfileTextInputPartitaIVA);
         logo = findViewById(R.id.logoBiagioProfile);
         name.setText(admin.getNome());
         surname.setText(admin.getCognome());
         email.setText(admin.getEmail());
         codiceFiscale.setText(admin.getCodiceFiscale());
         partitaIVA.setText(admin.getPartita_iva());
-        edit = findViewById(R.id.ProfileEditBtn);
+        Button edit = findViewById(R.id.ProfileEditBtn);
         myBalloon = new Balloon.Builder(ProfileActivity.this)
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
