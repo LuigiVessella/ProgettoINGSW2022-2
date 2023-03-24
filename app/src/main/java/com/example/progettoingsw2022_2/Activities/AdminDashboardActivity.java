@@ -75,6 +75,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         profileCard.setOnClickListener(view -> {
             Intent goProfile = new Intent(AdminDashboardActivity.this, ProfileActivity.class);
             goProfile.putExtra("admin",admin);
+            startActivity(goProfile);
         });
 
         visualizzaRistoranti();
