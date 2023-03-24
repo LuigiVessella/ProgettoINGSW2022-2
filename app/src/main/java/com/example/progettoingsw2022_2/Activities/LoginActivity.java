@@ -127,7 +127,6 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         Gson gson = new Gson();
         Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
 
-
         if(admin == null) {
             Log.i("INFO LOGIN", "ricevuto null");
             emailLoginText.setError(getString(R.string.loginWrongCred));
@@ -141,7 +140,6 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             switchToWaiterDashboardActivity(cameriere);
         }
         else{
-
             switchToAdminDashboardActivity(admin);
         }
 
