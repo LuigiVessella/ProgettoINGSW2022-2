@@ -27,6 +27,7 @@ import androidx.core.app.ActivityCompat;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Menu;
+import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -73,9 +74,8 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     private ImageView logo;
     private AutoCompleteTextView autoCompleteTextView;
 
-
     private Spinner tipo, tipoAlimento;
-    private String codiceRistorante;
+    private Ristorante ristorante;
 
     private List<Menu> menus;
 
@@ -84,8 +84,6 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_manager);
         inizializzaComponenti();
-
-        codiceRistorante = getIntent().getStringExtra("codiceRistorante");
 
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }
@@ -102,6 +100,11 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 200);
         dialog = new Dialog(MenuManager.this);
         dialog.setContentView(R.layout.dialog_input_string);
+
+
+        ristorante = (Ristorante) getIntent().getSerializableExtra("ristorante");
+        menus = ristorante.getMenu();
+
 
         itemMenuDescription = dialog.findViewById(R.id.descriptionItemMenu);
         autoCompleteTextView = dialog.findViewById(R.id.autoCompleteTextView);
@@ -218,16 +221,11 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     private void createMenu(){
 
-        if(menus == null) {
-            sendGetMenusRequest();
-            return;
-        }
         String fileName = "output.pdf";
         // Definisci il percorso della cartella "Download"
         File downloadFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         // Crea il percorso completo del file PDF utilizzando il nome del file e la cartella "Download"
         File file = new File(downloadFolder, fileName);
-
 
         try {
 
@@ -320,7 +318,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         params.put("prezzo", prezzo);
         params.put("allergeni", allergeni);
         params.put("contiene", contiene);
-        params.put("codice_ristorante", codiceRistorante);
+        params.put("codice_ristorante", ristorante.getCodice_ristorante().toString());
         params.put("tipo", tipoo);
         params.put("tipoPietanza", tipoAlimento);
 
@@ -366,23 +364,6 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     }
 
-    private void sendGetMenusRequest(){
-
-        String url = "/menu/getMenu";
-        Map<String, String> params = new HashMap<>();
-        params.put("codice_ristorante", codiceRistorante);
-        CustomRequest newRequest = new CustomRequest(url ,params, this, this);
-        newRequest.sendPostRequest();
-    }
-
-    private void parseGetMenuResponse(String volleyResult){
-
-        //prendo il menu da Spring, riempio la lista dei piatti, richiamo createMenu()
-        Gson gson = new Gson();
-        menus = gson.fromJson(volleyResult, new TypeToken<List<Menu>>(){}.getType());
-        createMenu();
-    }
-
 
 
     @Override
@@ -391,9 +372,6 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
         if(result.equals("piatto salvato")){
             System.out.println("piatto aggiunto\n");
-        }
-        else if (result.contains("id_menu")){
-            parseGetMenuResponse(result);
         }
         else {
             parseJsonResponse(result);

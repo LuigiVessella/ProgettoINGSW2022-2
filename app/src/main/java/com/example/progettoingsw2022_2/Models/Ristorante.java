@@ -12,6 +12,16 @@ public class Ristorante implements Serializable {
     private Admin proprietario;
     private List<Cameriere> dipendenti;
 
+    public List<Menu> getMenu() {
+        return menu;
+    }
+
+    public void setMenu(List<Menu> menu) {
+        this.menu = menu;
+    }
+
+    private List<Menu> menu;
+
     public Ristorante() {
     }
 

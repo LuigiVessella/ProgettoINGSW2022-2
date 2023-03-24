@@ -3,18 +3,32 @@ package com.example.progettoingsw2022_2.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
+import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RestaurantDashActivity extends AppCompatActivity {
 
+    private TextView welcomeText;
+
     private Ristorante ristorante;
+    private CardView addCameriereButton, addMenuButton;
     private LinearLayout waiterLinearL;
 
     @Override
@@ -28,14 +42,24 @@ public class RestaurantDashActivity extends AppCompatActivity {
 
     private void inizializzaComponenti() {
         ristorante = (Ristorante) getIntent().getSerializableExtra("ristorante");
-        TextView welcomeText = findViewById(R.id.welcomeRestaurantText);
-        CardView addCameriereButton = findViewById(R.id.addWaiterCard);
-        CardView addMenuButton = findViewById(R.id.manageMenuCard);
+        welcomeText = findViewById(R.id.welcomeRestaurantText);
+        addCameriereButton = findViewById(R.id.addWaiterCard);
+        addMenuButton = findViewById(R.id.manageMenuCard);
         waiterLinearL = findViewById(R.id.waiterListLinear);
         welcomeText.setText(getString(R.string.resturantString)+": "+ ristorante.getNome());
 
-        addCameriereButton.setOnClickListener(view -> switchToAddCameriere());
-        addMenuButton.setOnClickListener(view -> switchToMenuActivity());
+        addCameriereButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switchToAddCameriere();
+            }
+        });
+        addMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switchToMenuActivity();
+            }
+        });
 
         visualizzaCamerieri();
     }
@@ -58,17 +82,14 @@ public class RestaurantDashActivity extends AppCompatActivity {
 
 
     private void switchToAddCameriere(){
-        System.out.println(ristorante.getCodice_ristorante());
         Intent newAct = new Intent(RestaurantDashActivity.this, SaveWaiter.class);
         newAct.putExtra("ristorante", ristorante);
         startActivity(newAct);
-
-    }
+    };
 
     private void switchToMenuActivity(){
         Intent newAct = new Intent(RestaurantDashActivity.this, MenuManager.class);
-        newAct.putExtra("codiceRistorante", ristorante.getCodice_ristorante());
-        newAct.putExtra("nomeRistorante", ristorante.getNome());
+        newAct.putExtra("ristorante", ristorante);
         startActivity(newAct);
-    }
+    };
 }
