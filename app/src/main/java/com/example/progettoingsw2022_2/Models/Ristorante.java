@@ -10,7 +10,17 @@ public class Ristorante implements Serializable {
     private int coperti;
     private String locazione;
     private Admin proprietario;
-    private List<Cameriere> dipendenti;
+
+
+
+    private List<Cameriere> camerieri;
+
+    private List<Menu> menu;
+
+
+    public Ristorante() {
+    }
+
 
     public List<Menu> getMenu() {
         return menu;
@@ -20,18 +30,6 @@ public class Ristorante implements Serializable {
         this.menu = menu;
     }
 
-    private List<Menu> menu;
-
-    public Ristorante() {
-    }
-
-    public List<Cameriere> getCamerieri() {
-        return dipendenti;
-    }
-
-    public void setCamerieri(List<Cameriere> camerieri) {
-        this.dipendenti = camerieri;
-    }
 
     public Admin getProprietario() {
         return proprietario;
@@ -40,8 +38,6 @@ public class Ristorante implements Serializable {
     public void setProprietario(Admin proprietario) {
         this.proprietario = proprietario;
     }
-
-
 
 
     public String getNome() {
@@ -75,6 +71,14 @@ public class Ristorante implements Serializable {
 
     public void setCodice_ristorante(Long codice_ristorante) {
         this.codice_ristorante = codice_ristorante;
+    }
+
+    public List<Cameriere> getCamerieri() {
+        return camerieri;
+    }
+
+    public void setCamerieri(List<Cameriere> camerieri) {
+        this.camerieri = camerieri;
     }
 
 

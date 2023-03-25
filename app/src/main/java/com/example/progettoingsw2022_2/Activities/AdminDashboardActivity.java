@@ -66,8 +66,8 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
         addRestaurantCard.setOnClickListener(view -> {
             Intent newAct = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);
-            newAct.putExtra("email", admin.getEmail());
-            startActivity(newAct);
+            newAct.putExtra("admin", admin);
+            startActivityForResult(newAct, 1);
         });
 
         logOutCard.setOnClickListener(view -> backToLoginActivity());
