@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -34,6 +35,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         admin = (Admin) getIntent().getSerializableExtra("admin");
+
         inizializzaComponenti();
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }
@@ -67,7 +69,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         addRestaurantCard.setOnClickListener(view -> {
             Intent newAct = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);
             newAct.putExtra("admin", admin);
-            startActivityForResult(newAct, 1);
+            startActivity(newAct);
         });
 
         logOutCard.setOnClickListener(view -> backToLoginActivity());
@@ -84,6 +86,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
 
     public void visualizzaRistoranti() {
+
         if(!admin.getRistoranti().isEmpty()) {
             for(Ristorante ristorante: admin.getRistoranti()) {
                 //System.out.println("stampo cameriere: " + ristoranti.get(0).getCamerieri().get(0).getNome());
@@ -178,4 +181,8 @@ public class AdminDashboardActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         dialog.setMessage(Html.fromHtml("<font color='#000000'>Sei sicuro di voler uscire?</font>"));
         }
-    }
+
+
+
+}
+

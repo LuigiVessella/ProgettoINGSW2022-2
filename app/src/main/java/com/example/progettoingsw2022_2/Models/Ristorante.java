@@ -11,10 +11,11 @@ public class Ristorante implements Serializable {
     private String locazione;
     private Admin proprietario;
 
-
-
     private List<Cameriere> camerieri;
 
+
+    private List<AddettoCucina> addettiCucina;
+    private Supervisore supervisore;
     private List<Menu> menu;
 
 
@@ -81,5 +82,21 @@ public class Ristorante implements Serializable {
         this.camerieri = camerieri;
     }
 
+
+    public List<AddettoCucina> getAddettiCucina() {
+        return addettiCucina;
+    }
+
+    public void setAddettiCucina(List<AddettoCucina> addettiCucina) {
+        this.addettiCucina = addettiCucina;
+    }
+
+    public Supervisore getSupervisore() {
+        return supervisore;
+    }
+
+    public void setSupervisore(Supervisore supervisore) {
+        this.supervisore = supervisore;
+    }
 
 }

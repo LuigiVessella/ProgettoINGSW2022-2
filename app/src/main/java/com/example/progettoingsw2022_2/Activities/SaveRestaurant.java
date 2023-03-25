@@ -2,6 +2,7 @@ package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -76,18 +77,17 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
 
         System.out.println(volleyResult);
         Gson gson = new Gson();
-        List<Ristorante> ristoranti = gson.fromJson(volleyResult, new TypeToken<List<Ristorante>>(){}.getType());
-
-        if(ristoranti != null) admin.setRistoranti(ristoranti);
-        System.out.println(admin.getRistoranti().get(1).getNome());
-
-        switchBackToAdminDash();
+        Admin newAmdin = gson.fromJson(volleyResult, new TypeToken<Admin>(){}.getType());
+        if(newAmdin != null)switchBackToAdminDash(newAmdin);
     }
 
-    private void switchBackToAdminDash() {
+    private void switchBackToAdminDash(Admin newAdmin) {
         Toast.makeText(this, "Ristorante salvato", Toast.LENGTH_SHORT).show();
 
-        startActivity(new Intent(this, AdminDashboardActivity.class).putExtra("admin", admin));
+        Intent newIntent = new Intent(this, AdminDashboardActivity.class);
+        newIntent.putExtra("admin", newAdmin);
+        startActivity(newIntent);
+        finish();
         new Handler().postDelayed(this::finishAfterTransition,800);
     }
 }

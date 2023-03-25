@@ -45,7 +45,7 @@ public class RestaurantDashActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void visualizzaCamerieri() {
-
+        if(ristorante.getCamerieri() == null) return;
         if (!ristorante.getCamerieri().isEmpty()) {
             int i = 0;
             for (Cameriere cameriere : ristorante.getCamerieri()) {
