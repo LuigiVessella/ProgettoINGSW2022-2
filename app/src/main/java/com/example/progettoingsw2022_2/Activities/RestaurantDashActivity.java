@@ -19,9 +19,7 @@ public class RestaurantDashActivity extends AppCompatActivity {
     private int number; //la posizione del ristorante nella lista dei ristoranti del cameriere
     private Ristorante ristorante;
     private LinearLayout waiterLinearL;
-
     private TextView welcomeText;
-
     private CardView addCameriereButton, addMenuButton;
 
     @Override
