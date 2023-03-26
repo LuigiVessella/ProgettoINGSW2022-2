@@ -20,6 +20,7 @@ import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
+import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,7 +35,7 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_restaurant);
-        admin = (Admin) getIntent().getSerializableExtra("admin");
+        admin = AdminSingleton.getInstance().getAccount();
         inizializzaComponenti();
     }
 
@@ -50,16 +51,12 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
 
     private void sendSaveRestaurantRequest(String email, Editable nome, Editable coperti, Editable locazione) {
 
-        System.out.println("sono qui");
-        // RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
         String url = "/ristorante/addNew";
-
         Map<String, String> params = new HashMap<>();
         params.put("email", email);
         params.put("nome", nome.toString());
         params.put("coperti", coperti.toString());
         params.put("locazione", locazione.toString());
-
         CustomRequest newPostRequest = new CustomRequest(url ,params, this, this);
         newPostRequest.sendPostRequest();
 
@@ -67,27 +64,25 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
 
     @Override
     public void onSuccess(String result) {
-
         updateRestaurantList(result);
-
     }
 
 
     private void updateRestaurantList(String volleyResult) {
 
-        System.out.println(volleyResult);
         Gson gson = new Gson();
         Admin newAmdin = gson.fromJson(volleyResult, new TypeToken<Admin>(){}.getType());
-        if(newAmdin != null)switchBackToAdminDash(newAmdin);
+        if(newAmdin != null) {
+            AdminSingleton.getInstance().setAccount(newAmdin);
+            switchBackToAdminDash();
+        }
     }
 
-    private void switchBackToAdminDash(Admin newAdmin) {
-        Toast.makeText(this, "Ristorante salvato", Toast.LENGTH_SHORT).show();
-
+    private void switchBackToAdminDash() {
         Intent newIntent = new Intent(this, AdminDashboardActivity.class);
-        newIntent.putExtra("admin", newAdmin);
         startActivity(newIntent);
         finish();
-        new Handler().postDelayed(this::finishAfterTransition,800);
+
+        //new Handler().postDelayed(this::finishAfterTransition,800);
     }
 }

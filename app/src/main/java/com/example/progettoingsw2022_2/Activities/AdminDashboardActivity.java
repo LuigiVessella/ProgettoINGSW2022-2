@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
+import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.skydoves.balloon.*;
 
 @SuppressWarnings("ALL")
@@ -34,7 +35,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        admin = (Admin) getIntent().getSerializableExtra("admin");
+        admin = AdminSingleton.getInstance().getAccount();
 
         inizializzaComponenti();
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
@@ -68,7 +69,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
         addRestaurantCard.setOnClickListener(view -> {
             Intent newAct = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);
-            newAct.putExtra("admin", admin);
             startActivity(newAct);
         });
 
@@ -76,7 +76,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
         profileCard.setOnClickListener(view -> {
             Intent goProfile = new Intent(AdminDashboardActivity.this, ProfileActivity.class);
-            goProfile.putExtra("admin",admin);
+
             startActivity(goProfile);
         });
 
@@ -86,10 +86,12 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
 
     public void visualizzaRistoranti() {
-
+        int counter = 0;
+        admin = AdminSingleton.getInstance().getAccount();
         if(!admin.getRistoranti().isEmpty()) {
+
             for(Ristorante ristorante: admin.getRistoranti()) {
-                //System.out.println("stampo cameriere: " + ristoranti.get(0).getCamerieri().get(0).getNome());
+
 
                 TextView txv = new TextView(AdminDashboardActivity.this);
                 txv.setText(ristorante.getNome());
@@ -111,9 +113,10 @@ public class AdminDashboardActivity extends AppCompatActivity {
                 myButton.setTextColor(Color.WHITE);
                 myButton.setTextSize(10);
 
+                int finalCounter = counter;
                 myButton.setOnClickListener(view -> {
                     Intent nextAct = new Intent(AdminDashboardActivity.this, RestaurantDashActivity.class);
-                    nextAct.putExtra("ristorante", ristorante);
+                    nextAct.putExtra("ristorante", finalCounter);
                     startActivity(nextAct);
                 });
 
@@ -131,6 +134,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
                 newHorizontalLayout.addView(txv);
                 newHorizontalLayout.addView(myButton);
                 linearScrollLayout.addView(newHorizontalLayout);
+                counter++;
             }
 
         }

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.R;
+import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
@@ -19,6 +20,7 @@ import com.skydoves.balloon.BalloonAnimation;
 public class ProfileActivity extends AppCompatActivity {
     private Balloon myBalloon;
     private ImageView logo;
+    private  Admin admin ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void inizializzaComponenti(){
-        Admin admin = (Admin) getIntent().getSerializableExtra("admin");
+        admin = AdminSingleton.getInstance().getAccount();
         TextInputEditText name = findViewById(R.id.ProfileTextInputName);
         TextInputEditText surname = findViewById(R.id.ProfileTextInputSurname);
         TextInputEditText email = findViewById(R.id.ProfileTextInputEmail);

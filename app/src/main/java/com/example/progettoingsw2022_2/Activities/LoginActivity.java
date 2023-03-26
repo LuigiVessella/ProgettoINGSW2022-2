@@ -21,6 +21,7 @@ import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.R;
+import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.skydoves.balloon.ArrowOrientation;
@@ -107,9 +108,8 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
     }
 
 
-    private void switchToAdminDashboardActivity(Admin admin){
+    private void switchToAdminDashboardActivity(){
         Intent newAct = new Intent(LoginActivity.this, AdminDashboardActivity.class);
-        newAct.putExtra("admin", admin);
         startActivity(newAct);
         finish();
     }
@@ -126,6 +126,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
     public void onSuccess(String result) {
         Gson gson = new Gson();
         Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
+        AdminSingleton.getInstance().setAccount(admin);
 
         if(admin == null) {
             Log.i("INFO LOGIN", "ricevuto null");
@@ -140,7 +141,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             switchToWaiterDashboardActivity(cameriere);
         }
         else{
-            switchToAdminDashboardActivity(admin);
+            switchToAdminDashboardActivity();
         }
 
     }

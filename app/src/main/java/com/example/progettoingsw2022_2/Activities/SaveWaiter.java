@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,9 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
@@ -194,9 +198,17 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     @Override
     public void onSuccess(String result) {
         Log.i("VOLLEY", result);
-        if(result.equals("cameriere salvato correttamente")) {
+
+        Gson gson = new Gson();
+        Ristorante newRistorante = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
+        if(newRistorante != null) {
             //Handler usato per aspettare un attimo prima di tornare indietro alla main activity
-            new Handler().postDelayed(this::finishAfterTransition, 800);
+            //new Handler().postDelayed(this::finishAfterTransition, 800);
+
+            Intent newIntent = new Intent(this, RestaurantDashActivity.class);
+            newIntent.putExtra("ristorante", newRistorante);
+            startActivity(newIntent);
+            finish();
         }
         else {
             //waiterWelcomeRegisterText.setError(getString(R.string.registerWrong));
