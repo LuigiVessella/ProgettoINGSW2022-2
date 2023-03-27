@@ -10,8 +10,10 @@ import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
 import java.util.HashMap;
 import java.util.Map;
 
+//Per Luigi: quando pushi pls commenta il tuo IP, se no penso che non funge per motivi arcani e bestemmio
 public class CustomRequest {
-    private String url = "http://192.168.1.9:8080";
+    private String url = "http://20.86.153.84:8080";
+    //private String url = "http://192.168.1.9:8080";
     private  Map<String, String> params;
     private Context context;
 

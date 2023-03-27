@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
-import com.google.android.material.textfield.TextInputEditText;
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
@@ -20,7 +20,7 @@ import com.skydoves.balloon.BalloonAnimation;
 public class ProfileActivity extends AppCompatActivity {
     private Balloon myBalloon;
     private ImageView logo;
-    private  Admin admin ;
+    //Se serve riportare admin a variabile generale
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +31,25 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void inizializzaComponenti(){
-        admin = AdminSingleton.getInstance().getAccount();
-        TextInputEditText name = findViewById(R.id.ProfileTextInputName);
-        TextInputEditText surname = findViewById(R.id.ProfileTextInputSurname);
-        TextInputEditText email = findViewById(R.id.ProfileTextInputEmail);
-        TextInputEditText codiceFiscale = findViewById(R.id.ProfileTextInputCodiceFiscale);
-        TextInputEditText partitaIVA = findViewById(R.id.ProfileTextInputPartitaIVA);
+        Admin admin = AdminSingleton.getInstance().getAccount();
+        TextView name = findViewById(R.id.profileNameAdmin);
+        TextView surname = findViewById(R.id.profileSurnameAdmin);
+        TextView email = findViewById(R.id.profileEmailAdmin);
+        TextView codiceFiscale = findViewById(R.id.profileCodiceFiscaleAdmin);
+        TextView partitaIVA = findViewById(R.id.profilePartitaIVAAdmin);
         logo = findViewById(R.id.logoBiagioProfile);
         name.setText(admin.getNome());
         surname.setText(admin.getCognome());
         email.setText(admin.getEmail());
         codiceFiscale.setText(admin.getCodiceFiscale());
         partitaIVA.setText(admin.getPartita_iva());
-        Button edit = findViewById(R.id.ProfileEditBtn);
+        Button editEmail = findViewById(R.id.editEmailBtn), editPassword = findViewById(R.id.editPasswordBtn);
+        //Inserire dati admin nelle textView
+        name.setText(admin.getNome());
+        surname.setText(admin.getCognome());
+        email.setText(admin.getEmail());
+        codiceFiscale.setText(admin.getCodiceFiscale());
+        partitaIVA.setText(admin.getPartita_iva());
         myBalloon = new Balloon.Builder(ProfileActivity.this)
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
@@ -61,6 +67,14 @@ public class ProfileActivity extends AppCompatActivity {
                 .setDismissWhenTouchOutside(false)
                 .build();
 
-        //TODO: inserire funzione modifica profilo
+        //TODO: inserire dialog di modifica profilo
+        editEmail.setOnClickListener(view -> {
+
+        });
+
+        //TODO: inserire dialog di modifica password
+        editPassword.setOnClickListener(view -> {
+
+        });
     }
 }

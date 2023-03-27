@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="loginBtn">Iniciar</string>
     <string name="signedQuestion">¿Ya registrado?</string>
     <string name="registerBtn">Iniciar</string>
@@ -56,15 +56,17 @@
     <string name="PartitaIVALabel">Número de Identificación Fiscal:</string>
     <string name="Manage">Administrar</string>
     <string name="loginWrongCred2">llenar los campos correctamente!</string>
-    <string name="dialogAddProduct_name">Nombre de producto ...</string>
-    <string name="dialogAddProduct_description">Descripciòn ...</string>
+    <string name="dialogAddProduct_name" tools:ignore="TypographyEllipsis">Nombre de producto ...</string>
+    <string name="dialogAddProduct_description" tools:ignore="TypographyEllipsis">Descripciòn ...</string>
     <string name="Cancel">Cancelar</string>
-    <string name="dialogAddProduct_allergens">Alérgenos ...</string>
-    <string name="dialogAddProduct_price">Precio ...</string>
+    <string name="dialogAddProduct_allergens" tools:ignore="TypographyEllipsis">Alérgenos ...</string>
+    <string name="dialogAddProduct_price" tools:ignore="TypographyEllipsis">Precio ...</string>
     <string name="Type">Chico</string>
     <string name="Food_type">Tipo de comida</string>
     <string name="Prepackaged">preenvasado</string>
     <string name="Search">Cerca</string>
     <string name="add_course">Agregar alcance</string>
     <string name="your_workers">Tu personal:</string>
+    <string name="editEmail">Cambiar email</string>
+    <string name="editPassword">cambiar la contraseña</string>
 </resources>

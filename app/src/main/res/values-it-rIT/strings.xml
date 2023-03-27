@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="loginBtn">Accedi</string>
-    <string name="signedQuestion">Gia Registrato?</string>
+    <string name="signedQuestion">Già Registrato?</string>
     <string name="registerBtn">Registrati</string>
     <string name="signupQuestion">Nuovo?</string>
     <string name="nameRequired">Nome*</string>
@@ -56,17 +56,19 @@
     <string name="PartitaIVALabel">Partita IVA:</string>
     <string name="Manage">Gestisci</string>
     <string name="loginWrongCred2">Compilare i campi correttamente!</string>
-    <string name="dialogAddProduct_name">Nome prodotto ...</string>
-    <string name="dialogAddProduct_description">Descrizione ...</string>
+    <string name="dialogAddProduct_name" tools:ignore="TypographyEllipsis">Nome prodotto ...</string>
+    <string name="dialogAddProduct_description" tools:ignore="TypographyEllipsis">Descrizione ...</string>
     <string name="Cancel">Annulla</string>
-    <string name="dialogAddProduct_price">Prezzo ...</string>
-    <string name="dialogAddProduct_allergens">Allergeni ...</string>
+    <string name="dialogAddProduct_price" tools:ignore="TypographyEllipsis">Prezzo ...</string>
+    <string name="dialogAddProduct_allergens" tools:ignore="TypographyEllipsis">Allergeni ...</string>
     <string name="Type">Tipo</string>
     <string name="Food_type">Tipo alimento</string>
     <string name="Search">Cerca</string>
     <string name="Prepackaged">Preconfezionato</string>
     <string name="add_course">Aggiungi portata</string>
     <string name="your_workers">Il tuo personale:</string>
+    <string name="editEmail">Cambia email</string>
+    <string name="editPassword">Cambia password</string>
 
 
 </resources>

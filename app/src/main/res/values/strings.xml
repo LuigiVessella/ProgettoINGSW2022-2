@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string-array name="spinner_items">
         <item> Waiter </item>
         <item> Chef </item>
@@ -28,15 +28,15 @@
     <string name="RoleRequired">Position*</string>
     <string name="welcome_register_waiter" translatable="true">You are entering a new waiter</string>
     <string name="welcome">WELCOME</string>
-    <string name="registerOK">Register succesful!</string>
+    <string name="registerOK">Register successful!</string>
     <string name="registerWrong">Something Wrong!</string>
     <string name="loginWrongCred">Invalid credentials</string>
     <string name="loginInsertCred">Insert credentials</string>
     <string name="AdminControlPanelText">Panel of:</string>
-    <string name="AdminResturant">Your resturant:</string>
-    <string name="addResturant">Add resturant</string>
+    <string name="AdminResturant">Your restaurant:</string>
+    <string name="addResturant">Add restaurant</string>
     <string name="Exit">Exit</string>
-    <string name="resturantString">Resturant</string>
+    <string name="resturantString">Restaurant</string>
     <string name="addWaiter">Add waiter</string>
     <string name="addMenu">Add Menu</string>
     <string name="WaiterString">Waiter</string>
@@ -44,9 +44,9 @@
     <string name="location">Address</string>
     <string name="place_sittings">Number of seats</string>
     <string name="Name">Name</string>
-    <string name="AdminDBNoResturant">You don\'t have a resturant!</string>
+    <string name="AdminDBNoResturant">You don\'t have a restaurant!</string>
     <string name="EditSting">Edit</string>
-    <string name="saveResturantTitle">Register your resturant</string>
+    <string name="saveResturantTitle">Register your restaurant</string>
     <string name="takeOrder">Take order</string>
     <string name="newOrder">New Order</string>
     <string name="tableNumber">Table Number</string>
@@ -75,12 +75,12 @@
     <string name="Manage">Manage</string>
     <string name="passwordLabel" translatable="false">Password:</string>
     <string name="loginWrongCred2">Fill the fields correctly!</string>
-    <string name="dialogAddProduct_name">Product name ...</string>
-    <string name="dialogAddProduct_description">Description ...</string>
-    <string name="dialogAddProduct_allergens">Allergens ...</string>
-    <string name="dialogAddProduct_price">Price ...</string>
+    <string name="dialogAddProduct_name" tools:ignore="TypographyEllipsis">Product name ...</string>
+    <string name="dialogAddProduct_description" tools:ignore="TypographyEllipsis">Description ...</string>
+    <string name="dialogAddProduct_allergens" tools:ignore="TypographyEllipsis">Allergens ...</string>
+    <string name="dialogAddProduct_price" tools:ignore="TypographyEllipsis">Price ...</string>
     <string name="Cancel">Cancel</string>
-    <string name="Ok" translatable="false">Ok</string>
+    <string name="Ok" translatable="false" tools:ignore="ButtonCase">Ok</string>
     <string name="Type">Type</string>
     <string name="Food_type">Food type</string>
     <string name="Search">Search</string>
@@ -93,6 +93,8 @@
     <string name="add_product_label" translatable="false">Add product label</string>
     <string name="add_course">Add course</string>
     <string name="your_workers">Your workers:</string>
+    <string name="editEmail">Edit email</string>
+    <string name="editPassword">Change password</string>
 
 
 </resources>
