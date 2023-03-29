@@ -179,23 +179,23 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         } */
         String password = passwordText.getText().toString();
         if (password.isEmpty()) {
-            passwordText.setError("Campo obbligatorio!");
+            passwordText.setError(getString(R.string.campoObbligatorio));
             hasError = true;
         } else if (password.length() < 6) {
-            passwordText.setError("Password troppo corta!");
+            passwordText.setError(getString(R.string.passwordShort));
             hasError = true;
         } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.,_?!#])[a-zA-Z0-9.,_?!#]+$")) {
-            passwordText.setError("Password troppo semplice!");
+            passwordText.setError(getString(R.string.passwordSimple));
             hasError = true;
         }
         if (emailText.getText().length() != 0) {
             String mail = emailText.getText().toString();
             if (!validator_mail.isValid(mail)) {
-                emailText.setError("Email non valida");
+                emailText.setError(getString(R.string.emailError));
                 hasError = true;
             }
         } else if (emailText.getText().length() == 0) {
-            emailText.setError("Campo obbligatorio!");
+            emailText.setError(getString(R.string.campoObbligatorio));
             hasError = true;
         }
 

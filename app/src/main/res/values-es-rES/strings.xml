@@ -69,4 +69,14 @@
     <string name="your_workers">Tu personal:</string>
     <string name="editEmail">Cambiar email</string>
     <string name="editPassword">cambiar la contraseña</string>
+    <string name="new_field">Nueva</string>
+    <string name="old_field">Viejo</string>
+    <string name="newEmail">Nueva email</string>
+    <string name="submit">entregar</string>
+    <string name="emailError">Email inválido!</string>
+    <string name="newPassword">Nueva password</string>
+    <string name="passwordShort">¡Contraseña demasiado corta!</string>
+    <string name="passwordSimple">¡La contraseña es demasiado débil!</string>
+    <string name="campoObbligatorio">¡Campo requerido!</string>
+    <string name="yes">SI</string>
 </resources>

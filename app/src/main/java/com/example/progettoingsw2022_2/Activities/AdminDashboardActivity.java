@@ -14,6 +14,7 @@ import android.os.Bundle;
 
 import android.os.Handler;
 import android.text.Html;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,7 +28,7 @@ import com.skydoves.balloon.*;
 
 @SuppressWarnings("ALL")
 public class AdminDashboardActivity extends AppCompatActivity {
-    private Admin admin = null;
+    private Admin admin;
     private ImageView logo;
     private Balloon myBalloon;
     private LinearLayout linearScrollLayout;
@@ -76,7 +77,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
         profileCard.setOnClickListener(view -> {
             Intent goProfile = new Intent(AdminDashboardActivity.this, ProfileActivity.class);
-
             startActivity(goProfile);
         });
 
@@ -88,7 +88,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
     public void visualizzaRistoranti() {
         int counter = 0;
         admin = AdminSingleton.getInstance().getAccount();
-        if(!admin.getRistoranti().isEmpty()) {
+        if(admin != null && !admin.getRistoranti().isEmpty()) {
 
             for(Ristorante ristorante: admin.getRistoranti()) {
 
@@ -152,7 +152,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         builder.setMessage("Vuoi uscire?");
 
         // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
-        builder.setPositiveButton("YES", (dialog, which) -> {
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
             // Avviare l'Activity desiderata
             Intent intent = new Intent(AdminDashboardActivity.this, LoginActivity.class);
             startActivity(intent);
@@ -160,7 +160,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         });
 
         // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
-        builder.setNegativeButton("NO", (dialog, which) -> {
+        builder.setNegativeButton(R.string.no, (dialog, which) -> {
             // Chiudere il dialogo e non fare nulla
             dialog.dismiss();
         });

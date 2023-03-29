@@ -95,6 +95,17 @@
     <string name="your_workers">Your workers:</string>
     <string name="editEmail">Edit email</string>
     <string name="editPassword">Change password</string>
+    <string name="old_field">Old</string>
+    <string name="new_field">New</string>
+    <string name="submit">Submit</string>
+    <string name="newEmail">New email</string>
+    <string name="emailError">Email not valid!</string>
+    <string name="newPassword">New password</string>
+    <string name="campoObbligatorio">Field needed!</string>
+    <string name="passwordShort">Password too short!</string>
+    <string name="passwordSimple">Password too simple!</string>
+    <string name="no" translatable="false">NO</string>
+    <string name="yes">YES</string>
 
 
 </resources>
