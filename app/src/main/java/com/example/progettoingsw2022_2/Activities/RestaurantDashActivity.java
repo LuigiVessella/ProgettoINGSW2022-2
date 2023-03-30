@@ -3,6 +3,7 @@ package com.example.progettoingsw2022_2.Activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,11 +17,9 @@ import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 
 public class RestaurantDashActivity extends AppCompatActivity {
 
-    private int number; //la posizione del ristorante nella lista dei ristoranti del cameriere
     private Ristorante ristorante;
     private LinearLayout waiterLinearL;
-    private TextView welcomeText;
-    private CardView addCameriereButton, addMenuButton;
+    private int numeroCamerieri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +30,22 @@ public class RestaurantDashActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if (ristorante.getCamerieri().size()>numeroCamerieri) {
+            waiterLinearL.removeAllViews();
+            visualizzaCamerieri();
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     private void inizializzaComponenti() {
-        number = getIntent().getIntExtra("ristorante", 0);
+        int number = getIntent().getIntExtra("ristorante",0);
         ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(number);
-        welcomeText = findViewById(R.id.welcomeRestaurantText);
-        addCameriereButton = findViewById(R.id.addWaiterCard);
-        addMenuButton = findViewById(R.id.manageMenuCard);
+        numeroCamerieri = ristorante.getCamerieri().size();
+        TextView welcomeText = findViewById(R.id.welcomeRestaurantText);
+        CardView addCameriereButton = findViewById(R.id.addWaiterCard), addMenuButton = findViewById(R.id.manageMenuCard);
         waiterLinearL = findViewById(R.id.waiterListLinear);
         welcomeText.setText(getString(R.string.resturantString)+": "+ ristorante.getNome());
         addCameriereButton.setOnClickListener(view -> switchToAddCameriere());
@@ -46,7 +54,7 @@ public class RestaurantDashActivity extends AppCompatActivity {
         visualizzaCamerieri();
     }
 
-
+    //TODO: cambiare con "visualizzaPersonale" quando implementati gli altri
     @SuppressLint("SetTextI18n")
     public void visualizzaCamerieri() {
         if(ristorante.getCamerieri() == null) return;
@@ -55,7 +63,7 @@ public class RestaurantDashActivity extends AppCompatActivity {
             for (Cameriere cameriere : ristorante.getCamerieri()) {
                 i++;
                 TextView txv = new TextView(this);
-                txv.setText(getString(R.string.WaiterString)+" "+ i +": " +  cameriere.getNome());
+                txv.setText(getString(R.string.WaiterString)+" "+ i +": " +  cameriere.getCognome());
                 txv.setTextSize(17);
 
                 waiterLinearL.addView(txv);

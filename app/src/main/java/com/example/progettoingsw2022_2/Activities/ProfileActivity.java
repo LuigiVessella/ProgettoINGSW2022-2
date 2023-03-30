@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
+import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.skydoves.balloon.ArrowOrientation;
@@ -23,6 +26,10 @@ import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
 
 import org.apache.commons.validator.routines.EmailValidator;
+import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
     private Balloon myBalloon;
@@ -83,8 +90,16 @@ public class ProfileActivity extends AppCompatActivity {
                     newF.setError(getString(R.string.emailError));
                 }
                 else{
-                    //AdminSingleton.getInstance().getAccount().setEmail(newF.getText().toString());
-                    //TODO: inviare aggiornamento al server
+                    AdminSingleton.getInstance().getAccount().setEmail(newF.getText().toString());
+                    Map<String, String> params = new HashMap<>();
+                    params.put("emailOld",AdminSingleton.getInstance().getAccount().getEmail());
+                    params.put("emailNew",newF.getText().toString());
+                    params.put("pass",null);
+
+                    String url = "/admin/changeCredentials";
+                    CustomRequest cR = new CustomRequest(url ,params , (Context) this, (VolleyCallback) this);
+                    cR.sendPostRequest();
+
                     Log.i("ProfileActivity","SIUM");
                     dialog.dismiss();
                 }
@@ -121,7 +136,17 @@ public class ProfileActivity extends AppCompatActivity {
                     newF.setError(getString(R.string.passwordSimple));
                 }
                 else{
-                    //TODO: aggiornare password sul server
+                    String salt = "$2a$10$abcdefghijklmnopqrstuvw$";
+                    String hashedPass = BCrypt.hashpw(newF.getText().toString(),salt);
+                    Map<String, String> params = new HashMap<>();
+                    params.put("emailOld",AdminSingleton.getInstance().getAccount().getEmail());
+                    params.put("emailNew",null);
+                    params.put("pass",hashedPass);
+
+                    String url = "/admin/changeCredentials";
+                    CustomRequest cR = new CustomRequest(url ,params , (Context) this, (VolleyCallback) this);
+                    cR.sendPostRequest();
+
                     Log.i("ProfileActivity","SIUM");
                     dialog.dismiss();
                 }

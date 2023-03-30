@@ -44,57 +44,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
+        app:layout_constraintVertical_bias="0.809" />
 
-    <EditText
-        android:id="@+id/passwordLoginText"
-        android:layout_width="333dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/custom_input"
-        android:drawableStart="@drawable/baseline_lock_24"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:fontFamily="@font/roboto"
-        android:hint="@string/Password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:paddingStart="5dp"
-        android:textColor="@color/grigio_scuro"
-        android:textColorHint="@color/grigio_chiaro"
-        android:textCursorDrawable="@drawable/cursor_color"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/loginActButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
-        app:layout_constraintVertical_bias="0.0"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/loadingGIF"
+        app:layout_constraintVertical_bias="0.162">
 
-    <EditText
-        android:id="@+id/emailLoginText"
-        android:layout_width="333dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="164dp"
-        android:background="@drawable/custom_input"
-        android:drawableStart="@drawable/baseline_email_24"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:fontFamily="@font/roboto"
-        android:hint="@string/Email"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:paddingStart="5dp"
-        android:textColor="@color/grigio_scuro"
-        android:textColorHint="@color/grigio_chiaro"
-        android:textCursorDrawable="@drawable/cursor_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.693"
-        android:importantForAutofill="no" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputLoginEmail"
+            android:layout_width="333dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/baseline_email_24"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/Email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="5dp"
+            android:singleLine="true"
+            android:textColor="@color/grigio_scuro"
+            android:textColorHighlight="#42260A"
+            android:textColorHint="@color/grigio_chiaro"
+            android:textCursorDrawable="@drawable/cursor_color"
+            app:layout_constraintBottom_toTopOf="@+id/loginActButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
+            app:layout_constraintVertical_bias="0.076" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/titleSign"
@@ -121,10 +106,47 @@
         android:layout_marginTop="10dp"
         android:src="@drawable/loading"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/emailLoginText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleSign"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.018" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/loginActButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailLogin"
+        app:layout_constraintVertical_bias="0.0"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputLoginPassword"
+            android:layout_width="333dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/Password"
+            android:inputType="textPassword"
+            android:paddingStart="5dp"
+            android:singleLine="true"
+            android:textColor="@color/grigio_scuro"
+            android:textColorHighlight="#42260A"
+            android:textColorHint="@color/grigio_chiaro"
+            android:textCursorDrawable="@drawable/cursor_color"
+            app:layout_constraintBottom_toTopOf="@+id/loginActButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
+            app:layout_constraintVertical_bias="0.076" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

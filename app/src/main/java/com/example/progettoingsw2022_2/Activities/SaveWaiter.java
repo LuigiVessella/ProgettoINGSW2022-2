@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Admin;
+import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -191,27 +192,13 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
 
         CustomRequest newPostRequest = new CustomRequest(url, params, this,this);
         newPostRequest.sendPostRequest();
-
-
     }
 
     @Override
     public void onSuccess(String result) {
         Log.i("VOLLEY", result);
 
-        Gson gson = new Gson();
-        Ristorante newRistorante = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
-        if(newRistorante != null) {
-            //Handler usato per aspettare un attimo prima di tornare indietro alla main activity
-            //new Handler().postDelayed(this::finishAfterTransition, 800);
-
-            Intent newIntent = new Intent(this, RestaurantDashActivity.class);
-            newIntent.putExtra("ristorante", newRistorante);
-            startActivity(newIntent);
-            finish();
-        }
-        else {
-            //waiterWelcomeRegisterText.setError(getString(R.string.registerWrong));
-        }
+        finish();
+        //waiterWelcomeRegisterText.setError(getString(R.string.registerWrong));
     }
 }

@@ -53,8 +53,8 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         loginActivityButton = findViewById(R.id.loginActButton);
         loginActivityButton.setEnabled(true);
         loading = findViewById(R.id.loadingGIF);
-        emailLoginText = findViewById(R.id.emailLoginText);
-        passwordLoginText = findViewById(R.id.passwordLoginText);
+        emailLoginText = findViewById(R.id.textInputLoginEmail);
+        passwordLoginText = findViewById(R.id.textInputLoginPassword);
 
         logo = findViewById(R.id.logoBiagioTestMenu);
         myBalloon = new Balloon.Builder(LoginActivity.this)

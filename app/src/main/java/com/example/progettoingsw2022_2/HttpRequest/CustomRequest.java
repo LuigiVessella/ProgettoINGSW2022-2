@@ -61,7 +61,6 @@ public class CustomRequest {
                 response -> {
                     Log.i("VOLLEY", response);
                     volleyCallback.onSuccess(response);
-
                 },
                 error -> Log.e("VOLLEY", error.toString())) {
             @Override
