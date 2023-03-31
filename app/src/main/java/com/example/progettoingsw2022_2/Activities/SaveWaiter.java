@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +21,7 @@ import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
+import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -39,18 +41,16 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     private EditText nomeText, cognomeText, emailText, codiceFiscaleText;
     private Ristorante ristorante;
     private ImageView logo;
-
     private TextInputEditText passwordText;
     private Balloon myBalloon;
-
-    //Array di stringhe per lo spinner, tipo final
-    //private final String[] items = {"Cameriere", "Supervisore", "Cuoco"};
+    private int restNumber; //identifichiamo il ristorante nella lista di ristoranti del cameriere
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_waiter);
-        ristorante = (Ristorante) getIntent().getSerializableExtra("ristorante");
+        restNumber =  getIntent().getIntExtra("ristorante", restNumber);
+        ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
         inizializeComponent();
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }
@@ -170,8 +170,6 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
 
 
 
-
-
     private void sendRegisterRequest(Editable nome, Editable cognome, Editable password, Editable codiceFiscale, Editable email) {
         //semplice libreria che ci fa l'hash della password e manda al server
         String stringPass = password.toString();
@@ -198,7 +196,17 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     public void onSuccess(String result) {
         Log.i("VOLLEY", result);
 
-        finish();
-        //waiterWelcomeRegisterText.setError(getString(R.string.registerWrong));
+        Gson gson = new Gson();
+        Ristorante newRisto = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
+
+        if(newRisto != null){
+            AdminSingleton.getInstance().getAccount().getRistoranti().set(restNumber, newRisto);
+            finish();
+        }
+
+        else {
+            Toast.makeText(this, "Problemi nel salvataggio", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

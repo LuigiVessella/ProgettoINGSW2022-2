@@ -21,6 +21,8 @@ public class RestaurantDashActivity extends AppCompatActivity {
     private LinearLayout waiterLinearL;
     private int numeroCamerieri;
 
+    private  int restNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class RestaurantDashActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
+        ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
         if (ristorante.getCamerieri().size()>numeroCamerieri) {
             waiterLinearL.removeAllViews();
             visualizzaCamerieri();
@@ -41,8 +44,8 @@ public class RestaurantDashActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void inizializzaComponenti() {
-        int number = getIntent().getIntExtra("ristorante",0);
-        ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(number);
+        restNumber =  getIntent().getIntExtra("ristorante",0);
+        ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
         numeroCamerieri = ristorante.getCamerieri().size();
         TextView welcomeText = findViewById(R.id.welcomeRestaurantText);
         CardView addCameriereButton = findViewById(R.id.addWaiterCard), addMenuButton = findViewById(R.id.manageMenuCard);
@@ -57,13 +60,14 @@ public class RestaurantDashActivity extends AppCompatActivity {
     //TODO: cambiare con "visualizzaPersonale" quando implementati gli altri
     @SuppressLint("SetTextI18n")
     public void visualizzaCamerieri() {
+        System.out.println("Sono in visualizza camerieri");
         if(ristorante.getCamerieri() == null) return;
         if (!ristorante.getCamerieri().isEmpty()) {
             int i = 0;
             for (Cameriere cameriere : ristorante.getCamerieri()) {
                 i++;
                 TextView txv = new TextView(this);
-                txv.setText(getString(R.string.WaiterString)+" "+ i +": " +  cameriere.getCognome());
+                txv.setText(getString(R.string.WaiterString)+" "+ i +": " +  cameriere.getCognome() + " " + cameriere.getNome());
                 txv.setTextSize(17);
 
                 waiterLinearL.addView(txv);
@@ -74,13 +78,13 @@ public class RestaurantDashActivity extends AppCompatActivity {
 
     private void switchToAddCameriere(){
         Intent newAct = new Intent(RestaurantDashActivity.this, SaveWaiter.class);
-        newAct.putExtra("ristorante", ristorante);
+        newAct.putExtra("ristorante", restNumber);
         startActivity(newAct);
     }
 
     private void switchToMenuActivity(){
         Intent newAct = new Intent(RestaurantDashActivity.this, MenuManager.class);
-        newAct.putExtra("ristorante", ristorante);
+        newAct.putExtra("ristorante", restNumber);
         startActivity(newAct);
     }
 }
