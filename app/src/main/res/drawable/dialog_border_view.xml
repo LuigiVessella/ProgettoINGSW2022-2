@@ -5,7 +5,4 @@
         android:width="4dp"
         android:color="@color/marrone_primario" />
     <corners android:radius="18dp"/>
-
-
-
 </shape>
