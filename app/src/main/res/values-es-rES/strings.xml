@@ -81,4 +81,6 @@
     <string name="yes">SI</string>
     <string name="WaiterAdded">camarero añadido!</string>
     <string name="save_waiter_error">Problemas para salvar al camarero</string>
+    <string name="invalidPassword">¡Contraseña invalida!</string>
+    <string name="requestProblems">Problemas con la solicitud</string>
 </resources>

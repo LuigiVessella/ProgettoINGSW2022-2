@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         cognomeText = findViewById(R.id.textInputEditTextLayoutSurname);
         emailText = findViewById(R.id.textInputEditTextLayoutEmail);
         pIvaText = findViewById(R.id.textInputEditTextLayoutPartitaIva);
-        passwordText = (TextInputEditText) findViewById(R.id.textInputEditTextLayoutPass);
+        passwordText = findViewById(R.id.textInputEditTextLayoutPass);
         codiceFiscaleText = findViewById(R.id.textInputEditTextLayoutCodiceFiscale);
         welcomeTexView = findViewById(R.id.welcomeRegisterText);
         Button okButton = findViewById(R.id.okButtonRegister);

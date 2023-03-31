@@ -108,6 +108,8 @@
     <string name="yes">YES</string>
     <string name="WaiterAdded">Waiter added!</string>
     <string name="save_waiter_error">Problems saving waiter</string>
+    <string name="invalidPassword">Password not valid!</string>
+    <string name="requestProblems">Some request problems</string>
 
 
 </resources>

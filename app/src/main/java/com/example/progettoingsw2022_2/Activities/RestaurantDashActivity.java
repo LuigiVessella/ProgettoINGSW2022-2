@@ -85,7 +85,6 @@ public class RestaurantDashActivity extends AppCompatActivity {
         }
     }
 
-
     private void switchToAddCameriere(){
         Intent newAct = new Intent(RestaurantDashActivity.this, SaveWaiter.class);
         newAct.putExtra("ristorante", restNumber);
