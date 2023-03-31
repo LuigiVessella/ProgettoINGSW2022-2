@@ -35,18 +35,15 @@ public class RestaurantDashActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
+        System.out.println("restNumber:" + restNumber);
         ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
-        if (ristorante.getCamerieri().size()>numeroCamerieri) {
-            waiterLinearL.removeAllViews();
-            visualizzaCamerieri();
-        }
     }
 
     @SuppressLint("SetTextI18n")
     private void inizializzaComponenti() {
         restNumber =  getIntent().getIntExtra("ristorante",0);
         ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
-        numeroCamerieri = ristorante.getCamerieri().size();
+        if(ristorante.getCamerieri() != null) numeroCamerieri = ristorante.getCamerieri().size();
         TextView welcomeText = findViewById(R.id.welcomeRestaurantText);
         CardView addCameriereButton = findViewById(R.id.addWaiterCard), addMenuButton = findViewById(R.id.manageMenuCard);
         waiterLinearL = findViewById(R.id.waiterListLinear);

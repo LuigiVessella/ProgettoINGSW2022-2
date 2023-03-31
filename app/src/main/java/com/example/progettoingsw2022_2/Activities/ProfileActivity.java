@@ -12,14 +12,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
@@ -31,7 +35,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements VolleyCallback{
     private Balloon myBalloon;
     private ImageView logo;
 
@@ -90,17 +94,14 @@ public class ProfileActivity extends AppCompatActivity {
                     newF.setError(getString(R.string.emailError));
                 }
                 else{
-                    AdminSingleton.getInstance().getAccount().setEmail(newF.getText().toString());
+
                     Map<String, String> params = new HashMap<>();
-                    params.put("emailOld",AdminSingleton.getInstance().getAccount().getEmail());
-                    params.put("emailNew",newF.getText().toString());
-                    params.put("pass",null);
+                    params.put("emailNew", newF.getText().toString());
+                    String url = "/admin/changeEmail/" + AdminSingleton.getInstance().getAccount().getCodiceFiscale();
 
-                    String url = "/admin/changeCredentials";
-                    CustomRequest cR = new CustomRequest(url ,params , (Context) this, (VolleyCallback) this);
-                    cR.sendPostRequest();
+                    CustomRequest cR = new CustomRequest(url, params, this, this);
+                    cR.sendPatchRequest();
 
-                    Log.i("ProfileActivity","SIUM");
                     dialog.dismiss();
                 }
             });
@@ -136,19 +137,7 @@ public class ProfileActivity extends AppCompatActivity {
                     newF.setError(getString(R.string.passwordSimple));
                 }
                 else{
-                    String salt = "$2a$10$abcdefghijklmnopqrstuvw$";
-                    String hashedPass = BCrypt.hashpw(newF.getText().toString(),salt);
-                    Map<String, String> params = new HashMap<>();
-                    params.put("emailOld",AdminSingleton.getInstance().getAccount().getEmail());
-                    params.put("emailNew",null);
-                    params.put("pass",hashedPass);
 
-                    String url = "/admin/changeCredentials";
-                    CustomRequest cR = new CustomRequest(url ,params , (Context) this, (VolleyCallback) this);
-                    cR.sendPostRequest();
-
-                    Log.i("ProfileActivity","SIUM");
-                    dialog.dismiss();
                 }
             });
 
@@ -165,5 +154,18 @@ public class ProfileActivity extends AppCompatActivity {
 
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.marrone_secondario,getTheme())));
         });
+    }
+
+    @Override
+    public void onSuccess(String result){
+        Gson gson = new Gson();
+        Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
+
+        if(admin != null){
+            AdminSingleton.getInstance().setAccount(admin);
+        }
+        else {
+            Toast.makeText(this, "Alcuni problemi con la richiesta", Toast.LENGTH_SHORT).show();
+        }
     }
 }

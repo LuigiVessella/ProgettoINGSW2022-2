@@ -4,8 +4,13 @@ import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -79,5 +84,33 @@ public class CustomRequest {
 
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
+
+    public void sendPatchRequest() {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.PATCH, url,
+                response -> {
+                    Log.i("VOLLEY", response);
+                    volleyCallback.onSuccess(response);
+                },
+                error -> Log.e("VOLLEY", error.toString())) {
+            @Override
+            protected Map<String, String> getParams() {
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/json");
+
+                return params;
+
+            }
+        };
+
+        VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
+
+    }
+
+
 
 }
