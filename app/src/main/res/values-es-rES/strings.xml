@@ -79,4 +79,6 @@
     <string name="passwordSimple">¡La contraseña es demasiado débil!</string>
     <string name="campoObbligatorio">¡Campo requerido!</string>
     <string name="yes">SI</string>
+    <string name="WaiterAdded">camarero añadido!</string>
+    <string name="save_waiter_error">Problemas para salvar al camarero</string>
 </resources>
