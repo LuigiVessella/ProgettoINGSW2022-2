@@ -38,9 +38,22 @@ public class AdminDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         admin = AdminSingleton.getInstance().getAccount();
 
+
         inizializzaComponenti();
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
+
+        if(AdminSingleton.getInstance().getAccount() == null) Log.i("admin dashboard", "null");
+        else Log.i("admin dashboard",AdminSingleton.getInstance().getAccount().getNome() );
     }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        admin = AdminSingleton.getInstance().getAccount();
+        linearScrollLayout.removeAllViews();
+        visualizzaRistoranti();
+    }
+
 
     private void inizializzaComponenti(){
         CardView addRestaurantCard, logOutCard, profileCard;
@@ -83,16 +96,12 @@ public class AdminDashboardActivity extends AppCompatActivity {
         visualizzaRistoranti();
     }
 
-
-
     public void visualizzaRistoranti() {
         int counter = 0;
-        admin = AdminSingleton.getInstance().getAccount();
+
         if(admin != null && !admin.getRistoranti().isEmpty()) {
 
             for(Ristorante ristorante: admin.getRistoranti()) {
-
-
                 TextView txv = new TextView(AdminDashboardActivity.this);
                 txv.setText(ristorante.getNome());
                 LinearLayout.LayoutParams layoutParamsTxt = new  LinearLayout.LayoutParams(

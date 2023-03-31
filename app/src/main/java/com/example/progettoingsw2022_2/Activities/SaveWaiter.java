@@ -1,6 +1,5 @@
 package com.example.progettoingsw2022_2.Activities;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
-import com.example.progettoingsw2022_2.Models.Admin;
-import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
@@ -180,7 +177,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         //richiesta custom
         String url = "/camerieri/addNew";
 
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("codiceRistorante", ristorante.getCodice_ristorante().toString());
         params.put("nome", nome.toString());
         params.put("cognome", cognome.toString());
@@ -200,12 +197,13 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         Ristorante newRisto = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
 
         if(newRisto != null){
+            Toast.makeText(this, R.string.WaiterAdded, Toast.LENGTH_SHORT).show();
             AdminSingleton.getInstance().getAccount().getRistoranti().set(restNumber, newRisto);
-            finish();
+            finishAfterTransition();
         }
 
         else {
-            Toast.makeText(this, "Problemi nel salvataggio", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.save_waiter_error, Toast.LENGTH_SHORT).show();
         }
 
     }

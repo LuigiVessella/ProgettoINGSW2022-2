@@ -3,6 +3,7 @@ package com.example.progettoingsw2022_2.Activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,9 +20,9 @@ public class RestaurantDashActivity extends AppCompatActivity {
 
     private Ristorante ristorante;
     private LinearLayout waiterLinearL;
-    private int numeroCamerieri;
+    private int numeroCamerieri = 0;
 
-    private  int restNumber;
+    private  int restNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +31,32 @@ public class RestaurantDashActivity extends AppCompatActivity {
 
         inizializzaComponenti();
 
+        if(AdminSingleton.getInstance().getAccount() == null) Log.i("Rest dash", "null");
+        else Log.i("Rest dash",AdminSingleton.getInstance().getAccount().getNome() );
+
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        System.out.println("restNumber:" + restNumber);
         ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
+
+        if(ristorante.getCamerieri() != null) {
+            if(ristorante.getCamerieri().size()>numeroCamerieri) {
+                waiterLinearL.removeAllViews();
+                visualizzaCamerieri();
+            }
+        }
+
     }
 
     @SuppressLint("SetTextI18n")
     private void inizializzaComponenti() {
-        restNumber =  getIntent().getIntExtra("ristorante",0);
+        restNumber =  getIntent().getIntExtra("ristorante",0); //dall'admindash
         ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
+
         if(ristorante.getCamerieri() != null) numeroCamerieri = ristorante.getCamerieri().size();
+
         TextView welcomeText = findViewById(R.id.welcomeRestaurantText);
         CardView addCameriereButton = findViewById(R.id.addWaiterCard), addMenuButton = findViewById(R.id.manageMenuCard);
         waiterLinearL = findViewById(R.id.waiterListLinear);

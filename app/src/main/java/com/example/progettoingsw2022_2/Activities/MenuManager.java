@@ -27,13 +27,17 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Menu;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
+import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -77,6 +81,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     private Spinner tipo, tipoAlimento;
     private Ristorante ristorante;
 
+    private int restNumber;
     private List<Menu> menus;
 
     @Override
@@ -86,12 +91,15 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         inizializzaComponenti();
 
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
+
+        if(AdminSingleton.getInstance().getAccount() == null) Log.i("menu dashboard", "null");
+        else Log.i("menu dashboard",AdminSingleton.getInstance().getAccount().getNome() );
     }
 
     private void inizializzaComponenti(){
         Button cancelButtonDialog;
         CardView generateMenuCard, addProductCard;
-        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch preconfSwitch;
+        Switch preconfSwitch;
 
         String[] COUNTRIES = new String[] {
                 "Estathe", "Coca-Cola", "Pepsi", "Fanta", "Sprite"
@@ -102,7 +110,11 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         dialog.setContentView(R.layout.dialog_input_string);
 
 
-        ristorante = (Ristorante) getIntent().getSerializableExtra("ristorante");
+        restNumber = getIntent().getIntExtra("ristorante" ,0);
+        if(AdminSingleton.getInstance().getAccount() == null) System.out.println("admin NULL");
+        System.out.println( AdminSingleton.getInstance().getAccount().getNome());
+        ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
+
         menus = ristorante.getMenu();
 
 
@@ -308,9 +320,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     }
 
     private void sendAddMenuRequest(String name, String description, String prezzo, String allergeni, String contiene, String tipoo, String tipoAlimento){
-
         String url = "/menu/addMenu";
-
 
         Map<String, String> params = new HashMap<>();
         params.put("nome_piatto", name);
@@ -361,21 +371,22 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             Toast.makeText(this, "Generic error", Toast.LENGTH_SHORT).show();
         }
 
-
     }
-
 
 
     @Override
     public void onSuccess(String result) {
         //tengo traccia dei vari risultati delle varie richieste
 
-        if(result.equals("piatto salvato")){
-            System.out.println("piatto aggiunto\n");
+
+        Gson gson = new Gson();
+        Ristorante newRist = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
+
+        if(newRist == null) {
+            parseJsonResponse(result); //trattasi open food
         }
         else {
-            parseJsonResponse(result);
-
+            AdminSingleton.getInstance().getAccount().getRistoranti().set(restNumber, newRist);
         }
     }
 }

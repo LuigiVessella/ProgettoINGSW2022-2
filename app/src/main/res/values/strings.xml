@@ -106,6 +106,8 @@
     <string name="passwordSimple">Password too simple!</string>
     <string name="no" translatable="false">NO</string>
     <string name="yes">YES</string>
+    <string name="WaiterAdded">Waiter added!</string>
+    <string name="save_waiter_error">Problems saving waiter</string>
 
 
 </resources>

@@ -180,7 +180,7 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/menuPreconfSwitch"
         style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
         android:layout_width="match_parent"
