@@ -4,4 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="204dp"
+        android:layout_height="51dp"
+        android:text="TextView" />
 </LinearLayout>
