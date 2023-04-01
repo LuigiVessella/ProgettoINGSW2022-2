@@ -49,7 +49,7 @@
     <string name="saveResturantTitle">Register your restaurant</string>
     <string name="takeOrder">Take order</string>
     <string name="newOrder">New Order</string>
-    <string name="tableNumber">Table Number</string>
+    <string name="tableNumber">"Table "</string>
     <string name="orderStatus">Order Status</string>
     <string name="welcomeWaiter">Welcome: </string>
     <string name="balloonRegister">\"Get started as an Administrator!\"</string>
@@ -101,7 +101,7 @@
     <string name="newEmail">New email</string>
     <string name="emailError">Email not valid!</string>
     <string name="newPassword">New password</string>
-    <string name="campoObbligatorio">Field needed!</string>
+    <string name="campoObbligatorio">Required field!</string>
     <string name="passwordShort">Password too short!</string>
     <string name="passwordSimple">Password too simple!</string>
     <string name="no" translatable="false">NO</string>
@@ -110,6 +110,9 @@
     <string name="save_waiter_error">Problems saving waiter</string>
     <string name="invalidPassword">Password not valid!</string>
     <string name="requestProblems">Some request problems</string>
+    <string name="fieldTooShort">Field too Short!</string>
+    <string name="chooseANumberInRange">Choose a number between 5 and 1000!</string>
+    <string name="wantToExit">Do you want to exit?</string>
 
 
 </resources>

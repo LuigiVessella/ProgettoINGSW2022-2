@@ -29,7 +29,7 @@
     <string name="saveResturantTitle">Registra tu restaurante</string>
     <string name="takeOrder">tomar orden</string>
     <string name="newOrder">Nuevo orden</string>
-    <string name="tableNumber">Número de mesa</string>
+    <string name="tableNumber">Mesa</string>
     <string name="welcomeWaiter">Bienvenido:</string>
     <string name="profile">Perfil</string>
     <string name="Logout">Sales</string>

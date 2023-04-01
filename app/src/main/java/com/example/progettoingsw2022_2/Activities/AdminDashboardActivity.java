@@ -183,7 +183,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
         // Impostazione del colore del pulsante Positivo
         Button okButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
-        okButton.setTextColor(R.color.bianco);
+        okButton.setTextColor(getResources().getColor(R.color.bianco));
         okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario));
 
         Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);

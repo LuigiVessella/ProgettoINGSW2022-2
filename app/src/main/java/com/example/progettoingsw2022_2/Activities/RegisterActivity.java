@@ -1,9 +1,13 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -206,5 +211,50 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         }
         myBalloon.showAlignRight(logo);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(nomeText.getText().length() == 0 && cognomeText.getText().length() == 0 && pIvaText.getText().length() == 0 && emailText.getText().length() == 0&& codiceFiscaleText.getText().length() == 0&& passwordText.getText().length() == 0) super.onBackPressed();
+        else backToLoginActivity();
+    }
+
+    private void backToLoginActivity(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+        builder.setMessage("Le modifiche non verranno salvate, sei sicuro di voler uscire?");
+
+        // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+            // Avviare l'Activity desiderata
+            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
+        builder.setNegativeButton(R.string.no, (dialog, which) -> {
+            // Chiudere il dialogo e non fare nulla
+            dialog.dismiss();
+        });
+
+
+        // Creare e mostrare il dialogo
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Impostazione del colore del pulsante Positivo
+        Button okButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+        okButton.setTextColor(getResources().getColor(R.color.bianco));
+        okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario));
+
+        Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+        cancelButton.setTextColor(getResources().getColor(R.color.bianco));
+        cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario));
+
+
+
+        // Impostazione del colore di sfondo e del colore del testo
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        dialog.setMessage(Html.fromHtml("<font color='#000000'>Le modifiche non verranno salvate, sei sicuro di voler uscire?</font>"));
     }
 }

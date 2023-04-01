@@ -32,7 +32,7 @@
     <string name="EditSting">Modifica</string>
     <string name="takeOrder">Prendi Ordine</string>
     <string name="newOrder">Nuovo Ordiner</string>
-    <string name="tableNumber">Numero Tavolo</string>
+    <string name="tableNumber">Tavolo</string>
     <string name="orderStatus">Stato Ordine</string>
     <string name="welcomeWaiter">Benvenuto: </string>
     <string name="balloonRegister">\"Registra il tuo account da Amministratore!\"</string>
@@ -83,6 +83,9 @@
     <string name="save_waiter_error">Problemi nel salvare il cameriere</string>
     <string name="invalidPassword">Password non valida!</string>
     <string name="requestProblems">Problemi con la richiesta</string>
+    <string name="fieldTooShort">Campo troppo corto</string>
+    <string name="chooseANumberInRange">Scegli un numero tra 5 e 1000!</string>
+    <string name="wantToExit">Vuoi uscire?</string>
 
 
 </resources>

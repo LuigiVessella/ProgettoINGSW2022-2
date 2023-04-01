@@ -95,19 +95,19 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
             boolean hasError = false;
             EmailValidator validator_mail = EmailValidator.getInstance();
             if (nomeText.getText().length() == 1) {
-                nomeText.setError("Nome troppo corto!");
+                nomeText.setError(getString(R.string.fieldTooShort));
                 hasError = true;
             }
             if (nomeText.getText().length() == 0) {
-                nomeText.setError("Campo obbligatorio!");
+                nomeText.setError(getString(R.string.campoObbligatorio));
                 hasError = true;
             }
             if (cognomeText.getText().length() == 1) {
-                cognomeText.setError("Cognome troppo corto!");
+                cognomeText.setError(getString(R.string.fieldTooShort));
                 hasError = true;
             }
             if (cognomeText.getText().length() == 0) {
-                cognomeText.setError("Campo obbligatorio!");
+                cognomeText.setError(getString(R.string.campoObbligatorio));
                 hasError = true;
             }
             /*if (codiceFiscaleText.getText().length() != 0) {
@@ -117,18 +117,18 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                     hasError = true;
                 }
             } else if (codiceFiscaleText.getText().length() == 0) {
-                codiceFiscaleText.setError("Campo obbligatorio!");
+                codiceFiscaleText.setError(getString(R.string.campoObbligatorio));
                 hasError = true;
             } */
             String password = passwordText.getText().toString();
             if (password.isEmpty()) {
-                passwordText.setError("Campo obbligatorio!");
+                passwordText.setError(getString(R.string.campoObbligatorio));
                 hasError = true;
             } else if (password.length() < 6) {
-                passwordText.setError("Password troppo corta!");
+                passwordText.setError(getString(R.string.passwordShort));
                 hasError = true;
             } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.,_?!])[a-zA-Z0-9.,_?!]+$")) {
-                passwordText.setError("Password troppo semplice!");
+                passwordText.setError(getString(R.string.passwordSimple));
                 hasError = true;
             }
             if (emailText.getText().length() != 0) {
@@ -138,7 +138,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                     hasError = true;
                 }
             } else if (emailText.getText().length() == 0) {
-                emailText.setError("Campo obbligatorio!");
+                emailText.setError(getString(R.string.campoObbligatorio));
                 hasError = true;
             }
 
