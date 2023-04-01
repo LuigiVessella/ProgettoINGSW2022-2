@@ -1,6 +1,8 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -13,6 +15,7 @@ public class WaiterDashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_waiter_dashboard);
         TextView welcomeTextView = findViewById(R.id.waiterName);
         Cameriere cameriere = (Cameriere) getIntent().getSerializableExtra("cameriere");

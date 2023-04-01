@@ -1,6 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -34,6 +35,7 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_save_restaurant);
         admin = AdminSingleton.getInstance().getAccount();
         inizializzaComponenti();
