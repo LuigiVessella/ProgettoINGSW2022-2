@@ -1,35 +1,23 @@
 package com.example.progettoingsw2022_2.Models;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class Ristorante implements Serializable {
+public class Ristorante {
 
     private Long codice_ristorante;
     private String nome;
     private int coperti;
     private String locazione;
     private Admin proprietario;
-
     private List<Cameriere> camerieri;
-
-
     private List<AddettoCucina> addettiCucina;
     private Supervisore supervisore;
-    private List<Menu> menu;
 
+    private List<Menu> menu;
 
     public Ristorante() {
     }
 
-
-    public List<Menu> getMenu() {
-        return menu;
-    }
-
-    public void setMenu(List<Menu> menu) {
-        this.menu = menu;
-    }
 
 
     public Admin getProprietario() {
@@ -98,5 +86,15 @@ public class Ristorante implements Serializable {
     public void setSupervisore(Supervisore supervisore) {
         this.supervisore = supervisore;
     }
+
+
+    public List<Menu> getMenu() {
+        return menu;
+    }
+
+    public void setMenu(List<Menu> menu) {
+        this.menu = menu;
+    }
+
 
 }

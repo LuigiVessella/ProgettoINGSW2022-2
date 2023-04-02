@@ -23,6 +23,7 @@ import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
+import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.skydoves.balloon.ArrowOrientation;
@@ -118,9 +119,8 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         finish();
     }
 
-    private void switchToWaiterDashboardActivity(Cameriere cameriere){
+    private void switchToWaiterDashboardActivity(){
         Intent newAct = new Intent(LoginActivity.this, WaiterDashboard.class);
-        newAct.putExtra("cameriere", cameriere);
         startActivity(newAct);
         finish();
     }
@@ -138,13 +138,16 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             passwordLoginText.setText("");
             loginActivityButton.setEnabled(true);
             loading.setVisibility(View.INVISIBLE);
+            AdminSingleton.getInstance().setAccount(null);
         }
         else if(admin.getRistoranti() == null) {
             Cameriere cameriere = gson.fromJson(result, new TypeToken<Cameriere>(){}.getType());
-            System.out.println(cameriere.getNome());
-            switchToWaiterDashboardActivity(cameriere);
+            //settiamo il singleton del cameriere che ci servirà in tutte le activity inerenti
+            CameriereSingleton.getInstance().setAccount(cameriere);
+            switchToWaiterDashboardActivity();
         }
         else{
+            CameriereSingleton.getInstance().setAccount(null);
             switchToAdminDashboardActivity();
         }
 

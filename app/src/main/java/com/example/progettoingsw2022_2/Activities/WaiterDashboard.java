@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.R;
+import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
 
 public class WaiterDashboard extends AppCompatActivity {
 
@@ -18,7 +19,7 @@ public class WaiterDashboard extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_waiter_dashboard);
         TextView welcomeTextView = findViewById(R.id.waiterName);
-        Cameriere cameriere = (Cameriere) getIntent().getSerializableExtra("cameriere");
+        Cameriere cameriere = CameriereSingleton.getInstance().getAccount();
         welcomeTextView.append(cameriere.getNome()+" "+ cameriere.getCognome());
         inizializzaComponenti();
     }

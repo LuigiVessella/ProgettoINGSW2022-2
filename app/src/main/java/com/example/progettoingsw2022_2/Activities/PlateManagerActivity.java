@@ -3,7 +3,6 @@ package com.example.progettoingsw2022_2.Activities;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,9 +27,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
-import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Menu;
-import com.example.progettoingsw2022_2.Models.Ristorante;
+import com.example.progettoingsw2022_2.Models.Piatto;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.google.gson.Gson;
@@ -66,7 +64,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("ALL")
-public class MenuManager extends AppCompatActivity implements VolleyCallback {
+public class PlateManagerActivity extends AppCompatActivity implements VolleyCallback {
     private Button okButtonDialog, goProductButton;
 
     //EditText presenti nel layout:
@@ -80,16 +78,15 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     private AutoCompleteTextView autoCompleteTextView;
 
     private Spinner tipo, tipoAlimento;
-    private Ristorante ristorante;
-
-    private int restNumber;
-    private List<Menu> menus;
+    private Menu menu;
+    private int restNumber, menuNumber; //per individuare ristorante e menu nelle rispettive liste
+    private List<Piatto> piatti; //lista dei piatti per ciascun menu
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        setContentView(R.layout.activity_menu_manager);
+        setContentView(R.layout.activity_plate_manager);
         inizializzaComponenti();
 
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
@@ -108,16 +105,12 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         };
 
         ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 200);
-        dialog = new Dialog(MenuManager.this);
+        dialog = new Dialog(PlateManagerActivity.this);
         dialog.setContentView(R.layout.dialog_input_string);
 
-
         restNumber = getIntent().getIntExtra("ristorante" ,0);
-        if(AdminSingleton.getInstance().getAccount() == null) System.out.println("admin NULL");
-        System.out.println( AdminSingleton.getInstance().getAccount().getNome());
-        ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
-
-        menus = ristorante.getMenu();
+        menu = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getMenu().get(0);
+        piatti = menu.getPortate();
 
 
         itemMenuDescription = dialog.findViewById(R.id.descriptionItemMenu);
@@ -139,11 +132,8 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipoAlimento.setAdapter(adapter1);
 
-
-
-
         logo = findViewById(R.id.logoBiagioTestMenu);
-        myBalloon = new Balloon.Builder(MenuManager.this)
+        myBalloon = new Balloon.Builder(PlateManagerActivity.this)
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
                 .setArrowPosition(0.01f)
@@ -218,7 +208,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             }
             else {
                 //quando premiamo ok prendiamo prima tutti i dati e poi mandiamo la richeista
-                sendAddMenuRequest(product_name, description, prezzo, allergens, ingredients_list, tipoo, tipAlimento);
+                sendAddPlateRequest(product_name, description, prezzo, allergens, ingredients_list, tipoo, tipAlimento);
                 dialog.dismiss();
             }
 
@@ -287,10 +277,10 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
             document.add(title);
 
             Font plateFont = new Font(Font.FontFamily.COURIER, 18, Font.ITALIC, BaseColor.WHITE);
-            for (Menu menu : menus) {
+            for (Piatto piatto : piatti) {
                 // Aggiungi la descrizione del piatto
                 // Aggiunge la descrizione del piatto "Pasta al Sugo" centrata nella pagina con un font personalizzato e uno spazio di 50 punti prima della descrizione
-                Paragraph plate = new Paragraph("\n\n"+ menu.getNome_piatto() + "   " + menu.getPrezzo() + "€\n\n", plateFont);
+                Paragraph plate = new Paragraph("\n\n"+ piatto.getNome_piatto() + "   " + piatto.getPrezzo() + "€\n\n", plateFont);
                 plate.setAlignment(Element.ALIGN_CENTER);
                 document.add(plate);
             }
@@ -302,7 +292,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         } finally {
             // chiude il documento
 
-            Toast.makeText(this, "Menu creato in Download", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Piatto creato in Download", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -321,8 +311,8 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
 
     }
 
-    private void sendAddMenuRequest(String name, String description, String prezzo, String allergeni, String contiene, String tipoo, String tipoAlimento){
-        String url = "/menu/addMenu";
+    private void sendAddPlateRequest(String name, String description, String prezzo, String allergeni, String contiene, String tipoo, String tipoAlimento){
+        String url = "/piatto/addPiatto";
 
         Map<String, String> params = new HashMap<>();
         params.put("nome_piatto", name);
@@ -330,7 +320,7 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
         params.put("prezzo", prezzo);
         params.put("allergeni", allergeni);
         params.put("contiene", contiene);
-        params.put("codice_ristorante", ristorante.getCodice_ristorante().toString());
+        params.put("codice_menu", menu.getId_menu().toString());
         params.put("tipo", tipoo);
         params.put("tipoPietanza", tipoAlimento);
 
@@ -380,15 +370,14 @@ public class MenuManager extends AppCompatActivity implements VolleyCallback {
     public void onSuccess(String result) {
         //tengo traccia dei vari risultati delle varie richieste
 
-
         Gson gson = new Gson();
-        Ristorante newRist = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
+        Menu newMenu = gson.fromJson(result, new TypeToken<Menu>(){}.getType());
 
-        if(newRist == null) {
+        if(newMenu == null) {
             parseJsonResponse(result); //trattasi open food
         }
         else {
-            AdminSingleton.getInstance().getAccount().getRistoranti().set(restNumber, newRist);
+            AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getMenu().set(0,newMenu);
         }
     }
 }

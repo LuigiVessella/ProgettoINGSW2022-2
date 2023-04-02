@@ -10,7 +10,7 @@ import android.widget.Spinner;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
-import com.example.progettoingsw2022_2.Models.Menu;
+import com.example.progettoingsw2022_2.Models.Piatto;
 import com.example.progettoingsw2022_2.R;
 
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class TakeOrderActivity extends AppCompatActivity implements VolleyCallback {
 
-    private List<Menu> menu;
+    private List<Piatto> piatti;
     private Button addPlateOrder;
     private Spinner tableNumberSpinner;
     private String codiceRistorante;

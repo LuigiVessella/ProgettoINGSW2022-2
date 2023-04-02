@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -94,7 +93,7 @@ public class RestaurantDashActivity extends AppCompatActivity {
     }
 
     private void switchToMenuActivity(){
-        Intent newAct = new Intent(RestaurantDashActivity.this, MenuManager.class);
+        Intent newAct = new Intent(RestaurantDashActivity.this, PlateManagerActivity.class);
         newAct.putExtra("ristorante", restNumber);
         startActivity(newAct);
     }
