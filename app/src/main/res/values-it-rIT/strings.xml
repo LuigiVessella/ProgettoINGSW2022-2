@@ -83,9 +83,13 @@
     <string name="save_waiter_error">Problemi nel salvare il cameriere</string>
     <string name="invalidPassword">Password non valida!</string>
     <string name="requestProblems">Problemi con la richiesta</string>
-    <string name="fieldTooShort">Campo troppo corto</string>
+    <string name="fieldTooShort">Campo troppo corto!</string>
     <string name="chooseANumberInRange">Scegli un numero tra 5 e 1000!</string>
     <string name="wantToExit">Vuoi uscire?</string>
+    <string name="fieldRequired">Campo obbligatorio!</string>
+    <string name="NameShortError">Nome troppo corto!</string>
+    <string name="SurnameShortError">Cognome troppo corto!</string>
+    <string name="backToLoginDialog">Le modifiche non verranno salvate. Vuoi uscire?</string>
 
 
 </resources>

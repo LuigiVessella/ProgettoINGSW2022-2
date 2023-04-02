@@ -34,7 +34,7 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements VolleyCallback {
     private EditText nomeText, cognomeText, pIvaText, emailText, codiceFiscaleText;
-
+    private Button okButton;
     private ImageView logo;
     private TextInputEditText passwordText;
     private TextView welcomeTexView;
@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         passwordText = findViewById(R.id.textInputEditTextLayoutPass);
         codiceFiscaleText = findViewById(R.id.textInputEditTextLayoutCodiceFiscale);
         welcomeTexView = findViewById(R.id.welcomeRegisterText);
-        Button okButton = findViewById(R.id.okButtonRegister);
+        okButton = findViewById(R.id.okButtonRegister);
         logo = findViewById(R.id.logoBiagioTestMenu);
         myBalloon = new Balloon.Builder(RegisterActivity.this)
                 .setArrowOrientation(ArrowOrientation.START)
@@ -143,22 +143,27 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
     }
 
     private void onClick(View view) {
+        okButton.setEnabled(false);
         boolean hasError = false;
         EmailValidator validator_mail = EmailValidator.getInstance();
         if (nomeText.getText().length() == 1) {
-            nomeText.setError("Nome troppo corto!");
+            nomeText.setError(getString(R.string.NameShortError));
+            okButton.setEnabled(false);
             hasError = true;
         }
         if (nomeText.getText().length() == 0) {
-            nomeText.setError("Campo obbligatorio!");
+            nomeText.setError(getString(R.string.fieldRequired));
+            okButton.setEnabled(false);
             hasError = true;
         }
         if (cognomeText.getText().length() == 1) {
-            cognomeText.setError("Cognome troppo corto!");
+            cognomeText.setError(getString(R.string.SurnameShortError));
+            okButton.setEnabled(false);
             hasError = true;
         }
         if (cognomeText.getText().length() == 0) {
-            cognomeText.setError("Campo obbligatorio!");
+            cognomeText.setError(getString(R.string.fieldRequired));
+            okButton.setEnabled(false);
             hasError = true;
         }
         if (pIvaText.getText().length() != 0) {
@@ -166,12 +171,14 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
 
             //*************Da ricordare di modificare il 3 con l'11*********************//
 
-            if (!pIva.matches("^[0-9]{3}$")) {
+            if (!pIva.matches("^[0-9]{11}$")) {
                 pIvaText.setError("Campo non corretto!");
+                okButton.setEnabled(false);
                 hasError = true;
             }
         } else if (pIvaText.getText().length() == 0) {
-            pIvaText.setError("Campo obbligatorio!");
+            pIvaText.setError(getString(R.string.fieldRequired));
+            okButton.setEnabled(false);
             hasError = true;
         }
        /* if (codiceFiscaleText.getText().length() != 0) {
@@ -187,9 +194,11 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         String password = passwordText.getText().toString();
         if (password.isEmpty()) {
             passwordText.setError(getString(R.string.campoObbligatorio));
+            okButton.setEnabled(false);
             hasError = true;
         } else if (password.length() < 6) {
             passwordText.setError(getString(R.string.passwordShort));
+            okButton.setEnabled(false);
             hasError = true;
         } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.,_?!#])[a-zA-Z0-9.,_?!#]+$")) {
             passwordText.setError(getString(R.string.passwordSimple));
@@ -199,14 +208,17 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
             String mail = emailText.getText().toString();
             if (!validator_mail.isValid(mail)) {
                 emailText.setError(getString(R.string.emailError));
+                okButton.setEnabled(false);
                 hasError = true;
             }
         } else if (emailText.getText().length() == 0) {
             emailText.setError(getString(R.string.campoObbligatorio));
+            okButton.setEnabled(false);
             hasError = true;
         }
 
         if (!hasError) {
+            okButton.setEnabled(true);
             sendRegisterRequest(nomeText.getText(), cognomeText.getText(), pIvaText.getText(), passwordText.getText(), codiceFiscaleText.getText(), emailText.getText());
         }
         myBalloon.showAlignRight(logo);
@@ -221,7 +233,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
 
     private void backToLoginActivity(){
         AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-        builder.setMessage("Le modifiche non verranno salvate, sei sicuro di voler uscire?");
+        builder.setMessage(R.string.backToLoginDialog);
 
         // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
         builder.setPositiveButton(R.string.yes, (dialog, which) -> {
@@ -244,12 +256,12 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
 
         // Impostazione del colore del pulsante Positivo
         Button okButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
-        okButton.setTextColor(getResources().getColor(R.color.bianco));
-        okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario));
+        okButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
+        okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario,getTheme()));
 
         Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
-        cancelButton.setTextColor(getResources().getColor(R.color.bianco));
-        cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario));
+        cancelButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
+        cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario,getTheme()));
 
 
 

@@ -83,4 +83,11 @@
     <string name="save_waiter_error">Problemas para salvar al camarero</string>
     <string name="invalidPassword">¡Contraseña invalida!</string>
     <string name="requestProblems">Problemas con la solicitud</string>
+    <string name="chooseANumberInRange">¡Elige un número entre 5 y 1000!</string>
+    <string name="fieldTooShort">¡Campo demasiado corto!</string>
+    <string name="fieldRequired">¡Campo requerido!</string>
+    <string name="NameShortError">¡Nombre demasiado corto!</string>
+    <string name="SurnameShortError">¡Apellido demasiado corto!</string>
+    <string name="backToLoginDialog">Los cambios no se guardarán. ¿Quieres salir?</string>
+    <string name="wantToExit">¿Quieres salir?</string>
 </resources>

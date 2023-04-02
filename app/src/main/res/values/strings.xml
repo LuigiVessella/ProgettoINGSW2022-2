@@ -113,6 +113,10 @@
     <string name="fieldTooShort">Field too Short!</string>
     <string name="chooseANumberInRange">Choose a number between 5 and 1000!</string>
     <string name="wantToExit">Do you want to exit?</string>
+    <string name="fieldRequired">Field required!</string>
+    <string name="NameShortError">Name too short!</string>
+    <string name="SurnameShortError">Surname too short!</string>
+    <string name="backToLoginDialog">Modified won\'t saved. Do you want to exit?</string>
 
 
 </resources>
