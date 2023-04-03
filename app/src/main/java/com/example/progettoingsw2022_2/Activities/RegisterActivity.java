@@ -171,7 +171,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
 
             //*************Da ricordare di modificare il 3 con l'11*********************//
 
-            if (!pIva.matches("^[0-9]{11}$")) {
+            if (!pIva.matches("^[0-9]{3}$")) {
                 pIvaText.setError("Campo non corretto!");
                 okButton.setEnabled(false);
                 hasError = true;

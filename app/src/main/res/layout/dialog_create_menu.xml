@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutDialog2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/menuName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:autofillHints=""
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/roboto_thin"
+        android:hint="@string/nome_del_menu"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:paddingStart="5dp"
+        android:textColor="@color/grigio_scuro"
+        android:textColorHint="@color/grigio_chiaro"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:textSize="16sp"
+        tools:ignore="RtlSymmetry" />
+
+
+    <EditText
+        android:id="@+id/menuType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/roboto_thin"
+        android:hint="@string/tipo_menu"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:paddingStart="5dp"
+        android:textColor="@color/grigio_scuro"
+        android:textColorHint="@color/grigio_chiaro"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:textSize="16sp"
+        tools:ignore="RtlSymmetry" />
+
+
+    <Button
+        android:id="@+id/btn_insert_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:fontFamily="@font/roboto"
+        android:text="@string/Ok" />
+
+</LinearLayout>

@@ -117,6 +117,8 @@
     <string name="NameShortError">Name too short!</string>
     <string name="SurnameShortError">Surname too short!</string>
     <string name="backToLoginDialog">Modified won\'t saved. Do you want to exit?</string>
+    <string name="nome_del_menu">Nome del Menu</string>
+    <string name="tipo_menu">Tipo menu</string>
 
 
 </resources>

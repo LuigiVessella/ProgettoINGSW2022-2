@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -65,11 +66,11 @@ import java.util.Map;
 
 @SuppressWarnings("ALL")
 public class PlateManagerActivity extends AppCompatActivity implements VolleyCallback {
-    private Button okButtonDialog, goProductButton;
+    private Button okButtonDialog, goProductButton, insertMenuButtonDialog;
 
     //EditText presenti nel layout:
     private EditText itemMenuDescription, price, allergensEditText;
-    private Dialog dialog;
+    private Dialog addPlateDialog, addMenuDialog;
 
     //le stringhe usate per aggiungere un prodotto nel menu, quindi gli attributi:
     private String ingredients_list = null, product_name = null, description = null, allergens = null, prezzo = null;
@@ -91,8 +92,6 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
 
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
 
-        if(AdminSingleton.getInstance().getAccount() == null) Log.i("menu dashboard", "null");
-        else Log.i("menu dashboard",AdminSingleton.getInstance().getAccount().getNome() );
     }
 
     private void inizializzaComponenti(){
@@ -100,37 +99,47 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         CardView generateMenuCard, addProductCard;
         Switch preconfSwitch;
 
-        String[] COUNTRIES = new String[] {
+        String[] COMMON_FOOD = new String[] {
                 "Estathe", "Coca-Cola", "Pepsi", "Fanta", "Sprite"
         };
 
         ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 200);
-        dialog = new Dialog(PlateManagerActivity.this);
-        dialog.setContentView(R.layout.dialog_input_string);
+        addPlateDialog = new Dialog(PlateManagerActivity.this);
+        addPlateDialog.setContentView(R.layout.dialog_add_plate);
+
+        addMenuDialog = new Dialog(PlateManagerActivity.this);
+        addMenuDialog.setContentView(R.layout.dialog_create_menu);
 
         restNumber = getIntent().getIntExtra("ristorante" ,0);
-        menu = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getMenu().get(0);
-        piatti = menu.getPortate();
+        menu = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getMenu();
 
+        insertMenuButtonDialog = addMenuDialog.findViewById(R.id.btn_insert_menu);
+        Button addMenuButt = findViewById(R.id.createMenuButton);
+        itemMenuDescription = addPlateDialog.findViewById(R.id.descriptionItemMenu);
+        autoCompleteTextView = addPlateDialog.findViewById(R.id.autoCompleteTextView);
+        okButtonDialog = addPlateDialog.findViewById(R.id.btn_ok_dialog);
+        cancelButtonDialog = addPlateDialog.findViewById(R.id.btn_cancel_dialog);
+        goProductButton = addPlateDialog.findViewById(R.id.searchProductButton);
+        preconfSwitch = addPlateDialog.findViewById(R.id.menuPreconfSwitch);
+        price = addPlateDialog.findViewById(R.id.priceItemMenu);
+        allergensEditText = addPlateDialog.findViewById(R.id.allergensItemMenu);
+        tipo = addPlateDialog.findViewById(R.id.spinnerTipoMenu);
+        tipoAlimento = addPlateDialog.findViewById(R.id.spinnerTipoAlimentoMenu);
 
-        itemMenuDescription = dialog.findViewById(R.id.descriptionItemMenu);
-        autoCompleteTextView = dialog.findViewById(R.id.autoCompleteTextView);
-        okButtonDialog = dialog.findViewById(R.id.btn_ok_dialog);
-        cancelButtonDialog = dialog.findViewById(R.id.btn_cancel_dialog);
-        goProductButton = dialog.findViewById(R.id.searchProductButton);
-        preconfSwitch = dialog.findViewById(R.id.menuPreconfSwitch);
-        price = dialog.findViewById(R.id.priceItemMenu);
-        allergensEditText = dialog.findViewById(R.id.allergensItemMenu);
-        tipo = dialog.findViewById(R.id.spinnerTipoMenu);
-        tipoAlimento = dialog.findViewById(R.id.spinnerTipoAlimentoMenu);
+        ArrayAdapter<String> tipoPortataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Antipasto","Primo", "Secondo", "Dessert", "Frutta"});
+        tipoPortataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tipo.setAdapter(tipoPortataAdapter);
 
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Antipasto","Primo", "Secondo", "Dessert", "Frutta"});
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tipo.setAdapter(adapter1);
+        ArrayAdapter<String> tipoAlimentoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Pesce","Carne", "Vegano", "Vegetariano", "Gluten-Free"});
+        tipoAlimentoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tipoAlimento.setAdapter(tipoAlimentoAdapter);
 
-        adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Pesce","Carne", "Vegano", "Vegetariano", "Gluten-Free"});
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tipoAlimento.setAdapter(adapter1);
+        ArrayAdapter<String> adapterFood = new ArrayAdapter<>(this,
+                android.R.layout.simple_dropdown_item_1line, COMMON_FOOD);
+
+        autoCompleteTextView.setAdapter(adapterFood);
+        addProductCard = findViewById(R.id.addProductCard);
+        generateMenuCard = findViewById(R.id.generateMenuCard);
 
         logo = findViewById(R.id.logoBiagioTestMenu);
         myBalloon = new Balloon.Builder(PlateManagerActivity.this)
@@ -155,6 +164,33 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
 
         goProductButton.setEnabled(false);
 
+        if(menu == null){
+            addMenuButt.setEnabled(true);
+            addProductCard.setEnabled(false);
+            generateMenuCard.setEnabled(false);
+        }
+        else {
+            piatti = menu.getPortate();
+            addMenuButt.setEnabled(false);
+            addMenuButt.setText("MENU DISPONIBILE");
+            addProductCard.setEnabled(true);
+            generateMenuCard.setEnabled(true);
+        }
+
+        addMenuButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addMenuDialog.show();
+            }
+        });
+        insertMenuButtonDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendAddMenuRequest();
+            }
+        });
+
+
         preconfSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
             if(b) {
                 goProductButton.setEnabled(true);
@@ -173,12 +209,8 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
          });
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_dropdown_item_1line, COUNTRIES);
 
-        autoCompleteTextView.setAdapter(adapter);
-        addProductCard = findViewById(R.id.addProductCard);
-        generateMenuCard = findViewById(R.id.generateMenuCard);
+
 
         goProductButton.setOnClickListener(view -> {
             if(autoCompleteTextView.getText().length() > 3) {
@@ -187,7 +219,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             }
         });
         generateMenuCard.setOnClickListener(view -> createMenu());
-        addProductCard.setOnClickListener(view -> dialog.show());
+        addProductCard.setOnClickListener(view -> addPlateDialog.show());
 
         okButtonDialog.setOnClickListener(view -> {
 
@@ -209,7 +241,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             else {
                 //quando premiamo ok prendiamo prima tutti i dati e poi mandiamo la richeista
                 sendAddPlateRequest(product_name, description, prezzo, allergens, ingredients_list, tipoo, tipAlimento);
-                dialog.dismiss();
+                addPlateDialog.dismiss();
             }
 
         });
@@ -218,7 +250,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             itemMenuDescription.setText("");
             autoCompleteTextView.setText("");
 
-            dialog.dismiss();
+            addPlateDialog.dismiss();
 
         });
     }
@@ -329,6 +361,24 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
 
     }
 
+    private void sendAddMenuRequest() {
+        EditText menuName = addMenuDialog.findViewById(R.id.menuName);
+        EditText menuType = addMenuDialog.findViewById(R.id.menuType);
+        String lingua = "Italiano";
+
+        String url = "/menu/addMenu";
+
+        Map<String,String> params = new HashMap<>();
+        params.put("codice_ristorante", AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getCodice_ristorante().toString());
+        params.put("tipo", menuType.toString());
+        params.put("lingua", menuType.toString());
+        params.put("nome", menuName.toString());
+
+        CustomRequest newRequest = new CustomRequest(url, params,this, this);
+        newRequest.sendPostRequest();
+
+    }
+
     private void parseJsonResponse(String result) {
 
 
@@ -377,7 +427,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             parseJsonResponse(result); //trattasi open food
         }
         else {
-            AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getMenu().set(0,newMenu);
+            AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).setMenu(newMenu);
         }
     }
 }

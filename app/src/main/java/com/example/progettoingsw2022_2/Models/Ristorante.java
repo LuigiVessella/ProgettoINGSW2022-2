@@ -13,7 +13,9 @@ public class Ristorante {
     private List<AddettoCucina> addettiCucina;
     private Supervisore supervisore;
 
-    private List<Menu> menu;
+
+
+    private Menu menu;
 
     public Ristorante() {
     }
@@ -88,13 +90,14 @@ public class Ristorante {
     }
 
 
-    public List<Menu> getMenu() {
+    public Menu getMenu() {
         return menu;
     }
 
-    public void setMenu(List<Menu> menu) {
+    public void setMenu(Menu menu) {
         this.menu = menu;
     }
+
 
 
 }

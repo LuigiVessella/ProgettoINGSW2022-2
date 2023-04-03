@@ -7,6 +7,39 @@
     android:background="@drawable/sfondo_2"
     tools:context=".Activities.PlateManagerActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayoutMenuTop"
+        android:layout_width="match_parent"
+        android:layout_height="126dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.355"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.062">
+
+        <ImageView
+            android:id="@+id/logoBiagioTestMenu"
+            android:layout_width="129dp"
+            android:layout_height="130dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="12dp"
+            app:srcCompat="@drawable/logobiagio"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/createMenuButton"
+        android:layout_width="203dp"
+        android:layout_height="47dp"
+        android:enabled="false"
+        android:text="CREATE MENU"
+        app:layout_constraintBottom_toTopOf="@+id/addProductCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutMenuTop" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/addProductCard"
         android:layout_width="202dp"
@@ -24,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38">
+        app:layout_constraintVertical_bias="0.57">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,8 +70,8 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/baseline_emoji_food_beverage_24"
-                android:contentDescription="@string/add_product_label" />
+                android:contentDescription="@string/add_product_label"
+                android:src="@drawable/baseline_emoji_food_beverage_24" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -68,7 +101,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.71000004">
+        app:layout_constraintVertical_bias="0.85">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,27 +127,5 @@
 
 
     </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:id="@+id/linearLayoutMenuTop"
-        android:layout_width="match_parent"
-        android:layout_height="126dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.355"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.062">
-
-        <ImageView
-            android:id="@+id/logoBiagioTestMenu"
-            android:layout_width="129dp"
-            android:layout_height="130dp"
-            android:layout_gravity="start"
-            android:layout_marginStart="12dp"
-            app:srcCompat="@drawable/logobiagio"
-            tools:ignore="ContentDescription" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
