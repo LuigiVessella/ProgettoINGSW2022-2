@@ -11,6 +11,13 @@ public class Ordine {
     private boolean evaso = false;
     private String evasoDa; //lista di chef
 
+    private List<Piatto> piattiOrdinati;
+
+    private Cameriere cameriere;
+
+
+
+
     public Ordine() {
     }
 
@@ -62,8 +69,5 @@ public class Ordine {
         this.cameriere = cameriere;
     }
 
-    private List<Piatto> piattiOrdinati;
-
-    private Cameriere cameriere;
 
 }

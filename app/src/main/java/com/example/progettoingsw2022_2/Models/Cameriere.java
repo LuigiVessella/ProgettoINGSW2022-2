@@ -1,8 +1,14 @@
 package com.example.progettoingsw2022_2.Models;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Cameriere extends Lavoratore {
+
+
+    private Ristorante ristorante; //il ristorante in cui lavora il cameriere;
+    private List<Ordine> ordini; //la lista di ordinazioni che ha preso
+
 
     public Cameriere(){}
 
@@ -14,7 +20,13 @@ public class Cameriere extends Lavoratore {
         this.ristorante = ristorante;
     }
 
-    private Ristorante ristorante;
+    public List<Ordine> getOrdini() {
+        return ordini;
+    }
+
+    public void setOrdini(List<Ordine> ordini) {
+        this.ordini = ordini;
+    }
 
 
 }
