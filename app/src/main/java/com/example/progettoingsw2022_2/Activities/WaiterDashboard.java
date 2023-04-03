@@ -29,7 +29,7 @@ public class WaiterDashboard extends AppCompatActivity {
         Button takeOrderButton = findViewById(R.id.newOrderBtn);
         Button orderStatusButton = findViewById(R.id.orderStatusBtn);
 
-       orderStatusButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, TableStatusActivity.class)));
+       orderStatusButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, OrderStatusActivity.class)));
 
        takeOrderButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, TakeOrderActivity.class)));
 

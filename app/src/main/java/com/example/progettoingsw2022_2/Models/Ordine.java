@@ -5,9 +5,7 @@ import java.util.List;
 public class Ordine {
 
     private Long idOrdine;
-
     private int numeroTavolo;
-
     private boolean evaso = false;
     private String evasoDa; //lista di chef
 

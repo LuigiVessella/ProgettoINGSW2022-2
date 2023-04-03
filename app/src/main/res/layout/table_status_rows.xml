@@ -55,35 +55,20 @@
                 app:layout_constraintTop_toTopOf="@+id/table_image"
                 app:layout_constraintVertical_bias="0.26999998" />
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="170dp"
-                android:layout_height="16dp"
-                android:layout_marginBottom="32dp"
-                android:alpha="0.7"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="25"
-                android:progressTint="@color/marrone_secondario"
-
-                android:scaleY="4"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
-                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/textViewOrderDescription"
-                android:layout_width="161dp"
-                android:layout_height="22dp"
-                android:layout_marginBottom="60dp"
+                android:layout_width="259dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="64dp"
                 android:fontFamily="@font/roboto_light_italic"
+                android:gravity="center"
                 android:text="Nome_Ordine_o_boh"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.816"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
@@ -96,10 +81,10 @@
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.96"
+                app:layout_constraintHorizontal_bias="0.43"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.777" />
+                app:layout_constraintVertical_bias="0.764" />
 
             <Button
                 android:id="@+id/button_1_table_sollecita"
@@ -111,10 +96,10 @@
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.963"
+                app:layout_constraintHorizontal_bias="0.848"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.166" />
+                app:layout_constraintVertical_bias="0.764" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

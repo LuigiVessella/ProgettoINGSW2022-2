@@ -1,52 +1,55 @@
 package com.example.progettoingsw2022_2.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.progettoingsw2022_2.Activities.TableStatusActivity;
-import com.example.progettoingsw2022_2.Models.Tavolo;
+import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.R;
 
 import java.util.ArrayList;
 
-public class TableRecycleViewAdapter extends RecyclerView.Adapter<TableRecycleViewAdapter.MyViewHolder> {
+public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleViewAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList<Tavolo> tavoli;
+    private ArrayList<Ordine> ordini;
 
-    public TableRecycleViewAdapter(Context context, ArrayList<Tavolo> tavol){
+    public OrderRecycleViewAdapter(Context context, ArrayList<Ordine> ordini){
         this.context = context;
-        this.tavoli = tavol;
+        this.ordini = ordini;
     }
     @NonNull
     @Override
-    public TableRecycleViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OrderRecycleViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View view  = inflater.inflate(R.layout.table_status_rows, parent, false);
-        return new TableRecycleViewAdapter.MyViewHolder(view);
+        return new OrderRecycleViewAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TableRecycleViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OrderRecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.tableNumber.setText(String.valueOf(tavoli.get(position).getTableNumber()));
-        holder.orderDescription.setText(String.valueOf(tavoli.get(position).getOrderName()));
+        holder.tableNumber.setText(String.valueOf(ordini.get(position).getNumeroTavolo()));
+        holder.orderDescription.setText(Resources.getSystem().getString(R.string.Order)+ " #" + (ordini.get(position).getIdOrdine()));
         holder.removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(context, String.valueOf(tavoli.get(position)), Toast.LENGTH_SHORT).show();
-                tavoli.remove(position);
+
+                //TODO: Qui bisogna implementare la funzione che aggiorna l'evasione dell'ordine
+
+                ordini.remove(position);
                 notifyItemRemoved(position);
-                notifyItemRangeChanged(position, tavoli.size());
+                notifyItemRangeChanged(position, ordini.size());
             }
         });
 
@@ -54,7 +57,7 @@ public class TableRecycleViewAdapter extends RecyclerView.Adapter<TableRecycleVi
 
     @Override
     public int getItemCount() {
-        return tavoli.size();
+        return ordini.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

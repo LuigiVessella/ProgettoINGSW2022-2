@@ -90,6 +90,9 @@
     <string name="NameShortError">Nome troppo corto!</string>
     <string name="SurnameShortError">Cognome troppo corto!</string>
     <string name="backToLoginDialog">Le modifiche non verranno salvate. Vuoi uscire?</string>
+    <string name="Order">Ordine</string>
+    <string name="nome_del_menu">Nome Menu</string>
+    <string name="tipo_menu">Tipo di Menu</string>
 
 
 </resources>
