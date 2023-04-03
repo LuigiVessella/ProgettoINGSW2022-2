@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -130,14 +131,24 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
 
     @Override
     public void onSuccess(String result) {
-        Log.i("VOLLEY", result);
-        if(result.equals("Successfully saved")) {
+
+        if(result.equals("successfully_saved")) {
             welcomeTexView.setText(R.string.registerOK);
-            //Handler usato per aspettare un attimo prima di tornare indietro alla main activity
+
             new Handler().postDelayed(this::finishAfterTransition, 800);
         }
+        else if (result.equals("email_used")) {
+            emailText.setError("Email già in uso");
+        }
+        else if (result.equals("piva_used")) {
+            pIvaText.setError("Partita IVA già esistente");
+        }
+
+        else if (result.equals("codfisc_used")) {
+            codiceFiscaleText.setError("Codice fiscale già in uso");
+        }
         else {
-            emailText.setError(getString(R.string.registerWrong));
+            Toast.makeText(this, "Generic error", Toast.LENGTH_SHORT).show();
         }
 
     }
