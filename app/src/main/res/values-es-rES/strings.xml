@@ -97,4 +97,6 @@
     <string name="emailUsed">¡El correo electrónico ya está en uso!</string>
     <string name="PIVAexist">Número de IVA existente</string>
     <string name="CFexist">¡El código fiscal ya existe!</string>
+    <string name="passwordHint1">*La contraseña debe tener al menos 8 caracteres</string>
+    <string name="passwordHint2">*La contraseña debe contener al menos 1 carácter en mayúscula, 1 letra y 1 carácter especial</string>
 </resources>

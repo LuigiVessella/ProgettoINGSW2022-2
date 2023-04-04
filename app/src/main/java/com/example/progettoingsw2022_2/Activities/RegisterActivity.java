@@ -132,7 +132,6 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
 
         if(result.equals("succefully_saved")) {
             welcomeTexView.setText(R.string.registerOK);
-
             new Handler().postDelayed(this::finishAfterTransition, 800);
         }
         else if (result.equals("email_used")) {
@@ -209,7 +208,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
             passwordText.setError(getString(R.string.passwordShort));
             okButton.setEnabled(false);
             hasError = true;
-        } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.,_?!#])[a-zA-Z0-9.,_?!#]+$")) {
+        } else if (!password.matches("^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=])(?=\\S+$).{4,}$")) {
             passwordText.setError(getString(R.string.passwordSimple));
             hasError = true;
         }
