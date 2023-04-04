@@ -9,13 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ordine;
-import com.example.progettoingsw2022_2.Models.Tavolo;
 import com.example.progettoingsw2022_2.Adapter.OrderRecycleViewAdapter;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class OrderStatusActivity extends AppCompatActivity {
     private Cameriere cameriere;
@@ -52,6 +50,7 @@ public class OrderStatusActivity extends AppCompatActivity {
 
     private void setUpOrders(){
         ordini = (ArrayList<Ordine>) cameriere.getOrdini();
+
     }
 
 
