@@ -130,7 +130,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
     @Override
     public void onSuccess(String result) {
 
-        if(result.equals("successfully_saved")) {
+        if(result.equals("succefully_saved")) {
             welcomeTexView.setText(R.string.registerOK);
 
             new Handler().postDelayed(this::finishAfterTransition, 800);
