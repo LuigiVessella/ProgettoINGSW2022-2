@@ -93,6 +93,9 @@
     <string name="Order">Ordine</string>
     <string name="nome_del_menu">Nome Menu</string>
     <string name="tipo_menu">Tipo di Menu</string>
-
+    <string name="create_menu">CREA MENU</string>
+    <string name="PIVAexist">Partita IVA già esistente!</string>
+    <string name="CFexist">Codice fiscale già esistente!</string>
+    <string name="emailUsed">Email già in uso!</string>
 
 </resources>

@@ -90,4 +90,11 @@
     <string name="SurnameShortError">¡Apellido demasiado corto!</string>
     <string name="backToLoginDialog">Los cambios no se guardarán. ¿Quieres salir?</string>
     <string name="wantToExit">¿Quieres salir?</string>
+    <string name="nome_del_menu">Nombre del menú</string>
+    <string name="Order">Orden</string>
+    <string name="tipo_menu">Tipo de menú</string>
+    <string name="create_menu">CREAR MENÚS</string>
+    <string name="emailUsed">¡El correo electrónico ya está en uso!</string>
+    <string name="PIVAexist">Número de IVA existente</string>
+    <string name="CFexist">¡El código fiscal ya existe!</string>
 </resources>

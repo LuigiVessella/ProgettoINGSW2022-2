@@ -7,8 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
-import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -138,14 +136,14 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
             new Handler().postDelayed(this::finishAfterTransition, 800);
         }
         else if (result.equals("email_used")) {
-            emailText.setError("Email già in uso");
+            emailText.setError(getString(R.string.emailUsed));
         }
         else if (result.equals("piva_used")) {
-            pIvaText.setError("Partita IVA già esistente");
+            pIvaText.setError(getString(R.string.PIVAexist));
         }
 
         else if (result.equals("codfisc_used")) {
-            codiceFiscaleText.setError("Codice fiscale già in uso");
+            codiceFiscaleText.setError(getString(R.string.CFexist));
         }
         else {
             Toast.makeText(this, "Generic error", Toast.LENGTH_SHORT).show();
@@ -182,7 +180,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
 
             //*************Da ricordare di modificare il 3 con l'11*********************//
 
-            if (!pIva.matches("^[0-9]{3}$")) {
+            if (!pIva.matches("^[0-9]{11}$")) {
                 pIvaText.setError("Campo non corretto!");
                 okButton.setEnabled(false);
                 hasError = true;
@@ -274,10 +272,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         cancelButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
         cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario,getTheme()));
 
-
-
-        // Impostazione del colore di sfondo e del colore del testo
+        // Impostazione del colore di sfondo
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        dialog.setMessage(Html.fromHtml("<font color='#000000'>Le modifiche non verranno salvate, sei sicuro di voler uscire?</font>"));
     }
 }

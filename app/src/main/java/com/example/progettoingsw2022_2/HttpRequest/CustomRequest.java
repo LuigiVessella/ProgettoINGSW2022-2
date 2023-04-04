@@ -108,9 +108,5 @@ public class CustomRequest {
         };
 
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
-
     }
-
-
-
 }

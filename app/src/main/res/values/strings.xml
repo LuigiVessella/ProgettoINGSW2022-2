@@ -121,6 +121,9 @@
     <string name="tipo_menu">Menu type</string>
     <string name="Order">Order</string>
     <string name="create_menu">CREATE MENU</string>
+    <string name="emailUsed">Email already used!</string>
+    <string name="PIVAexist">VAT Number already exist</string>
+    <string name="CFexist">Fiscal Code already exist!</string>
 
 
 </resources>

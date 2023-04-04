@@ -41,7 +41,8 @@
             android:backgroundTint="@drawable/button_color_scheme"
             android:fontFamily="@font/roboto"
             android:text="@string/Search"
-            app:cornerRadius="40sp" />
+            app:cornerRadius="40sp"
+            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
     </LinearLayout>
 
     <EditText
@@ -49,42 +50,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:autofillHints=""
         android:background="@drawable/custom_input"
         android:fontFamily="@font/roboto_thin"
         android:hint="@string/dialogAddProduct_description"
+        android:inputType="text"
         android:minHeight="48dp"
         android:paddingStart="5dp"
         android:textColor="@color/grigio_scuro"
         android:textColorHint="@color/grigio_chiaro"
         android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="16sp"
-        android:autofillHints=""
-        android:inputType="text"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlSymmetry,TextContrastCheck" />
 
     <EditText
         android:id="@+id/allergensItemMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:autofillHints=""
         android:background="@drawable/custom_input"
         android:fontFamily="@font/roboto_thin"
         android:hint="@string/dialogAddProduct_allergens"
+        android:inputType="text"
         android:minHeight="48dp"
         android:paddingStart="5dp"
         android:textColor="@color/grigio_scuro"
         android:textColorHint="@color/grigio_chiaro"
         android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="16sp"
-        android:autofillHints=""
-        android:inputType="text"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlSymmetry,TextContrastCheck" />
 
     <EditText
         android:id="@+id/priceItemMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:autofillHints=""
         android:background="@drawable/custom_input"
         android:fontFamily="@font/roboto_thin"
         android:hint="@string/dialogAddProduct_price"
@@ -95,8 +97,7 @@
         android:textColorHint="@color/grigio_chiaro"
         android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="16sp"
-        android:autofillHints=""
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlSymmetry,TextContrastCheck" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -114,16 +115,14 @@
                 android:id="@+id/tipoDialogMenuTextView"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
-                android:layout_weight="0"
                 android:text="@string/Type" />
 
             <Spinner
                 android:id="@+id/spinnerTipoMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
                 android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
         <LinearLayout
@@ -135,9 +134,8 @@
             <TextView
                 android:id="@+id/tipoAlimentoDialogTxt"
                 android:layout_width="182dp"
-                android:layout_height="0dp"
+                android:layout_height="50dp"
                 android:layout_gravity="end"
-                android:layout_weight="1"
                 android:text="@string/Food_type" />
 
             <Spinner
@@ -146,7 +144,7 @@
                 android:layout_height="31dp"
                 android:layout_gravity="end"
                 android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
     </LinearLayout>
@@ -168,7 +166,7 @@
             android:fontFamily="@font/roboto"
             android:text="@string/Cancel"
             app:cornerRadius="40sp"
-            tools:ignore="TextContrastCheck" />
+            tools:ignore="ButtonStyle,TextContrastCheck" />
 
         <Button
             android:id="@+id/btn_ok_dialog"
@@ -177,7 +175,8 @@
             android:backgroundTint="@drawable/button_color_scheme"
             android:fontFamily="@font/roboto"
             android:text="@string/Ok"
-            app:cornerRadius="40sp" />
+            app:cornerRadius="40sp"
+            tools:ignore="ButtonStyle,TextContrastCheck" />
 
     </LinearLayout>
 
@@ -191,6 +190,7 @@
         android:text="@string/Prepackaged"
         android:textSize="14sp"
         android:thumbTint="@color/marrone_primario"
-        android:trackTint="@color/marrone_secondario" />
+        android:trackTint="@color/marrone_secondario"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </LinearLayout>
