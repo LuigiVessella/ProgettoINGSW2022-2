@@ -41,8 +41,8 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
         holder.tableNumber.setText(String.valueOf(ordini.get(position).getNumeroTavolo()));
         holder.orderDescription.setText(Resources.getSystem().getString(R.string.Order)+ " #" + (ordini.get(position).getIdOrdine()));
         holder.removeButton.setOnClickListener(view -> {
-            //TODO: Qui bisogna implementare la funzione che aggiorna l'evasione dell'ordine
 
+            ordini.get(position).setEvaso(true);
             ordini.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, ordini.size());
@@ -67,7 +67,6 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
             orderDescription = itemView.findViewById(R.id.textViewOrderDescription);
             removeButton = itemView.findViewById(R.id.button_2_table_remove);
             sollecitaButton = itemView.findViewById(R.id.button_1_table_sollecita);
-
 
         }
     }
