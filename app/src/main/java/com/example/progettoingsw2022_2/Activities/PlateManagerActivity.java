@@ -152,7 +152,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
                 .setTextSize(15f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
-                .setText("Aggiungi elementi al menu, oppure visualizzalo in PDF")
+                .setText(getString(R.string.plateManagerBalloon))
                 .setTextSize(16)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(Color.rgb(198,173,119))
@@ -172,7 +172,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         else {
             piatti = menu.getPortate();
             addMenuButt.setEnabled(false);
-            addMenuButt.setText("MENU DISPONIBILE");
+            addMenuButt.setText(R.string.menuAval);
             addProductCard.setEnabled(true);
             generateMenuCard.setEnabled(true);
         }
@@ -236,7 +236,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             if(ingredients_list == null) ingredients_list = "sample_string";
 
             if(product_name.equals("") || description.equals("") || prezzo.equals("")){
-                autoCompleteTextView.setError("Riempi tutti i campi!");
+                autoCompleteTextView.setError(getString(R.string.fillAllFieldsWarning));
             }
             else {
                 //quando premiamo ok prendiamo prima tutti i dati e poi mandiamo la richeista
@@ -302,7 +302,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
 
             document.add(space);
 
-
+            //TODO: Prendere il nome del ristorante al posto della stringa statica
             Paragraph title = new Paragraph("Ristorante Da Gigi", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
 
@@ -324,7 +324,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         } finally {
             // chiude il documento
 
-            Toast.makeText(this, "Piatto creato in Download", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.menuInDownload, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -338,7 +338,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             newRequest.sendGetRequest();
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this, "Network exception", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.NetworkError, Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -99,4 +99,9 @@
     <string name="CFexist">¡El código fiscal ya existe!</string>
     <string name="passwordHint1">*La contraseña debe tener al menos 8 caracteres</string>
     <string name="passwordHint2">*La contraseña debe contener al menos 1 carácter en mayúscula, 1 letra y 1 carácter especial</string>
+    <string name="plateManagerBalloon">Añade los platos a la carta, o visualízala en PDF</string>
+    <string name="menuAval">MENÚ DISPONIBLE</string>
+    <string name="fillAllFieldsWarning">¡Complete todos los campos!</string>
+    <string name="menuInDownload">Menú disponible en Download</string>
+    <string name="NetworkError">Error de red</string>
 </resources>

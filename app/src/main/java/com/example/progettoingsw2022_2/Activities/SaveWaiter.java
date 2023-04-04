@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.Html;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,7 +66,6 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
         nomeText = findViewById(R.id.waiterTextInputEditTextLayoutName);
         cognomeText = findViewById(R.id.waiterTextInputEditTextLayoutSurname);
         emailText = findViewById(R.id.waiterTextInputEditTextLayoutEmail);
-        passwordText = (TextInputEditText) findViewById(R.id.textInputEditTextLayoutwaiter);
         codiceFiscaleText = findViewById(R.id.waiterTextInputEditTextLayoutCodiceFiscale);
         logo = findViewById(R.id.waiterLogoBiagioTest);
         Button okButton = findViewById(R.id.waiterOkButton);
@@ -82,8 +82,8 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
                 .setArrowPosition(0.01f)
                 //.setWidth(BalloonSizeSpec.WRAP)
-                .setHeight(100)
-                .setWidth(250)
+                .setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+                .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
                 .setTextSize(15f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
@@ -125,17 +125,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                 codiceFiscaleText.setError(getString(R.string.campoObbligatorio));
                 hasError = true;
             } */
-            String password = passwordText.getText().toString();
-            if (password.isEmpty()) {
-                passwordText.setError(getString(R.string.campoObbligatorio));
-                hasError = true;
-            } else if (password.length() < 6) {
-                passwordText.setError(getString(R.string.passwordShort));
-                hasError = true;
-            } else if (!password.matches("^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=])(?=\\S+$).{4,}$")) {
-                passwordText.setError(getString(R.string.passwordSimple));
-                hasError = true;
-            }
+
             if (emailText.getText().length() != 0) {
                 String mail = emailText.getText().toString();
                 if (!validator_mail.isValid(mail)) {
@@ -148,7 +138,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
             }
 
             if (!hasError) {
-                sendRegisterRequest(nomeText.getText(), cognomeText.getText(), passwordText.getText(), codiceFiscaleText.getText(), emailText.getText());
+                sendRegisterRequest(nomeText.getText(), cognomeText.getText(), codiceFiscaleText.getText(), emailText.getText());
             }
         });
     }
@@ -174,9 +164,9 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
 
 
 
-    private void sendRegisterRequest(Editable nome, Editable cognome, Editable password, Editable codiceFiscale, Editable email) {
+    private void sendRegisterRequest(Editable nome, Editable cognome, Editable codiceFiscale, Editable email) {
         //semplice libreria che ci fa l'hash della password e manda al server
-        String stringPass = password.toString();
+        String stringPass = "firstpass.1";
 
         String salt = "$2a$10$abcdefghijklmnopqrstuvw$";
         String hashedPassword = BCrypt.hashpw(stringPass,salt);

@@ -99,5 +99,10 @@
     <string name="emailUsed">Email già in uso!</string>
     <string name="passwordHint1">*La password deve essere di almeno 8 caratteri</string>
     <string name="passwordHint2">*La password deve contenere almeno 1 carattere maiuscolo, 1 lettera e 1 carattere speciale</string>
+    <string name="menuAval">MENU DISPONIBILE</string>
+    <string name="plateManagerBalloon">Aggiungi i piatti al menu, oppure visualizzalo in PDF</string>
+    <string name="fillAllFieldsWarning">Riempi tutti i campi!</string>
+    <string name="menuInDownload">Menu disponibile in Download</string>
+    <string name="NetworkError">Errore di rete</string>
 
 </resources>

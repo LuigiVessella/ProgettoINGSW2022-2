@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -69,8 +70,8 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
                 .setArrowPosition(0.01f)
-                .setHeight(100)
-                .setWidth(250)
+                .setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+                .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
                 .setTextSize(15f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
