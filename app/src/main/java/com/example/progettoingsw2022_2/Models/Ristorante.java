@@ -10,16 +10,11 @@ public class Ristorante {
     private String locazione;
     private Admin proprietario;
     private List<Cameriere> camerieri;
-    private List<AddettoCucina> addettiCucina;
+    private AddettoCucina addettoCucina;
     private Supervisore supervisore;
-
-
-
     private Menu menu;
 
-    public Ristorante() {
-    }
-
+    public Ristorante() {}
 
 
     public Admin getProprietario() {
@@ -72,15 +67,6 @@ public class Ristorante {
         this.camerieri = camerieri;
     }
 
-
-    public List<AddettoCucina> getAddettiCucina() {
-        return addettiCucina;
-    }
-
-    public void setAddettiCucina(List<AddettoCucina> addettiCucina) {
-        this.addettiCucina = addettiCucina;
-    }
-
     public Supervisore getSupervisore() {
         return supervisore;
     }
@@ -88,7 +74,6 @@ public class Ristorante {
     public void setSupervisore(Supervisore supervisore) {
         this.supervisore = supervisore;
     }
-
 
     public Menu getMenu() {
         return menu;
@@ -98,6 +83,12 @@ public class Ristorante {
         this.menu = menu;
     }
 
+    public AddettoCucina getAddettoCucina() {
+        return addettoCucina;
+    }
 
+    public void setAddettoCucina(AddettoCucina addettoCucina) {
+        this.addettoCucina = addettoCucina;
+    }
 
 }
