@@ -28,7 +28,7 @@
             android:name=".Activities.WaiterDashboard"
             android:exported="false" />
         <activity
-            android:name=".Activities.TableStatusActivity"
+            android:name=".Activities.OrderStatusActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.SaveWaiter"

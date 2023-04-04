@@ -140,10 +140,11 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             loading.setVisibility(View.INVISIBLE);
             AdminSingleton.getInstance().setAccount(null);
         }
-        else if(admin.getRistoranti() == null) {
+        else if(admin.getPartita_iva() == null) {
             Cameriere cameriere = gson.fromJson(result, new TypeToken<Cameriere>(){}.getType());
             //settiamo il singleton del cameriere che ci servirà in tutte le activity inerenti
             CameriereSingleton.getInstance().setAccount(cameriere);
+
             switchToWaiterDashboardActivity();
         }
         else{

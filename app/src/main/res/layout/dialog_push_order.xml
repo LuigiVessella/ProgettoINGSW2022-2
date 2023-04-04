@@ -1,12 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="204dp"
-        android:layout_height="51dp"
-        android:text="TextView" />
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="213dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/primoPiattoTextView"
+                android:layout_width="141dp"
+                android:layout_height="46dp"
+                android:layout_weight="0"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="Primo:"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spinnerPrimoPiatto"
+                android:layout_width="271dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/secondoPiattoTextView"
+                android:layout_width="150dp"
+                android:layout_height="46dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="Secondo:"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spinnerSecondoPiatto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/dessertPiattoTextView"
+                android:layout_width="150dp"
+                android:layout_height="46dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="Dessert:"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spinnerDessert"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="344dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:fontFamily="@font/roboto"
+        android:text="ADD ORDER"
+        app:cornerRadius="40sp" />
+
 </LinearLayout>

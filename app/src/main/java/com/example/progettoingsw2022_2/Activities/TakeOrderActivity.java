@@ -3,16 +3,22 @@ package com.example.progettoingsw2022_2.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Menu;
 import com.example.progettoingsw2022_2.Models.Piatto;
 import com.example.progettoingsw2022_2.R;
+import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +27,11 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
     private List<Piatto> piatti;
     private Button addPlateOrder;
-    private Spinner tableNumberSpinner;
-    private String codiceRistorante;
+    private Spinner tableNumberSpinner, primiPiattiSpinner, secondiPiattiSpinner;
+
+
+    private Dialog createNewOrderDialog;
+
 
 
     @Override
@@ -38,8 +47,20 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
     private void inizializeComponent() {
 
+        createNewOrderDialog = new Dialog(this);
+        createNewOrderDialog.setContentView(R.layout.dialog_push_order);
+
+        primiPiattiSpinner = createNewOrderDialog.findViewById(R.id.spinnerPrimoPiatto);
+        secondiPiattiSpinner = createNewOrderDialog.findViewById(R.id.spinnerSecondoPiatto);
         addPlateOrder = findViewById(R.id.buttonAddPlateOrder);
         tableNumberSpinner = findViewById(R.id.spinnerTableNumberOrder);
+
+        addPlateOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createNewOrderDialog.show();
+            }
+        });
 
         Integer[] numeri = {1,2,3,4,5};
 
@@ -53,12 +74,28 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
 
     private void getMenu(){
-        String url = "/menu/getMenu";
-        Map<String, String> params = new HashMap<>();
-        params.put("codiceRistorante", codiceRistorante);
 
-        CustomRequest newRequest = new CustomRequest(url, params, this, this);
-        newRequest.sendPostRequest();
+        Menu menu = CameriereSingleton.getInstance().getAccount().getRistorante().getMenu();
+        ArrayList<String> listaPrimi = new ArrayList<>();
+        ArrayList<String> listaSecondi = new ArrayList<>();
+
+        for(Piatto piatto: menu.getPortate()){
+            if(piatto.getTipo().equals( "Primo")) {
+                listaPrimi.add(piatto.getNome_piatto());
+            }
+
+            if(piatto.getTipo().equals("Secondo")) {
+                listaSecondi.add(piatto.getNome_piatto());
+            }
+        }
+
+        ArrayAdapter<String> adapterPrimi = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaPrimi);
+        adapterPrimi.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        primiPiattiSpinner.setAdapter(adapterPrimi);
+
+        ArrayAdapter<String> adapterSecondi = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaSecondi);
+        adapterSecondi.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        secondiPiattiSpinner.setAdapter(adapterSecondi);
 
     }
 
