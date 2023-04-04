@@ -124,6 +124,8 @@
     <string name="emailUsed">Email already used!</string>
     <string name="PIVAexist">VAT Number already exist</string>
     <string name="CFexist">Fiscal Code already exist!</string>
+    <string name="passwordHint1">*Password must be at least 8 characters</string>
+    <string name="passwordHint2">*Password must contain at least 1 uppercase character, 1 letter and 1 special character</string>
 
 
 </resources>

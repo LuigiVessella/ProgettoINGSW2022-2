@@ -39,7 +39,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_dashboard);
         admin = AdminSingleton.getInstance().getAccount();
-
+        Log.i("Admin resturant", String.valueOf(admin.getRistoranti().size()));
 
         inizializzaComponenti();
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);

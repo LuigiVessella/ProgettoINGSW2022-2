@@ -97,5 +97,7 @@
     <string name="PIVAexist">Partita IVA già esistente!</string>
     <string name="CFexist">Codice fiscale già esistente!</string>
     <string name="emailUsed">Email già in uso!</string>
+    <string name="passwordHint1">*La password deve essere di almeno 8 caratteri</string>
+    <string name="passwordHint2">*La password deve contenere almeno 1 carattere maiuscolo, 1 lettera e 1 carattere speciale</string>
 
 </resources>

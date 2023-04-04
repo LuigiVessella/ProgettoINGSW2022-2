@@ -132,7 +132,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
             } else if (password.length() < 6) {
                 passwordText.setError(getString(R.string.passwordShort));
                 hasError = true;
-            } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.,_?!])[a-zA-Z0-9.,_?!]+$")) {
+            } else if (!password.matches("^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=])(?=\\S+$).{4,}$")) {
                 passwordText.setError(getString(R.string.passwordSimple));
                 hasError = true;
             }
