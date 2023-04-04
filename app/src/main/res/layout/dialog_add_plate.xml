@@ -2,198 +2,211 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayoutDialog1"
+    android:theme="@style/Theme.Material3.Light.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/dialog_border_view"
-    android:orientation="vertical"
-    android:padding="18dp">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal">
 
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
-            android:layout_width="wrap_content"
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/custom_input"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="@string/dialogAddProduct_name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:paddingStart="5dp"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHint="@color/grigio_chiaro"
+                android:textCursorDrawable="@drawable/cursor_color"
+                tools:ignore="TextContrastCheck,RtlSymmetry" />
+
+            <Button
+                android:id="@+id/searchProductButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="@drawable/button_color_scheme"
+                android:fontFamily="@font/roboto"
+                android:text="@string/Search"
+                app:cornerRadius="40sp"
+                tools:ignore="TextContrastCheck,RtlSymmetry,TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/descriptionItemMenu"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:autofillHints=""
             android:background="@drawable/custom_input"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:fontFamily="@font/roboto_medium"
-            android:hint="@string/dialogAddProduct_name"
-            android:inputType="textPersonName"
+            android:fontFamily="@font/roboto_thin"
+            android:hint="@string/dialogAddProduct_description"
+            android:inputType="text"
             android:minHeight="48dp"
             android:paddingStart="5dp"
             android:textColor="@color/grigio_scuro"
             android:textColorHint="@color/grigio_chiaro"
             android:textCursorDrawable="@drawable/cursor_color"
-            tools:ignore="RtlSymmetry,TextContrastCheck" />
+            android:textSize="16sp"
+            tools:ignore="TextContrastCheck, RtlSymmetry" />
 
-        <Button
-            android:id="@+id/searchProductButton"
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/allergensItemMenu"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:backgroundTint="@drawable/button_color_scheme"
-            android:fontFamily="@font/roboto"
-            android:text="@string/Search"
-            app:cornerRadius="40sp"
-            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
-    </LinearLayout>
+            android:layout_marginEnd="10dp"
+            android:autofillHints=""
+            android:background="@drawable/custom_input"
+            android:fontFamily="@font/roboto_thin"
+            android:hint="@string/dialogAddProduct_allergens"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/grigio_scuro"
+            android:textColorHint="@color/grigio_chiaro"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:textSize="16sp"
+            tools:ignore="TextContrastCheck,RtlSymmetry" />
 
-    <EditText
-        android:id="@+id/descriptionItemMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:autofillHints=""
-        android:background="@drawable/custom_input"
-        android:fontFamily="@font/roboto_thin"
-        android:hint="@string/dialogAddProduct_description"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:paddingStart="5dp"
-        android:textColor="@color/grigio_scuro"
-        android:textColorHint="@color/grigio_chiaro"
-        android:textCursorDrawable="@drawable/cursor_color"
-        android:textSize="16sp"
-        tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-    <EditText
-        android:id="@+id/allergensItemMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:autofillHints=""
-        android:background="@drawable/custom_input"
-        android:fontFamily="@font/roboto_thin"
-        android:hint="@string/dialogAddProduct_allergens"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:paddingStart="5dp"
-        android:textColor="@color/grigio_scuro"
-        android:textColorHint="@color/grigio_chiaro"
-        android:textCursorDrawable="@drawable/cursor_color"
-        android:textSize="16sp"
-        tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-    <EditText
-        android:id="@+id/priceItemMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:autofillHints=""
-        android:background="@drawable/custom_input"
-        android:fontFamily="@font/roboto_thin"
-        android:hint="@string/dialogAddProduct_price"
-        android:inputType="numberDecimal"
-        android:minHeight="48dp"
-        android:paddingStart="5dp"
-        android:textColor="@color/grigio_scuro"
-        android:textColorHint="@color/grigio_chiaro"
-        android:textCursorDrawable="@drawable/cursor_color"
-        android:textSize="16sp"
-        tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/priceItemMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:background="@drawable/custom_input"
+            android:fontFamily="@font/roboto_thin"
+            android:hint="@string/dialogAddProduct_price"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/grigio_scuro"
+            android:textColorHint="@color/grigio_chiaro"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:textSize="16sp"
+            tools:ignore="TextContrastCheck, RtlSymmetry" />
 
         <LinearLayout
-            android:layout_width="352dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tipoDialogMenuTextView"
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:text="@string/Type" />
-
-            <Spinner
-                android:id="@+id/spinnerTipoMenu"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                android:layout_weight="0.5"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tipoDialogMenuTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Type" />
+
+                <Spinner
+                    android:id="@+id/spinnerTipoMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tipoAlimentoDialogTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="@string/Food_type" />
+
+                <Spinner
+                    android:id="@+id/spinnerTipoAlimentoMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:minHeight="48dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="352dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:id="@+id/linearLayoutDialog2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tipoAlimentoDialogTxt"
-                android:layout_width="182dp"
-                android:layout_height="29dp"
-                android:layout_gravity="end"
-                android:text="@string/Food_type" />
+            <Button
+                android:id="@+id/btn_cancel_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@drawable/button_color_scheme"
+                android:fontFamily="@font/roboto"
+                android:text="@string/Cancel"
+                app:cornerRadius="40sp"
+                tools:ignore="ButtonStyle,TextContrastCheck" />
 
-            <Spinner
-                android:id="@+id/spinnerTipoAlimentoMenu"
-                android:layout_width="180dp"
-                android:layout_height="31dp"
-                android:layout_gravity="end"
-                android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            <Button
+                android:id="@+id/btn_ok_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@drawable/button_color_scheme"
+                android:fontFamily="@font/roboto"
+                android:text="@string/Ok"
+                app:cornerRadius="40sp"
+                tools:ignore="ButtonStyle,TextContrastCheck" />
+
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayoutDialog2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_cancel_dialog"
-            android:layout_width="wrap_content"
+        <Switch
+            android:id="@+id/menuPreconfSwitch"
+            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:backgroundTint="@drawable/button_color_scheme"
-            android:fontFamily="@font/roboto"
-            android:text="@string/Cancel"
-            app:cornerRadius="40sp"
-            tools:ignore="ButtonStyle,TextContrastCheck" />
-
-        <Button
-            android:id="@+id/btn_ok_dialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@drawable/button_color_scheme"
-            android:fontFamily="@font/roboto"
-            android:text="@string/Ok"
-            app:cornerRadius="40sp"
-            tools:ignore="ButtonStyle,TextContrastCheck" />
-
-    </LinearLayout>
-
-    <Switch
-        android:id="@+id/menuPreconfSwitch"
-        style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:switchTextAppearance="@style/MyAlertDialogStyle"
-        android:text="@string/Prepackaged"
-        android:textSize="14sp"
-        android:thumbTint="@color/marrone_primario"
-        android:trackTint="@color/marrone_secondario"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
-
+            android:layout_marginBottom="10dp"
+            android:switchTextAppearance="@style/MyAlertDialogStyle"
+            android:text="@string/Prepackaged"
+            android:textSize="14sp"
+            android:thumbTint="@color/marrone_primario"
+            android:trackTint="@color/marrone_secondario"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
 </LinearLayout>

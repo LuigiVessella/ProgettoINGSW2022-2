@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -147,8 +148,8 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
                 .setArrowPosition(0.01f)
                 //.setWidth(BalloonSizeSpec.WRAP)
-                .setHeight(100)
-                .setWidth(250)
+                .setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+                .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
                 .setTextSize(15f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
