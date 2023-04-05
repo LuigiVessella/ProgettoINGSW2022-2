@@ -4,13 +4,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.Html;
 import android.widget.Button;
@@ -18,13 +16,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Admin;
-import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.google.gson.Gson;
@@ -63,11 +59,11 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
             hasError = true;
         }
         if (nomeText.getText().length() == 0) {
-            nomeText.setError(getString(R.string.campoObbligatorio));
+            nomeText.setError(getString(R.string.fieldRequired));
             hasError = true;
         }
         if (copertiText.getText().length() == 0) {
-            copertiText.setError(getString(R.string.campoObbligatorio));
+            copertiText.setError(getString(R.string.fieldRequired));
             hasError = true;
         }else {
             try {
@@ -81,7 +77,7 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
             }
         }
         if (locazioneText.getText().length() == 0) {
-            locazioneText.setError(getString(R.string.campoObbligatorio));
+            locazioneText.setError(getString(R.string.fieldRequired));
             hasError = true;
         }
         if (locazioneText.getText().length() < 5) {
@@ -133,7 +129,7 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
 
     private void backToLoginActivity(){
         AlertDialog.Builder builder = new AlertDialog.Builder(SaveRestaurant.this);
-        builder.setMessage("Le modifiche non verranno salvate, sei sicuro di voler uscire?");
+        builder.setMessage(getString(R.string.backToLoginDialog));
 
         // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
         builder.setPositiveButton(R.string.yes, (dialog, which) -> {
@@ -156,12 +152,12 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
 
         // Impostazione del colore del pulsante Positivo
         Button okButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
-        okButton.setTextColor(getResources().getColor(R.color.bianco));
-        okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario));
+        okButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
+        okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario,getTheme()));
 
         Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
-        cancelButton.setTextColor(getResources().getColor(R.color.bianco));
-        cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario));
+        cancelButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
+        cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario,getTheme()));
 
 
 

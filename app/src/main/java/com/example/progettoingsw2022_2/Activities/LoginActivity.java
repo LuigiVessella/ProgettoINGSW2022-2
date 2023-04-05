@@ -10,10 +10,10 @@ import android.os.Handler;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +31,7 @@ import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
+import com.skydoves.balloon.BalloonSizeSpec;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -48,10 +49,8 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_login);
-
-
         inizializzaComponenti();
-        //new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
+        new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }
 
     private void inizializzaComponenti(){
@@ -63,22 +62,22 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         passwordLoginText = findViewById(R.id.textInputLoginPassword);
 
         logo = findViewById(R.id.logoBiagioTestMenu);
-        /*myBalloon = new Balloon.Builder(LoginActivity.this)
+        myBalloon = new Balloon.Builder(LoginActivity.this)
                 .setArrowOrientation(ArrowOrientation.START)
-                .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+                .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
                 .setArrowPosition(0.01f)
-                .setHeight(ViewGroup.LayoutParams.MATCH_PARENT)
-                .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
-                .setTextSize(15f)
+                .setText(getString(R.string.ballonLogin))
+                .setHeight(BalloonSizeSpec.WRAP)
+                .setWidthRatio(0.6f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
-                .setText(getString(R.string.ballonLogin))
+                .setPadding(15)
                 .setTextSize(16)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(Color.rgb(198,173,119))
                 .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
                 .setDismissWhenTouchOutside(false)
-                .build();*/
+                .build();
 
         loginActivityButton.setOnClickListener(view -> {
             loginActivityButton.setEnabled(false);
@@ -145,13 +144,13 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             Cameriere cameriere = gson.fromJson(result, new TypeToken<Cameriere>(){}.getType());
             //settiamo il singleton del cameriere che ci servirà in tutte le activity inerenti
             CameriereSingleton.getInstance().setAccount(cameriere);
-
             switchToWaiterDashboardActivity();
         }
         else{
             CameriereSingleton.getInstance().setAccount(null);
+            String toastText = getString(R.string.welcome) + " " + AdminSingleton.getInstance().getAccount().getNome();
+            Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
             switchToAdminDashboardActivity();
         }
-
     }
 }

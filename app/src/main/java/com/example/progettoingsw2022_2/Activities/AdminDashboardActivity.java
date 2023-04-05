@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -67,21 +66,19 @@ public class AdminDashboardActivity extends AppCompatActivity {
         logo = findViewById(R.id.logoBiagioTestAdmin);
         myBalloon = new Balloon.Builder(getApplicationContext())
                 .setArrowOrientation(ArrowOrientation.END)
-                .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+                .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
                 .setArrowPosition(0.01f)
-                //.setWidth(BalloonSizeSpec.WRAP)
-                .setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
-                .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
-                .setTextSize(15f)
+                .setText(getString(R.string.balloonAdminDashboard))
+                .setHeight(BalloonSizeSpec.WRAP)
+                .setWidthRatio(0.6f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
-                .setText(getString(R.string.balloonAdminDashboard))
                 .setTextSize(16)
+                .setPadding(15)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(Color.rgb(198,173,119))
                 .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
                 .setDismissWhenTouchOutside(false)
-                //.setLifecycleOwner(this)
                 .build();
 
         addRestaurantCard.setOnClickListener(view -> {
@@ -99,53 +96,45 @@ public class AdminDashboardActivity extends AppCompatActivity {
         visualizzaRistoranti();
     }
 
-    public void visualizzaRistoranti() {
+    private LinearLayout createResturantRow(Ristorante ris,int counter){
+        LinearLayout restRow = new LinearLayout(AdminDashboardActivity.this);
+        //Set layout params for resturant row
+        LinearLayout.LayoutParams rowParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        rowParams.setMargins(0,0,0,5);
+        restRow.setLayoutParams(rowParams);
+        restRow.setOrientation(LinearLayout.HORIZONTAL);
+
+        TextView restTitle = new TextView(AdminDashboardActivity.this);
+        restTitle.setText(ris.getNome());
+
+        //Set layout params for resturant name
+        restTitle.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,0.8f));
+
+        Button manageBtn = new Button(AdminDashboardActivity.this);
+
+        //Set layout params for manage button
+        manageBtn.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,0.2f));
+
+        manageBtn.setText(R.string.Manage);
+        manageBtn.setBackgroundResource(R.drawable.corner_radius_botton);
+        manageBtn.setTextColor(Color.WHITE);
+        manageBtn.setTextSize(10);
+        manageBtn.setOnClickListener(v -> {
+            Intent nextAct = new Intent(AdminDashboardActivity.this, RestaurantDashActivity.class);
+            nextAct.putExtra("ristorante", counter);
+            startActivity(nextAct);
+        });
+        restRow.addView(restTitle);
+        restRow.addView(manageBtn);
+        return restRow;
+    }
+
+    private void visualizzaRistoranti() {
         int counter = 0;
 
         if(admin != null && !admin.getRistoranti().isEmpty()) {
-
             for(Ristorante ristorante: admin.getRistoranti()) {
-                TextView txv = new TextView(AdminDashboardActivity.this);
-                txv.setText(ristorante.getNome());
-                LinearLayout.LayoutParams layoutParamsTxt = new  LinearLayout.LayoutParams(
-                     200, 130
-                );
-                txv.setLayoutParams(layoutParamsTxt);
-
-
-
-                LinearLayout.LayoutParams layoutParams = new  LinearLayout.LayoutParams(
-                        200, 90
-                );layoutParams.setMarginStart(500);
-
-                Button myButton = new Button(AdminDashboardActivity.this);
-                myButton.setLayoutParams(layoutParams);
-                myButton.setText(R.string.Manage);
-                myButton.setBackgroundResource(R.drawable.corner_radius_botton);
-                myButton.setTextColor(Color.WHITE);
-                myButton.setTextSize(10);
-
-                int finalCounter = counter;
-                myButton.setOnClickListener(view -> {
-                    Intent nextAct = new Intent(AdminDashboardActivity.this, RestaurantDashActivity.class);
-                    nextAct.putExtra("ristorante", finalCounter);
-                    startActivity(nextAct);
-                });
-
-
-                LinearLayout newHorizontalLayout = new LinearLayout(AdminDashboardActivity.this);
-
-                LinearLayout.LayoutParams layoutParams2 = new  LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, // Larghezza, in questo caso MATCH_PARENT
-                        LinearLayout.LayoutParams.WRAP_CONTENT // Altezza, in questo caso WRAP_CONTENT
-                );
-                layoutParams2.setMargins(0,0,0,30);
-                newHorizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
-
-                newHorizontalLayout.setLayoutParams(layoutParams2);
-                newHorizontalLayout.addView(txv);
-                newHorizontalLayout.addView(myButton);
-                linearScrollLayout.addView(newHorizontalLayout);
+                linearScrollLayout.addView(createResturantRow(ristorante,counter));
                 counter++;
             }
 

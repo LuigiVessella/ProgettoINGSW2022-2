@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +28,7 @@ import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
+import com.skydoves.balloon.BalloonSizeSpec;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -70,12 +70,13 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
                 .setArrowPosition(0.01f)
-                .setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
-                .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
+                .setText(getString(R.string.profileBalloon))
+                .setHeight(BalloonSizeSpec.WRAP)
+                .setWidthRatio(0.6f)
                 .setTextSize(15f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
-                .setText(getString(R.string.profileBalloon))
+                .setPadding(15)
                 .setTextSize(16)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(Color.rgb(198,173,119))

@@ -101,7 +101,6 @@
     <string name="newEmail">New email</string>
     <string name="emailError">Email not valid!</string>
     <string name="newPassword">New password</string>
-    <string name="campoObbligatorio">Required field!</string>
     <string name="passwordShort">Password too short!</string>
     <string name="passwordSimple">Password too simple!</string>
     <string name="no" translatable="false">NO</string>
@@ -131,6 +130,8 @@
     <string name="fillAllFieldsWarning">Feel all the fields!</string>
     <string name="menuInDownload">Menu available in Download</string>
     <string name="NetworkError">Network Error</string>
+    <string name="fieldIncorrect">Incorrect field!</string>
+    <string name="CFinvalid">Invalid Fiscal Code!</string>
 
 
 </resources>

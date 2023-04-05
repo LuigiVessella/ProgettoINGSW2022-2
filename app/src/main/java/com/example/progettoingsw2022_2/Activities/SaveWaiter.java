@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.Html;
 import android.util.Log;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +32,7 @@ import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
+import com.skydoves.balloon.BalloonSizeSpec;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.mindrot.jbcrypt.BCrypt;
@@ -79,21 +79,19 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
 
         myBalloon = new Balloon.Builder(getApplicationContext())
                 .setArrowOrientation(ArrowOrientation.START)
-                .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+                .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
                 .setArrowPosition(0.01f)
-                //.setWidth(BalloonSizeSpec.WRAP)
-                .setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
-                .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
-                .setTextSize(15f)
+                .setText(getString(R.string.balloonRegisterEmployee))
+                .setHeight(BalloonSizeSpec.WRAP)
+                .setWidthRatio(0.6f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
-                .setText(getString(R.string.balloonRegisterEmployee))
+                .setPadding(15)
                 .setTextSize(16)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(Color.rgb(198, 173, 119))
                 .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
                 .setDismissWhenTouchOutside(false)
-                //.setLifecycleOwner(this)
                 .build();
 
         okButton.setOnClickListener(view -> {
@@ -104,7 +102,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                 hasError = true;
             }
             if (nomeText.getText().length() == 0) {
-                nomeText.setError(getString(R.string.campoObbligatorio));
+                nomeText.setError(getString(R.string.fieldRequired));
                 hasError = true;
             }
             if (cognomeText.getText().length() == 1) {
@@ -112,7 +110,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                 hasError = true;
             }
             if (cognomeText.getText().length() == 0) {
-                cognomeText.setError(getString(R.string.campoObbligatorio));
+                cognomeText.setError(getString(R.string.fieldRequired));
                 hasError = true;
             }
             /*if (codiceFiscaleText.getText().length() != 0) {
@@ -122,7 +120,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                     hasError = true;
                 }
             } else if (codiceFiscaleText.getText().length() == 0) {
-                codiceFiscaleText.setError(getString(R.string.campoObbligatorio));
+                codiceFiscaleText.setError(getString(R.string.fieldRequired));
                 hasError = true;
             } */
 
@@ -133,7 +131,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
                     hasError = true;
                 }
             } else if (emailText.getText().length() == 0) {
-                emailText.setError(getString(R.string.campoObbligatorio));
+                emailText.setError(getString(R.string.fieldRequired));
                 hasError = true;
             }
 
@@ -207,7 +205,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
 
     @Override
     public void onBackPressed() {
-        if(nomeText.getText().length() == 0 && cognomeText.getText().length() == 0 && emailText.getText().length() == 0&& codiceFiscaleText.getText().length() == 0 && passwordText.getText().length() == 0) super.onBackPressed();
+        if(nomeText.getText().length() == 0 && cognomeText.getText().length() == 0 && emailText.getText().length() == 0 && codiceFiscaleText.getText().length() == 0) super.onBackPressed();
         else backToLoginActivity();
     }
 
@@ -236,12 +234,12 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
 
         // Impostazione del colore del pulsante Positivo
         Button okButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
-        okButton.setTextColor(getResources().getColor(R.color.bianco));
-        okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario));
+        okButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
+        okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario,getTheme()));
 
         Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
-        cancelButton.setTextColor(getResources().getColor(R.color.bianco));
-        cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario));
+        cancelButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
+        cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario,getTheme()));
 
 
         // Impostazione del colore di sfondo e del colore del testo

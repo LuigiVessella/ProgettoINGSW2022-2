@@ -55,6 +55,7 @@ import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
+import com.skydoves.balloon.BalloonSizeSpec;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -147,19 +148,18 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
                 .setArrowPosition(0.01f)
-                //.setWidth(BalloonSizeSpec.WRAP)
-                .setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
-                .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
+                .setText(getString(R.string.plateManagerBalloon))
+                .setHeight(BalloonSizeSpec.WRAP)
+                .setWidthRatio(0.6f)
                 .setTextSize(15f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
-                .setText(getString(R.string.plateManagerBalloon))
+                .setPadding(15)
                 .setTextSize(16)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(Color.rgb(198,173,119))
                 .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
                 .setDismissWhenTouchOutside(false)
-                //.setLifecycleOwner(this)
                 .build();
 
 

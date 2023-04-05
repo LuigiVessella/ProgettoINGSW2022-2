@@ -24,6 +24,10 @@
             android:id="@+id/logoBiagioProfile"
             android:layout_width="129dp"
             android:layout_height="130dp"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            android:maxWidth="300dp"
+            android:maxHeight="300dp"
             android:layout_gravity="start"
             android:contentDescription="@string/app_logo"
             app:srcCompat="@drawable/logobiagio" />

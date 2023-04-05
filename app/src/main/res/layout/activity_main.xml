@@ -8,133 +8,143 @@
     android:id="@+id/mainLayout"
     tools:context=".Activities.MainActivity">
 
-    <ImageView
-        android:id="@+id/background_shape"
-        android:layout_width="match_parent"
-        android:layout_height="663dp"
-        android:elevation="1dp"
-        android:rotation="0"
-        android:src="@drawable/frame_shape"
-        android:visibility="visible"
-        tools:ignore="MissingConstraints"
-        android:contentDescription="@string/biagioshape" />
-
-
-    <Button
-        android:id="@+id/registerBtn"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="@drawable/button_color_scheme"
-        android:drawableEnd="@drawable/icona_registra"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/registerBtn"
-        android:textColor="@color/bianco"
-        android:translationY="-40dp"
-        android:elevation="10dp"
-        app:cornerRadius="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupQuestion" />
-
-    <TextView
-        android:id="@+id/signupQuestion"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto"
-        android:gravity="center"
-        android:text="@string/signupQuestion"
-        android:textColor="@color/grigio_scuro"
-        android:textSize="20sp"
-        android:translationY="-40dp"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
-
-    <ImageView
-        android:id="@+id/Logo"
-        android:layout_width="140dp"
-        android:layout_height="105dp"
-        android:contentDescription="@string/contentDescriptionMainLogo"
-        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.119"
-        app:srcCompat="@drawable/logobiagio"
-        />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="10dp"
-        android:fontFamily="@font/petit_formal_script"
-        android:text="@string/app_title"
-        android:textAlignment="center"
-        android:textColor="@color/grigio_scuro"
-        android:textSize="28sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Logo"
-        app:layout_constraintVertical_bias="0.04000002" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/frame_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@drawable/button_color_scheme"
-        android:drawableEnd="@drawable/icona_login"
-        android:text="@string/loginBtn"
-        android:textColor="@color/bianco"
-        android:translationY="-40dp"
-        android:elevation="10dp"
-        app:cornerRadius="40sp"
-        app:iconTint="@color/bianco"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signedQuestion"
-        app:layout_constraintVertical_bias="0.0"/>
+        <ImageView
+            android:id="@+id/Logo"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/contentDescriptionMainLogo"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.038"
+            app:srcCompat="@drawable/logobiagio" />
 
-    <TextView
-        android:id="@+id/signedQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
-        android:fontFamily="@font/roboto"
-        android:textColor="@color/grigio_scuro"
-        android:gravity="center"
-        android:text="@string/signedQuestion"
-        android:textSize="20sp"
-        android:translationY="-40dp"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoSizeMaxTextSize="35dp"
+            android:autoSizeMinTextSize="15dp"
+            android:fontFamily="@font/petit_formal_script"
+            android:text="@string/app_title"
+            android:textAlignment="center"
+            android:textColor="@color/grigio_scuro"
+            android:textSize="28sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.555"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.339"
+            tools:ignore="UnusedAttribute"
+            tools:targetApi="o" />
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/container_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="10dp"
-        app:layout_constraintBaseline_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.615">
 
+            <TextView
+                android:id="@+id/signedQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:elevation="10dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:text="@string/signedQuestion"
+                android:textColor="@color/grigio_scuro"
+                android:textSize="20sp" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <Button
+                android:id="@+id/loginBtn"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@drawable/button_color_scheme"
+                android:drawableEnd="@drawable/icona_login"
+                android:elevation="10dp"
+                android:text="@string/loginBtn"
+                android:textColor="@color/bianco"
+                app:cornerRadius="40sp"
+                app:iconTint="@color/bianco" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="0.271">
+
+            <TextView
+                android:id="@+id/signupQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="10dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:text="@string/signupQuestion"
+                android:textColor="@color/grigio_scuro"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="102dp"
+                tools:layout_editor_absoluteY="417dp" />
+
+            <Button
+                android:id="@+id/registerBtn"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@drawable/button_color_scheme"
+                android:drawableEnd="@drawable/icona_registra"
+                android:elevation="10dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/registerBtn"
+                android:textColor="@color/bianco"
+                app:cornerRadius="40sp"
+                tools:layout_editor_absoluteX="70dp"
+                tools:layout_editor_absoluteY="444dp" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

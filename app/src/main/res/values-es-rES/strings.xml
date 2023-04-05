@@ -77,7 +77,6 @@
     <string name="newPassword">Nueva password</string>
     <string name="passwordShort">¡Contraseña demasiado corta!</string>
     <string name="passwordSimple">¡La contraseña es demasiado débil!</string>
-    <string name="campoObbligatorio">¡Campo requerido!</string>
     <string name="yes">SI</string>
     <string name="WaiterAdded">camarero añadido!</string>
     <string name="save_waiter_error">Problemas para salvar al camarero</string>
@@ -104,4 +103,6 @@
     <string name="fillAllFieldsWarning">¡Complete todos los campos!</string>
     <string name="menuInDownload">Menú disponible en Download</string>
     <string name="NetworkError">Error de red</string>
+    <string name="fieldIncorrect">¡Campo incorrecto!</string>
+    <string name="CFinvalid">¡Código fiscal no válido!</string>
 </resources>

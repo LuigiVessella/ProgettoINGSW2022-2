@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayoutMenuTop"
         android:layout_width="match_parent"
-        android:layout_height="126dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.355"
@@ -20,8 +20,12 @@
 
         <ImageView
             android:id="@+id/logoBiagioTestMenu"
-            android:layout_width="129dp"
+            android:layout_width="130dp"
             android:layout_height="130dp"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            android:maxWidth="300dp"
+            android:maxHeight="300dp"
             android:layout_gravity="start"
             android:layout_marginStart="12dp"
             app:srcCompat="@drawable/logobiagio"
@@ -77,7 +81,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
-            app:layout_constraintVertical_bias="0.076" />
+            app:layout_constraintVertical_bias="0.076"
+            tools:ignore="RtlSymmetry" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -145,7 +150,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
-            app:layout_constraintVertical_bias="0.076" />
+            app:layout_constraintVertical_bias="0.076"
+            tools:ignore="RtlSymmetry" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

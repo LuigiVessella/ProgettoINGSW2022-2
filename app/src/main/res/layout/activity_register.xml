@@ -24,8 +24,12 @@
             android:layout_height="130dp"
             android:layout_gravity="start"
             android:layout_marginStart="12dp"
+            android:maxWidth="300dp"
+            android:maxHeight="300dp"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
             app:srcCompat="@drawable/logobiagio"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription,ImageContrastCheck" />
 
     </LinearLayout>
 
@@ -53,7 +57,8 @@
                 android:id="@+id/linearAccountName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/firstNameText"
@@ -74,7 +79,8 @@
                         android:textColor="@color/grigio_scuro"
                         android:textColorHighlight="#42260A"
                         android:textColorHint="@color/grigio_chiaro"
-                        android:textCursorDrawable="@drawable/cursor_color" />
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        tools:ignore="TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +104,8 @@
                         android:textColor="@color/grigio_scuro"
                         android:textColorHighlight="#42260A"
                         android:textColorHint="@color/grigio_chiaro"
-                        android:textCursorDrawable="@drawable/cursor_color" />
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        tools:ignore="TextContrastCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -121,7 +128,8 @@
                     android:textColor="@color/grigio_scuro"
                     android:textColorHighlight="#42260A"
                     android:textColorHint="@color/grigio_chiaro"
-                    android:textCursorDrawable="@drawable/cursor_color" />
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,7 +152,8 @@
                     android:textColor="@color/grigio_scuro"
                     android:textColorHighlight="#42260A"
                     android:textColorHint="@color/grigio_chiaro"
-                    android:textCursorDrawable="@drawable/cursor_color" />
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,7 +177,8 @@
                     android:textColor="@color/grigio_scuro"
                     android:textColorHighlight="#42260A"
                     android:textColorHint="@color/grigio_chiaro"
-                    android:textCursorDrawable="@drawable/cursor_color" />
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -192,23 +202,41 @@
                     android:textColor="@color/grigio_scuro"
                     android:textColorHighlight="#42260A"
                     android:textColorHint="@color/grigio_chiaro"
-                    android:textCursorDrawable="@drawable/cursor_color" />
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/passwordHint1"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="15dp"/>
+                android:text="@string/passwordHint1"
+                android:textSize="15dp"
+                tools:ignore="SpUsage,TextContrastCheck,TextSizeCheck" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/passwordHint2"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="15dp"/>
+                android:text="@string/passwordHint2"
+                android:textSize="15dp"
+                tools:ignore="SpUsage,TextContrastCheck,TextSizeCheck" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/loadingGIF"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/loading"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleSign"
+                app:layout_constraintVertical_bias="0.018" />
 
             <TextView
                 android:id="@+id/welcomeRegisterText"
@@ -231,7 +259,8 @@
                 android:fontFamily="@font/roboto"
                 android:text="@string/registerBtn"
                 android:textColor="@color/bianco"
-                app:cornerRadius="40sp"/>
+                app:cornerRadius="40sp"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
     </ScrollView>
