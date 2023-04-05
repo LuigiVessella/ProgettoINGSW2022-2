@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
 
         inizializzaComponenti();
-        new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
+        //new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }
 
     private void inizializzaComponenti(){
@@ -63,11 +63,11 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         passwordLoginText = findViewById(R.id.textInputLoginPassword);
 
         logo = findViewById(R.id.logoBiagioTestMenu);
-        myBalloon = new Balloon.Builder(LoginActivity.this)
+        /*myBalloon = new Balloon.Builder(LoginActivity.this)
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
                 .setArrowPosition(0.01f)
-                .setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+                .setHeight(ViewGroup.LayoutParams.MATCH_PARENT)
                 .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
                 .setTextSize(15f)
                 .setCornerRadius(30f)
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
                 .setBackgroundColor(Color.rgb(198,173,119))
                 .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
                 .setDismissWhenTouchOutside(false)
-                .build();
+                .build();*/
 
         loginActivityButton.setOnClickListener(view -> {
             loginActivityButton.setEnabled(false);
