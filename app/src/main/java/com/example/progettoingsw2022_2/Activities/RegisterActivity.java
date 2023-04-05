@@ -59,12 +59,12 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         welcomeTexView = findViewById(R.id.welcomeRegisterText);
         okButton = findViewById(R.id.okButtonRegister);
         logo = findViewById(R.id.logoBiagioTestMenu);
-       /* myBalloon = new Balloon.Builder(RegisterActivity.this)
+        myBalloon = new Balloon.Builder(RegisterActivity.this)
                 .setArrowOrientation(ArrowOrientation.START)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
                 .setArrowPosition(0.01f)
-                .setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
-                .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
+                .setHeight(65)
+                .setWidthRatio(0.5f)
                 .setTextSize(15f)
                 .setCornerRadius(30f)
                 .setAlpha(0.9f)
@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
                 .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
                 .setDismissWhenTouchOutside(false)
                 //.setLifecycleOwner(this)
-                .build();*/
+                .build();
 
         okButton.setOnClickListener(this::onClick);
     }
