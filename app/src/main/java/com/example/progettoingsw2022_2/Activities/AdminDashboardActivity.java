@@ -96,7 +96,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         visualizzaRistoranti();
     }
 
-    private LinearLayout createResturantRow(Ristorante ris,int counter){
+    private LinearLayout createResturantRow(Ristorante ris, int counter){
         LinearLayout restRow = new LinearLayout(AdminDashboardActivity.this);
         //Set layout params for resturant row
         LinearLayout.LayoutParams rowParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -134,7 +134,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
         if(admin != null && !admin.getRistoranti().isEmpty()) {
             for(Ristorante ristorante: admin.getRistoranti()) {
-                linearScrollLayout.addView(createResturantRow(ristorante,counter));
+                linearScrollLayout.addView(createResturantRow(ristorante, counter));
                 counter++;
             }
 

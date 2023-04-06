@@ -28,7 +28,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class SaveRestaurant extends AppCompatActivity implements VolleyCallback {
 
-    private EditText nomeText, copertiText, locazioneText;
+    private EditText nomeText, copertiText, locazioneText, numeroTelefonoText;
 
     private Admin admin;
 
@@ -47,12 +47,13 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
         nomeText = findViewById(R.id.nomeRistoranteText);
         copertiText = findViewById(R.id.numeroCopertiText);
         locazioneText = findViewById(R.id.locazioneRistoranteText);
+        numeroTelefonoText = findViewById(R.id.telefonoRistoranteText);
         Button saveButton = findViewById(R.id.saveRestaurantButton);
 
-        saveButton.setOnClickListener(view -> sendSaveRestaurantRequest(admin.getEmail(), nomeText.getText(), copertiText.getText(), locazioneText.getText()));
+        saveButton.setOnClickListener(view -> sendSaveRestaurantRequest(admin.getEmail(), nomeText.getText(), copertiText.getText(), locazioneText.getText(), numeroTelefonoText.getText()));
     }
 
-    private void sendSaveRestaurantRequest(String email, Editable nome, Editable coperti, Editable locazione) {
+    private void sendSaveRestaurantRequest(String email, Editable nome, Editable coperti, Editable locazione, Editable numeroTelefono) {
         boolean hasError = false;
         if (nomeText.getText().length() == 1) {
             nomeText.setError(getString(R.string.fieldTooShort));
@@ -92,6 +93,7 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
             params.put("nome", nome.toString());
             params.put("coperti", coperti.toString());
             params.put("locazione", locazione.toString());
+            params.put("telefono", numeroTelefono.toString());
             CustomRequest newPostRequest = new CustomRequest(url, params, this, this);
             newPostRequest.sendPostRequest();
         }

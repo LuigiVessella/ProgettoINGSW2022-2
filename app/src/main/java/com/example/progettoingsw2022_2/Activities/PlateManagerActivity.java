@@ -82,7 +82,8 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
 
     private Spinner tipo, tipoAlimento;
     private Menu menu;
-    private int restNumber, menuNumber; //per individuare ristorante e menu nelle rispettive liste
+    private int restNumber;
+
     private List<Piatto> piatti; //lista dei piatti per ciascun menu
 
     @Override
@@ -188,6 +189,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             @Override
             public void onClick(View view) {
                 sendAddMenuRequest();
+                addMenuDialog.dismiss();
             }
         });
 
@@ -429,6 +431,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         }
         else {
             AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).setMenu(newMenu);
+            inizializzaComponenti();
         }
     }
 }

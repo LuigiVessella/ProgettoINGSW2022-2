@@ -38,7 +38,7 @@ public abstract class Lavoratore {
     public static String checkPassword(Context context, String pass){
         if (pass.isEmpty()) return context.getString(R.string.fieldRequired);
         else if (pass.length()<6) return context.getString(R.string.passwordShort);
-        else if (!pass.matches("^(?=.\\d)(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=])(?=\\S+$)$")) return context.getString(R.string.passwordSimple);
+      //  else if (!pass.matches("^(?=.\\d)(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=])(?=\\S+$)$")) return context.getString(R.string.passwordSimple);
         else return "OK";
     }
 

@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Menu;
+import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.Models.Piatto;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
@@ -26,9 +29,10 @@ import java.util.Map;
 public class TakeOrderActivity extends AppCompatActivity implements VolleyCallback {
 
     private List<Piatto> piatti;
-    private Button addPlateOrder;
+    private Button addPlateOrder, insertNewOrderButt;
     private Spinner tableNumberSpinner, primiPiattiSpinner, secondiPiattiSpinner;
 
+    private LinearLayout scrollPlateLayout;
 
     private Dialog createNewOrderDialog;
 
@@ -54,6 +58,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         secondiPiattiSpinner = createNewOrderDialog.findViewById(R.id.spinnerSecondoPiatto);
         addPlateOrder = findViewById(R.id.buttonAddPlateOrder);
         tableNumberSpinner = findViewById(R.id.spinnerTableNumberOrder);
+        insertNewOrderButt = createNewOrderDialog.findViewById(R.id.insertNewOrderButton);
 
         addPlateOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +67,17 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
             }
         });
 
-        Integer[] numeri = {1,2,3,4,5};
+        insertNewOrderButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addPlateToOrder();
+            }
+        });
+
+       ArrayList<Integer> numeri = new ArrayList<>();
+       for(int i = 0; i < CameriereSingleton.getInstance().getAccount().getRistorante().getCoperti(); i++){
+           numeri.add(i);
+       }
 
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, numeri);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -99,6 +114,10 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
     }
 
+    private void addPlateToOrder() {
+        Ordine newOrder = new Ordine();
+        newOrder.setNumeroTavolo();
+    }
     @Override
     public void onSuccess(String result) {
 

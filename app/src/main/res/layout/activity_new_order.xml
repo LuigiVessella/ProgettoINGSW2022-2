@@ -51,16 +51,11 @@
 
     </TableLayout>
 
-    <ScrollView
+    <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="127dp">
-
-        <LinearLayout
-            android:id="@+id/linearScrollOrderAct"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:text="Invia Ordine" />
 
     <Button
         android:id="@+id/buttonAddPlateOrder"
@@ -71,5 +66,41 @@
         android:fontFamily="@font/roboto"
         android:text="@string/add_course"
         app:cornerRadius="40sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="178dp">
+
+        <LinearLayout
+            android:id="@+id/linearScrollOrderAct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="206dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="99dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cibo1" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cibo2" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

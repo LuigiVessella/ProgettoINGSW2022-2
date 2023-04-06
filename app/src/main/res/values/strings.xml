@@ -132,6 +132,7 @@
     <string name="NetworkError">Network Error</string>
     <string name="fieldIncorrect">Incorrect field!</string>
     <string name="CFinvalid">Invalid Fiscal Code!</string>
+    <string name="numero_di_telefono_ristorante">Numero di telefono</string>
 
 
 </resources>
