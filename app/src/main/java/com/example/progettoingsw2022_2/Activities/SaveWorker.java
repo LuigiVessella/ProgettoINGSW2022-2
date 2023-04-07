@@ -71,11 +71,22 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
         Button okButton = findViewById(R.id.waiterOkButton);
         Spinner ruoli = findViewById(R.id.ruoloSpinner);
 
+        ArrayAdapter<CharSequence> adapter;
+        if(ristorante.getAddettoCucina() != null && ristorante.getSupervisore() != null) {
+            adapter = ArrayAdapter.createFromResource(this, R.array.spinner_item_only_cameriere, android.R.layout.simple_spinner_item );
+
+        }
+        else if(ristorante.getAddettoCucina() != null) {
+            adapter = ArrayAdapter.createFromResource(this, R.array.spinner_item_cameriere_supervisore, android.R.layout.simple_spinner_item );
+        }
+        else if(ristorante.getSupervisore() != null) {
+            adapter = ArrayAdapter.createFromResource(this, R.array.spinner_item_cameriere_addettocucina, android.R.layout.simple_spinner_item );
+        }
         //GESTIONE SPINNER
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_items, android.R.layout.simple_spinner_item );
+        else adapter = ArrayAdapter.createFromResource(this, R.array.spinner_items, android.R.layout.simple_spinner_item );
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ruoli.setAdapter(adapter);
-
 
         myBalloon = new Balloon.Builder(getApplicationContext())
                 .setArrowOrientation(ArrowOrientation.START)
@@ -136,7 +147,7 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
             }
 
             if (!hasError) {
-                sendRegisterRequest(nomeText.getText(), cognomeText.getText(), codiceFiscaleText.getText(), emailText.getText());
+                sendRegisterRequest(nomeText.getText(), cognomeText.getText(), codiceFiscaleText.getText(), emailText.getText(), ruoli.getSelectedItem().toString().trim());
             }
         });
     }
@@ -162,7 +173,7 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
 
 
 
-    private void sendRegisterRequest(Editable nome, Editable cognome, Editable codiceFiscale, Editable email) {
+    private void sendRegisterRequest(Editable nome, Editable cognome, Editable codiceFiscale, Editable email, String ruolo) {
         //semplice libreria che ci fa l'hash della password e manda al server
         String stringPass = "firstpass.1";
 
@@ -170,13 +181,14 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
         String hashedPassword = BCrypt.hashpw(stringPass,salt);
 
         //richiesta custom
-        String url = "/camerieri/addNew";
+        String url = "/lavoratore/addNew";
 
         Map<String, String> params = new HashMap<>();
-        params.put("codiceRistorante", ristorante.getCodice_ristorante().toString());
+        params.put("codice_ristorante", ristorante.getCodice_ristorante().toString());
         params.put("nome", nome.toString());
         params.put("cognome", cognome.toString());
         params.put("email", email.toString());
+        params.put("ruolo", ruolo);
         params.put("hashedPassword", hashedPassword);
         params.put("codiceFiscale", codiceFiscale.toString());
 
@@ -200,7 +212,6 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
         else {
             Toast.makeText(this, R.string.save_waiter_error, Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override

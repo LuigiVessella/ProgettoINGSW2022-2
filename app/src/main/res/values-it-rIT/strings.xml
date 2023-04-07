@@ -78,7 +78,7 @@
     <string name="passwordShort">Password troppo corta!</string>
     <string name="passwordSimple">Password troppo semplice!</string>
     <string name="yes">SI</string>
-    <string name="WaiterAdded">Cameriere aggiunto!</string>
+    <string name="WaiterAdded">Dipendente aggiunto!</string>
     <string name="save_waiter_error">Problemi nel salvare il cameriere</string>
     <string name="invalidPassword">Password non valida!</string>
     <string name="requestProblems">Problemi con la richiesta</string>

@@ -41,14 +41,8 @@ public class RestaurantDashActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
-
-        if(ristorante.getCamerieri() != null) {
-            if(ristorante.getCamerieri().size()>numeroCamerieri) {
-                waiterLinearL.removeAllViews();
-                visualizzaCamerieri();
-            }
-        }
-
+        waiterLinearL.removeAllViews();
+        visualizzaDipendenti();
     }
 
     @SuppressLint("SetTextI18n")
@@ -65,14 +59,15 @@ public class RestaurantDashActivity extends AppCompatActivity {
         addCameriereButton.setOnClickListener(view -> switchToAddCameriere());
         addMenuButton.setOnClickListener(view -> switchToMenuActivity());
 
-        visualizzaCamerieri();
+        visualizzaDipendenti();
     }
 
     //TODO: cambiare con "visualizzaPersonale" quando implementati gli altri
     @SuppressLint("SetTextI18n")
-    public void visualizzaCamerieri() {
+    public void visualizzaDipendenti() {
         System.out.println("Sono in visualizza camerieri");
-        if(ristorante.getCamerieri() == null) return;
+        if(ristorante == null) return;
+
         if (!ristorante.getCamerieri().isEmpty()) {
             int i = 0;
             for (Cameriere cameriere : ristorante.getCamerieri()) {
@@ -83,6 +78,21 @@ public class RestaurantDashActivity extends AppCompatActivity {
 
                 waiterLinearL.addView(txv);
             }
+        }
+        if(ristorante.getAddettoCucina() != null) {
+            TextView txv = new TextView(this);
+            txv.setText("Addetto cucina: "+  ristorante.getAddettoCucina().getCognome() + " " + ristorante.getAddettoCucina().getNome());
+            txv.setTextSize(17);
+
+            waiterLinearL.addView(txv);
+        }
+
+        if(ristorante.getSupervisore() != null) {
+            TextView txv = new TextView(this);
+            txv.setText("Supervisore: "+  ristorante.getSupervisore().getCognome() + " " + ristorante.getSupervisore().getNome());
+            txv.setTextSize(17);
+
+            waiterLinearL.addView(txv);
         }
     }
 

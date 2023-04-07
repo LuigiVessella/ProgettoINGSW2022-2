@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class AddettoCucina extends Lavoratore {
 
     private Ristorante ristorante;
+    private int numeroOrdiniEvasi;
+
 
     public Ristorante getRistorante() {
         return ristorante;
@@ -21,9 +23,6 @@ public class AddettoCucina extends Lavoratore {
     public void setNumeroOrdiniEvasi(int numeroOrdiniEvasi) {
         this.numeroOrdiniEvasi = numeroOrdiniEvasi;
     }
-
-    private int numeroOrdiniEvasi;
-
 
     public AddettoCucina(){}
 
