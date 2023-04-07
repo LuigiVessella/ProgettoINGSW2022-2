@@ -110,5 +110,7 @@
     <string name="back">Indietro</string>
     <string name="primi_piatti">Primi piatti</string>
     <string name="seconds_dishes">Secondi</string>
+    <string name="pendingOrders">Ordini in lavorazione</string>
+    <string name="notification">Notifiche</string>
 
 </resources>

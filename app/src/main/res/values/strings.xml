@@ -154,6 +154,8 @@
     <string name="primi_piatti">Main dishes</string>
     <string name="seconds_dishes">Seconds dishes</string>
     <string name="desserts" translatable="false">Desserts</string>
+    <string name="pendingOrders">Pending orders</string>
+    <string name="notification">Notifications</string>
 
 
 </resources>

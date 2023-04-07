@@ -2,6 +2,7 @@ package com.example.progettoingsw2022_2.Models;
 
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.progettoingsw2022_2.R;
 
@@ -36,9 +37,15 @@ public class Lavoratore {
     public static boolean isCodiceFiscaleValidoSimple(String cf) { return cf.matches("^[\\dA-Z]{16}$"); }
 
     public static String checkPassword(Context context, String pass){
-        if (pass.isEmpty()) return context.getString(R.string.fieldRequired);
-        else if (pass.length()<6) return context.getString(R.string.passwordShort);
-       // else if (!pass.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$")) { Log.i("Check regex","DIOCANE"); return context.getString(R.string.passwordSimple); }
+
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#_!$%?.,;:])[\\w#_!$%?.,;:]{8,}$";
+        pass = pass.replaceAll("\\s", "");
+        if (pass.isEmpty()) {
+            return context.getString(R.string.fieldRequired);
+        } else if (pass.length()<8) {
+            return context.getString(R.string.passwordShort);
+        } else if (!pass.matches(regex)) {
+            return context.getString(R.string.passwordSimple); }
         else return "OK";
     }
 
