@@ -20,11 +20,15 @@ import java.util.Map;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.AddettoCucina;
 import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Cameriere;
+import com.example.progettoingsw2022_2.Models.Supervisore;
 import com.example.progettoingsw2022_2.R;
+import com.example.progettoingsw2022_2.SingletonModels.AddettoCucinaSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
+import com.example.progettoingsw2022_2.SingletonModels.SupervisoreSingleton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.skydoves.balloon.ArrowOrientation;
@@ -130,7 +134,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
     public void onSuccess(String result) {
         Gson gson = new Gson();
         Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
-        AdminSingleton.getInstance().setAccount(admin);
+
 
         if(admin == null) {
             Log.i("INFO LOGIN", "ricevuto null");
@@ -140,17 +144,37 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             loading.setVisibility(View.INVISIBLE);
             AdminSingleton.getInstance().setAccount(null);
         }
-        else if(admin.getPartita_iva() == null) {
+        //controllo campo ruolo per capire di chi si tratta
+        else if(admin.getRuolo().equals("cameriere")) {
+            //trattasi di un cameriere
+
             Cameriere cameriere = gson.fromJson(result, new TypeToken<Cameriere>(){}.getType());
             //settiamo il singleton del cameriere che ci servirà in tutte le activity inerenti
             CameriereSingleton.getInstance().setAccount(cameriere);
             switchToWaiterDashboardActivity();
         }
-        else{
-            CameriereSingleton.getInstance().setAccount(null);
+        else if (admin.getRuolo().equals("amministratore")){
+            AdminSingleton.getInstance().setAccount(admin);
             String toastText = getString(R.string.welcome) + " " + AdminSingleton.getInstance().getAccount().getNome();
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
             switchToAdminDashboardActivity();
+        }
+
+        else if (admin.getRuolo().equals("addetto_cucina")) {
+
+            AddettoCucina addettoCucina = gson.fromJson(result, new TypeToken<AddettoCucina>(){}.getType());
+            AddettoCucinaSingleton.getInstance().setAccount(addettoCucina);
+
+            Toast.makeText(this, "Addetto cucina", Toast.LENGTH_SHORT).show();
+
+        }
+
+        else {
+            Supervisore supervisore = gson.fromJson(result, new TypeToken<Supervisore>(){}.getType());
+            SupervisoreSingleton.getInstance().setAccount(supervisore);
+
+            Toast.makeText(this, "Supervisore", Toast.LENGTH_SHORT).show();
+
         }
     }
 }
