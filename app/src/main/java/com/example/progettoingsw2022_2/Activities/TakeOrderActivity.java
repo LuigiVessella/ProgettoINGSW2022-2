@@ -116,7 +116,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
     private void addPlateToOrder() {
         Ordine newOrder = new Ordine();
-        newOrder.setNumeroTavolo();
+        newOrder.setNumeroTavolo(newOrder.getNumeroTavolo());
     }
     @Override
     public void onSuccess(String result) {
