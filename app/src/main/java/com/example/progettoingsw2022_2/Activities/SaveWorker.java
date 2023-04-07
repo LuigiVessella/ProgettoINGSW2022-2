@@ -212,7 +212,6 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
         else {
             Toast.makeText(this, R.string.save_waiter_error, Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
