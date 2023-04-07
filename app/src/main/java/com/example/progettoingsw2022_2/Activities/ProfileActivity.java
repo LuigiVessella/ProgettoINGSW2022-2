@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.R;
@@ -31,6 +32,10 @@ import com.skydoves.balloon.BalloonAnimation;
 import com.skydoves.balloon.BalloonSizeSpec;
 
 import org.apache.commons.validator.routines.EmailValidator;
+import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ProfileActivity extends AppCompatActivity implements VolleyCallback{
@@ -114,6 +119,7 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
                     else{
                         //TODO:aggiornare email dell'account
                         Log.i("ProfileActivity/newEmail","SIUM");
+                        sendNewEmailRequest(newField.getText().toString());
                         dialog.dismiss();
                     }
                 });
@@ -158,6 +164,7 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
                         newField.setError(getString(R.string.passwordSimple));
                     } else {
                         //TODO: aggiornare password dell'account
+                        sendNewPasswordRequest(newField.getText().toString());
                         Log.i("ProfileActivity/newPassword", "SIUM");
                         dialog.dismiss();
                     }
@@ -183,5 +190,26 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
         else {
             Toast.makeText(this, getString(R.string.requestProblems), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void sendNewEmailRequest(String emailNew) {
+        String url = "/admin/changeEmail/"+ AdminSingleton.getInstance().getAccount().getCodiceFiscale();
+        Map<String, String> params = new HashMap<>();
+        params.put("emailNew", emailNew);
+
+        CustomRequest customRequest = new CustomRequest(url, params, this, this);
+        customRequest.sendPostRequest();
+    }
+
+    private void sendNewPasswordRequest(String passNew) {
+        String salt = "$2a$10$abcdefghijklmnopqrstuvw$";
+        String hashedPassword = BCrypt.hashpw(passNew,salt);
+
+        String url = "/admin/changePassword/"+ AdminSingleton.getInstance().getAccount().getCodiceFiscale();
+        Map<String, String> params = new HashMap<>();
+        params.put("passNew", hashedPassword);
+
+        CustomRequest customRequest = new CustomRequest(url, params, this, this);
+        customRequest.sendPostRequest();
     }
 }
