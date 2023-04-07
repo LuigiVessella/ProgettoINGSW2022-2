@@ -4,14 +4,8 @@ import java.util.List;
 
 public class Menu {
     private Long id_menu;
-
     private Ristorante ristorante;
-
-    //Menu ha una lista di piatti
-    private List<Piatto> portate;
-
-    public Menu() {
-    }
+    private List<Piatto> portate; //piatti di cui è composto il menu
 
     public Long getId_menu() {
         return id_menu;

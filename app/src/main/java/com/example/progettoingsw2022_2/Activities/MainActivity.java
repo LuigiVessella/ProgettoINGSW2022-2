@@ -11,16 +11,16 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.progettoingsw2022_2.Controller.ScreenSize;
 import com.example.progettoingsw2022_2.R;
 
 public class MainActivity extends AppCompatActivity {
-
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        ScreenSize.setScreenSize(this);
 
         Button registerButton, loginButton;
         TextView accediText, registraText;

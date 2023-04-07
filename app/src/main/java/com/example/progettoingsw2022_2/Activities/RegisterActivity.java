@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -172,6 +173,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
             hasError = true;
         }
         //Check password
+        Log.i("Register pass",passwordText.getText().toString());
         String errorPass = Lavoratore.checkPassword(this,passwordText.getText().toString());
         if(!errorPass.equals("OK")){
             passwordText.setError(errorPass);

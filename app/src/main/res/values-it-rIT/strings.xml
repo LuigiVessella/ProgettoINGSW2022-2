@@ -30,9 +30,9 @@
     <string name="Name">Nome</string>
     <string name="AdminDBNoResturant">Non hai ristoranti!</string>
     <string name="EditSting">Modifica</string>
-    <string name="takeOrder">Prendi Ordine</string>
+    <string name="takeOrder">Nuovo Ordine</string>
     <string name="newOrder">Nuovo Ordiner</string>
-    <string name="tableNumber">Tavolo</string>
+    <string name="tableNumber">Tavolo n°</string>
     <string name="orderStatus">Stato Ordine</string>
     <string name="welcomeWaiter">Benvenuto: </string>
     <string name="balloonRegister">\"Registra il tuo account da Amministratore!\"</string>
@@ -105,5 +105,10 @@
     <string name="NetworkError">Errore di rete</string>
     <string name="fieldIncorrect">Campo non corretto!</string>
     <string name="CFinvalid">Codice fiscale non valido!</string>
+    <string name="numero_di_telefono_ristorante">Numero di Telefono</string>
+    <string name="antipasti">Antipasti</string>
+    <string name="back">Indietro</string>
+    <string name="primi_piatti">Primi piatti</string>
+    <string name="seconds_dishes">Secondi</string>
 
 </resources>

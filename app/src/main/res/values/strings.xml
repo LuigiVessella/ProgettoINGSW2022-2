@@ -47,9 +47,9 @@
     <string name="AdminDBNoResturant">You don\'t have a restaurant!</string>
     <string name="EditSting">Edit</string>
     <string name="saveResturantTitle">Register your restaurant</string>
-    <string name="takeOrder">Take order</string>
+    <string name="takeOrder">New order</string>
     <string name="newOrder">New Order</string>
-    <string name="tableNumber">"Table "</string>
+    <string name="tableNumber">Table n°</string>
     <string name="orderStatus">Order Status</string>
     <string name="welcomeWaiter">Welcome: </string>
     <string name="balloonRegister">\"Get started as an Administrator!\"</string>
@@ -132,7 +132,12 @@
     <string name="NetworkError">Network Error</string>
     <string name="fieldIncorrect">Incorrect field!</string>
     <string name="CFinvalid">Invalid Fiscal Code!</string>
-    <string name="numero_di_telefono_ristorante">Numero di telefono</string>
+    <string name="numero_di_telefono_ristorante">Telephone Number</string>
+    <string name="antipasti">Appetizers</string>
+    <string name="back">Back</string>
+    <string name="primi_piatti">Main dishes</string>
+    <string name="seconds_dishes">Seconds dishes</string>
+    <string name="desserts" translatable="false">Desserts</string>
 
 
 </resources>

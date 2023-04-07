@@ -10,18 +10,8 @@ public class Piatto {
     private String prezzo;
     private String tipo; //primo, secondo, dessert, ecc
     private String tipoPietanza; //pesce, carne, ecc
-    //quindi primo di pesce, secondo di carne, ecc
-
-
     private Menu menu;
-
-
-
     private Ordine ordine;
-
-    public Piatto() {
-    }
-
     public Long getId_menu() {
         return id_menu;
     }
