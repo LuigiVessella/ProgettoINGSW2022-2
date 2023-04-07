@@ -2,13 +2,12 @@ package com.example.progettoingsw2022_2.Models;
 
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.progettoingsw2022_2.R;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
-public abstract class Lavoratore {
+public class Lavoratore {
     private String codiceFiscale;
     private String nome;
     private String cognome;

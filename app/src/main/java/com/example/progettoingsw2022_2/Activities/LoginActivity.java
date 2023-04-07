@@ -135,7 +135,6 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         Gson gson = new Gson();
         Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
 
-
         if(admin == null) {
             Log.i("INFO LOGIN", "ricevuto null");
             emailLoginText.setError(getString(R.string.loginWrongCred));
@@ -144,6 +143,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             loading.setVisibility(View.INVISIBLE);
             AdminSingleton.getInstance().setAccount(null);
         }
+        if(admin.getRuolo()==null) Log.e("check","PORCODIO");
         //controllo campo ruolo per capire di chi si tratta
         else if(admin.getRuolo().equals("cameriere")) {
             //trattasi di un cameriere
@@ -164,17 +164,18 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
             AddettoCucina addettoCucina = gson.fromJson(result, new TypeToken<AddettoCucina>(){}.getType());
             AddettoCucinaSingleton.getInstance().setAccount(addettoCucina);
-
-            Toast.makeText(this, "Addetto cucina", Toast.LENGTH_SHORT).show();
+            String toastText = getString(R.string.welcome) + " " + AddettoCucinaSingleton.getInstance().getAccount().getNome();
+            //TODO: inserire dashboard
+            Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
 
         }
 
         else {
             Supervisore supervisore = gson.fromJson(result, new TypeToken<Supervisore>(){}.getType());
             SupervisoreSingleton.getInstance().setAccount(supervisore);
-
-            Toast.makeText(this, "Supervisore", Toast.LENGTH_SHORT).show();
-
+            String toastText = getString(R.string.welcome) + " " + SupervisoreSingleton.getInstance().getAccount().getNome();
+            //TODO: inserire dashboard
+            Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
         }
     }
 }
