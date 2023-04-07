@@ -1,10 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string-array name="spinner_items">
-        <item> Waiter </item>
-        <item> Chef </item>
-        <item> Kitchen Assistant </item>
-        <item> Supervisor </item>
+        <item> cameriere </item>
+        <item> addetto_cucina </item>
+        <item> supervisore </item>
     </string-array>
+
+    <string-array name="spinner_item_cameriere_addettocucina">
+        <item> cameriere </item>
+        <item> addetto_cucina </item>
+    </string-array>
+
+    <string-array name="spinner_item_cameriere_supervisore">
+        <item> cameriere </item>
+        <item> supervisore </item>
+    </string-array>
+
+    <string-array name="spinner_item_only_cameriere">
+        <item> cameriere </item>
+
+    </string-array>
+
+
 
 
     <string name="app_name" translatable="false">Ratatouille23</string>
