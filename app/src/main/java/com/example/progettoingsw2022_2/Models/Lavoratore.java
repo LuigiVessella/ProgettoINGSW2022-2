@@ -9,10 +9,10 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 public abstract class Lavoratore {
     private String codiceFiscale;
-
     private String nome;
     private String cognome;
     private String email;
+    private String ruolo;
 
     public static boolean isCodiceFiscaleValidoAdE(String cf) {
         if( ! cf.matches("^[\\dA-Z]{16}$") )
@@ -79,5 +79,13 @@ public abstract class Lavoratore {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRuolo() {
+        return ruolo;
+    }
+
+    public void setRuolo(String ruolo) {
+        this.ruolo = ruolo;
     }
 }

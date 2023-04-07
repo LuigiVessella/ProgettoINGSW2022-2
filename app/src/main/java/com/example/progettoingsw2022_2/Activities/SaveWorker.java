@@ -40,7 +40,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
+public class SaveWorker extends AppCompatActivity implements VolleyCallback {
 
     private EditText nomeText, cognomeText, emailText, codiceFiscaleText;
     private Ristorante ristorante;
@@ -53,7 +53,7 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        setContentView(R.layout.activity_save_waiter);
+        setContentView(R.layout.activity_save_worker);
         restNumber =  getIntent().getIntExtra("ristorante", restNumber);
         ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
         inizializeComponent();
@@ -210,13 +210,13 @@ public class SaveWaiter extends AppCompatActivity implements VolleyCallback {
     }
 
     private void backToLoginActivity(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(SaveWaiter.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(SaveWorker.this);
         builder.setMessage("Le modifiche non verranno salvate, sei sicuro di voler uscire?");
 
         // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
         builder.setPositiveButton(R.string.yes, (dialog, which) -> {
             // Avviare l'Activity desiderata
-            Intent intent = new Intent(SaveWaiter.this, RestaurantDashActivity.class);
+            Intent intent = new Intent(SaveWorker.this, RestaurantDashActivity.class);
             startActivity(intent);
             finish();
         });

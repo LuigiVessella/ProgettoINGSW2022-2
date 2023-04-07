@@ -31,7 +31,7 @@
             android:name=".Activities.OrderStatusActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.SaveWaiter"
+            android:name=".Activities.SaveWorker"
             android:exported="false" />
         <activity
             android:name=".Activities.RestaurantDashActivity"
