@@ -29,6 +29,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Menu;
 import com.example.progettoingsw2022_2.Models.Piatto;
 import com.example.progettoingsw2022_2.R;
@@ -133,7 +134,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         tipoPortataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipo.setAdapter(tipoPortataAdapter);
 
-        ArrayAdapter<String> tipoAlimentoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Pesce","Carne", "Vegano", "Vegetariano", "Gluten-Free"});
+        ArrayAdapter<String> tipoAlimentoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Pesce", "Carne", "Pasta", "Pizza", "Vegano", "Vegetariano", "Senza glutine"});
         tipoAlimentoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipoAlimento.setAdapter(tipoAlimentoAdapter);
 
@@ -355,7 +356,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         params.put("prezzo", prezzo);
         params.put("allergeni", allergeni);
         params.put("contiene", contiene);
-        params.put("codice_menu", menu.getId_menu().toString());
+        params.put("codice_menu", AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getMenu().getId_menu().toString());
         params.put("tipo", tipoo);
         params.put("tipoPietanza", tipoAlimento);
 

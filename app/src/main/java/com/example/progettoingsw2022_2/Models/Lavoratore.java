@@ -8,7 +8,7 @@ import com.example.progettoingsw2022_2.R;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
-public class Lavoratore {
+public abstract class Lavoratore {
     private String codiceFiscale;
     private String nome;
     private String cognome;
