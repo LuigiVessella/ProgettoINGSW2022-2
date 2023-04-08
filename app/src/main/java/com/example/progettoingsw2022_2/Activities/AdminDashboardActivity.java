@@ -147,6 +147,11 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        backToLoginActivity();
+    }
+
     @SuppressLint("ResourceAsColor")
     private void backToLoginActivity(){
         AlertDialog.Builder builder = new AlertDialog.Builder(AdminDashboardActivity.this);

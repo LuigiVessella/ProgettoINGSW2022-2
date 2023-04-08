@@ -66,6 +66,12 @@ public class SupervisorDashActivity extends AppCompatActivity {
                 .build();
 
         logout.setOnClickListener(view -> backToLoginActivity());
+        orderStatus.setOnClickListener(view -> startActivity(new Intent(SupervisorDashActivity.this, OrderStatusActivity.class)));
+    }
+
+    @Override
+    public void onBackPressed() {
+        backToLoginActivity();
     }
 
     @SuppressLint("ResourceAsColor")
