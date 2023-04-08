@@ -112,5 +112,7 @@
     <string name="seconds_dishes">Secondi</string>
     <string name="pendingOrders">Ordini in lavorazione</string>
     <string name="notification">Notifiche</string>
+    <string name="balloonSupDashboard_1">Benvenuto nella tua Dashboard,</string>
+    <string name="balloonSupDashboard_2">Qui trovi tutto ciò che ti serve per monitorare ciò che accade nel Ristorante!</string>
 
 </resources>

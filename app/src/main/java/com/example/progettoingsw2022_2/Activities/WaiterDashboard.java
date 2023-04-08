@@ -30,6 +30,7 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         Cameriere cameriere = CameriereSingleton.getInstance().getAccount();
         welcomeTextView.append(cameriere.getNome()+" "+ cameriere.getCognome());
         inizializzaComponenti();
+
     }
 
     private void inizializzaComponenti(){

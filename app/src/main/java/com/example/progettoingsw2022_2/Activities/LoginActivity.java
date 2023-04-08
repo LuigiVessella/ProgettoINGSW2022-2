@@ -119,6 +119,11 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         cR.sendPostRequest();
     }
 
+    private void switchToSupervisorDashboardActivity(){
+        Intent newAct = new Intent(LoginActivity.this, SupervisorDashActivity.class);
+        startActivity(newAct);
+        finish();
+    }
 
     private void switchToAdminDashboardActivity(){
         Intent newAct = new Intent(LoginActivity.this, AdminDashboardActivity.class);
@@ -189,8 +194,8 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             Supervisore supervisore = gson.fromJson(result, new TypeToken<Supervisore>(){}.getType());
             SupervisoreSingleton.getInstance().setAccount(supervisore);
             String toastText = getString(R.string.welcome) + " " + SupervisoreSingleton.getInstance().getAccount().getNome();
-            //TODO: inserire dashboard
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+            switchToSupervisorDashboardActivity();
         }
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sfondo_1_con_patina"
-    tools:context=".Activities.AdminDashboardActivity">
+    tools:context=".Activities.SupervisorDashActivity">
 
     <LinearLayout
         android:id="@+id/linearLayoutSupervisorTop"
@@ -55,7 +55,7 @@
             tools:ignore="UselessParent">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/addRestaurantCard"
+                android:id="@+id/orderStatusSupCard"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_row="0"
@@ -81,10 +81,11 @@
                         tools:ignore="ImageContrastCheck" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="@string/orderStatus"
+                        android:gravity="center"
                         tools:ignore="TextContrastCheck" />
 
                 </LinearLayout>
@@ -92,7 +93,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/profileCard"
+                android:id="@+id/notificationSupCard"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_row="0"
@@ -117,14 +118,14 @@
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:contentDescription="@string/show_profile_label"
-                        android:src="@drawable/ic_profile"
+                        android:src="@drawable/ic_notification_white"
                         tools:ignore="ImageContrastCheck" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="@string/profile"
+                        android:text="@string/notification"
                         tools:ignore="TextContrastCheck" />
 
                 </LinearLayout>
@@ -133,7 +134,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/statsCard"
+                android:id="@+id/pendingOrdersSupCard"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_row="1"
@@ -174,7 +175,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/logoutCard"
+                android:id="@+id/logoutSupCard"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_row="1"

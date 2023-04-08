@@ -156,6 +156,8 @@
     <string name="desserts" translatable="false">Desserts</string>
     <string name="pendingOrders">Pending orders</string>
     <string name="notification">Notifications</string>
+    <string name="balloonSupDashboard_1">Welcom e in your Dashboard,</string>
+    <string name="balloonSupDashboard_2">Here you can find everything you need to monitor what\'s happening in the Restaurant!</string>
 
 
 </resources>

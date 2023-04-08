@@ -46,6 +46,9 @@
             android:name=".Activities.ProfileActivity"
             android:exported="false" />
         <activity
+            android:name=".Activities.SupervisorDashActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustNothing" >

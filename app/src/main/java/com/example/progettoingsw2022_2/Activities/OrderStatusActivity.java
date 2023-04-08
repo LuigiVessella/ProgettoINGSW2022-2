@@ -10,13 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.Adapter.OrderRecycleViewAdapter;
+import com.example.progettoingsw2022_2.Models.Supervisore;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
+import com.example.progettoingsw2022_2.SingletonModels.SupervisoreSingleton;
 
 import java.util.ArrayList;
 
 public class OrderStatusActivity extends AppCompatActivity {
     private Cameriere cameriere;
+    private Supervisore supervisore;
     private ArrayList<Ordine> ordini = new ArrayList<>();
 
     @Override
@@ -26,7 +29,7 @@ public class OrderStatusActivity extends AppCompatActivity {
         setContentView(R.layout.activity_table_status);
 
         cameriere = CameriereSingleton.getInstance().getAccount();
-
+        supervisore = SupervisoreSingleton.getInstance().getAccount();
         RecyclerView recycleView = findViewById(R.id.activity_table_rvw);
         setUpOrders();
         OrderRecycleViewAdapter adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini);
@@ -49,7 +52,15 @@ public class OrderStatusActivity extends AppCompatActivity {
     }
 
     private void setUpOrders(){
-        ordini = (ArrayList<Ordine>) cameriere.getOrdini();
+
+        if(cameriere != null) ordini = (ArrayList<Ordine>) cameriere.getOrdini();
+        else {
+            ArrayList<Ordine> ordiniTotali = new ArrayList();
+            ArrayList<Cameriere> camerieri = (ArrayList<Cameriere>) supervisore.getRistorante().getCamerieri();
+            for(int i = 0; i < camerieri.size(); i++){
+                ordiniTotali.addAll(camerieri.get(i).getOrdini());
+            }
+        }
 
     }
 
