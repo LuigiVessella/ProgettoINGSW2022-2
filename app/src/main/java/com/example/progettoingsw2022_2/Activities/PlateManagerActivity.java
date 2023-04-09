@@ -130,7 +130,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         tipo = addPlateDialog.findViewById(R.id.spinnerTipoMenu);
         tipoAlimento = addPlateDialog.findViewById(R.id.spinnerTipoAlimentoMenu);
 
-        ArrayAdapter<String> tipoPortataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Antipasto","Primo", "Secondo", "Dessert", "Frutta"});
+        ArrayAdapter<String> tipoPortataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Antipasto","Primo", "Secondo", "Dessert", "Frutta", "Bevanda"});
         tipoPortataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipo.setAdapter(tipoPortataAdapter);
 
