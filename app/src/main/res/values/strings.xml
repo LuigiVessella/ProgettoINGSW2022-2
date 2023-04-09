@@ -76,7 +76,7 @@
     <string name="profile">Profile</string>
     <string name="showStats">Statistics</string>
     <string name="Logout">Logout</string>
-    <string name="add_waiter">Add waiter</string>
+    <string name="add_waiter">Add worker</string>
     <string name="manage_menu">Manage Menu</string>
     <string name="download_menu">Download Menu</string>
     <string name="add_product">Add product</string>

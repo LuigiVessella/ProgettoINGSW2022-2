@@ -34,7 +34,7 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         setContentView(R.layout.activity_waiter_dashboard);
         TextView welcomeTextView = findViewById(R.id.waiterName);
         Cameriere cameriere = CameriereSingleton.getInstance().getAccount();
-        welcomeTextView.append(cameriere.getNome()+" "+ cameriere.getCognome());
+        //welcomeTextView.append(cameriere.getNome()+" "+ cameriere.getCognome());
         inizializzaComponenti();
 
     }

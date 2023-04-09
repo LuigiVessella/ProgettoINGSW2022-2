@@ -10,31 +10,51 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import pl.droidsonroids.gif.GifImageView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.progettoingsw2022_2.Controller.ScreenSize;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Cameriere;
+import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.Models.Piatto;
+import com.example.progettoingsw2022_2.Models.Ristorante;
+import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class TakeOrderActivity extends AppCompatActivity implements VolleyCallback {
 
+    private Ordine newOrdine;
     private Button saveOrder;
-    LinearLayout menuList; //Menu item list
+    private LinearLayout menuList; //Menu item list
+    private Spinner numeroTavoloSpin;
+    private GifImageView loading;
 
-    GifImageView loading;
+    private ArrayList<Piatto> antipasti = new ArrayList<>(), primi = new ArrayList<>() ,secondi = new ArrayList<>(), contorni = new ArrayList<>(), dessert = new ArrayList<>();
+    private Piatto frutta = new Piatto();
 
-    ArrayList<Piatto> antipasti = new ArrayList<>(), primi = new ArrayList<>() ,secondi = new ArrayList<>(), contorni = new ArrayList<>(), dessert = new ArrayList<>();
-    Piatto frutta = new Piatto();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,13 +67,32 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
 
     private void inizializeComponent() {
+        newOrdine = new Ordine();
+        newOrdine.setCameriere(CameriereSingleton.getInstance().getAccount());
+
         Button cancelOrder = findViewById(R.id.cancelOrder);
         saveOrder = findViewById(R.id.saveOrder);
         menuList = findViewById(R.id.menuList);
         loading = findViewById(R.id.loadingGIF);
+        numeroTavoloSpin = findViewById(R.id.tableNumberSpinner);
+
+        ArrayList<Integer> numeroTavoli = new ArrayList<>();
+        for(int i  = 0; i < CameriereSingleton.getInstance().getAccount().getRistorante().getCoperti(); i++) {
+            numeroTavoli.add(i);
+        }
+
+
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, numeroTavoli);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        numeroTavoloSpin.setAdapter(adapter);
+
         saveOrder.setOnClickListener(v -> save()); //Save and send the order
         cancelOrder.setOnClickListener(v -> finishAfterTransition()); //Go back to waiter dashboard
         setMenu(); //Take menu items
+
+        //creo e inizializzo l'ordine
+
+
 
         int i = 0;
         //Draw appetizers
@@ -254,6 +293,8 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         dish.setOnClickListener(v -> {
             int count = Integer.parseInt(orderCount.getText().toString());
             orderCount.setText(String.valueOf(count+1));
+            newOrdine.setPiattiOrdinati(newOrdine.getPiattiOrdinati().concat(" " + p.getTipo() + ": " + p.getNome_piatto() + "\n"));
+            newOrdine.setConto(Integer.parseInt(p.getPrezzo()) + newOrdine.getConto());
         });
 
         LinearLayout dishLayout = new LinearLayout(this);
@@ -266,13 +307,57 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         return dish;
     }
 
-    private void save(){
+    private void save() {
+        newOrdine.setNumeroTavolo(Integer.parseInt(numeroTavoloSpin.getSelectedItem().toString()));
         saveOrder.setEnabled(false);
         loading.setVisibility(View.VISIBLE);
-        //TODO:recuperare lista piatti ordinati
+
+
+        Gson gson = new Gson();
+        String jsonOrdine = gson.toJson(newOrdine, new TypeToken<Ordine>(){}.getType());
+
+        System.out.println(jsonOrdine);
+        JSONObject jsonObject = new JSONObject();
+        String url = "http://192.168.1.9:8080/ordini/addNew/" + CameriereSingleton.getInstance().getAccount().getCodiceFiscale();
+
+
+
+        try{
+            jsonObject = new JSONObject(jsonOrdine); // la stringa JSON dell'Ordinazione
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                response -> {
+                    loading.setVisibility(View.INVISIBLE);
+                    System.out.println("ordinazione salvata");
+                    updateCameriere(String.valueOf(response));
+                },
+                error -> {
+                    // gestisci l'errore
+                    Log.e("VOLLEY", error.toString());
+                }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json"; // tipo di contenuto della richiesta HTTP
+            }
+        };
+
+        //aggiungi la richiesta alla coda delle richieste di Volley
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+
     }
 
     public void onSuccess(String s){
-        //TODO: dire cosa fare
+
+    }
+
+    private void updateCameriere(String volleyResult) {
+
+        Gson gson = new Gson();
+        Cameriere cameriere = gson.fromJson(volleyResult, new TypeToken<Cameriere>(){}.getType());
+        if(cameriere != null)CameriereSingleton.getInstance().setAccount(cameriere);
+
     }
 }

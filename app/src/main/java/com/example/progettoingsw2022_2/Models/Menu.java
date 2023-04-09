@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
@@ -7,6 +8,9 @@ public class Menu {
     private Ristorante ristorante;
     private List<Piatto> portate; //piatti di cui è composto il menu
 
+    public Menu(){
+        portate = new ArrayList<>();
+    }
     public Long getId_menu() {
         return id_menu;
     }

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.progettoingsw2022_2.R;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Admin extends Lavoratore {
@@ -15,6 +16,10 @@ public class Admin extends Lavoratore {
         if (pIva.length() == 0) return context.getString(R.string.fieldRequired);
         else if (!pIva.matches("^\\d{11}$")) return context.getString(R.string.fieldIncorrect);
         else return "OK";
+    }
+
+    public Admin(){
+        ristoranti = new ArrayList<>();
     }
 
     public List<Ristorante> getRistoranti() {

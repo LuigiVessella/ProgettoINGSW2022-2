@@ -374,9 +374,9 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
 
         Map<String,String> params = new HashMap<>();
         params.put("codice_ristorante", AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getCodice_ristorante().toString());
-        params.put("tipo", menuType.toString());
-        params.put("lingua", menuType.toString());
-        params.put("nome", menuName.toString());
+        params.put("tipo", menuType.getText().toString());
+        params.put("lingua", menuType.getText().toString());
+        params.put("nome", menuName.getText().toString());
 
         CustomRequest newRequest = new CustomRequest(url, params,this, this);
         newRequest.sendPostRequest();

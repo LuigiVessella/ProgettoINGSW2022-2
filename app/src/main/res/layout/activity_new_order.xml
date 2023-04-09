@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_list"
@@ -26,18 +26,18 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/takeOrder"
-                android:textSize="25sp"
-                android:textAlignment="textStart" />
+                android:textAlignment="textStart"
+                android:textSize="25sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.05"
-                android:layout_marginStart="10dp"
                 android:layout_gravity="center"
-                android:text="@string/tableNumber"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.05"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="20sp"/>
+                android:text="@string/tableNumber"
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/tableNumberSpinner"
@@ -122,8 +122,8 @@
         android:orientation="vertical">
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="395dp"
+            android:layout_height="607dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             tools:ignore="SpeakableTextPresentCheck">

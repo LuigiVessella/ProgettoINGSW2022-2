@@ -1,23 +1,44 @@
 package com.example.progettoingsw2022_2.Models;
 
+import com.google.gson.annotations.Expose;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ordine {
 
     private Long idOrdine;
+
     private int numeroTavolo;
-    private boolean evaso = false;
+
+    private boolean evaso;
+
     private String evasoDa; //lista di chef
 
-    private List<Piatto> piattiOrdinati;
+    private String piattiOrdinati;
 
     private Cameriere cameriere;
 
 
+    private int conto;
 
-
-    public Ordine() {
+    public Ordine(){
+        piattiOrdinati = "";
+        conto = 0;
+        evaso = false;
+        pagato = false;
+        cameriere = new Cameriere();
     }
+    public boolean isPagato() {
+        return pagato;
+    }
+
+    public void setPagato(boolean pagato) {
+        this.pagato = pagato;
+    }
+
+    private boolean pagato;
+
 
     public Long getIdOrdine() {
         return idOrdine;
@@ -51,14 +72,6 @@ public class Ordine {
         this.evasoDa = evasoDa;
     }
 
-    public List<Piatto> getPiattiOrdinati() {
-        return piattiOrdinati;
-    }
-
-    public void setPiattiOrdinati(List<Piatto> piattiOrdinati) {
-        this.piattiOrdinati = piattiOrdinati;
-    }
-
     public Cameriere getCameriere() {
         return cameriere;
     }
@@ -67,5 +80,20 @@ public class Ordine {
         this.cameriere = cameriere;
     }
 
+    public String getPiattiOrdinati() {
+        return piattiOrdinati;
+    }
+
+    public void setPiattiOrdinati(String piattiOrdinati) {
+        this.piattiOrdinati = piattiOrdinati;
+    }
+
+    public int getConto() {
+        return conto;
+    }
+
+    public void setConto(int conto) {
+        this.conto = conto;
+    }
 
 }

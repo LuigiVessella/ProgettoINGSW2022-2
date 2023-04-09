@@ -5,10 +5,13 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.progettoingsw2022_2.R;
+import com.google.gson.annotations.Expose;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
 public abstract class Lavoratore {
+
+
     private String codiceFiscale;
     private String nome;
     private String cognome;
