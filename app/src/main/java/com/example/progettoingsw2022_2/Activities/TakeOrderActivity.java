@@ -48,13 +48,12 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
     private Ordine newOrdine;
     private Button saveOrder;
-    private LinearLayout menuList; //Menu item list
     private Spinner numeroTavoloSpin;
     private GifImageView loading;
 
-    private ArrayList<Piatto> antipasti = new ArrayList<>(), primi = new ArrayList<>() ,secondi = new ArrayList<>(), contorni = new ArrayList<>(), dessert = new ArrayList<>();
-    private Piatto frutta = new Piatto();
+    private ArrayList<Piatto> antipasti = new ArrayList<>(), primi = new ArrayList<>() ,secondi = new ArrayList<>(), contorni = new ArrayList<>(), dessert = new ArrayList<>(), pizze = new ArrayList<>(), bevande = new ArrayList<>();
 
+    Piatto frutta = new Piatto();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +71,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
         Button cancelOrder = findViewById(R.id.cancelOrder);
         saveOrder = findViewById(R.id.saveOrder);
-        menuList = findViewById(R.id.menuList);
+        LinearLayout menuList = findViewById(R.id.menuList);
         loading = findViewById(R.id.loadingGIF);
         numeroTavoloSpin = findViewById(R.id.tableNumberSpinner);
 
@@ -90,18 +89,13 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         cancelOrder.setOnClickListener(v -> finishAfterTransition()); //Go back to waiter dashboard
         setMenu(); //Take menu items
 
-        //creo e inizializzo l'ordine
-
-
-
         int i = 0;
         //Draw appetizers
         TextView antipastiTitle = new TextView(this);
         antipastiTitle.setText(getString(R.string.antipasti));
         antipastiTitle.setTextSize(20);
         antipastiTitle.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-        menuList.addView(antipastiTitle);
-        if(menuList.indexOfChild(antipastiTitle)<0) Log.e("Check titles","Antipasti non inserito");
+        if(antipasti.size()>0) { menuList.addView(antipastiTitle); }
         if (antipasti != null)
             while (i < antipasti.size()) {
                 LinearLayout menuItemsRow = new LinearLayout(this);
@@ -136,34 +130,41 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         primiTitle.setText(getString(R.string.primi_piatti));
         primiTitle.setTextSize(20);
         primiTitle.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-        menuList.addView(primiTitle);
-        if (primi != null)
+        if(primi.size()>0) { menuList.addView(primiTitle); }
+        if (primi != null) {
             while (i < primi.size()) {
                 LinearLayout menuItemsRow = new LinearLayout(this);
                 menuItemsRow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 menuItemsRow.setOrientation(LinearLayout.HORIZONTAL);
 
-                if (ScreenSize.screenWidth == ScreenSize.screenSize.SMALL) { menuItemsRow.addView(createMenuItem(primi.get(i))); i++; }
-                else if (ScreenSize.screenWidth == ScreenSize.screenSize.MEDIUM) {
+                if (ScreenSize.screenWidth == ScreenSize.screenSize.SMALL) {
                     menuItemsRow.addView(createMenuItem(primi.get(i)));
-                    if (primi.size()>primi.size()+i+1) menuItemsRow.addView(createMenuItem(primi.get(i+1)));
-                    i+=2;
-                }
-                else if (ScreenSize.screenWidth == ScreenSize.screenSize.LARGE) {
+                    i++;
+                } else if (ScreenSize.screenWidth == ScreenSize.screenSize.MEDIUM) {
                     menuItemsRow.addView(createMenuItem(primi.get(i)));
-                    if (primi.size()>primi.size()+i+1) menuItemsRow.addView(createMenuItem(primi.get(i+1)));
-                    if (primi.size()>primi.size()+i+2) menuItemsRow.addView(createMenuItem(primi.get(i+2)));
-                    i+=3;
-                }
-                else {
+                    if (primi.size() > i + 1)
+                        menuItemsRow.addView(createMenuItem(primi.get(i + 1)));
+                    i += 2;
+                } else if (ScreenSize.screenWidth == ScreenSize.screenSize.LARGE) {
                     menuItemsRow.addView(createMenuItem(primi.get(i)));
-                    if (primi.size()>primi.size()+i+1) menuItemsRow.addView(createMenuItem(primi.get(i+1)));
-                    if (primi.size()>primi.size()+i+2) menuItemsRow.addView(createMenuItem(primi.get(i+2)));
-                    if (primi.size()>primi.size()+i+3) menuItemsRow.addView(createMenuItem(primi.get(i+3)));
-                    i+=4;
+                    if (primi.size() > i + 1)
+                        menuItemsRow.addView(createMenuItem(primi.get(i + 1)));
+                    if (primi.size() > i + 2)
+                        menuItemsRow.addView(createMenuItem(primi.get(i + 2)));
+                    i += 3;
+                } else {
+                    menuItemsRow.addView(createMenuItem(primi.get(i)));
+                    if (primi.size() >  i + 1)
+                        menuItemsRow.addView(createMenuItem(primi.get(i + 1)));
+                    if (primi.size() > i + 2)
+                        menuItemsRow.addView(createMenuItem(primi.get(i + 2)));
+                    if (primi.size() > i + 3)
+                        menuItemsRow.addView(createMenuItem(primi.get(i + 3)));
+                    i += 4;
                 }
                 menuList.addView(menuItemsRow);
             }
+        }
 
         //Draw seconds dishes
         i = 0;
@@ -171,7 +172,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         secondiTitle.setText(getString(R.string.seconds_dishes));
         secondiTitle.setTextSize(20);
         secondiTitle.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-        menuList.addView(secondiTitle);
+        if(secondi.size()>0) { menuList.addView(secondiTitle); }
         if (secondi != null)
             while (i < secondi.size()) {
                 LinearLayout menuItemsRow = new LinearLayout(this);
@@ -206,7 +207,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         dessertTitle.setText(getString(R.string.desserts));
         dessertTitle.setTextSize(20);
         dessertTitle.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-        menuList.addView(dessertTitle);
+        if(dessert.size()>0) { menuList.addView(dessertTitle); }
         if (dessert != null)
             while (i < dessert.size()) {
                 LinearLayout menuItemsRow = new LinearLayout(this);
@@ -251,21 +252,25 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         }
         for (Piatto p : menu) {
             Log.i("Test for loading dishes","Carico...");
-            Log.i("Test for loading dishes","Tipo piatto: "+p.getTipo());
+            Log.i("Test for loading dishes","Tipo piatto: " + p.getTipo());
             switch (p.getTipo()) {
                 case "Antipasto": antipasti.add(p); Log.i("Test for loading dishes","Caricato in antipasti"); break;
-                case "Primo": primi.add(p); Log.i("Test for loading dishes","Caricato in primi");break;
-                case "Secondo": secondi.add(p); Log.i("Test for loading dishes","Caricato in secondi");break;
-                case "Contorno":contorni.add(p); Log.i("Test for loading dishes","Caricato in contorni");break;
-                case "Dessert": dessert.add(p); Log.i("Test for loading dishes","Caricato in dessert");break;
-                case "Frutta": frutta = p; Log.i("Test for loading dishes","Caricato frutta");break;
+                case "Primo": primi.add(p); Log.i("Test for loading dishes","Caricato in primi"); break;
+                case "Secondo": secondi.add(p); Log.i("Test for loading dishes","Caricato in secondi"); break;
+                case "Contorno":contorni.add(p); Log.i("Test for loading dishes","Caricato in contorni"); break;
+                case "Dessert": dessert.add(p); Log.i("Test for loading dishes","Caricato in dessert"); break;
+                case "Pizza": pizze.add(p); Log.i("Test for loading dishes","Caricato in pizze"); break;
+                case "Bevande": bevande.add(p); Log.i("Test for loading dishes","Caricato in bevande"); break;
+                case "Frutta": frutta = p; Log.i("Test for loading dishes","Caricato frutta"); break;
             }
         }
-        if (antipasti != null) Log.i("Check lista antipasti",antipasti+" "+antipasti.size());
-        if (primi != null) Log.i("Check lista primi",primi+" "+primi.size());
-        if (secondi != null) Log.i("Check lista secondi",secondi+" "+secondi.size());
-        if (contorni != null) Log.i("Check lista contorni",contorni+" "+contorni.size());
-        if (dessert != null) Log.i("Check lista dessert",dessert+" "+dessert.size());
+        if (antipasti != null) Log.i("Check lista antipasti","Antipasti: " + antipasti.size());
+        if (primi != null) Log.i("Check lista primi","Primi: " + primi.size());
+        if (secondi != null) Log.i("Check lista secondi","Secondi: " + secondi.size());
+        if (contorni != null) Log.i("Check lista contorni","Contorni: " + contorni.size());
+        if (dessert != null) Log.i("Check lista dessert","Dessert: " + dessert.size());
+        if (pizze != null) Log.i("Check lista pizze","Pizze: " + pizze.size());
+        if (bevande != null) Log.i("Check lista bevande","Bevande: " + bevande.size());
     }
 
     //Create menu item cardview
@@ -273,7 +278,9 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         CardView dish = new CardView(this);
         TextView orderCount = new TextView(this), dishName = new TextView(this);
 
-        dish.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        LinearLayout.LayoutParams dishParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dishParams.setMargins(0,0,10,0);
+        dish.setLayoutParams(dishParams);
         dish.setBackgroundResource(R.color.marrone_secondario);
         dish.setRadius(20);
         LinearLayout.LayoutParams dishNameParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

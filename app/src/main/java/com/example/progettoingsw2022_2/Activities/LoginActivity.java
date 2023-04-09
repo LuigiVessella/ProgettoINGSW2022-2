@@ -145,12 +145,20 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         JsonParser parser = new JsonParser();
         JsonElement jsonTree = parser.parse(result);
         String ruolo = null;
-        try {
-             ruolo = jsonTree.getAsJsonObject().get("ruolo").getAsString();
+        Log.i("Json",jsonTree.toString());
+        if (jsonTree.isJsonNull()) {
+            Log.e("Errore ruolo","Il json è vuoto");
         }
-        catch (IllegalStateException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Errore", Toast.LENGTH_SHORT).show();
+        else {
+            try {
+                ruolo = jsonTree.getAsJsonObject().get("ruolo").getAsString();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Errore", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Log.e("Errore ruolo", "Il ruolo è vuoto");
+                Toast.makeText(this, "Ruolo vuoto", Toast.LENGTH_SHORT).show();
+            }
         }
         System.out.println("ruolo:" + ruolo);
         //Lavoratore lavoratore = gson.fromJson(result, new TypeToken<Lavoratore>(){}.getType());

@@ -1,158 +1,145 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sfondo_1_con_patina"
+    android:orientation="vertical"
     tools:context=".Activities.LoginActivity">
 
     <LinearLayout
         android:id="@+id/linearLayoutMenuTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.355"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.062">
+        android:layout_marginTop="15dp">
 
         <ImageView
             android:id="@+id/logoBiagioTestMenu"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:minWidth="50dp"
-            android:minHeight="50dp"
-            android:maxWidth="300dp"
-            android:maxHeight="300dp"
             android:layout_gravity="start"
             android:layout_marginStart="12dp"
-            app:srcCompat="@drawable/logobiagio"
-            android:contentDescription="@string/app_logo" />
+            android:contentDescription="@string/app_logo"
+            android:maxWidth="300dp"
+            android:maxHeight="300dp"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            app:srcCompat="@drawable/logobiagio" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/loginActButton"
-        android:layout_width="165dp"
-        android:layout_height="59dp"
-        android:layout_gravity="center"
-        android:backgroundTint="@drawable/button_color_scheme"
-        android:drawableEnd="@drawable/icona_login"
-        android:fontFamily="@font/roboto"
-        android:text="@string/loginBtn"
-        android:textColor="@color/bianco"
-        app:cornerRadius="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLogin"
-        app:layout_constraintVertical_bias="0.266" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailLogin"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loadingGIF"
-        app:layout_constraintVertical_bias="0.099">
+        android:layout_weight="0.5"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputLoginEmail"
-            android:layout_width="333dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_input"
-            android:drawableStart="@drawable/baseline_email_24"
-            android:drawablePadding="10dp"
-            android:fontFamily="@font/roboto"
-            android:hint="@string/Email"
-            android:inputType="textEmailAddress"
-            android:paddingStart="5dp"
-            android:singleLine="true"
+        <TextView
+            android:id="@+id/titleSign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_light_italic"
+            android:text="@string/loginInsertCred"
+            android:textAlignment="center"
             android:textColor="@color/grigio_scuro"
-            android:textColorHighlight="#42260A"
-            android:textColorHint="@color/grigio_chiaro"
-            android:textCursorDrawable="@drawable/cursor_color"
-            app:layout_constraintBottom_toTopOf="@+id/loginActButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
-            app:layout_constraintVertical_bias="0.076"
-            tools:ignore="RtlSymmetry" />
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/loadingGIF"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/loading"
+            android:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/titleSign"
-        android:layout_width="wrap_content"
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:color="@color/grigio_scuro"
-        android:fontFamily="@font/roboto_light_italic"
-        android:text="@string/loginInsertCred"
-        android:textAlignment="center"
-        android:textColor="@color/grigio_scuro"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31" />
+        android:layout_weight="0.7"
+        android:orientation="vertical">
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/loadingGIF"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/loading"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleSign"
-        app:layout_constraintVertical_bias="0.018" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLogin"
-        app:layout_constraintVertical_bias="0.0"
-        app:passwordToggleEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputLoginEmail"
+                android:layout_width="333dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/baseline_email_24"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/roboto"
+                android:hint="@string/Email"
+                android:inputType="textEmailAddress"
+                android:paddingStart="5dp"
+                android:singleLine="true"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHighlight="#42260A"
+                android:textColorHint="@color/grigio_chiaro"
+                android:textCursorDrawable="@drawable/cursor_color"
+                app:layout_constraintBottom_toTopOf="@+id/loginActButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
+                app:layout_constraintVertical_bias="0.076"
+                tools:ignore="RtlSymmetry" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputLoginPassword"
-            android:layout_width="333dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/custom_input"
-            android:drawableStart="@drawable/baseline_lock_24"
-            android:drawablePadding="10dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputLoginPassword"
+                android:layout_width="333dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/baseline_lock_24"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/roboto"
+                android:hint="@string/Password"
+                android:inputType="textPassword"
+                android:paddingStart="5dp"
+                android:singleLine="true"
+                android:textColor="@color/grigio_scuro"
+                android:textColorHighlight="#42260A"
+                android:textColorHint="@color/grigio_chiaro"
+                android:textCursorDrawable="@drawable/cursor_color"
+                app:layout_constraintBottom_toTopOf="@+id/loginActButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
+                app:layout_constraintVertical_bias="0.076"
+                tools:ignore="RtlSymmetry" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/loginActButton"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="@drawable/button_color_scheme"
+            android:drawableEnd="@drawable/icona_login"
             android:fontFamily="@font/roboto"
-            android:hint="@string/Password"
-            android:inputType="textPassword"
-            android:paddingStart="5dp"
-            android:singleLine="true"
-            android:textColor="@color/grigio_scuro"
-            android:textColorHighlight="#42260A"
-            android:textColorHint="@color/grigio_chiaro"
-            android:textCursorDrawable="@drawable/cursor_color"
-            app:layout_constraintBottom_toTopOf="@+id/loginActButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailLoginText"
-            app:layout_constraintVertical_bias="0.076"
-            tools:ignore="RtlSymmetry" />
+            android:text="@string/loginBtn"
+            android:textColor="@color/bianco" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</LinearLayout>

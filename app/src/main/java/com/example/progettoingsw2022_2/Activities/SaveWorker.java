@@ -1,13 +1,10 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
-import android.text.Html;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,7 +22,6 @@ import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.skydoves.balloon.ArrowOrientation;
@@ -45,7 +41,6 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
     private EditText nomeText, cognomeText, emailText, codiceFiscaleText;
     private Ristorante ristorante;
     private ImageView logo;
-    private TextInputEditText passwordText;
     private Balloon myBalloon;
     private int restNumber; //identifichiamo il ristorante nella lista di ristoranti del cameriere
 
@@ -124,16 +119,6 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
                 cognomeText.setError(getString(R.string.fieldRequired));
                 hasError = true;
             }
-            /*if (codiceFiscaleText.getText().length() != 0) {
-                String cf = codiceFiscaleText.getText().toString();
-                if (!isCodiceFiscaleValido(cf)) {
-                    codiceFiscaleText.setError("Campo non corretto!");
-                    hasError = true;
-                }
-            } else if (codiceFiscaleText.getText().length() == 0) {
-                codiceFiscaleText.setError(getString(R.string.fieldRequired));
-                hasError = true;
-            } */
 
             if (emailText.getText().length() != 0) {
                 String mail = emailText.getText().toString();
@@ -151,28 +136,6 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
             }
         });
     }
-        private boolean isCodiceFiscaleValido (String cf)
-        {
-            if (!cf.matches("^[0-9A-Z]{16}$"))
-                return false;
-            int s = 0;
-            String even_map = "BAFHJNPRTVCESULDGIMOQKWZYX";
-            for (int i = 0; i < 15; i++) {
-                int c = cf.charAt(i);
-                int n;
-                if ('0' <= c && c <= '9')
-                    n = c - '0';
-                else
-                    n = c - 'A';
-                if ((i & 1) == 0)
-                    n = even_map.charAt(n) - 'A';
-                s += n;
-            }
-            return s % 26 + 'A' == cf.charAt(15);
-        }
-
-
-
     private void sendRegisterRequest(Editable nome, Editable cognome, Editable codiceFiscale, Editable email, String ruolo) {
         //semplice libreria che ci fa l'hash della password e manda al server
         String stringPass = "firstpass.1";
@@ -222,22 +185,13 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
 
     private void backToLoginActivity(){
         AlertDialog.Builder builder = new AlertDialog.Builder(SaveWorker.this);
-        builder.setMessage("Le modifiche non verranno salvate, sei sicuro di voler uscire?");
+        builder.setTitle("Le modifiche non verranno salvate, sei sicuro di voler uscire?");
 
         // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
-        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
-            // Avviare l'Activity desiderata
-            Intent intent = new Intent(SaveWorker.this, RestaurantDashActivity.class);
-            startActivity(intent);
-            finish();
-        });
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> finishAfterTransition());
 
         // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
-        builder.setNegativeButton(R.string.no, (dialog, which) -> {
-            // Chiudere il dialogo e non fare nulla
-            dialog.dismiss();
-        });
-
+        builder.setNegativeButton(R.string.no, (dialog, which) -> dialog.dismiss());
 
         // Creare e mostrare il dialogo
         AlertDialog dialog = builder.create();
@@ -252,9 +206,5 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
         cancelButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
         cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario,getTheme()));
 
-
-        // Impostazione del colore di sfondo e del colore del testo
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        dialog.setMessage(Html.fromHtml("<font color='#000000'>Le modifiche non verranno salvate, sei sicuro di voler uscire?</font>"));
     }
 }

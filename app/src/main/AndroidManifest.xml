@@ -52,14 +52,14 @@
             android:name=".Activities.RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustNothing" >
-            >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".Activities.LoginActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
