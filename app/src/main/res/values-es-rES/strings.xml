@@ -110,4 +110,8 @@
     <string name="back">Hacia atrás</string>
     <string name="primi_piatti">Platos principales</string>
     <string name="seconds_dishes">Segundos</string>
+    <string name="pendingOrders">Pedidos en curso</string>
+    <string name="notification">Notificaciones</string>
+    <string name="balloonSupDashboard_1">Bienvenido a su Tablero,</string>
+    <string name="balloonSupDashboard_2">¡Aquí encontrarás todo lo que necesitas para monitorear lo que sucede en el restaurante!</string>
 </resources>
