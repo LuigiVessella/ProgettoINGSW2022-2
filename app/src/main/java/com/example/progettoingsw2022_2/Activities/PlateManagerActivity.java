@@ -134,7 +134,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         tipoPortataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipo.setAdapter(tipoPortataAdapter);
 
-        ArrayAdapter<String> tipoAlimentoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Pesce", "Carne", "Pasta", "Pizza", "Vegano", "Vegetariano", "Senza glutine"});
+        ArrayAdapter<String> tipoAlimentoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Pesce", "Bevanda", "Carne", "Pasta", "Pizza", "Vegano", "Vegetariano", "Senza glutine"});
         tipoAlimentoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipoAlimento.setAdapter(tipoAlimentoAdapter);
 
