@@ -39,7 +39,7 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
     public void onBindViewHolder(@NonNull OrderRecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.tableNumber.setText(String.valueOf(ordini.get(position).getNumeroTavolo()));
-        holder.orderDescription.setText(Resources.getSystem().getString(R.string.Order)+ " #" + (ordini.get(position).getIdOrdine()));
+        holder.orderDescription.setText(Resources.getSystem().getString(R.string.Order)+ " #" + (ordini.get(position).getPiattiOrdinati()));
         holder.removeButton.setOnClickListener(view -> {
 
             ordini.get(position).setEvaso(true);
