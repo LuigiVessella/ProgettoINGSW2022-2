@@ -59,8 +59,7 @@
             <TextView
                 android:id="@+id/textViewOrderDescription"
                 android:layout_width="259dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="64dp"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_light_italic"
                 android:gravity="center"
                 android:text="Nome_Ordine_o_boh"
@@ -69,12 +68,15 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.816"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.22000003" />
 
             <Button
                 android:id="@+id/button_2_table_remove"
                 android:layout_width="91dp"
                 android:layout_height="32dp"
+                android:layout_marginTop="15dp"
                 android:backgroundTint="@drawable/button_color_scheme"
                 android:fontFamily="@font/roboto"
                 android:text="RIMUOVI"
@@ -83,8 +85,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.43"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.764" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewOrderDescription"
+                app:layout_constraintVertical_bias="0.5" />
 
             <Button
                 android:id="@+id/button_1_table_sollecita"
@@ -94,12 +96,12 @@
                 android:fontFamily="@font/roboto"
                 android:text="Sollecita"
                 android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/button_2_table_remove"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.848"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.764" />
+                app:layout_constraintTop_toTopOf="@+id/button_2_table_remove"
+                app:layout_constraintVertical_bias="0.5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -1,6 +1,7 @@
 package com.example.progettoingsw2022_2.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
@@ -12,12 +13,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.progettoingsw2022_2.Activities.TakeOrderActivity;
+import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
+import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleViewAdapter.MyViewHolder> {
+public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleViewAdapter.MyViewHolder> implements VolleyCallback {
 
     private final Context context;
     private ArrayList<Ordine> ordini;
@@ -39,10 +45,11 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
     public void onBindViewHolder(@NonNull OrderRecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.tableNumber.setText(String.valueOf(ordini.get(position).getNumeroTavolo()));
-        holder.orderDescription.setText(Resources.getSystem().getString(R.string.Order)+ " #" + (ordini.get(position).getPiattiOrdinati()));
+        holder.orderDescription.setText("Order" + " #" + (ordini.get(position).getPiattiOrdinati()));
         holder.removeButton.setOnClickListener(view -> {
 
             ordini.get(position).setEvaso(true);
+            setEvasoOnSpring(ordini.get(position).getIdOrdine().toString());
             ordini.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, ordini.size());
@@ -53,6 +60,20 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
     @Override
     public int getItemCount() {
         return ordini.size();
+    }
+
+
+    private void setEvasoOnSpring(String idOrdine){
+        System.out.println("sono qui\n");
+        String url = "/ordini/setEvaso/" + idOrdine;
+
+        Map<String, String> params = new HashMap<>();
+        CustomRequest newRequest = new CustomRequest(url, params, context, this);
+        newRequest.sendPostRequest();
+    }
+    @Override
+    public void onSuccess(String result) {
+        System.out.println("done");
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

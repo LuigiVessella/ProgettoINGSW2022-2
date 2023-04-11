@@ -1,12 +1,10 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.Adapter.OrderRecycleViewAdapter;
@@ -14,7 +12,6 @@ import com.example.progettoingsw2022_2.Models.Supervisore;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.SupervisoreSingleton;
-
 import java.util.ArrayList;
 
 public class OrderStatusActivity extends AppCompatActivity {
@@ -35,8 +32,6 @@ public class OrderStatusActivity extends AppCompatActivity {
         OrderRecycleViewAdapter adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
-
-
     }
 
     private void setUpTables() {
@@ -54,6 +49,7 @@ public class OrderStatusActivity extends AppCompatActivity {
     private void setUpOrders(){
 
         if(cameriere != null) ordini = (ArrayList<Ordine>) cameriere.getOrdini();
+
         else {
             ArrayList<Ordine> ordiniTotali = new ArrayList();
             ArrayList<Cameriere> camerieri = (ArrayList<Cameriere>) supervisore.getRistorante().getCamerieri();
@@ -61,6 +57,8 @@ public class OrderStatusActivity extends AppCompatActivity {
                 ordiniTotali.addAll(camerieri.get(i).getOrdini());
             }
         }
+
+        ordini.removeIf(s->s.isEvaso() == true);
 
     }
 
