@@ -83,8 +83,16 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
             locazioneText.setError(getString(R.string.fieldRequired));
             hasError = true;
         }
-        if (locazioneText.getText().length() < 5) {
+        else if (locazioneText.getText().length() < 5) {
             locazioneText.setError(getString(R.string.fieldTooShort));
+            hasError = true;
+        }
+        if (numeroTelefonoText.getText().length() == 0) {
+            numeroTelefonoText.setError(getString(R.string.fieldRequired));
+            hasError = true;
+        }
+        else if (numeroTelefonoText.getText().length() != 10){
+            numeroTelefonoText.setError(getString(R.string.telNumberNotValid));
             hasError = true;
         }
 
