@@ -158,6 +158,7 @@
     <string name="notification">Notifications</string>
     <string name="balloonSupDashboard_1">Welcome in your Dashboard,</string>
     <string name="balloonSupDashboard_2">Here you can find everything you need to monitor what\'s happening in the Restaurant!</string>
+    <string name="duplicate_restaurant">Attention: the restaurant you are trying to add is already present in your list of Restaurants!</string>
 
 
 </resources>

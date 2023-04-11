@@ -16,11 +16,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Admin;
+import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.google.gson.Gson;
@@ -86,7 +88,17 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
             hasError = true;
         }
 
+        List<Ristorante> miei_ristoranti = admin.getRistoranti();
+        for (Ristorante ristoranti : miei_ristoranti) {
+            if(ristoranti.getNome().equals(nome.toString()) && ristoranti.getLocazione().equals(locazione.toString())){
+                Toast.makeText(this, R.string.duplicate_restaurant, Toast.LENGTH_SHORT).show();
+                hasError = true;
+                break;
+            }
+        }
+
         if(!hasError) {
+
             String url = "/ristorante/addNew";
             Map<String, String> params = new HashMap<>();
             params.put("email", email);
