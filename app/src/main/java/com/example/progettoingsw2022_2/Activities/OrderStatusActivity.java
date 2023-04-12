@@ -28,10 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderStatusActivity extends AppCompatActivity implements VolleyCallback {
-    private Cameriere cameriere;
 
-
-    private AddettoCucina addettoCucina;
 
     private ArrayList<Ordine> ordini = new ArrayList<>();
 
@@ -47,7 +44,7 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_table_status);
 
-        cameriere = CameriereSingleton.getInstance().getAccount();
+
 
         RecyclerView recycleView = findViewById(R.id.activity_table_rvw);
         setUpOrders();
@@ -76,9 +73,9 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
 
     private void setUpOrders(){
 
-        if(cameriere != null) ordini = (ArrayList<Ordine>) cameriere.getOrdini();
+        if(CameriereSingleton.getInstance().getAccount() != null) ordini = (ArrayList<Ordine>) CameriereSingleton.getInstance().getAccount().getOrdini();
 
-        else if(SupervisoreSingleton.getInstance().getAccount()!= null){
+        else if(SupervisoreSingleton.getInstance().getAccount() != null){
 
             ArrayList<Ordine> ordiniTotali = new ArrayList();
             ArrayList<Cameriere> camerieri = (ArrayList<Cameriere>) SupervisoreSingleton.getInstance().getAccount().getRistorante().getCamerieri();
