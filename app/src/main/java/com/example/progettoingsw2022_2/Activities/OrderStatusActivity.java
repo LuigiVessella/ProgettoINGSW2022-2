@@ -1,23 +1,45 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
+import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.AddettoCucina;
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.Adapter.OrderRecycleViewAdapter;
+import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.Models.Supervisore;
 import com.example.progettoingsw2022_2.R;
+import com.example.progettoingsw2022_2.SingletonModels.AddettoCucinaSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.SupervisoreSingleton;
-import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-public class OrderStatusActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class OrderStatusActivity extends AppCompatActivity implements VolleyCallback {
     private Cameriere cameriere;
-    private Supervisore supervisore;
+
+
+    private AddettoCucina addettoCucina;
+
     private ArrayList<Ordine> ordini = new ArrayList<>();
+
+
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 10000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -26,7 +48,7 @@ public class OrderStatusActivity extends AppCompatActivity {
         setContentView(R.layout.activity_table_status);
 
         cameriere = CameriereSingleton.getInstance().getAccount();
-        supervisore = SupervisoreSingleton.getInstance().getAccount();
+
         RecyclerView recycleView = findViewById(R.id.activity_table_rvw);
         setUpOrders();
         OrderRecycleViewAdapter adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini);
@@ -34,32 +56,61 @@ public class OrderStatusActivity extends AppCompatActivity {
         recycleView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void setUpTables() {
 
-        //chiamata a spring getOrdinazioni
-        //riempiamo gli array
-        String[] orderName = {"Ordine_1", "Ordine_2", "Ordine_3", "Ordine_4", "Ordine_5", "Ordine_6", "Ordine_7", "Ordine_8", "Ordine_9", "Ordine_10", "Ordine_11", "Ordine_12", "Ordine_13", "Ordine_14", "Ordine_15", "Ordine_16", "Ordine_17", "Ordine_18"};
-        int[] tableNumber = {10, 7, 4, 5, 3, 8, 12, 6, 9, 1, 11, 2, 14, 15, 18, 16, 13, 17};
-
-        for (int i = 0; i < orderName.length; i++) {
-            ordini.add(new Ordine());
-        }
+    @Override
+    protected void onResume() {
+        handler.postDelayed(runnable = new Runnable() {
+            public void run() {
+                handler.postDelayed(runnable, delay);
+                checkForNewOrders();
+            }
+        }, delay);
+        super.onResume();
     }
+    @Override
+    protected void onPause() {
+        handler.removeCallbacks(runnable); //stop handler when activity not visible super.onPause();
+        super.onPause();
+    }
+
 
     private void setUpOrders(){
 
         if(cameriere != null) ordini = (ArrayList<Ordine>) cameriere.getOrdini();
 
-        else {
+        else if(SupervisoreSingleton.getInstance().getAccount()!= null){
+
             ArrayList<Ordine> ordiniTotali = new ArrayList();
-            ArrayList<Cameriere> camerieri = (ArrayList<Cameriere>) supervisore.getRistorante().getCamerieri();
+            ArrayList<Cameriere> camerieri = (ArrayList<Cameriere>) SupervisoreSingleton.getInstance().getAccount().getRistorante().getCamerieri();
             for(int i = 0; i < camerieri.size(); i++){
                 ordiniTotali.addAll(camerieri.get(i).getOrdini());
             }
+        }
+
+        else {
+            ArrayList<Ordine> ordiniTotali = new ArrayList();
+            ArrayList<Cameriere> camerieri = (ArrayList<Cameriere>) AddettoCucinaSingleton.getInstance().getAccount().getRistorante().getCamerieri();
+            for(int i = 0; i < camerieri.size(); i++){
+                ordiniTotali.addAll(camerieri.get(i).getOrdini());
+            }
+
         }
 
         ordini.removeIf(s->s.isEvaso() == true);
 
     }
 
+    private void checkForNewOrders() {
+        String url = "/ordini/getOrdiniRistorante/" + SupervisoreSingleton.getInstance().getAccount().getRistorante().getCodice_ristorante();
+        CustomRequest newRequest = new CustomRequest(url, null, this, this);
+        newRequest.sendGetRequest();
+    }
+
+    @Override
+    public void onSuccess(String result) {
+        Gson gson = new Gson();
+        List<Cameriere> camerieriConOrdiniNuovi = gson.fromJson(result, new TypeToken<List<Cameriere>>(){}.getType());
+        SupervisoreSingleton.getInstance().getAccount().getRistorante().setCamerieri(camerieriConOrdiniNuovi);
+        setUpOrders();
+    }
 }

@@ -17,16 +17,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
+import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
+import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.AddettoCucina;
+import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.Models.Supervisore;
 import com.example.progettoingsw2022_2.R;
+import com.example.progettoingsw2022_2.SingletonModels.AddettoCucinaSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.SupervisoreSingleton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
 import com.skydoves.balloon.BalloonSizeSpec;
 
-public class SupervisorDashActivity extends AppCompatActivity {
+public class SupervisorDashActivity extends AppCompatActivity implements VolleyCallback {
 
     private Supervisore supervisore;
     private ImageView logo;
@@ -39,15 +46,17 @@ public class SupervisorDashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_supervisor_dashboard);
         supervisore = SupervisoreSingleton.getInstance().getAccount();
         inizializzaComponenti();
-        new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
+        //new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }
 
     private void inizializzaComponenti(){
+
         CardView orderStatus, notifications, pendingOrder, logout;
         orderStatus = findViewById(R.id.orderStatusSupCard);
         notifications = findViewById(R.id.notificationSupCard);
         pendingOrder = findViewById(R.id.pendingOrdersSupCard);
         logout = findViewById(R.id.logoutSupCard);
+        logo = findViewById(R.id.logoBiagioTestAdmin);
         myBalloon = new Balloon.Builder(getApplicationContext())
                 .setArrowOrientation(ArrowOrientation.END)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
@@ -67,6 +76,7 @@ public class SupervisorDashActivity extends AppCompatActivity {
 
         logout.setOnClickListener(view -> backToLoginActivity());
         orderStatus.setOnClickListener(view -> startActivity(new Intent(SupervisorDashActivity.this, OrderStatusActivity.class)));
+        getRistorante();
     }
 
     @Override
@@ -113,4 +123,19 @@ public class SupervisorDashActivity extends AppCompatActivity {
         dialog.setMessage(Html.fromHtml("<font color='#000000'>Sei sicuro di voler uscire?</font>"));
     }
 
+
+    private void getRistorante() {
+        String url = "/supervisore/getRistorante/" + SupervisoreSingleton.getInstance().getAccount().getCodiceFiscale();
+        CustomRequest customRequest = new CustomRequest(url, null, this, this);
+        customRequest.sendGetRequest();
+    }
+
+    @Override
+    public void onSuccess(String result) {
+
+        Gson gson = new Gson();
+        Ristorante ristorante = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
+        SupervisoreSingleton.getInstance().getAccount().setRistorante(ristorante);
+
+    }
 }
