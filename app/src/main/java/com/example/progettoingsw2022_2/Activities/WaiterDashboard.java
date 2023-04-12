@@ -10,10 +10,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
@@ -27,6 +29,10 @@ import com.google.gson.reflect.TypeToken;
 
 public class WaiterDashboard extends AppCompatActivity implements VolleyCallback {
 
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 10000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +43,23 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         //welcomeTextView.append(cameriere.getNome()+" "+ cameriere.getCognome());
         inizializzaComponenti();
 
+    }
+
+    @Override
+    protected void onResume() {
+        handler.postDelayed(runnable = new Runnable() {
+            public void run() {
+                handler.postDelayed(runnable, delay);
+                Toast.makeText(WaiterDashboard.this, "This method is run every 10 seconds",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }, delay);
+        super.onResume();
+    }
+    @Override
+    protected void onPause() {
+        handler.removeCallbacks(runnable); //stop handler when activity not visible super.onPause();
+        super.onPause();
     }
 
     private void inizializzaComponenti(){
