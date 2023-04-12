@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <EditText
@@ -14,8 +15,15 @@
 
     <Button
         android:id="@+id/button_send_alert_dialog"
-        android:layout_width="match_parent"
+        android:layout_width="224dp"
         android:layout_height="wrap_content"
-        android:text="send" />
+        android:layout_gravity="center"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:drawableEnd="@drawable/baseline_send_24"
+        android:elevation="10dp"
+        android:text="send"
+        android:textColor="@color/bianco"
+        app:cornerRadius="40sp"
+        app:iconTint="@color/bianco" />
 
 </LinearLayout>
