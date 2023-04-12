@@ -62,5 +62,4 @@ public class OrderStatusActivity extends AppCompatActivity {
 
     }
 
-
 }

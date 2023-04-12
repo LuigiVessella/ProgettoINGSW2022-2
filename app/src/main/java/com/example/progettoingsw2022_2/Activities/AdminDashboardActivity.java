@@ -37,7 +37,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_admin_dashboard);
         admin = AdminSingleton.getInstance().getAccount();
         Log.i("Admin resturant", String.valueOf(admin.getRistoranti().size()));
 

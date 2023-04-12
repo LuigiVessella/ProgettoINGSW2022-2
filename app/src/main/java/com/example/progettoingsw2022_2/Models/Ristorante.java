@@ -10,6 +10,11 @@ public class Ristorante {
     private String locazione;
     private Admin proprietario;
     private List<Cameriere> camerieri;
+
+
+
+    private List<Avviso> avvisi;
+
     private AddettoCucina addettoCucina;
     private Supervisore supervisore;
     private Menu menu;
@@ -89,6 +94,14 @@ public class Ristorante {
 
     public void setAddettoCucina(AddettoCucina addettoCucina) {
         this.addettoCucina = addettoCucina;
+    }
+
+    public List<Avviso> getAvvisi() {
+        return avvisi;
+    }
+
+    public void setAvvisi(List<Avviso> avvisi) {
+        this.avvisi = avvisi;
     }
 
 }
