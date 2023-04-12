@@ -46,7 +46,7 @@ public class SupervisorDashActivity extends AppCompatActivity implements VolleyC
         setContentView(R.layout.activity_supervisor_dashboard);
         supervisore = SupervisoreSingleton.getInstance().getAccount();
         inizializzaComponenti();
-        //new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
+        new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }
 
     private void inizializzaComponenti(){
@@ -56,7 +56,7 @@ public class SupervisorDashActivity extends AppCompatActivity implements VolleyC
         notifications = findViewById(R.id.notificationSupCard);
         pendingOrder = findViewById(R.id.pendingOrdersSupCard);
         logout = findViewById(R.id.logoutSupCard);
-        logo = findViewById(R.id.logoBiagioTestAdmin);
+        logo = findViewById(R.id.logoBiagioSupervisorDash);
         myBalloon = new Balloon.Builder(getApplicationContext())
                 .setArrowOrientation(ArrowOrientation.END)
                 .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
