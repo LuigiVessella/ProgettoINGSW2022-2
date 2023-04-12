@@ -11,8 +11,6 @@ public class Ristorante {
     private Admin proprietario;
     private List<Cameriere> camerieri;
 
-
-
     private List<Avviso> avvisi;
 
     private AddettoCucina addettoCucina;
