@@ -2,6 +2,7 @@ package com.example.progettoingsw2022_2.Activities;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,7 +77,7 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
         if(CameriereSingleton.getInstance().getAccount() != null) ordini = (ArrayList<Ordine>) CameriereSingleton.getInstance().getAccount().getOrdini();
 
         else if(SupervisoreSingleton.getInstance().getAccount() != null){
-
+            Log.i("check ordini", "sium");
             ArrayList<Ordine> ordiniTotali = new ArrayList();
             ArrayList<Cameriere> camerieri = (ArrayList<Cameriere>) SupervisoreSingleton.getInstance().getAccount().getRistorante().getCamerieri();
             for(int i = 0; i < camerieri.size(); i++){
