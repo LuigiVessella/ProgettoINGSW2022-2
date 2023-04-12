@@ -3,6 +3,7 @@ package com.example.progettoingsw2022_2.Models;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 public class Avviso {
     private Long id_avviso;
@@ -10,6 +11,25 @@ public class Avviso {
     private boolean letto;
     private Integer lettoCounter;
 
+    private String dataEmissione;
+
+    public String getDataEmissione() {
+        return dataEmissione;
+    }
+
+    public void setDataEmissione(String dataEmissione) {
+        this.dataEmissione = dataEmissione;
+    }
+
+    public String getOraEmissione() {
+        return oraEmissione;
+    }
+
+    public void setOraEmissione(String oraEmissione) {
+        this.oraEmissione = oraEmissione;
+    }
+
+    private String oraEmissione;
     private Ristorante ristorante;
 
     public Long getId_avviso() {

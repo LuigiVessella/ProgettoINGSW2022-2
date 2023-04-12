@@ -19,6 +19,16 @@ public class Ordine {
 
     private Cameriere cameriere;
 
+    public String getDataOrdine() {
+        return dataOrdine;
+    }
+
+    public void setDataOrdine(String dataOrdine) {
+        this.dataOrdine = dataOrdine;
+    }
+
+    private String dataOrdine;
+
 
     private int conto;
 
