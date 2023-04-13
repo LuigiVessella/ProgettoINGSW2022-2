@@ -46,7 +46,8 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_table_status);
 
-        inizializzaComponenti();
+        if(AddettoCucinaSingleton.getInstance().getAccount() != null) getRistoranteAddettoCucina();
+        else inizializzaComponenti();
 
     }
 
@@ -81,11 +82,11 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
 
     private void setUpOrders(){
 
-        if(CameriereSingleton.getInstance().getAccount() != null) ordini = (ArrayList<Ordine>) CameriereSingleton.getInstance().getAccount().getOrdini();
+        if(CameriereSingleton.getInstance().getAccount()!= null) ordini = (ArrayList<Ordine>) CameriereSingleton.getInstance().getAccount().getOrdini();
 
-        else if(SupervisoreSingleton.getInstance().getAccount() != null){
+        else if(SupervisoreSingleton.getInstance().getAccount()!= null){
             Log.i("check ordini", "sium");
-            ArrayList<Ordine> ordiniTotali = new ArrayList();
+
             List<Cameriere> camerieri = SupervisoreSingleton.getInstance().getAccount().getRistorante().getCamerieri();
             for(Cameriere cameriere : camerieri){
 
@@ -93,21 +94,32 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
             }
         }
 
-        else {
-            ArrayList<Ordine> ordiniTotali = new ArrayList();
-            ArrayList<Cameriere> camerieri = (ArrayList<Cameriere>) AddettoCucinaSingleton.getInstance().getAccount().getRistorante().getCamerieri();
-            for(int i = 0; i < camerieri.size(); i++){
-                ordiniTotali.addAll(camerieri.get(i).getOrdini());
+        else if (AddettoCucinaSingleton.getInstance().getAccount() != null){
+
+            List<Cameriere> camerieri = AddettoCucinaSingleton.getInstance().getAccount().getRistorante().getCamerieri();
+            for(Cameriere cameriere : camerieri){
+                ordini.addAll(cameriere.getOrdini());
             }
 
         }
+        else Toast.makeText(this, "Problema nella visualizzazione", Toast.LENGTH_SHORT).show();
+
 
         ordini.removeIf(s->s.isEvaso() == true);
 
     }
 
     private void checkForNewOrders() {
-        String url = "/ordini/getOrdiniRistorante/" + SupervisoreSingleton.getInstance().getAccount().getRistorante().getCodice_ristorante();
+        String url;
+        if (SupervisoreSingleton.getInstance().getAccount() != null) url = "/ordini/getOrdiniRistorante/" + SupervisoreSingleton.getInstance().getAccount().getRistorante().getCodice_ristorante();
+        else url = "/ordini/getOrdiniRistorante/" + AddettoCucinaSingleton.getInstance().getAccount().getRistorante().getCodice_ristorante();
+        CustomRequest newRequest = new CustomRequest(url, null, this, this);
+        newRequest.sendGetRequest();
+    }
+
+
+    private void getRistoranteAddettoCucina(){
+        String url = "/addettocucina/getRistorante/" + AddettoCucinaSingleton.getInstance().getAccount().getCodiceFiscale();
         CustomRequest newRequest = new CustomRequest(url, null, this, this);
         newRequest.sendGetRequest();
     }
@@ -118,7 +130,10 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
         Log.i("volley camerieri", result);
         Gson gson = new Gson();
         Ristorante newRisto = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
-        SupervisoreSingleton.getInstance().getAccount().setRistorante(newRisto);
+
+        if(AddettoCucinaSingleton.getInstance().getAccount() != null) AddettoCucinaSingleton.getInstance().getAccount().setRistorante(newRisto);
+        else SupervisoreSingleton.getInstance().getAccount().setRistorante(newRisto);
+
         inizializzaComponenti();
     }
 }

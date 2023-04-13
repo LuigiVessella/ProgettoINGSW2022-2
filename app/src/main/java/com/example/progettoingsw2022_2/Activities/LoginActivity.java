@@ -137,6 +137,12 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         finish();
     }
 
+    private void switchToOrderStatusAct(){
+        Intent newAct = new Intent(LoginActivity.this, OrderStatusActivity.class);
+        startActivity(newAct);
+        finish();
+    }
+
 
     @Override
     public void onSuccess(String result) {
@@ -195,6 +201,8 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             String toastText = getString(R.string.welcome) + " " + AddettoCucinaSingleton.getInstance().getAccount().getNome();
             //TODO: inserire dashboard
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+            switchToOrderStatusAct();
+
 
         }
 
