@@ -11,7 +11,15 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 public abstract class Lavoratore {
 
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
 
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
+    }
+
+    private String hashedPassword;
     private String codiceFiscale;
     private String nome;
     private String cognome;

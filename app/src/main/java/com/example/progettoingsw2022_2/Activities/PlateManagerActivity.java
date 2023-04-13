@@ -301,13 +301,13 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             titleFont.setColor(BaseColor.WHITE);
             titleFont.setSize(36);
 
-            Paragraph space = new Paragraph("\n\n\n", titleFont);
+            Paragraph space = new Paragraph("\n\n", titleFont);
             space.setAlignment(Element.ALIGN_CENTER);
 
             document.add(space);
 
             //TODO: Prendere il nome del ristorante al posto della stringa statica
-            Paragraph title = new Paragraph("Ristorante Da Gigi", titleFont);
+            Paragraph title = new Paragraph("Menù del giorno:", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
 
             document.add(title);

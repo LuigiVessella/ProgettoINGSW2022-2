@@ -3,6 +3,7 @@ package com.example.progettoingsw2022_2.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -146,6 +148,16 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
     @Override
     public void onSuccess(String result) {
+
+        String stringPass = "firstpass.1";
+
+        String salt = "$2a$10$abcdefghijklmnopqrstuvw$";
+        String hashedPassword = BCrypt.hashpw(stringPass,salt);
+
+        if(result.equals("new_pass_saved")) {
+            Toast.makeText(this, "Password aggiornata correttamente", Toast.LENGTH_SHORT).show();
+            finishAfterTransition();
+        }
         Gson gson = new Gson();
 
         JsonParser parser = new JsonParser();
@@ -181,9 +193,11 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         else if(ruolo.equals("cameriere")) {
 
             Cameriere cameriere = gson.fromJson(result, new TypeToken<Cameriere>(){}.getType());
-
             CameriereSingleton.getInstance().setAccount(cameriere);
-            switchToWaiterDashboardActivity();
+            if(CameriereSingleton.getInstance().getAccount().getHashedPassword().equals(hashedPassword)) {
+                changeFirstPassword(CameriereSingleton.getInstance().getAccount());
+            }
+            else switchToWaiterDashboardActivity();
         }
         else if (ruolo.equals("amministratore")){
             Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
@@ -191,6 +205,8 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             AdminSingleton.getInstance().setAccount(admin);
             String toastText = getString(R.string.welcome) + " " + AdminSingleton.getInstance().getAccount().getNome();
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+
+
             switchToAdminDashboardActivity();
         }
 
@@ -201,7 +217,11 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             String toastText = getString(R.string.welcome) + " " + AddettoCucinaSingleton.getInstance().getAccount().getNome();
             //TODO: inserire dashboard
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
-            switchToOrderStatusAct();
+
+            if(AddettoCucinaSingleton.getInstance().getAccount().getHashedPassword().equals(hashedPassword)) {
+                changeFirstPassword(AddettoCucinaSingleton.getInstance().getAccount());
+            }
+            else switchToOrderStatusAct();
 
 
         }
@@ -211,7 +231,52 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             SupervisoreSingleton.getInstance().setAccount(supervisore);
             String toastText = getString(R.string.welcome) + " " + SupervisoreSingleton.getInstance().getAccount().getNome();
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
-            switchToSupervisorDashboardActivity();
+
+            if(SupervisoreSingleton.getInstance().getAccount().getHashedPassword().equals("firstpass.1")) {
+                changeFirstPassword(SupervisoreSingleton.getInstance().getAccount());
+            }
+            else switchToSupervisorDashboardActivity();
         }
+    }
+
+
+    private void changeFirstPassword(Lavoratore lavoratore){
+        String url = "";
+        Dialog dialogChangePass = new Dialog(this);
+        dialogChangePass.setContentView(R.layout.dialog_change_credentials);
+        Button okButton = dialogChangePass.findViewById(R.id.submitBtn);
+        TextView newPass = dialogChangePass.findViewById(R.id.newFieldText);
+
+        if(lavoratore.getRuolo().equals("cameriere"))url = "/camerieri/changePassword/" + lavoratore.getCodiceFiscale();
+        if(lavoratore.getRuolo().equals("supervisore"))url = "/supervisore/changePassword/" + lavoratore.getCodiceFiscale();
+        if(lavoratore.getRuolo().equals("addetto_cucina"))url = "/addettocucina/changePassword/" + lavoratore.getCodiceFiscale();
+
+        final String urlFinal = url;
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                sendNewPassRequest(urlFinal, newPass.getText().toString());
+            }
+        });
+
+        dialogChangePass.show();
+
+
+
+    }
+
+    private void sendNewPassRequest(String url, String newPass){
+
+        String stringPass = newPass.toString();
+        String salt = "$2a$10$abcdefghijklmnopqrstuvw$";
+        String hashedPassword = BCrypt.hashpw(stringPass,salt);
+        Map<String, String> params = new HashMap<>();
+
+        params.put("passNew", hashedPassword);
+        CustomRequest newRequest = new CustomRequest(url, params, this, this);
+        newRequest.sendPostRequest();
+
     }
 }
