@@ -134,7 +134,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         tipoPortataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipo.setAdapter(tipoPortataAdapter);
 
-        ArrayAdapter<String> tipoAlimentoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Pesce", "Bevanda", "Carne", "Pasta", "Pizza", "Vegano", "Vegetariano", "Senza glutine"});
+        ArrayAdapter<String> tipoAlimentoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Pesce", "Bevanda", "Carne", "Pasta", "Pizza", "Vegano", "Vegetariano", "Senza glutine", "Dolce"});
         tipoAlimentoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipoAlimento.setAdapter(tipoAlimentoAdapter);
 
@@ -203,12 +203,10 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             }
             else {
                 goProductButton.setEnabled(false);
-                itemMenuDescription.setText("");
-                autoCompleteTextView.setText("");
-
-                goProductButton.setEnabled(true);
                 itemMenuDescription.setEnabled(true);
                 allergensEditText.setEnabled(true);
+                itemMenuDescription.setText("");
+                autoCompleteTextView.setText("");
             }
          });
 
@@ -316,7 +314,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             for (Piatto piatto : piatti) {
                 // Aggiungi la descrizione del piatto
                 // Aggiunge la descrizione del piatto "Pasta al Sugo" centrata nella pagina con un font personalizzato e uno spazio di 50 punti prima della descrizione
-                Paragraph plate = new Paragraph("\n\n"+ piatto.getNome_piatto() + "   " + piatto.getPrezzo() + "€\n\n", plateFont);
+                Paragraph plate = new Paragraph(""+ piatto.getNome_piatto() + "   " + piatto.getPrezzo() + "€\n", plateFont);
                 plate.setAlignment(Element.ALIGN_CENTER);
                 document.add(plate);
             }
@@ -427,10 +425,12 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         Gson gson = new Gson();
         Menu newMenu = gson.fromJson(result, new TypeToken<Menu>(){}.getType());
 
-        if(newMenu == null) {
+        if(newMenu.getId_menu() == null) {
+            System.out.println("openfood");
             parseJsonResponse(result); //trattasi open food
         }
         else {
+            System.out.println("menu");
             AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).setMenu(newMenu);
             inizializzaComponenti();
         }
