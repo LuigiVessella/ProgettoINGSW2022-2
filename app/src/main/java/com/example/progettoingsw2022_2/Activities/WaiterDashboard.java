@@ -33,6 +33,9 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
     Runnable runnable;
     int delay = 10000;
 
+    private Button orderStatusButton;
+    private   Button takeOrderButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,7 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
 
     @Override
     protected void onResume() {
+        inizializzaComponenti();
         handler.postDelayed(runnable = new Runnable() {
             public void run() {
                 handler.postDelayed(runnable, delay);
@@ -56,7 +60,7 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         }, delay);
         super.onResume();
 
-        inizializzaComponenti();
+
     }
     @Override
     protected void onPause() {
@@ -66,12 +70,9 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
 
     private void inizializzaComponenti(){
         setRistoranteCameriere();
-        Button takeOrderButton = findViewById(R.id.newOrderBtn);
-        Button orderStatusButton = findViewById(R.id.orderStatusBtn);
+        takeOrderButton = findViewById(R.id.newOrderBtn);
+        orderStatusButton = findViewById(R.id.orderStatusBtn);
 
-       orderStatusButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, OrderStatusActivity.class)));
-
-       takeOrderButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, TakeOrderActivity.class)));
 
     }
 
@@ -90,7 +91,10 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
             CameriereSingleton.getInstance().getAccount().setRistorante(ristoranteCameriere);
         }
 
-        Log.i("cameriere print", CameriereSingleton.getInstance().getAccount().getRistorante().getNome());
+
+        orderStatusButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, OrderStatusActivity.class)));
+
+        takeOrderButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, TakeOrderActivity.class)));
     }
 
     @Override

@@ -55,7 +55,11 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
     private  void inizializzaComponenti(){
 
         recycleView = findViewById(R.id.activity_table_rvw);
-        adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini);
+        if(CameriereSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, CameriereSingleton.getInstance().getAccount());
+        if(SupervisoreSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, SupervisoreSingleton.getInstance().getAccount());
+        if(AddettoCucinaSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, AddettoCucinaSingleton.getInstance().getAccount());
+
+
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -82,7 +86,7 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
 
     private void setUpOrders(){
 
-        if(CameriereSingleton.getInstance().getAccount()!= null) ordini = (ArrayList<Ordine>) CameriereSingleton.getInstance().getAccount().getOrdini();
+        if(CameriereSingleton.getInstance().getAccount()!= null) ordini.addAll(CameriereSingleton.getInstance().getAccount().getOrdini());
 
         else if(SupervisoreSingleton.getInstance().getAccount()!= null){
             Log.i("check ordini", "sium");

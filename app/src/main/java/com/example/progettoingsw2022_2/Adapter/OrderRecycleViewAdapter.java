@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.progettoingsw2022_2.Activities.TakeOrderActivity;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
+import com.example.progettoingsw2022_2.Models.Lavoratore;
 import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.R;
 
@@ -28,9 +29,12 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
     private final Context context;
     private ArrayList<Ordine> ordini;
 
-    public OrderRecycleViewAdapter(Context context, ArrayList<Ordine> ordini){
+    private Lavoratore dipendenteLoggato;
+
+    public OrderRecycleViewAdapter(Context context, ArrayList<Ordine> ordini, Lavoratore dipendente) {
         this.context = context;
         this.ordini = ordini;
+        this.dipendenteLoggato = dipendente;
     }
     @NonNull
     @Override
@@ -44,6 +48,7 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
     @Override
     public void onBindViewHolder(@NonNull OrderRecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
+
         holder.tableNumber.setText(String.valueOf(ordini.get(position).getNumeroTavolo()));
         holder.orderDescription.setText("Order" + " #" + (ordini.get(position).getPiattiOrdinati()));
         holder.removeButton.setOnClickListener(view -> {
@@ -54,6 +59,9 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, ordini.size());
         });
+
+        if(dipendenteLoggato.getRuolo().equals("cameriere")) holder.removeButton.setEnabled(false);
+        if(dipendenteLoggato.getRuolo().equals("addetto_cucina")) holder.sollecitaButton.setEnabled(false);
 
     }
 
@@ -88,6 +96,7 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
             orderDescription = itemView.findViewById(R.id.textViewOrderDescription);
             removeButton = itemView.findViewById(R.id.button_2_table_remove);
             sollecitaButton = itemView.findViewById(R.id.button_1_table_sollecita);
+
 
         }
     }

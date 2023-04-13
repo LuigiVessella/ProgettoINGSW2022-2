@@ -354,6 +354,8 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         //aggiungi la richiesta alla coda delle richieste di Volley
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
+        finishAfterTransition();
+
     }
 
     public void onSuccess(String s){
