@@ -33,10 +33,11 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
 
     private ArrayList<Ordine> ordini = new ArrayList<>();
 
-
-    Handler handler = new Handler();
-    Runnable runnable;
-    int delay = 10000;
+    private OrderRecycleViewAdapter adapter;
+    private RecyclerView recycleView;
+    private Handler handler = new Handler();
+    private Runnable runnable;
+    private int delay = 5000;
 
 
     @Override
@@ -45,15 +46,21 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_table_status);
 
+        inizializzaComponenti();
 
-
-        RecyclerView recycleView = findViewById(R.id.activity_table_rvw);
-        setUpOrders();
-        OrderRecycleViewAdapter adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini);
-        recycleView.setAdapter(adapter);
-        recycleView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+
+    private  void inizializzaComponenti(){
+
+        recycleView = findViewById(R.id.activity_table_rvw);
+        adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini);
+        recycleView.setAdapter(adapter);
+        recycleView.setLayoutManager(new LinearLayoutManager(this));
+
+        setUpOrders();
+
+    }
 
     @Override
     protected void onResume() {
@@ -79,9 +86,10 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
         else if(SupervisoreSingleton.getInstance().getAccount() != null){
             Log.i("check ordini", "sium");
             ArrayList<Ordine> ordiniTotali = new ArrayList();
-            ArrayList<Cameriere> camerieri = (ArrayList<Cameriere>) SupervisoreSingleton.getInstance().getAccount().getRistorante().getCamerieri();
-            for(int i = 0; i < camerieri.size(); i++){
-                ordiniTotali.addAll(camerieri.get(i).getOrdini());
+            List<Cameriere> camerieri = SupervisoreSingleton.getInstance().getAccount().getRistorante().getCamerieri();
+            for(Cameriere cameriere : camerieri){
+
+                ordini.addAll(cameriere.getOrdini());
             }
         }
 
@@ -106,9 +114,11 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
 
     @Override
     public void onSuccess(String result) {
+        ordini.removeAll(ordini);
+        Log.i("volley camerieri", result);
         Gson gson = new Gson();
-        List<Cameriere> camerieriConOrdiniNuovi = gson.fromJson(result, new TypeToken<List<Cameriere>>(){}.getType());
-        SupervisoreSingleton.getInstance().getAccount().getRistorante().setCamerieri(camerieriConOrdiniNuovi);
-        setUpOrders();
+        Ristorante newRisto = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
+        SupervisoreSingleton.getInstance().getAccount().setRistorante(newRisto);
+        inizializzaComponenti();
     }
 }
