@@ -8,10 +8,21 @@ import java.util.Date;
 public class Avviso {
     private Long id_avviso;
     private String descrizione;
-    private boolean letto;
-    private Integer lettoCounter;
+
+    private String oraEmissione;
+    private Ristorante ristorante;
+
+    private String lettoDa;
 
     private String dataEmissione;
+
+    public String getLettoDa() {
+        return lettoDa;
+    }
+
+    public void setLettoDa(String lettoDa) {
+        this.lettoDa = lettoDa;
+    }
 
     public String getDataEmissione() {
         return dataEmissione;
@@ -29,8 +40,6 @@ public class Avviso {
         this.oraEmissione = oraEmissione;
     }
 
-    private String oraEmissione;
-    private Ristorante ristorante;
 
     public Long getId_avviso() {
         return this.id_avviso;
@@ -49,9 +58,7 @@ public class Avviso {
     }
 
     public Avviso(){
-        letto = false;
     }
-
 
     public String getDescrizione() {
         return this.descrizione;
@@ -61,25 +68,7 @@ public class Avviso {
         this.descrizione = descrizione;
     }
 
-    public boolean isLetto() {
-        return this.letto;
-    }
 
-    public boolean getLetto() {
-        return this.letto;
-    }
-
-    public void setLetto(boolean letto) {
-        this.letto = letto;
-    }
-
-    public Integer getLettoCounter() {
-        return this.lettoCounter;
-    }
-
-    public void setLettoCounter(Integer lettoCounter) {
-        this.lettoCounter = lettoCounter;
-    }
 
 
 }

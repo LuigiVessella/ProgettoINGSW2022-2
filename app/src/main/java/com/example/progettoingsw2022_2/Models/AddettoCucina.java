@@ -7,7 +7,6 @@ public class AddettoCucina extends Lavoratore {
     private Ristorante ristorante;
     private int numeroOrdiniEvasi;
 
-
     public Ristorante getRistorante() {
         return ristorante;
     }

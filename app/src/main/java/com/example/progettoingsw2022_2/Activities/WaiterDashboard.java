@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,8 @@ import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -35,6 +39,7 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
 
     private Button orderStatusButton;
     private Button takeOrderButton;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +76,22 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         setRistoranteCameriere();
         takeOrderButton = findViewById(R.id.newOrderBtn);
         orderStatusButton = findViewById(R.id.orderStatusBtn);
+        bottomNavigationView = findViewById(R.id.bottomNavigationWaiter);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.notification_menu:
+                        Toast.makeText(WaiterDashboard.this, "notifiche qui", Toast.LENGTH_SHORT).show();
+                        return true;
 
+                    case R.id.back_menu:
+                        Toast.makeText(WaiterDashboard.this, "back qui", Toast.LENGTH_SHORT).show();
+                        return true;
+                }
+                return false;
+            }
+        });
 
     }
 

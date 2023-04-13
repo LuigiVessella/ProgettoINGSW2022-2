@@ -209,15 +209,21 @@
                         android:layout_marginTop="10dp"
                         android:text="@string/Logout"
                         tools:ignore="TextContrastCheck" />
-
                 </LinearLayout>
-
 
             </androidx.cardview.widget.CardView>
 
-
         </GridLayout>
-
     </LinearLayout>
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationSupervisor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/marrone_terziario"
+        app:itemIconTint="@color/bianco"
+        app:itemTextColor="@color/bianco"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigationbar_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
