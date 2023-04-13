@@ -27,6 +27,22 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/sollecitatoImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:contentDescription="@string/app_logo"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_1_table_sollecita"
+                app:layout_constraintHorizontal_bias="0.63"
+                app:layout_constraintStart_toEndOf="@+id/button_2_table_remove"
+                app:layout_constraintTop_toBottomOf="@+id/textViewOrderDescription"
+                app:layout_constraintVertical_bias="0.552"
+                app:srcCompat="@drawable/baseline_priority_high_24"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
                 android:id="@+id/table_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"

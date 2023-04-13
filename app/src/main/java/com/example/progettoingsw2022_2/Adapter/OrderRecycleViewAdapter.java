@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,6 +50,7 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
     public void onBindViewHolder(@NonNull OrderRecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
 
+        if(ordini.get(position).isSollecitato()) holder.imgSollecitato.setVisibility(View.VISIBLE);
         holder.tableNumber.setText(String.valueOf(ordini.get(position).getNumeroTavolo()));
         holder.orderDescription.setText("Order" + " #" + (ordini.get(position).getPiattiOrdinati()));
         holder.removeButton.setOnClickListener(view -> {
@@ -58,6 +60,14 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
             ordini.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, ordini.size());
+        });
+
+        holder.sollecitaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ordini.get(position).setSollecitato(true);
+                setSollecitatoOnSpring(ordini.get(position).getIdOrdine().toString());
+            }
         });
 
         if(dipendenteLoggato.getRuolo().equals("cameriere")) holder.removeButton.setEnabled(false);
@@ -72,12 +82,20 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
 
 
     private void setEvasoOnSpring(String idOrdine){
-        System.out.println("sono qui\n");
         String url = "/ordini/setEvaso/" + idOrdine;
 
         Map<String, String> params = new HashMap<>();
         CustomRequest newRequest = new CustomRequest(url, params, context, this);
         newRequest.sendPostRequest();
+    }
+
+    private void setSollecitatoOnSpring(String idOrdine) {
+        String url = "/ordini/setSollecitato/" + idOrdine;
+
+        Map<String, String> params = new HashMap<>();
+        CustomRequest newRequest = new CustomRequest(url, params, context, this);
+        newRequest.sendPostRequest();
+
     }
     @Override
     public void onSuccess(String result) {
@@ -89,6 +107,8 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
         private final TextView tableNumber, orderDescription;
         private Button removeButton, sollecitaButton;
 
+        private ImageView imgSollecitato;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -96,7 +116,7 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
             orderDescription = itemView.findViewById(R.id.textViewOrderDescription);
             removeButton = itemView.findViewById(R.id.button_2_table_remove);
             sollecitaButton = itemView.findViewById(R.id.button_1_table_sollecita);
-
+            imgSollecitato = itemView.findViewById(R.id.sollecitatoImageView);
 
         }
     }

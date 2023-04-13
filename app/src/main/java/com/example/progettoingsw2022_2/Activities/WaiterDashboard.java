@@ -34,7 +34,7 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
     int delay = 10000;
 
     private Button orderStatusButton;
-    private   Button takeOrderButton;
+    private Button takeOrderButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,16 +50,15 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
 
     @Override
     protected void onResume() {
-        inizializzaComponenti();
+
         handler.postDelayed(runnable = new Runnable() {
             public void run() {
                 handler.postDelayed(runnable, delay);
-                Toast.makeText(WaiterDashboard.this, "This method is run every 10 seconds",
-                        Toast.LENGTH_SHORT).show();
             }
         }, delay);
         super.onResume();
 
+        inizializzaComponenti();
 
     }
     @Override

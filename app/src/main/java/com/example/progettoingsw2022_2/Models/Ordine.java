@@ -29,6 +29,16 @@ public class Ordine {
 
     private String dataOrdine;
 
+    public boolean isSollecitato() {
+        return sollecitato;
+    }
+
+    public void setSollecitato(boolean sollecitato) {
+        this.sollecitato = sollecitato;
+    }
+
+    private boolean sollecitato;
+
 
     private int conto;
 
@@ -38,6 +48,7 @@ public class Ordine {
         evaso = false;
         pagato = false;
         cameriere = new Cameriere();
+        sollecitato = false;
     }
     public boolean isPagato() {
         return pagato;
