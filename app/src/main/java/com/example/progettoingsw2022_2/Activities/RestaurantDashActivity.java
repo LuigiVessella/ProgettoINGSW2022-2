@@ -146,6 +146,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
             public void onClick(View v) {
                 if(multiLineEdt.getText().length() > 1) {
                     sendAvviso(multiLineEdt.getText().toString());
+                    alertDialog.dismiss();
                 }
             }
         });

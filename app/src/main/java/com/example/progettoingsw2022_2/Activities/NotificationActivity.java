@@ -41,11 +41,13 @@ public class NotificationActivity extends AppCompatActivity implements VolleyCal
         if(AddettoCucinaSingleton.getInstance().getAccount() != null) ristorante = AddettoCucinaSingleton.getInstance().getAccount().getRistorante();
         else if(CameriereSingleton.getInstance().getAccount() != null) ristorante = CameriereSingleton.getInstance().getAccount().getRistorante();
         else if(SupervisoreSingleton.getInstance().getAccount() != null) ristorante = SupervisoreSingleton.getInstance().getAccount().getRistorante();
+        adapter = new NotificationRecycleViewAdapter(NotificationActivity.this, ristorante.getAvvisi());
 
         inizializzacomponenti();
     }
 
     private void inizializzacomponenti() {
+
         recycleView = findViewById(R.id.activity_table_rvw);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(this));

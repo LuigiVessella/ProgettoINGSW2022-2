@@ -20,16 +20,16 @@ import com.example.progettoingsw2022_2.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class NotificationRecycleViewAdapter extends RecyclerView.Adapter<NotificationRecycleViewAdapter.MyViewHolder> implements VolleyCallback {
     private final Context context;
-    private ArrayList<Avviso> avvisi;
+    private List<Avviso> avvisi;
 
-    public NotificationRecycleViewAdapter(Context context, ArrayList<Avviso> avvisi, Lavoratore dipendente) {
+    public NotificationRecycleViewAdapter(Context context, List<Avviso> avvisi) {
         this.context = context;
         this.avvisi = avvisi;
-
     }
     @NonNull
     @Override

@@ -72,7 +72,7 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
         handler.postDelayed(runnable = new Runnable() {
             public void run() {
                 handler.postDelayed(runnable, delay);
-                checkForNewOrders();
+
             }
         }, delay);
         super.onResume();

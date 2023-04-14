@@ -4,12 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -59,6 +64,7 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         handler.postDelayed(runnable = new Runnable() {
             public void run() {
                 handler.postDelayed(runnable, delay);
+                checkForNewAvvisi();
             }
         }, delay);
         super.onResume();
@@ -77,16 +83,17 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         takeOrderButton = findViewById(R.id.newOrderBtn);
         orderStatusButton = findViewById(R.id.orderStatusBtn);
         bottomNavigationView = findViewById(R.id.bottomNavigationWaiter);
+
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.notification_menu:
-                        Toast.makeText(WaiterDashboard.this, "notifiche qui", Toast.LENGTH_SHORT).show();
+                        switchToNotificationActivity();
+                        item.setIcon(R.drawable.ic_notification);
                         return true;
 
                     case R.id.back_menu:
-                        Toast.makeText(WaiterDashboard.this, "back qui", Toast.LENGTH_SHORT).show();
                         return true;
                 }
                 return false;
@@ -101,20 +108,7 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         newRequest.sendGetRequest();
     }
 
-    @Override
-    public void onSuccess(String result) {
 
-        Gson gson = new Gson();
-        Ristorante ristoranteCameriere = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
-        if(ristoranteCameriere != null) {
-            CameriereSingleton.getInstance().getAccount().setRistorante(ristoranteCameriere);
-        }
-
-
-        orderStatusButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, OrderStatusActivity.class)));
-
-        takeOrderButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, TakeOrderActivity.class)));
-    }
 
     @Override
     public void onBackPressed() {
@@ -158,5 +152,44 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         // Impostazione del colore di sfondo e del colore del testo
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         dialog.setMessage(Html.fromHtml("<font color='#000000'>Sei sicuro di voler uscire?</font>"));
+    }
+
+    private void checkForNewAvvisi() {
+        String url = "/avviso/getAvvisi/"+CameriereSingleton.getInstance().getAccount().getRistorante().getCodice_ristorante();
+        CustomRequest newRequest = new CustomRequest(url, null, this, this);
+        newRequest.sendGetRequest();
+    }
+
+    private void switchToNotificationActivity(){
+        startActivity(new Intent(this, NotificationActivity.class));
+        finishAfterTransition();
+    }
+
+
+    @Override
+    public void onSuccess(String result) {
+
+        if(result.equals("new_alerts")) {
+            MenuItem item = bottomNavigationView.getMenu().findItem(R.id.notification_menu);
+            item.setIcon(R.drawable.notification_circle_svgrepo_com);
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(this.getApplicationContext(), notification);
+            r.play();
+            return;
+        }
+        if(result.equals("no_new_alerts")){
+            return;
+        }
+
+        Gson gson = new Gson();
+        Ristorante ristoranteCameriere = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
+        if(ristoranteCameriere != null) {
+            CameriereSingleton.getInstance().getAccount().setRistorante(ristoranteCameriere);
+        }
+
+
+        orderStatusButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, OrderStatusActivity.class)));
+
+        takeOrderButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, TakeOrderActivity.class)));
     }
 }
