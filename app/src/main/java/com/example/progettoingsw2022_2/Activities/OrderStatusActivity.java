@@ -1,10 +1,16 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +28,8 @@ import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AddettoCucinaSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.SupervisoreSingleton;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -40,6 +48,9 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
     private int delay = 5000;
 
 
+    private String newAvvisiCheck = "NO";
+    private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -54,10 +65,30 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
 
     private  void inizializzaComponenti(){
 
+        bottomNavigationView = findViewById(R.id.bottomNavigationAddettoCucina);
         recycleView = findViewById(R.id.activity_table_rvw);
         if(CameriereSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, CameriereSingleton.getInstance().getAccount());
         if(SupervisoreSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, SupervisoreSingleton.getInstance().getAccount());
-        if(AddettoCucinaSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, AddettoCucinaSingleton.getInstance().getAccount());
+        if(AddettoCucinaSingleton.getInstance().getAccount() != null)
+        {
+            bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.notification_menu:
+                            switchToNotificationActivity();
+                            item.setIcon(R.drawable.ic_notification);
+                            return true;
+
+                        case R.id.back_menu:
+                            return true;
+                    }
+                    return false;
+                }
+            });
+
+            adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, AddettoCucinaSingleton.getInstance().getAccount());
+        }
 
 
         recycleView.setAdapter(adapter);
@@ -72,7 +103,10 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
         handler.postDelayed(runnable = new Runnable() {
             public void run() {
                 handler.postDelayed(runnable, delay);
-
+                if(AddettoCucinaSingleton.getInstance().getAccount() != null) {
+                    checkForNewAvvisi();
+                }
+               if (AddettoCucinaSingleton.getInstance().getAccount()!= null || SupervisoreSingleton.getInstance().getAccount() != null) checkForNewOrders();
             }
         }, delay);
         super.onResume();
@@ -128,8 +162,35 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
         newRequest.sendGetRequest();
     }
 
+
+
+    private void checkForNewAvvisi() {
+        String url = "/avviso/getAvvisi/"+ AddettoCucinaSingleton.getInstance().getAccount().getRistorante().getCodice_ristorante();
+        CustomRequest newRequest = new CustomRequest(url, null, this, this);
+        newRequest.sendGetRequest();
+    }
+
+    private void switchToNotificationActivity(){
+        startActivity(new Intent(this, NotificationActivity.class).putExtra("check", newAvvisiCheck));
+
+    }
+
     @Override
     public void onSuccess(String result) {
+
+        if(result.equals("new_alerts")) {
+            MenuItem item = bottomNavigationView.getMenu().findItem(R.id.notification_menu);
+            item.setIcon(R.drawable.notification_circle_svgrepo_com);
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(this.getApplicationContext(), notification);
+            r.play();
+            newAvvisiCheck = "YES";
+            return;
+        }
+        if(result.equals("no_new_alerts")){
+            return;
+        }
+
         ordini.removeAll(ordini);
         Log.i("volley camerieri", result);
         Gson gson = new Gson();

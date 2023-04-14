@@ -5,13 +5,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -24,7 +29,10 @@ import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.Models.Supervisore;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AddettoCucinaSingleton;
+import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.SupervisoreSingleton;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.skydoves.balloon.ArrowOrientation;
@@ -38,6 +46,9 @@ public class SupervisorDashActivity extends AppCompatActivity implements VolleyC
     private Supervisore supervisore;
     private ImageView logo;
     private Balloon myBalloon;
+
+    private String newAvvisiCheck = "NO";
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +67,7 @@ public class SupervisorDashActivity extends AppCompatActivity implements VolleyC
         notifications = findViewById(R.id.notificationSupCard);
         pendingOrder = findViewById(R.id.pendingOrdersSupCard);
         logout = findViewById(R.id.logoutSupCard);
+        bottomNavigationView = findViewById(R.id.bottomNavigationSupervisor);
         logo = findViewById(R.id.logoBiagioSupervisorDash);
         myBalloon = new Balloon.Builder(getApplicationContext())
                 .setArrowOrientation(ArrowOrientation.END)
@@ -76,6 +88,24 @@ public class SupervisorDashActivity extends AppCompatActivity implements VolleyC
 
         logout.setOnClickListener(view -> backToLoginActivity());
         orderStatus.setOnClickListener(view -> startActivity(new Intent(SupervisorDashActivity.this, OrderStatusActivity.class)));
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.notification_menu:
+                        switchToNotificationActivity();
+                        item.setIcon(R.drawable.ic_notification);
+                        return true;
+
+                    case R.id.back_menu:
+                        return true;
+                }
+                return false;
+            }
+        });
+
+
         getRistorante();
     }
 
@@ -130,8 +160,32 @@ public class SupervisorDashActivity extends AppCompatActivity implements VolleyC
         customRequest.sendGetRequest();
     }
 
+    private void checkForNewAvvisi() {
+        String url = "/avviso/getAvvisi/"+ CameriereSingleton.getInstance().getAccount().getRistorante().getCodice_ristorante();
+        CustomRequest newRequest = new CustomRequest(url, null, this, this);
+        newRequest.sendGetRequest();
+    }
+
+    private void switchToNotificationActivity(){
+        startActivity(new Intent(this, NotificationActivity.class).putExtra("check", newAvvisiCheck));
+
+    }
+
     @Override
     public void onSuccess(String result) {
+
+        if(result.equals("new_alerts")) {
+            MenuItem item = bottomNavigationView.getMenu().findItem(R.id.notification_menu);
+            item.setIcon(R.drawable.notification_circle_svgrepo_com);
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(this.getApplicationContext(), notification);
+            r.play();
+            newAvvisiCheck = "YES";
+            return;
+        }
+        if(result.equals("no_new_alerts")){
+            return;
+        }
 
         Gson gson = new Gson();
         Ristorante ristorante = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());

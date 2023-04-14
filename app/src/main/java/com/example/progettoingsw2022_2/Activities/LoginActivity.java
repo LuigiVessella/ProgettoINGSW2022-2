@@ -219,6 +219,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
 
             if(AddettoCucinaSingleton.getInstance().getAccount().getHashedPassword().equals(hashedPassword)) {
+                System.out.println("sto qua\n");
                 changeFirstPassword(AddettoCucinaSingleton.getInstance().getAccount());
             }
             else switchToOrderStatusAct();
@@ -232,7 +233,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             String toastText = getString(R.string.welcome) + " " + SupervisoreSingleton.getInstance().getAccount().getNome();
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
 
-            if(SupervisoreSingleton.getInstance().getAccount().getHashedPassword().equals("firstpass.1")) {
+            if(SupervisoreSingleton.getInstance().getAccount().getHashedPassword().equals(hashedPassword)) {
                 changeFirstPassword(SupervisoreSingleton.getInstance().getAccount());
             }
             else switchToSupervisorDashboardActivity();
