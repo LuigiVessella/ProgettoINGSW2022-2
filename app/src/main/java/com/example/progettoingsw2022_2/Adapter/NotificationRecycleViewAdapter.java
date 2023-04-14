@@ -44,7 +44,7 @@ public class NotificationRecycleViewAdapter extends RecyclerView.Adapter<Notific
     public void onBindViewHolder(@NonNull NotificationRecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.notificationText.setText(String.valueOf(avvisi.get(position).getDescrizione()));
-        holder.notificationDate.setText(String.valueOf(avvisi.get(position).getDataEmissione()));
+        holder.notificationDate.setText(String.valueOf(avvisi.get(position).getDataEmissione() + " " + avvisi.get(position).getOraEmissione()));
         holder.notificationID.setText(String.valueOf(avvisi.get(position).getId_avviso()));
     }
 

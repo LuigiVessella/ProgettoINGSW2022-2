@@ -33,7 +33,7 @@
     <string name="takeOrder">Nuovo Ordine</string>
     <string name="newOrder">Nuovo Ordiner</string>
     <string name="tableNumber">Tavolo n°</string>
-    <string name="orderStatus">Stato Ordine</string>
+    <string name="orderStatus">I miei ordini</string>
     <string name="welcomeWaiter">Benvenuto: </string>
     <string name="balloonRegister">\"Registra il tuo account da Amministratore!\"</string>
     <string name="balloonRegisterEmployee">\"Registra qui il tuo dipendente!\"</string>

@@ -46,6 +46,8 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
     private Button takeOrderButton;
     private BottomNavigationView bottomNavigationView;
 
+    private String newAvvisiCheck = "NO";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +85,7 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         takeOrderButton = findViewById(R.id.newOrderBtn);
         orderStatusButton = findViewById(R.id.orderStatusBtn);
         bottomNavigationView = findViewById(R.id.bottomNavigationWaiter);
+
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -161,8 +164,8 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
     }
 
     private void switchToNotificationActivity(){
-        startActivity(new Intent(this, NotificationActivity.class));
-        finishAfterTransition();
+        startActivity(new Intent(this, NotificationActivity.class).putExtra("check", newAvvisiCheck));
+
     }
 
 
@@ -175,6 +178,7 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             Ringtone r = RingtoneManager.getRingtone(this.getApplicationContext(), notification);
             r.play();
+            newAvvisiCheck = "YES";
             return;
         }
         if(result.equals("no_new_alerts")){
