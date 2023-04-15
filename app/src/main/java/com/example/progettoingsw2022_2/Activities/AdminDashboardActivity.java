@@ -1,5 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Controller.DialogController.changeActivityDialog;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -86,7 +88,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
             startActivity(newAct);
         });
 
-        logOutCard.setOnClickListener(view -> backToLoginActivity());
+        logOutCard.setOnClickListener(view -> changeActivityDialog(this, LoginActivity.class, R.string.dialogExit));
 
         profileCard.setOnClickListener(view -> {
             Intent goProfile = new Intent(AdminDashboardActivity.this, ProfileActivity.class);
@@ -149,47 +151,8 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        backToLoginActivity();
+        changeActivityDialog(this, LoginActivity.class, R.string.dialogExit);
     }
-
-    @SuppressLint("ResourceAsColor")
-    private void backToLoginActivity(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(AdminDashboardActivity.this);
-        builder.setMessage("Vuoi uscire?");
-
-        // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
-        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
-            // Avviare l'Activity desiderata
-            Intent intent = new Intent(AdminDashboardActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
-        builder.setNegativeButton(R.string.no, (dialog, which) -> {
-            // Chiudere il dialogo e non fare nulla
-            dialog.dismiss();
-        });
-
-
-        // Creare e mostrare il dialogo
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        // Impostazione del colore del pulsante Positivo
-        Button okButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
-        okButton.setTextColor(getResources().getColor(R.color.bianco));
-        okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario));
-
-        Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
-        cancelButton.setTextColor(getResources().getColor(R.color.bianco));
-        cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario));
-
-
-        // Impostazione del colore di sfondo e del colore del testo
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        dialog.setMessage(Html.fromHtml("<font color='#000000'>Sei sicuro di voler uscire?</font>"));
-        }
 
 
 

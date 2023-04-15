@@ -160,6 +160,7 @@
     <string name="balloonSupDashboard_2">Here you can find everything you need to monitor what\'s happening in the Restaurant!</string>
     <string name="duplicate_restaurant">Attention: the restaurant you are trying to add is already present in your list of Restaurants!</string>
     <string name="telNumberNotValid">Phone number not valid!</string>
+    <string name="dialogExit">Are you sure you want to exit?</string>
 
 
 </resources>
