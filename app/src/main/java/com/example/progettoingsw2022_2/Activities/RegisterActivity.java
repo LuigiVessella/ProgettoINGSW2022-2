@@ -20,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.progettoingsw2022_2.Controller.AccountUtils;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Admin;
@@ -101,7 +102,6 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         String salt = "$2a$10$abcdefghijklmnopqrstuvw$";
         String hashedPassword = BCrypt.hashpw(stringPass,salt);
 
-
         //richiesta custom
         String url = "/admin/addNew";
 
@@ -145,7 +145,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         okButton.setEnabled(false);
         loading.setVisibility(View.VISIBLE);
         boolean hasError = false;
-        if (nomeText.getText().length() == 1) {
+        if (nomeText.getText().length() <= 3) {
             nomeText.setError(getString(R.string.NameShortError));
             hasError = true;
         }
@@ -153,7 +153,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
             nomeText.setError(getString(R.string.fieldRequired));
             hasError = true;
         }
-        if (cognomeText.getText().length() == 1) {
+        if (cognomeText.getText().length() <= 3) {
             cognomeText.setError(getString(R.string.SurnameShortError));
             hasError = true;
         }
@@ -162,25 +162,25 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
             hasError = true;
         }
         //Check partita IVA
-        String errorPIVA = Admin.checkPIVA(this,pIvaText.getText().toString());
+        String errorPIVA = AccountUtils.checkPIVA(this,pIvaText.getText().toString());
         if (!errorPIVA.equals("OK")){
             pIvaText.setError(errorPIVA);
             hasError = true;
         }
         //Check codice fiscale
-        if (!Lavoratore.isCodiceFiscaleValidoSimple(codiceFiscaleText.getText().toString())) {
+        if (!AccountUtils.isCodiceFiscaleValidoSimple(codiceFiscaleText.getText().toString())) {
             codiceFiscaleText.setError(getString(R.string.CFinvalid));
             hasError = true;
         }
         //Check password
         Log.i("Register pass",passwordText.getText().toString());
-        String errorPass = Lavoratore.checkPassword(this,passwordText.getText().toString());
+        String errorPass = AccountUtils.checkPassword(this,passwordText.getText().toString());
         if(!errorPass.equals("OK")){
             passwordText.setError(errorPass);
             hasError = true;
         }
         //Check email
-        String errorMail = Lavoratore.checkEmail(this,emailText.getText().toString());
+        String errorMail = AccountUtils.checkEmail(this,emailText.getText().toString());
         if (!errorMail.equals("OK")) {
                 emailText.setError(errorMail);
                 hasError = true;

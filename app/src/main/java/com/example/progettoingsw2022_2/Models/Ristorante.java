@@ -3,7 +3,6 @@ package com.example.progettoingsw2022_2.Models;
 import java.util.List;
 
 public class Ristorante {
-
     private Long codice_ristorante;
     private String nome;
     private int coperti;

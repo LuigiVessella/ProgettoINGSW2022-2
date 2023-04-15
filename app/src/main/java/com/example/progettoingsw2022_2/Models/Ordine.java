@@ -1,10 +1,5 @@
 package com.example.progettoingsw2022_2.Models;
 
-import com.google.gson.annotations.Expose;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Ordine {
 
     private Long idOrdine;
