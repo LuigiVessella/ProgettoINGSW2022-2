@@ -20,6 +20,8 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.AddettoCucina;
@@ -118,7 +120,9 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
         String url = "/admin/login";
         CustomRequest cR = new CustomRequest(url, params, this, this);
+
         cR.sendPostRequest();
+
     }
 
     private void switchToSupervisorDashboardActivity(){
@@ -277,6 +281,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
         params.put("passNew", hashedPassword);
         CustomRequest newRequest = new CustomRequest(url, params, this, this);
+
         newRequest.sendPostRequest();
 
     }

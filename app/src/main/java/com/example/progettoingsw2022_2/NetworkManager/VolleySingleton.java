@@ -6,8 +6,11 @@ import android.util.LruCache;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.TimeoutError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+
+import java.sql.Time;
 
 public class VolleySingleton {
     private static VolleySingleton instance;
@@ -53,7 +56,9 @@ public class VolleySingleton {
     }
 
     public <T> void addToRequestQueue(Request<T> req) {
+
         getRequestQueue().add(req);
+
     }
 
     public ImageLoader getImageLoader() {

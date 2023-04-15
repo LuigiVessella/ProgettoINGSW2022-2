@@ -2,9 +2,12 @@ package com.example.progettoingsw2022_2.HttpRequest;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
@@ -38,7 +41,11 @@ public class CustomRequest {
                     Log.i("VOLLEY", response);
                     volleyCallback.onSuccess(response);
                 },
-                error -> Log.e("VOLLEY", error.toString())) {
+                error -> {
+                    Log.e("VOLLEY", error.toString());
+                    Toast.makeText(context, "Errore di connettività",Toast.LENGTH_LONG).show();
+
+                }) {
             @Override
             protected Map<String, String> getParams() {
                 Log.i("INFO Params", params.get(0));
@@ -67,7 +74,11 @@ public class CustomRequest {
                     Log.i("VOLLEY", response);
                     volleyCallback.onSuccess(response);
                 },
-                error -> Log.e("VOLLEY", error.toString())) {
+                error -> {
+                    Log.e("VOLLEY", error.toString());
+                    Toast.makeText(context, "Errore di connettività, uscire",Toast.LENGTH_LONG).show();
+
+                }) {
             @Override
             protected Map<String, String> getParams() {
                 return params;
@@ -82,7 +93,8 @@ public class CustomRequest {
             }
         };
 
-        VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
+           VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
+
     }
 
     public void sendPatchRequest() {
