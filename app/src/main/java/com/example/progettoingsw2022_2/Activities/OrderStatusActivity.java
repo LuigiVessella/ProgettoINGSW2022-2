@@ -1,16 +1,23 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -173,6 +180,51 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
     private void switchToNotificationActivity(){
         startActivity(new Intent(this, NotificationActivity.class).putExtra("check", newAvvisiCheck));
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(AddettoCucinaSingleton.getInstance().getAccount() == null) super.onBackPressed();
+        else backToLoginActivity();
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private void backToLoginActivity(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(OrderStatusActivity.this);
+        builder.setMessage("Vuoi uscire?");
+
+        // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+            // Avviare l'Activity desiderata
+            Intent intent = new Intent(OrderStatusActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
+        builder.setNegativeButton(R.string.no, (dialog, which) -> {
+            // Chiudere il dialogo e non fare nulla
+            dialog.dismiss();
+        });
+
+
+        // Creare e mostrare il dialogo
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Impostazione del colore del pulsante Positivo
+        Button okButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+        okButton.setTextColor(getResources().getColor(R.color.bianco));
+        okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario));
+
+        Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+        cancelButton.setTextColor(getResources().getColor(R.color.bianco));
+        cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario));
+
+
+        // Impostazione del colore di sfondo e del colore del testo
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        dialog.setMessage(Html.fromHtml("<font color='#000000'>Sei sicuro di voler uscire?</font>"));
     }
 
     @Override
