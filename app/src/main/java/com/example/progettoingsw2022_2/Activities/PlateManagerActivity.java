@@ -3,6 +3,8 @@ package com.example.progettoingsw2022_2.Activities;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
+import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
+
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -147,23 +149,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         generateMenuCard = findViewById(R.id.generateMenuCard);
 
         logo = findViewById(R.id.logoBiagioTestMenu);
-        myBalloon = new Balloon.Builder(PlateManagerActivity.this)
-                .setArrowOrientation(ArrowOrientation.START)
-                .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
-                .setArrowPosition(0.01f)
-                .setText(getString(R.string.plateManagerBalloon))
-                .setHeight(BalloonSizeSpec.WRAP)
-                .setWidthRatio(0.6f)
-                .setTextSize(15f)
-                .setCornerRadius(30f)
-                .setAlpha(0.9f)
-                .setPadding(15)
-                .setTextSize(16)
-                .setTextColor(Color.WHITE)
-                .setBackgroundColor(Color.rgb(198,173,119))
-                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
-                .setDismissWhenTouchOutside(false)
-                .build();
+        myBalloon = balloonBuilder(this, R.string.plateManagerBalloon);
 
 
         goProductButton.setEnabled(false);

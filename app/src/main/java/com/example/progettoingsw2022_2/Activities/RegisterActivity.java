@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
 import static com.example.progettoingsw2022_2.Controller.DialogController.onBackPressedDialog;
 
 import android.graphics.Color;
@@ -67,23 +68,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         layoutLogo = findViewById(R.id.linearLayoutMenuTop);
         logo = findViewById(R.id.logoBiagioTestMenu);
 
-        myBalloon = new Balloon.Builder(this)
-                .setArrowOrientation(ArrowOrientation.START)
-                .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
-                .setArrowPosition(0.0f)
-                .setText(getString(R.string.balloonRegister))
-                .setHeight(BalloonSizeSpec.WRAP)
-                .setWidthRatio(0.6f)
-                .setCornerRadius(30f)
-                .setAlpha(0.9f)
-                .setTextSize(16)
-                .setPadding(15)
-                .setTextColor(Color.WHITE)
-                .setBackgroundColor(Color.rgb(198,173,119))
-                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
-                .setDismissWhenTouchOutside(false)
-                .build();
-
+        myBalloon = balloonBuilder(this, R.string.balloonRegister);
         okButton.setOnClickListener(this::onClick);
     }
 
@@ -153,7 +138,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
             cognomeText.setError(getString(R.string.fieldRequired));
             hasError = true;
         }
-        //Check partita IVA
+        /*Check partita IVA
         String errorPIVA = AccountUtils.checkPIVA(this,pIvaText.getText().toString());
         if (!errorPIVA.equals("OK")){
             pIvaText.setError(errorPIVA);
@@ -163,7 +148,8 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         if (!AccountUtils.isCodiceFiscaleValidoSimple(codiceFiscaleText.getText().toString())) {
             codiceFiscaleText.setError(getString(R.string.CFinvalid));
             hasError = true;
-        }
+        } */
+
         //Check password
         Log.i("Register pass",passwordText.getText().toString());
         String errorPass = AccountUtils.checkPassword(this,passwordText.getText().toString());

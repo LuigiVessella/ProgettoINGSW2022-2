@@ -1,5 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -73,22 +75,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         passwordLoginText = findViewById(R.id.textInputLoginPassword);
 
         logo = findViewById(R.id.logoBiagioTestMenu);
-        myBalloon = new Balloon.Builder(LoginActivity.this)
-                .setArrowOrientation(ArrowOrientation.START)
-                .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
-                .setArrowPosition(0.01f)
-                .setText(getString(R.string.ballonLogin))
-                .setHeight(BalloonSizeSpec.WRAP)
-                .setWidthRatio(0.6f)
-                .setCornerRadius(30f)
-                .setAlpha(0.9f)
-                .setPadding(15)
-                .setTextSize(16)
-                .setTextColor(Color.WHITE)
-                .setBackgroundColor(Color.rgb(198,173,119))
-                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
-                .setDismissWhenTouchOutside(false)
-                .build();
+        myBalloon = balloonBuilder(this, R.string.ballonLogin);
 
         loginActivityButton.setOnClickListener(view -> {
             loginActivityButton.setEnabled(false);

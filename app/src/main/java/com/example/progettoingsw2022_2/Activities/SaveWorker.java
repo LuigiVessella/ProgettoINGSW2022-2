@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
 import static com.example.progettoingsw2022_2.Controller.DialogController.onBackPressedDialog;
 
 import android.content.DialogInterface;
@@ -85,22 +86,7 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ruoli.setAdapter(adapter);
 
-        myBalloon = new Balloon.Builder(getApplicationContext())
-                .setArrowOrientation(ArrowOrientation.START)
-                .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
-                .setArrowPosition(0.01f)
-                .setText(getString(R.string.balloonRegisterEmployee))
-                .setHeight(BalloonSizeSpec.WRAP)
-                .setWidthRatio(0.6f)
-                .setCornerRadius(30f)
-                .setAlpha(0.9f)
-                .setPadding(15)
-                .setTextSize(16)
-                .setTextColor(Color.WHITE)
-                .setBackgroundColor(Color.rgb(198, 173, 119))
-                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
-                .setDismissWhenTouchOutside(false)
-                .build();
+        myBalloon = balloonBuilder(this, R.string.balloonRegisterEmployee);
 
         //TODO: Non dimentichiamoci di aggiungere i controlli per cf e quel che sia. Inoltre devo anche ricordarmi di ottimizzare i controlli in accountUtil in modo da pulire questi if a cascata
 

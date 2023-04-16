@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
 import static com.example.progettoingsw2022_2.Controller.DialogController.changeActivityDialog;
 
 import android.annotation.SuppressLint;
@@ -71,22 +72,8 @@ public class SupervisorDashActivity extends AppCompatActivity implements VolleyC
         logout = findViewById(R.id.logoutSupCard);
         bottomNavigationView = findViewById(R.id.bottomNavigationSupervisor);
         logo = findViewById(R.id.logoBiagioSupervisorDash);
-        myBalloon = new Balloon.Builder(getApplicationContext())
-                .setArrowOrientation(ArrowOrientation.END)
-                .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
-                .setArrowPosition(0.01f)
-                .setText(getString(R.string.balloonSupDashboard_1) + " " + supervisore.getNome() + "\n" + getString(R.string.balloonSupDashboard_2))
-                .setHeight(BalloonSizeSpec.WRAP)
-                .setWidthRatio(0.6f)
-                .setCornerRadius(30f)
-                .setAlpha(0.9f)
-                .setTextSize(16)
-                .setPadding(15)
-                .setTextColor(Color.WHITE)
-                .setBackgroundColor(Color.rgb(198,173,119))
-                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
-                .setDismissWhenTouchOutside(false)
-                .build();
+        String balloonString = getString(R.string.balloonSupDashboard_1) + " " + supervisore.getNome() + "\n" + getString(R.string.balloonSupDashboard_2);
+        myBalloon = balloonBuilder(this, balloonString);
 
         logout.setOnClickListener(view -> changeActivityDialog(this, LoginActivity.class, R.string.dialogExit));
         orderStatus.setOnClickListener(view -> startActivity(new Intent(SupervisorDashActivity.this, OrderStatusActivity.class)));

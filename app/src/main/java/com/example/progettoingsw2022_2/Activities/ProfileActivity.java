@@ -1,5 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
+
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -71,23 +73,7 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
         email.setText(AdminSingleton.getInstance().getAccount().getEmail());
         codiceFiscale.setText(AdminSingleton.getInstance().getAccount().getCodiceFiscale());
         partitaIVA.setText(AdminSingleton.getInstance().getAccount().getPartita_iva());
-        myBalloon = new Balloon.Builder(ProfileActivity.this)
-                .setArrowOrientation(ArrowOrientation.START)
-                .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
-                .setArrowPosition(0.01f)
-                .setText(getString(R.string.profileBalloon))
-                .setHeight(BalloonSizeSpec.WRAP)
-                .setWidthRatio(0.6f)
-                .setTextSize(15f)
-                .setCornerRadius(30f)
-                .setAlpha(0.9f)
-                .setPadding(15)
-                .setTextSize(16)
-                .setTextColor(Color.WHITE)
-                .setBackgroundColor(Color.rgb(198,173,119))
-                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
-                .setDismissWhenTouchOutside(false)
-                .build();
+        myBalloon = balloonBuilder(this, R.string.profileBalloon);
 
         editEmail.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
