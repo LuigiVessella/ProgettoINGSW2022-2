@@ -305,7 +305,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             document.add(space);
 
             //TODO: Prendere il nome del ristorante al posto della stringa statica
-            Paragraph title = new Paragraph("Menù del giorno:", titleFont);
+            Paragraph title = new Paragraph("Menu' del giorno:", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
 
             document.add(title);

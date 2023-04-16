@@ -11,6 +11,8 @@
         android:id="@+id/activity_table_rvw"
         android:layout_width="413dp"
         android:layout_height="668dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
