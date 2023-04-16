@@ -251,6 +251,8 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         dialogChangePass.setContentView(R.layout.dialog_change_credentials);
         Button okButton = dialogChangePass.findViewById(R.id.submitBtn);
         TextView newPass = dialogChangePass.findViewById(R.id.newFieldText);
+        TextView titleNewPass = dialogChangePass.findViewById(R.id.newStringTitle);
+        titleNewPass.setText("Nuova password: ");
 
         if(lavoratore.getRuolo().equals("cameriere"))url = "/camerieri/changePassword/" + lavoratore.getCodiceFiscale();
         if(lavoratore.getRuolo().equals("supervisore"))url = "/supervisore/changePassword/" + lavoratore.getCodiceFiscale();
