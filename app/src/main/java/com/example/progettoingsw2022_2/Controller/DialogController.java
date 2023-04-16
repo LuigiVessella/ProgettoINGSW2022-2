@@ -12,6 +12,11 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.example.progettoingsw2022_2.Activities.SaveWorker;
 import com.example.progettoingsw2022_2.R;
+import com.skydoves.balloon.ArrowOrientation;
+import com.skydoves.balloon.ArrowPositionRules;
+import com.skydoves.balloon.Balloon;
+import com.skydoves.balloon.BalloonAnimation;
+import com.skydoves.balloon.BalloonSizeSpec;
 
 public class DialogController {
 
@@ -78,8 +83,49 @@ public class DialogController {
         Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
         cancelButton.setTextColor(current.getResources().getColor(R.color.bianco,current.getTheme()));
         cancelButton.setBackgroundColor(current.getResources().getColor(R.color.marrone_terziario,current.getTheme()));
+    }
 
+    public static Balloon balloonBuilder(Activity current, int stringID){
+        String message = current.getResources().getString(stringID);
+        Balloon balloon = new Balloon.Builder(current.getApplicationContext())
+                .setArrowOrientation(ArrowOrientation.END)
+                .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
+                .setArrowPosition(0.01f)
+                .setText(message)
+                .setHeight(BalloonSizeSpec.WRAP)
+                .setWidthRatio(0.6f)
+                .setCornerRadius(30f)
+                .setAlpha(0.9f)
+                .setTextSize(16)
+                .setPadding(15)
+                .setTextColor(Color.WHITE)
+                .setBackgroundColor(Color.rgb(198,173,119))
+                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
+                .setDismissWhenTouchOutside(false)
+                .build();
 
+        return balloon;
+    }
+
+    public static Balloon balloonBuilder(Activity current, String stringa){
+        Balloon balloon = new Balloon.Builder(current.getApplicationContext())
+                .setArrowOrientation(ArrowOrientation.END)
+                .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
+                .setArrowPosition(0.01f)
+                .setText(stringa)
+                .setHeight(BalloonSizeSpec.WRAP)
+                .setWidthRatio(0.6f)
+                .setCornerRadius(30f)
+                .setAlpha(0.9f)
+                .setTextSize(16)
+                .setPadding(15)
+                .setTextColor(Color.WHITE)
+                .setBackgroundColor(Color.rgb(198,173,119))
+                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
+                .setDismissWhenTouchOutside(false)
+                .build();
+
+        return balloon;
     }
 
 

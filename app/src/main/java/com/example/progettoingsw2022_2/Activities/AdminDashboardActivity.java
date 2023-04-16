@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
 import static com.example.progettoingsw2022_2.Controller.DialogController.changeActivityDialog;
 
 import androidx.appcompat.app.AlertDialog;
@@ -67,22 +68,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         addRestaurantCard = findViewById(R.id.addRestaurantCard);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
         logo = findViewById(R.id.logoBiagioTestAdmin);
-        myBalloon = new Balloon.Builder(getApplicationContext())
-                .setArrowOrientation(ArrowOrientation.END)
-                .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
-                .setArrowPosition(0.01f)
-                .setText(getString(R.string.balloonAdminDashboard))
-                .setHeight(BalloonSizeSpec.WRAP)
-                .setWidthRatio(0.6f)
-                .setCornerRadius(30f)
-                .setAlpha(0.9f)
-                .setTextSize(16)
-                .setPadding(15)
-                .setTextColor(Color.WHITE)
-                .setBackgroundColor(Color.rgb(198,173,119))
-                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
-                .setDismissWhenTouchOutside(false)
-                .build();
+        myBalloon = balloonBuilder(this, R.string.balloonAdminDashboard);
 
         addRestaurantCard.setOnClickListener(view -> {
             Intent newAct = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);
