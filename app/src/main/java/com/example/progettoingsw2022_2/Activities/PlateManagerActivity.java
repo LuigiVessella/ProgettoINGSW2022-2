@@ -212,8 +212,6 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
 
 
 
-
-
         goProductButton.setOnClickListener(view -> {
             if(autoCompleteTextView.getText().length() > 3) {
                 sendHttpRequestOpenFood(autoCompleteTextView.getText().toString());

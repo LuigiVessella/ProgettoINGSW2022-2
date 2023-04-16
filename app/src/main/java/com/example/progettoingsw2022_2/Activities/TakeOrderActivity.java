@@ -89,152 +89,12 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         cancelOrder.setOnClickListener(v -> finishAfterTransition()); //Go back to waiter dashboard
         setMenu(); //Take menu items
 
-        int i = 0;
         //Draw appetizers
-        TextView antipastiTitle = new TextView(this);
-        antipastiTitle.setText(getString(R.string.antipasti));
-        antipastiTitle.setTextSize(20);
-        antipastiTitle.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-        if(antipasti.size()>0) { menuList.addView(antipastiTitle); }
-        if (antipasti != null)
-            while (i < antipasti.size()) {
-                LinearLayout menuItemsRow = new LinearLayout(this);
-                menuItemsRow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                menuItemsRow.setOrientation(LinearLayout.HORIZONTAL);
+        drawDishes(antipasti, menuList, R.string.antipasti);
+        drawDishes(primi, menuList, R.string.primi_piatti);
+        drawDishes(secondi, menuList, R.string.seconds_dishes);
+        drawDishes(dessert, menuList, R.string.desserts);
 
-                if (ScreenSize.screenWidth == ScreenSize.screenSize.SMALL) { menuItemsRow.addView(createMenuItem(antipasti.get(i))); i++; }
-                else if (ScreenSize.screenWidth == ScreenSize.screenSize.MEDIUM) {
-                    menuItemsRow.addView(createMenuItem(antipasti.get(i)));
-                    if(antipasti.size()>antipasti.size()+i+1) menuItemsRow.addView(createMenuItem(antipasti.get(i+1)));
-                    i+=2;
-                }
-                else if (ScreenSize.screenWidth == ScreenSize.screenSize.LARGE) {
-                    menuItemsRow.addView(createMenuItem(antipasti.get(i)));
-                    if(antipasti.size()>antipasti.size()+i+1) menuItemsRow.addView(createMenuItem(antipasti.get(i+1)));
-                    if(antipasti.size()>antipasti.size()+i+2) menuItemsRow.addView(createMenuItem(antipasti.get(i+2)));
-                    i+=3;
-                }
-                else {
-                    menuItemsRow.addView(createMenuItem(antipasti.get(i)));
-                    if(antipasti.size()>antipasti.size()+i+1) menuItemsRow.addView(createMenuItem(antipasti.get(i+1)));
-                    if(antipasti.size()>antipasti.size()+i+2) menuItemsRow.addView(createMenuItem(antipasti.get(i+2)));
-                    if(antipasti.size()>antipasti.size()+i+3) menuItemsRow.addView(createMenuItem(antipasti.get(i+3)));
-                    i+=4;
-                }
-                menuList.addView(menuItemsRow);
-            }
-
-        //Draw main dishes
-        i = 0;
-        TextView primiTitle = new TextView(this);
-        primiTitle.setText(getString(R.string.primi_piatti));
-        primiTitle.setTextSize(20);
-        primiTitle.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-        if(primi.size()>0) { menuList.addView(primiTitle); }
-        if (primi != null) {
-            while (i < primi.size()) {
-                LinearLayout menuItemsRow = new LinearLayout(this);
-                menuItemsRow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                menuItemsRow.setOrientation(LinearLayout.HORIZONTAL);
-
-                if (ScreenSize.screenWidth == ScreenSize.screenSize.SMALL) {
-                    menuItemsRow.addView(createMenuItem(primi.get(i)));
-                    i++;
-                } else if (ScreenSize.screenWidth == ScreenSize.screenSize.MEDIUM) {
-                    menuItemsRow.addView(createMenuItem(primi.get(i)));
-                    if (primi.size() > i + 1)
-                        menuItemsRow.addView(createMenuItem(primi.get(i + 1)));
-                    i += 2;
-                } else if (ScreenSize.screenWidth == ScreenSize.screenSize.LARGE) {
-                    menuItemsRow.addView(createMenuItem(primi.get(i)));
-                    if (primi.size() > i + 1)
-                        menuItemsRow.addView(createMenuItem(primi.get(i + 1)));
-                    if (primi.size() > i + 2)
-                        menuItemsRow.addView(createMenuItem(primi.get(i + 2)));
-                    i += 3;
-                } else {
-                    menuItemsRow.addView(createMenuItem(primi.get(i)));
-                    if (primi.size() >  i + 1)
-                        menuItemsRow.addView(createMenuItem(primi.get(i + 1)));
-                    if (primi.size() > i + 2)
-                        menuItemsRow.addView(createMenuItem(primi.get(i + 2)));
-                    if (primi.size() > i + 3)
-                        menuItemsRow.addView(createMenuItem(primi.get(i + 3)));
-                    i += 4;
-                }
-                menuList.addView(menuItemsRow);
-            }
-        }
-
-        //Draw seconds dishes
-        i = 0;
-        TextView secondiTitle = new TextView(this);
-        secondiTitle.setText(getString(R.string.seconds_dishes));
-        secondiTitle.setTextSize(20);
-        secondiTitle.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-        if(secondi.size()>0) { menuList.addView(secondiTitle); }
-        if (secondi != null)
-            while (i < secondi.size()) {
-                LinearLayout menuItemsRow = new LinearLayout(this);
-                menuItemsRow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                menuItemsRow.setOrientation(LinearLayout.HORIZONTAL);
-
-                if (ScreenSize.screenWidth == ScreenSize.screenSize.SMALL) { menuItemsRow.addView(createMenuItem(secondi.get(i))); i++; }
-                else if (ScreenSize.screenWidth == ScreenSize.screenSize.MEDIUM) {
-                    menuItemsRow.addView(createMenuItem(secondi.get(i)));
-                    if(secondi.size()>secondi.size()+i+1) menuItemsRow.addView(createMenuItem(secondi.get(i+1)));
-                    i+=2;
-                }
-                else if (ScreenSize.screenWidth == ScreenSize.screenSize.LARGE) {
-                    menuItemsRow.addView(createMenuItem(secondi.get(i)));
-                    if(secondi.size()>secondi.size()+i+1) menuItemsRow.addView(createMenuItem(secondi.get(i+1)));
-                    if(secondi.size()>secondi.size()+i+2) menuItemsRow.addView(createMenuItem(secondi.get(i+2)));
-                    i+=3;
-                }
-                else {
-                    menuItemsRow.addView(createMenuItem(secondi.get(i)));
-                    if(secondi.size()>secondi.size()+i+1) menuItemsRow.addView(createMenuItem(secondi.get(i+1)));
-                    if(secondi.size()>secondi.size()+i+2) menuItemsRow.addView(createMenuItem(secondi.get(i+2)));
-                    if(secondi.size()>secondi.size()+i+3) menuItemsRow.addView(createMenuItem(secondi.get(i+3)));
-                    i+=4;
-                }
-                menuList.addView(menuItemsRow);
-            }
-
-        //Draw desserts
-        i = 0;
-        TextView dessertTitle = new TextView(this);
-        dessertTitle.setText(getString(R.string.desserts));
-        dessertTitle.setTextSize(20);
-        dessertTitle.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-        if(dessert.size()>0) { menuList.addView(dessertTitle); }
-        if (dessert != null)
-            while (i < dessert.size()) {
-                LinearLayout menuItemsRow = new LinearLayout(this);
-                menuItemsRow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                menuItemsRow.setOrientation(LinearLayout.HORIZONTAL);
-
-                if (ScreenSize.screenWidth == ScreenSize.screenSize.SMALL) { menuItemsRow.addView(createMenuItem(dessert.get(i))); i++; }
-                else if (ScreenSize.screenWidth == ScreenSize.screenSize.MEDIUM) {
-                    menuItemsRow.addView(createMenuItem(dessert.get(i)));
-                    if(dessert.size()>dessert.size()+i+1) menuItemsRow.addView(createMenuItem(dessert.get(i+1)));
-                    i+=2;
-                }
-                else if (ScreenSize.screenWidth == ScreenSize.screenSize.LARGE) {
-                    menuItemsRow.addView(createMenuItem(dessert.get(i)));
-                    if(dessert.size()>dessert.size()+i+1) menuItemsRow.addView(createMenuItem(dessert.get(i+1)));
-                    if(dessert.size()>dessert.size()+i+2) menuItemsRow.addView(createMenuItem(dessert.get(i+2)));
-                    i+=3;
-                }
-                else {
-                    menuItemsRow.addView(createMenuItem(dessert.get(i)));
-                    if(dessert.size()>dessert.size()+i+1) menuItemsRow.addView(createMenuItem(dessert.get(i+1)));
-                    if(dessert.size()>dessert.size()+i+2) menuItemsRow.addView(createMenuItem(dessert.get(i+2)));
-                    if(dessert.size()>dessert.size()+i+3) menuItemsRow.addView(createMenuItem(dessert.get(i+3)));
-                    i+=4;
-                }
-                menuList.addView(menuItemsRow);
-            }
     }
 
     //Take menu items and initialize dish's lists
@@ -297,6 +157,8 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         orderCount.setText("0");
         orderCount.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
+        //TODO: Dovrei mettere il counter a 0 nel caso in cui tieni premuto per resettare ma voglio prima capire sta concat cosa fa (perchè se si lavora a stringhe.. mhm
+
         dish.setOnClickListener(v -> {
             int count = Integer.parseInt(orderCount.getText().toString());
             orderCount.setText(String.valueOf(count+1));
@@ -355,6 +217,44 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
         finishAfterTransition();
+
+    }
+
+    public void drawDishes(ArrayList<Piatto> dishType, LinearLayout listaMenu, int stringa){
+        int i = 0;
+        TextView titolo = new TextView(this);
+        String titoloStringa = getString(stringa);
+        titolo.setText(titoloStringa);
+        titolo.setTextSize(20);
+        titolo.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+        if(dishType.size()>0) { listaMenu.addView(titolo); }
+        if (dishType != null)
+            while (i < dishType.size()) {
+                LinearLayout menuItemsRow = new LinearLayout(this);
+                menuItemsRow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                menuItemsRow.setOrientation(LinearLayout.HORIZONTAL);
+
+                if (ScreenSize.screenWidth == ScreenSize.screenSize.SMALL) { menuItemsRow.addView(createMenuItem(dishType.get(i))); i++; }
+                else if (ScreenSize.screenWidth == ScreenSize.screenSize.MEDIUM) {
+                    menuItemsRow.addView(createMenuItem(dishType.get(i)));
+                    if(dishType.size()>dishType.size()+i+1) menuItemsRow.addView(createMenuItem(dishType.get(i+1)));
+                    i+=2;
+                }
+                else if (ScreenSize.screenWidth == ScreenSize.screenSize.LARGE) {
+                    menuItemsRow.addView(createMenuItem(dishType.get(i)));
+                    if(dishType.size()>dishType.size()+i+1) menuItemsRow.addView(createMenuItem(dishType.get(i+1)));
+                    if(dishType.size()>dishType.size()+i+2) menuItemsRow.addView(createMenuItem(dishType.get(i+2)));
+                    i+=3;
+                }
+                else {
+                    menuItemsRow.addView(createMenuItem(dishType.get(i)));
+                    if(dishType.size()>dishType.size()+i+1) menuItemsRow.addView(createMenuItem(dishType.get(i+1)));
+                    if(dishType.size()>dishType.size()+i+2) menuItemsRow.addView(createMenuItem(dishType.get(i+2)));
+                    if(dishType.size()>dishType.size()+i+3) menuItemsRow.addView(createMenuItem(dishType.get(i+3)));
+                    i+=4;
+                }
+                listaMenu.addView(menuItemsRow);
+            }
 
     }
 

@@ -96,8 +96,10 @@ public class AdminDashboardActivity extends AppCompatActivity {
             startActivity(goProfile);
         });
         statsCard.setOnClickListener(view -> {
+            if(!admin.getRistoranti().isEmpty()){
             Intent goStats = new Intent(AdminDashboardActivity.this, StatisticsActivity.class);
             startActivity(goStats);
+            }
         });
 
         visualizzaRistoranti();
@@ -158,8 +160,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
     public void onBackPressed() {
         changeActivityDialog(this, LoginActivity.class, R.string.dialogExit);
     }
-
-
 
 }
 
