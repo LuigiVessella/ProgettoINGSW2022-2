@@ -2,10 +2,7 @@ package com.example.progettoingsw2022_2.Activities;
 
 import static com.example.progettoingsw2022_2.Controller.DialogController.onBackPressedDialog;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -18,22 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-
 import com.example.progettoingsw2022_2.Controller.AccountUtils;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
-import com.example.progettoingsw2022_2.Models.Admin;
-import com.example.progettoingsw2022_2.Models.Lavoratore;
 import com.example.progettoingsw2022_2.R;
 import com.google.android.material.textfield.TextInputEditText;
-
 import org.mindrot.jbcrypt.BCrypt;
-
 import com.skydoves.balloon.*;
-
 import java.util.HashMap;
 import java.util.Map;
 

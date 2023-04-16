@@ -161,6 +161,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         if(result.equals("new_pass_saved")) {
             Toast.makeText(this, "Password aggiornata correttamente", Toast.LENGTH_SHORT).show();
             finishAfterTransition();
+            return;
         }
         Gson gson = new Gson();
 
@@ -209,7 +210,6 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             AdminSingleton.getInstance().setAccount(admin);
             String toastText = getString(R.string.welcome) + " " + AdminSingleton.getInstance().getAccount().getNome();
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
-
 
             switchToAdminDashboardActivity();
         }
