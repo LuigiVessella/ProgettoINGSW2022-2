@@ -56,7 +56,6 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_waiter_dashboard);
         TextView welcomeTextView = findViewById(R.id.waiterName);
-
         //welcomeTextView.append(cameriere.getNome()+" "+ cameriere.getCognome());
         inizializzaComponenti();
 

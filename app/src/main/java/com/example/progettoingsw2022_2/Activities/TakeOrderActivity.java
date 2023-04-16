@@ -63,8 +63,6 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         inizializeComponent();
     }
 
-
-
     private void inizializeComponent() {
         newOrdine = new Ordine();
         newOrdine.setCameriere(CameriereSingleton.getInstance().getAccount());

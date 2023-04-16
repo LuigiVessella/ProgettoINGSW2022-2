@@ -159,6 +159,7 @@
     <string name="duplicate_restaurant">Attention: the restaurant you are trying to add is already present in your list of Restaurants!</string>
     <string name="telNumberNotValid">Phone number not valid!</string>
     <string name="dialogExit">Are you sure you want to exit?</string>
+    <string name="backWithoutSave">The changes will not be saved. Are you sure you want to exit?</string>
 
 
 </resources>

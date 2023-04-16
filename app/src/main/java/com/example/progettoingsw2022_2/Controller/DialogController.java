@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.progettoingsw2022_2.Activities.SaveWorker;
 import com.example.progettoingsw2022_2.R;
 
 public class DialogController {
@@ -51,6 +52,34 @@ public class DialogController {
         // Impostazione del colore di sfondo e del colore del testo
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         dialog.setMessage(Html.fromHtml("<font color='#000000'>Sei sicuro di voler uscire?</font>"));
+    }
+
+    public static void onBackPressedDialog(Activity current, int stringID){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(current);
+        String message = current.getResources().getString(stringID);
+        builder.setTitle(message);
+
+        // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> current.finishAfterTransition());
+
+        // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
+        builder.setNegativeButton(R.string.no, (dialog, which) -> dialog.dismiss());
+
+        // Creare e mostrare il dialogo
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Impostazione del colore del pulsante Positivo
+        Button okButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+        okButton.setTextColor(current.getResources().getColor(R.color.bianco,current.getTheme()));
+        okButton.setBackgroundColor(current.getResources().getColor(R.color.marrone_primario,current.getTheme()));
+
+        Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+        cancelButton.setTextColor(current.getResources().getColor(R.color.bianco,current.getTheme()));
+        cancelButton.setBackgroundColor(current.getResources().getColor(R.color.marrone_terziario,current.getTheme()));
+
+
     }
 
 

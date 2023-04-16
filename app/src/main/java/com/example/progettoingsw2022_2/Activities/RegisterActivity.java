@@ -1,5 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Controller.DialogController.onBackPressedDialog;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -196,42 +198,6 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
     @Override
     public void onBackPressed() {
         if(nomeText.getText().length() == 0 && cognomeText.getText().length() == 0 && pIvaText.getText().length() == 0 && emailText.getText().length() == 0&& codiceFiscaleText.getText().length() == 0&& passwordText.getText().length() == 0) super.onBackPressed();
-        else backToLoginActivity();
-    }
-
-    private void backToLoginActivity(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-        builder.setMessage(R.string.backToLoginDialog);
-
-        // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
-        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
-            // Avviare l'Activity desiderata
-            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
-        builder.setNegativeButton(R.string.no, (dialog, which) -> {
-            // Chiudere il dialogo e non fare nulla
-            dialog.dismiss();
-        });
-
-
-        // Creare e mostrare il dialogo
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        // Impostazione del colore del pulsante Positivo
-        Button okButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
-        okButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
-        okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario,getTheme()));
-
-        Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
-        cancelButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
-        cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario,getTheme()));
-
-        // Impostazione del colore di sfondo
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        else onBackPressedDialog(this, R.string.backWithoutSave);
     }
 }

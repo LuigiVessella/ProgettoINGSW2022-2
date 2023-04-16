@@ -117,5 +117,6 @@
     <string name="duplicate_restaurant">Attenzione: il ristorante che stai cercando di aggiungere è già presente nella tua lista di Ristoranti!</string>
     <string name="telNumberNotValid">Numero di telefono non valido!</string>
     <string name="dialogExit">Sei sicuro di voler uscire?</string>
+    <string name="backWithoutSave">Le modifiche non verranno salvate. Sei sicuro di voler uscire?</string>
 
 </resources>

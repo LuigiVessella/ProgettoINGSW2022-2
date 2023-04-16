@@ -1,5 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Controller.DialogController.onBackPressedDialog;
+
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -100,6 +102,8 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
                 .setDismissWhenTouchOutside(false)
                 .build();
 
+        //TODO: Non dimentichiamoci di aggiungere i controlli per cf e quel che sia. Inoltre devo anche ricordarmi di ottimizzare i controlli in accountUtil in modo da pulire questi if a cascata
+
         okButton.setOnClickListener(view -> {
             boolean hasError = false;
             EmailValidator validator_mail = EmailValidator.getInstance();
@@ -180,31 +184,6 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
     @Override
     public void onBackPressed() {
         if(nomeText.getText().length() == 0 && cognomeText.getText().length() == 0 && emailText.getText().length() == 0 && codiceFiscaleText.getText().length() == 0) super.onBackPressed();
-        else backToLoginActivity();
-    }
-
-    private void backToLoginActivity(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(SaveWorker.this);
-        builder.setTitle("Le modifiche non verranno salvate, sei sicuro di voler uscire?");
-
-        // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
-        builder.setPositiveButton(R.string.yes, (dialog, which) -> finishAfterTransition());
-
-        // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
-        builder.setNegativeButton(R.string.no, (dialog, which) -> dialog.dismiss());
-
-        // Creare e mostrare il dialogo
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        // Impostazione del colore del pulsante Positivo
-        Button okButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
-        okButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
-        okButton.setBackgroundColor(getResources().getColor(R.color.marrone_primario,getTheme()));
-
-        Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
-        cancelButton.setTextColor(getResources().getColor(R.color.bianco,getTheme()));
-        cancelButton.setBackgroundColor(getResources().getColor(R.color.marrone_terziario,getTheme()));
-
+        else onBackPressedDialog(this, R.string.backWithoutSave);
     }
 }
