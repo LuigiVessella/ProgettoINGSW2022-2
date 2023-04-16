@@ -95,7 +95,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
     @SuppressLint("SetTextI18n")
     public void visualizzaDipendenti() {
         System.out.println("Sono in visualizza camerieri");
-        if(ristorante == null) return;
+        if(ristorante == null || ristorante.getCamerieri() == null) return;
 
         if (!ristorante.getCamerieri().isEmpty()) {
             int i = 0;

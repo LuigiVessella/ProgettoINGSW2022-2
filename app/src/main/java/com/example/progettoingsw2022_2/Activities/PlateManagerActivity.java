@@ -32,6 +32,7 @@ import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Menu;
 import com.example.progettoingsw2022_2.Models.Piatto;
+import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.google.gson.Gson;
@@ -92,6 +93,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_plate_manager);
+        restNumber = getIntent().getIntExtra("ristorante" ,0);
         inizializzaComponenti();
 
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
@@ -114,7 +116,6 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         addMenuDialog = new Dialog(PlateManagerActivity.this);
         addMenuDialog.setContentView(R.layout.dialog_create_menu);
 
-        restNumber = getIntent().getIntExtra("ristorante" ,0);
         menu = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getMenu();
 
         insertMenuButtonDialog = addMenuDialog.findViewById(R.id.btn_insert_menu);
@@ -232,7 +233,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             String tipAlimento = tipoAlimento.getSelectedItem().toString();
 
             //da rivedere qui
-            if(allergens==null) allergens = allergensEditText.getText().toString();
+            if(allergens == null) allergens = allergensEditText.getText().toString();
             if(ingredients_list == null) ingredients_list = "sample_string";
 
             if(product_name.equals("") || description.equals("") || prezzo.equals("")){
@@ -410,7 +411,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         } catch(Exception e) {
             e.printStackTrace();
             Log.i("warning", "nessun risultato");
-            Toast.makeText(this, "Generic error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Generic error on openfood", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -418,9 +419,17 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
 
     @Override
     public void onSuccess(String result) {
-        //tengo traccia dei vari risultati delle varie richieste
-
         Gson gson = new Gson();
+
+        //tengo traccia dei vari risultati delle varie richieste
+        if(result.contains("locazione")) {
+            Ristorante ristoWithNewMenu = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
+            AdminSingleton.getInstance().getAccount().getRistoranti().set(restNumber, ristoWithNewMenu);
+
+            inizializzaComponenti();
+            return;
+        }
+
         Menu newMenu = gson.fromJson(result, new TypeToken<Menu>(){}.getType());
 
         if(newMenu.getId_menu() == null) {
