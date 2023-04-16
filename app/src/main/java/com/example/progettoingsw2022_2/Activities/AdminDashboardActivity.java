@@ -60,9 +60,11 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
 
     private void inizializzaComponenti(){
-        CardView addRestaurantCard, logOutCard, profileCard;
+        CardView addRestaurantCard, logOutCard, profileCard, statsCard;
         profileCard = findViewById(R.id.profileCard);
         logOutCard = findViewById(R.id.logoutCard);
+        statsCard = findViewById(R.id.statsCard);
+
         addRestaurantCard = findViewById(R.id.addRestaurantCard);
         linearScrollLayout = findViewById(R.id.linearLayoutScroll);
         logo = findViewById(R.id.logoBiagioTestAdmin);
@@ -93,6 +95,10 @@ public class AdminDashboardActivity extends AppCompatActivity {
         profileCard.setOnClickListener(view -> {
             Intent goProfile = new Intent(AdminDashboardActivity.this, ProfileActivity.class);
             startActivity(goProfile);
+        });
+        statsCard.setOnClickListener(view -> {
+            Intent goStats = new Intent(AdminDashboardActivity.this, StatisticsActivity.class);
+            startActivity(goStats);
         });
 
         visualizzaRistoranti();

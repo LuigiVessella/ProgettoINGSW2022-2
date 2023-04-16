@@ -21,8 +21,6 @@
     </string-array>
 
 
-
-
     <string name="app_name" translatable="false">Ratatouille23</string>
     <string name="app_title" translatable="false">RATATOUILLE23</string>
     <string name="loginBtn">Login</string>

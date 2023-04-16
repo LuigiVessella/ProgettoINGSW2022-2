@@ -137,6 +137,12 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
         startActivity(newAct);
     }
 
+    private void switchToStatisticsActivity(){
+        Intent newAct = new Intent(RestaurantDashActivity.this, StatisticsActivity.class);
+        newAct.putExtra("ristorante", restNumber);
+        startActivity(newAct);
+    }
+
 
     private void createNewAlert() {
 
