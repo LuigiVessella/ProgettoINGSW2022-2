@@ -1,7 +1,6 @@
 package com.example.progettoingsw2022_2.Controller;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,8 +10,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.example.progettoingsw2022_2.Activities.AdminDashboardActivity;
-import com.example.progettoingsw2022_2.Activities.LoginActivity;
 import com.example.progettoingsw2022_2.R;
 
 public class DialogController {
@@ -58,4 +55,3 @@ public class DialogController {
 
 
 }
-
