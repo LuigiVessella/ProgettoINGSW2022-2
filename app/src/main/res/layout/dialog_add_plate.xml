@@ -47,25 +47,26 @@
                 tools:ignore="TextContrastCheck,RtlSymmetry,TouchTargetSizeCheck" />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/descriptionItemMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:autofillHints=""
-            android:background="@drawable/custom_input"
-            android:fontFamily="@font/roboto_thin"
-            android:hint="@string/dialogAddProduct_description"
-            android:inputType="textMultiLine"
-            android:minHeight="48dp"
-            android:paddingStart="5dp"
-            android:textColor="@color/grigio_scuro"
-            android:textColorHint="@color/grigio_chiaro"
-            android:textCursorDrawable="@drawable/cursor_color"
-            android:textSize="16sp"
-            tools:ignore="TextContrastCheck, RtlSymmetry" />
+    <EditText
+        android:id="@+id/descriptionItemMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:autofillHints=""
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/roboto_thin"
+        android:hint="@string/dialogAddProduct_description"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        android:paddingStart="5dp"
+        android:scrollbars="vertical"
+        android:textColor="@color/grigio_scuro"
+        android:textColorHint="@color/grigio_chiaro"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:textSize="16sp"
+        tools:ignore="TextContrastCheck, RtlSymmetry" />
 
         <EditText
             android:id="@+id/allergensItemMenu"
