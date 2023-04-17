@@ -90,12 +90,13 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         cancelOrder.setOnClickListener(v -> finishAfterTransition()); //Go back to waiter dashboard
         setMenu(); //Take menu items
 
-        //Draw appetizers
         drawDishes(antipasti, menuList, R.string.antipasti);
         drawDishes(primi, menuList, R.string.primi_piatti);
         drawDishes(secondi, menuList, R.string.seconds_dishes);
+        drawDishes(contorni, menuList, R.string.contorni);
         drawDishes(dessert, menuList, R.string.desserts);
-
+        drawDishes(pizze, menuList, R.string.pizze);
+        drawDishes(bevande, menuList, R.string.drink);
     }
 
     //Take menu items and initialize dish's lists

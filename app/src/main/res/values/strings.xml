@@ -160,6 +160,9 @@
     <string name="telNumberNotValid">Phone number not valid!</string>
     <string name="dialogExit">Are you sure you want to exit?</string>
     <string name="backWithoutSave">The changes will not be saved. Are you sure you want to exit?</string>
+    <string name="contorni">Side dishes</string>
+    <string name="pizze" translatable="false">Pizza</string>
+    <string name="drink" translatable="false">Drink</string>
 
 
 </resources>

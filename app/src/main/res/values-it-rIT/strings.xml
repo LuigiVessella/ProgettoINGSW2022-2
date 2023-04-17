@@ -118,5 +118,6 @@
     <string name="telNumberNotValid">Numero di telefono non valido!</string>
     <string name="dialogExit">Sei sicuro di voler uscire?</string>
     <string name="backWithoutSave">Le modifiche non verranno salvate. Sei sicuro di voler uscire?</string>
+    <string name="contorni">Contorni</string>
 
 </resources>
