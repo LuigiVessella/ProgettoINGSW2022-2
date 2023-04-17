@@ -156,23 +156,9 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         JsonElement jsonTree = parser.parse(result);
         String ruolo = null;
         Log.i("Json",jsonTree.toString());
-        if (jsonTree.isJsonNull()) {
-            Log.e("Errore ruolo","Il json è vuoto");
-        }
-        else {
-            try {
-                ruolo = jsonTree.getAsJsonObject().get("ruolo").getAsString();
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-                Toast.makeText(this, "Errore", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                Log.e("Errore ruolo", "Il ruolo è vuoto");
-                Toast.makeText(this, "Ruolo vuoto", Toast.LENGTH_SHORT).show();
-            }
-        }
-        System.out.println("ruolo:" + ruolo);
-        //Lavoratore lavoratore = gson.fromJson(result, new TypeToken<Lavoratore>(){}.getType());
 
+        if(jsonTree!= null) ruolo = jsonTree.getAsJsonObject().get("ruolo").getAsString();
+        inizializzaSingleton();
         if(ruolo == null) {
             Log.i("INFO LOGIN", "ricevuto null");
             emailLoginText.setError(getString(R.string.loginWrongCred));
@@ -272,6 +258,14 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         CustomRequest newRequest = new CustomRequest(url, params, this, this);
 
         newRequest.sendPostRequest();
+
+    }
+
+    private void inizializzaSingleton() {
+        CameriereSingleton.getInstance().setAccount(null);
+        AdminSingleton.getInstance().setAccount(null);
+        SupervisoreSingleton.getInstance().setAccount(null);
+        AddettoCucinaSingleton.getInstance().setAccount(null);
 
     }
 }

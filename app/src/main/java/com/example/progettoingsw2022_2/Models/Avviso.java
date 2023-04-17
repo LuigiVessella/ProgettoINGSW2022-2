@@ -8,13 +8,15 @@ import java.util.Date;
 public class Avviso {
     private Long id_avviso;
     private String descrizione;
-
+    private  String emessoDa;
     private String oraEmissione;
     private Ristorante ristorante;
-
     private String lettoDa;
-
     private String dataEmissione;
+
+    public Avviso(){
+    }
+
 
     public String getLettoDa() {
         return lettoDa;
@@ -57,8 +59,6 @@ public class Avviso {
         this.ristorante = ristorante;
     }
 
-    public Avviso(){
-    }
 
     public String getDescrizione() {
         return this.descrizione;
@@ -68,7 +68,12 @@ public class Avviso {
         this.descrizione = descrizione;
     }
 
+    public String getEmessoDa() {
+        return emessoDa;
+    }
 
-
+    public void setEmessoDa(String emessoDa) {
+        this.emessoDa = emessoDa;
+    }
 
 }

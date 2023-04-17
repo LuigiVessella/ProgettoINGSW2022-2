@@ -159,6 +159,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
         String url = "/avviso/addNew/" + ristorante.getCodice_ristorante();
         Map<String, String> params  = new HashMap<>();
         params.put("descrizione", avvisoString);
+        params.put("emessoDa", "Admin " + AdminSingleton.getInstance().getAccount().getNome());
 
         CustomRequest newRequest = new CustomRequest(url , params, this, this);
         newRequest.sendPostRequest();

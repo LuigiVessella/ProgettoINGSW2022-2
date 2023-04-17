@@ -1,6 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
+import static com.example.progettoingsw2022_2.Controller.DialogController.changeActivityDialog;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -21,8 +22,10 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Admin;
+import com.example.progettoingsw2022_2.Models.Lavoratore;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
+import com.example.progettoingsw2022_2.SingletonModels.SupervisoreSingleton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
@@ -44,19 +47,27 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
     private Balloon myBalloon;
     private ImageView logo;
 
+    private Lavoratore dipendente;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (AdminSingleton.getInstance().getAccount() == null) finish();
+
         super.onCreate(savedInstanceState);
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_profile);
+        if (AdminSingleton.getInstance().getAccount() != null) dipendente = AdminSingleton.getInstance().getAccount();
+        if (SupervisoreSingleton.getInstance().getAccount() != null) dipendente = SupervisoreSingleton.getInstance().getAccount();
+
         inizializzaComponenti();
+
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }
 
     protected void onResume(){
         super.onResume();
-        if (AdminSingleton.getInstance().getAccount() == null) finish();
+        if (AdminSingleton.getInstance().getAccount() != null) dipendente = AdminSingleton.getInstance().getAccount();
+        if (SupervisoreSingleton.getInstance().getAccount() != null) dipendente = SupervisoreSingleton.getInstance().getAccount();
     }
 
     private void inizializzaComponenti(){
@@ -67,12 +78,14 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
         TextView partitaIVA = findViewById(R.id.profilePartitaIVAAdmin);
         logo = findViewById(R.id.logoBiagioProfile);
         Button editEmail = findViewById(R.id.editEmailBtn), editPassword = findViewById(R.id.editPasswordBtn);
+
         //Inserire dati admin nelle textView
-        name.setText(AdminSingleton.getInstance().getAccount().getNome());
-        surname.setText(AdminSingleton.getInstance().getAccount().getCognome());
-        email.setText(AdminSingleton.getInstance().getAccount().getEmail());
-        codiceFiscale.setText(AdminSingleton.getInstance().getAccount().getCodiceFiscale());
-        partitaIVA.setText(AdminSingleton.getInstance().getAccount().getPartita_iva());
+        name.setText(dipendente.getNome());
+        surname.setText(dipendente.getCognome());
+        email.setText(dipendente.getEmail());
+        codiceFiscale.setText(dipendente.getCodiceFiscale());
+        if(dipendente.getRuolo().equals("amministratore")) partitaIVA.setText(AdminSingleton.getInstance().getAccount().getPartita_iva());
+        else partitaIVA.setText("Sono solo il supervisore:)");
         myBalloon = balloonBuilder(this, R.string.profileBalloon);
 
         editEmail.setOnClickListener(view -> {
@@ -197,5 +210,10 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
 
         CustomRequest customRequest = new CustomRequest(url, params, this, this);
         customRequest.sendPostRequest();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAfterTransition();
     }
 }

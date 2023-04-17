@@ -56,11 +56,12 @@
 
             <TextView
                 android:id="@+id/id_avviso"
-                android:layout_width="wrap_content"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="39dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="11dp"
+                android:inputType="textMultiLine"
                 android:text="TextView"
                 app:layout_constraintBottom_toTopOf="@+id/notificationText"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,17 +72,16 @@
 
             <TextView
                 android:id="@+id/notifica_data"
-                android:layout_width="wrap_content"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="43dp"
                 android:layout_marginBottom="11dp"
                 android:text="TextView"
                 app:layout_constraintBottom_toTopOf="@+id/notificationText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.21"
-                app:layout_constraintStart_toEndOf="@+id/id_avviso"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/notification_image"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 

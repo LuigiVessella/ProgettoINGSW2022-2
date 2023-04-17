@@ -166,6 +166,7 @@
     <string name="alfabetico">ALPHABETICALLY</string>
     <string name="per_tipo">BY TYPE</string>
     <string name="menuDialog">"How do you want the items to be saved in the menu? "</string>
+    <string name="nuovo_avviso">Nuovo avviso</string>
 
 
 </resources>

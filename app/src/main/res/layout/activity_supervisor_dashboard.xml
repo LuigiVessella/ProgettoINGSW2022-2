@@ -55,7 +55,7 @@
             tools:ignore="UselessParent">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/orderStatusSupCard"
+                android:id="@+id/newAlertStatusSupCard"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_row="0"
@@ -77,15 +77,15 @@
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:layout_gravity="center"
-                        android:contentDescription="@string/add_resturant_label"
-                        android:src="@drawable/ic_order"
+                        android:contentDescription="make alert"
+                        android:src="@drawable/ic_notification_white"
                         tools:ignore="ImageContrastCheck" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="@string/orderStatus"
+                        android:text="@string/nuovo_avviso"
                         android:gravity="center"
                         tools:ignore="TextContrastCheck" />
 
@@ -94,7 +94,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/notificationSupCard"
+                android:id="@+id/profileSupCard"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_row="0"
