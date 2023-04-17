@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
-import android.animation.LayoutTransition;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,34 +14,24 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import pl.droidsonroids.gif.GifImageView;
-
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.progettoingsw2022_2.Controller.ScreenSize;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.Models.Piatto;
-import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class TakeOrderActivity extends AppCompatActivity implements VolleyCallback {
@@ -51,9 +40,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
     private Button saveOrder;
     private Spinner numeroTavoloSpin;
     private GifImageView loading;
-
     private ArrayList<Piatto> piattiOrdinati;
-
     private ArrayList<Piatto> antipasti = new ArrayList<>(), primi = new ArrayList<>() ,secondi = new ArrayList<>(), contorni = new ArrayList<>(), dessert = new ArrayList<>(), pizze = new ArrayList<>(), bevande = new ArrayList<>();
 
     Piatto frutta = new Piatto();

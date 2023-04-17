@@ -18,7 +18,7 @@
     <string name="loginInsertCred">Inserisci le credenziali</string>
     <string name="AdminControlPanelText">"Pannello di controllo di: "</string>
     <string name="AdminResturant">I tuoi ristoranti:</string>
-    <string name="addResturant">Aggiungi ristorante</string>
+    <string name="addResturant">Nuovo ristorante</string>
     <string name="Exit">Esci</string>
     <string name="resturantString">Ristorante</string>
     <string name="addWaiter">Aggiungi cameriere</string>

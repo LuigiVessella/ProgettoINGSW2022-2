@@ -54,7 +54,7 @@
                 app:layout_constraintVertical_bias="0.25"
                 tools:ignore="UselessParent">
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/addRestaurantCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,6 +63,7 @@
                     android:backgroundTint="@color/marrone_secondario"
                     android:minWidth="130dp"
                     android:minHeight="130dp"
+                    android:clickable="true"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp"
                     app:cardUseCompatPadding="true">
@@ -91,9 +92,9 @@
 
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/profileCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -105,6 +106,7 @@
                     android:backgroundTint="@color/marrone_secondario"
                     android:minWidth="130dp"
                     android:minHeight="130dp"
+                    android:clickable="true"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp"
                     app:cardUseCompatPadding="true">
@@ -134,9 +136,9 @@
                     </LinearLayout>
 
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/statsCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -148,6 +150,7 @@
                     android:backgroundTint="@color/marrone_secondario"
                     android:minWidth="130dp"
                     android:minHeight="130dp"
+                    android:clickable="true"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp"
                     app:cardUseCompatPadding="true">
@@ -178,9 +181,9 @@
                     </LinearLayout>
 
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/logoutCard"
                     android:layout_width="140dp"
                     android:layout_height="65dp"
@@ -192,6 +195,7 @@
                     android:backgroundTint="@color/marrone_secondario"
                     android:minWidth="130dp"
                     android:minHeight="130dp"
+                    android:clickable="true"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp"
                     app:cardUseCompatPadding="true">
@@ -221,7 +225,7 @@
                     </LinearLayout>
 
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
             </GridLayout>
 

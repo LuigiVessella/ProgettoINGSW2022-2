@@ -54,7 +54,7 @@
 
             tools:ignore="UselessParent">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/orderStatusSupCard"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
@@ -63,6 +63,7 @@
                 android:backgroundTint="@color/marrone_secondario"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="8dp"
+                android:clickable="true"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -90,9 +91,9 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/notificationSupCard"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
@@ -102,6 +103,7 @@
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
                 android:backgroundTint="@color/marrone_secondario"
+                android:clickable="true"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">
@@ -131,9 +133,9 @@
                 </LinearLayout>
 
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/pendingOrdersSupCard"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
@@ -143,6 +145,7 @@
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
                 android:backgroundTint="@color/marrone_secondario"
+                android:clickable="true"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">
@@ -172,9 +175,9 @@
                 </LinearLayout>
 
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/logoutSupCard"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
@@ -184,6 +187,7 @@
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
                 android:backgroundTint="@color/marrone_secondario"
+                android:clickable="true"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">
@@ -211,7 +215,7 @@
                         tools:ignore="TextContrastCheck" />
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </GridLayout>
     </LinearLayout>
