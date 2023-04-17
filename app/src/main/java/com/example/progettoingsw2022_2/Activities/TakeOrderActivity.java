@@ -39,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +51,8 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
     private Button saveOrder;
     private Spinner numeroTavoloSpin;
     private GifImageView loading;
+
+    private ArrayList<Piatto> piattiOrdinati;
 
     private ArrayList<Piatto> antipasti = new ArrayList<>(), primi = new ArrayList<>() ,secondi = new ArrayList<>(), contorni = new ArrayList<>(), dessert = new ArrayList<>(), pizze = new ArrayList<>(), bevande = new ArrayList<>();
 
@@ -66,7 +69,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
     private void inizializeComponent() {
         newOrdine = new Ordine();
         newOrdine.setCameriere(CameriereSingleton.getInstance().getAccount());
-
+        piattiOrdinati = new ArrayList<>();
         Button cancelOrder = findViewById(R.id.cancelOrder);
         saveOrder = findViewById(R.id.saveOrder);
         LinearLayout menuList = findViewById(R.id.menuList);
@@ -157,11 +160,19 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
         //TODO: Dovrei mettere il counter a 0 nel caso in cui tieni premuto per resettare ma voglio prima capire sta concat cosa fa (perchè se si lavora a stringhe.. mhm
 
+        dish.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                orderCount.setText(String.valueOf(0));
+                piattiOrdinati.removeAll(Collections.singleton(p));
+                return true;
+            }
+        });
+
         dish.setOnClickListener(v -> {
             int count = Integer.parseInt(orderCount.getText().toString());
             orderCount.setText(String.valueOf(count+1));
-            newOrdine.setPiattiOrdinati(newOrdine.getPiattiOrdinati().concat(" " + p.getTipo() + ": " + p.getNome_piatto() + "\n"));
-            newOrdine.setConto(Integer.parseInt(p.getPrezzo()) + newOrdine.getConto());
+            piattiOrdinati.add(p);
         });
 
         LinearLayout dishLayout = new LinearLayout(this);
@@ -175,10 +186,15 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
     }
 
     private void save() {
+       for(Piatto p : piattiOrdinati) {
+           newOrdine.setPiattiOrdinati(newOrdine.getPiattiOrdinati().concat(" " + p.getTipo() + ": " + p.getNome_piatto() + "\n"));
+           newOrdine.setConto(Integer.parseInt(p.getPrezzo()) + newOrdine.getConto());
+        }
+
+
         newOrdine.setNumeroTavolo(Integer.parseInt(numeroTavoloSpin.getSelectedItem().toString()));
         saveOrder.setEnabled(false);
         loading.setVisibility(View.VISIBLE);
-
 
         Gson gson = new Gson();
         String jsonOrdine = gson.toJson(newOrdine, new TypeToken<Ordine>(){}.getType());
@@ -258,6 +274,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
     public void onSuccess(String s){
 
+        updateCameriere(s);
     }
 
     private void updateCameriere(String volleyResult) {
