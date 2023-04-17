@@ -1,25 +1,18 @@
 package com.example.progettoingsw2022_2.Activities;
 
-import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
-import static com.example.progettoingsw2022_2.Controller.DialogController.changeActivityDialog;
+import static com.example.progettoingsw2022_2.Helper.DialogController.balloonBuilder;
+import static com.example.progettoingsw2022_2.Helper.DialogController.changeActivityDialog;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.os.Handler;
-import android.text.Html;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;

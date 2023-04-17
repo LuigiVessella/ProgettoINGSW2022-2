@@ -17,7 +17,7 @@ import android.widget.TextView;
 import pl.droidsonroids.gif.GifImageView;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.progettoingsw2022_2.Controller.ScreenSize;
+import com.example.progettoingsw2022_2.Helper.ScreenSize;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ordine;

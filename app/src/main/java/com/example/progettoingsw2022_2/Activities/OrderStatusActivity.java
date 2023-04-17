@@ -1,25 +1,18 @@
 package com.example.progettoingsw2022_2.Activities;
 
-import static com.example.progettoingsw2022_2.Controller.DialogController.changeActivityDialog;
+import static com.example.progettoingsw2022_2.Helper.DialogController.changeActivityDialog;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,12 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
-import com.example.progettoingsw2022_2.Models.AddettoCucina;
 import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.Adapter.OrderRecycleViewAdapter;
 import com.example.progettoingsw2022_2.Models.Ristorante;
-import com.example.progettoingsw2022_2.Models.Supervisore;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AddettoCucinaSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;

@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.progettoingsw2022_2.Controller.ScreenSize;
+import com.example.progettoingsw2022_2.Helper.ScreenSize;
 import com.example.progettoingsw2022_2.R;
 
 public class MainActivity extends AppCompatActivity {

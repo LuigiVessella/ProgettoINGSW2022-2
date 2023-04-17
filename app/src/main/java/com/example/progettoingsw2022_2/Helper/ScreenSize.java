@@ -1,4 +1,4 @@
-package com.example.progettoingsw2022_2.Controller;
+package com.example.progettoingsw2022_2.Helper;
 
 import android.content.Context;
 import android.util.DisplayMetrics;

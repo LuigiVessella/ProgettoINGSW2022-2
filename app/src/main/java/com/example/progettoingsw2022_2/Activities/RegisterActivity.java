@@ -1,9 +1,8 @@
 package com.example.progettoingsw2022_2.Activities;
 
-import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
-import static com.example.progettoingsw2022_2.Controller.DialogController.onBackPressedDialog;
+import static com.example.progettoingsw2022_2.Helper.DialogController.balloonBuilder;
+import static com.example.progettoingsw2022_2.Helper.DialogController.onBackPressedDialog;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -18,7 +17,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import com.example.progettoingsw2022_2.Controller.AccountUtils;
+import com.example.progettoingsw2022_2.Helper.AccountUtils;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.R;

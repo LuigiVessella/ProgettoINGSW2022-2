@@ -1,13 +1,12 @@
 package com.example.progettoingsw2022_2.Activities;
 
-import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
+import static com.example.progettoingsw2022_2.Helper.DialogController.balloonBuilder;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -22,8 +21,6 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.AddettoCucina;
@@ -40,11 +37,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import com.skydoves.balloon.ArrowOrientation;
-import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
-import com.skydoves.balloon.BalloonAnimation;
-import com.skydoves.balloon.BalloonSizeSpec;
 
 import org.mindrot.jbcrypt.BCrypt;
 

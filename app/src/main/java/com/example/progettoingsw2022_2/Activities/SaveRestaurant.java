@@ -1,6 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
-import static com.example.progettoingsw2022_2.Controller.DialogController.onBackPressedDialog;
+import static com.example.progettoingsw2022_2.Helper.DialogController.onBackPressedDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;

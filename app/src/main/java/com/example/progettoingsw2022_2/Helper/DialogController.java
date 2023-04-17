@@ -1,4 +1,4 @@
-package com.example.progettoingsw2022_2.Controller;
+package com.example.progettoingsw2022_2.Helper;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -10,7 +10,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.example.progettoingsw2022_2.Activities.SaveWorker;
 import com.example.progettoingsw2022_2.R;
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;

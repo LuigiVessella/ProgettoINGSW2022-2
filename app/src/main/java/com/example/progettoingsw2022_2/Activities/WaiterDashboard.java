@@ -1,6 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
-import static com.example.progettoingsw2022_2.Controller.DialogController.changeActivityDialog;
+import static com.example.progettoingsw2022_2.Helper.DialogController.changeActivityDialog;
 
 import androidx.annotation.NonNull;
 

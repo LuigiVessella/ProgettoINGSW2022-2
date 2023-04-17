@@ -3,20 +3,17 @@ package com.example.progettoingsw2022_2.Activities;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
-import static com.example.progettoingsw2022_2.Controller.DialogController.menuDialog;
+import static com.example.progettoingsw2022_2.Helper.DialogController.balloonBuilder;
+import static com.example.progettoingsw2022_2.Helper.DialogController.menuDialog;
 
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -33,7 +30,6 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
-import com.example.progettoingsw2022_2.Models.Admin;
 import com.example.progettoingsw2022_2.Models.Menu;
 import com.example.progettoingsw2022_2.Models.Piatto;
 import com.example.progettoingsw2022_2.Models.Ristorante;
@@ -57,11 +53,7 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.skydoves.balloon.ArrowOrientation;
-import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
-import com.skydoves.balloon.BalloonAnimation;
-import com.skydoves.balloon.BalloonSizeSpec;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

@@ -1,7 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
-import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
-import static com.example.progettoingsw2022_2.Controller.DialogController.changeActivityDialog;
+import static com.example.progettoingsw2022_2.Helper.DialogController.balloonBuilder;
+import static com.example.progettoingsw2022_2.Helper.DialogController.changeActivityDialog;
 
 import android.app.Dialog;
 import android.content.Intent;

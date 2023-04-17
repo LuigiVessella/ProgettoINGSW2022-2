@@ -1,10 +1,8 @@
 package com.example.progettoingsw2022_2.Activities;
 
-import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
-import static com.example.progettoingsw2022_2.Controller.DialogController.onBackPressedDialog;
+import static com.example.progettoingsw2022_2.Helper.DialogController.balloonBuilder;
+import static com.example.progettoingsw2022_2.Helper.DialogController.onBackPressedDialog;
 
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -16,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -27,11 +24,7 @@ import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.skydoves.balloon.ArrowOrientation;
-import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
-import com.skydoves.balloon.BalloonAnimation;
-import com.skydoves.balloon.BalloonSizeSpec;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.mindrot.jbcrypt.BCrypt;
