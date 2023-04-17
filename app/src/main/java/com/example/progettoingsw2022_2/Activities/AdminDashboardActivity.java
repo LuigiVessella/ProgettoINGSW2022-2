@@ -134,14 +134,12 @@ public class AdminDashboardActivity extends AppCompatActivity {
                 linearScrollLayout.addView(createResturantRow(ristorante, counter));
                 counter++;
             }
-
         }
         else {
             TextView txv = new TextView(this);
             txv.setText(R.string.AdminDBNoResturant);
             linearScrollLayout.addView(txv);
         }
-
     }
 
     @Override

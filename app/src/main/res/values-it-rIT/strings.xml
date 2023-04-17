@@ -119,5 +119,8 @@
     <string name="dialogExit">Sei sicuro di voler uscire?</string>
     <string name="backWithoutSave">Le modifiche non verranno salvate. Sei sicuro di voler uscire?</string>
     <string name="contorni">Contorni</string>
+    <string name="alfabetico">ALFABETICO</string>
+    <string name="per_tipo">PER TIPO</string>
+    <string name="menuDialog">In che ordine vuoi che vengano salvati gli elementi nel menu?</string>
 
 </resources>

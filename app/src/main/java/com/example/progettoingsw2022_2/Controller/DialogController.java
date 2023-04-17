@@ -80,9 +80,44 @@ public class DialogController {
         okButton.setTextColor(current.getResources().getColor(R.color.bianco,current.getTheme()));
         okButton.setBackgroundColor(current.getResources().getColor(R.color.marrone_primario,current.getTheme()));
 
-        Button cancelButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
-        cancelButton.setTextColor(current.getResources().getColor(R.color.bianco,current.getTheme()));
-        cancelButton.setBackgroundColor(current.getResources().getColor(R.color.marrone_terziario,current.getTheme()));
+        Button noButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+        noButton.setTextColor(current.getResources().getColor(R.color.bianco,current.getTheme()));
+        noButton.setBackgroundColor(current.getResources().getColor(R.color.marrone_terziario,current.getTheme()));
+    }
+
+    public static int menuDialog(Activity current, int stringID) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(current);
+        String message = current.getResources().getString(stringID);
+        builder.setTitle(message);
+        final int[] result = {-1};
+
+        // Aggiungere il pulsante positivo ("Si") e impostare il suo comportamento
+        builder.setPositiveButton(R.string.per_tipo, (dialog, which) -> {
+            result[0] = 0;
+            dialog.dismiss();
+        });
+
+        // Aggiungere il pulsante negativo ("No") e impostare il suo comportamento
+        builder.setNegativeButton(R.string.alfabetico, (dialog, which) -> {
+            result[0] = 1;
+            dialog.dismiss();
+        });
+
+        // Creare e mostrare il dialogo
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Impostazione del colore del pulsante Positivo
+        Button ordine_tipo = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+        ordine_tipo.setTextColor(current.getResources().getColor(R.color.bianco,current.getTheme()));
+        ordine_tipo.setBackgroundColor(current.getResources().getColor(R.color.marrone_primario,current.getTheme()));
+
+        Button ordine_alfabetico = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+        ordine_alfabetico.setTextColor(current.getResources().getColor(R.color.bianco,current.getTheme()));
+        ordine_alfabetico.setBackgroundColor(current.getResources().getColor(R.color.marrone_terziario,current.getTheme()));
+
+        return result[0];
     }
 
     public static Balloon balloonBuilder(Activity current, int stringID){

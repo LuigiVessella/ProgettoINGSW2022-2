@@ -69,7 +69,9 @@ public class NotificationActivity extends AppCompatActivity implements VolleyCal
     }
 
     private void setUpNotification() {
-        avvisi = (ArrayList<Avviso>) ristorante.getAvvisi();
+        if (SupervisoreSingleton.getInstance().getAccount() == null) avvisi = (ArrayList<Avviso>) ristorante.getAvvisi();
+        //TODO: Ovviamente questa parte è da modificare non appena si ha la funzione che prende solo gli avvisi dell'admin
+        else avvisi = (ArrayList<Avviso>) ristorante.getAvvisi();
     }
 
     public void onBackPressed() {finishAfterTransition();}

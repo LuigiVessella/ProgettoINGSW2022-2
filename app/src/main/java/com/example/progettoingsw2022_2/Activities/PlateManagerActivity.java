@@ -4,6 +4,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 import static com.example.progettoingsw2022_2.Controller.DialogController.balloonBuilder;
+import static com.example.progettoingsw2022_2.Controller.DialogController.menuDialog;
 
 import android.app.Dialog;
 import android.graphics.Bitmap;
@@ -206,7 +207,10 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
                 okButtonDialog.setEnabled(true);
             }
         });
-        generateMenuCard.setOnClickListener(view -> createMenu());
+        generateMenuCard.setOnClickListener(view -> {
+            int scelta_ordinamento = menuDialog(this, R.string.menuDialog);
+            //TODO: Gestire la funzione che ti fa l'ordinamento (con -1 return di default nel caso in cui esci dal dialog senza cliccare da nessuna parte)
+        });
         addProductCard.setOnClickListener(view -> addPlateDialog.show());
 
         okButtonDialog.setOnClickListener(view -> {

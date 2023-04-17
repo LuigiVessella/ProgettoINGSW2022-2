@@ -163,6 +163,9 @@
     <string name="contorni">Side dishes</string>
     <string name="pizze" translatable="false">Pizza</string>
     <string name="drink" translatable="false">Drink</string>
+    <string name="alfabetico">ALPHABETICALLY</string>
+    <string name="per_tipo">BY TYPE</string>
+    <string name="menuDialog">"How do you want the items to be saved in the menu? "</string>
 
 
 </resources>
