@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_table_status_constraint"
+    android:id="@+id/coordinator_layout_not"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sfondo_2_con_patina"
@@ -12,17 +12,17 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/bianco"
-        android:textAlignment="center"
         android:fontFamily="@font/roboto"
         android:text="Qui puoi visualizzare gli avvisi in arrivo:"
+        android:textAlignment="center"
+        android:textColor="@color/bianco"
         android:textSize="24sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_notification_rvw"
         android:layout_width="398dp"
-        android:layout_height="678dp"
+        android:layout_height="624dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp" />
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

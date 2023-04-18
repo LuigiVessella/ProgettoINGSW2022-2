@@ -2,13 +2,16 @@ package com.example.progettoingsw2022_2.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
@@ -17,6 +20,7 @@ import com.example.progettoingsw2022_2.Models.Avviso;
 import com.example.progettoingsw2022_2.Models.Lavoratore;
 import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,9 +31,15 @@ public class NotificationRecycleViewAdapter extends RecyclerView.Adapter<Notific
     private final Context context;
     private List<Avviso> avvisi;
 
-    public NotificationRecycleViewAdapter(Context context, List<Avviso> avvisi) {
+    private Lavoratore dipendente;
+
+    private CoordinatorLayout lay;
+
+    public NotificationRecycleViewAdapter(Context context, List<Avviso> avvisi, Lavoratore dipendete_loggato, CoordinatorLayout lay) {
         this.context = context;
         this.avvisi = avvisi;
+        this.dipendente = dipendete_loggato;
+        this.lay = lay;
     }
     @NonNull
     @Override
@@ -52,9 +62,40 @@ public class NotificationRecycleViewAdapter extends RecyclerView.Adapter<Notific
         return avvisi.size();
     }
 
+    public void removeItem(int position) {
+        setLettoDa(position);
+        avvisi.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void restoreItem(Avviso item, int position) {
+        avvisi.add(position, item);
+        notifyItemInserted(position);
+    }
+
+    private void setLettoDa(int position) {
+        String url = "/avviso/setLettoDa/" + avvisi.get(position).getId_avviso();
+        Map<String, String> params = new HashMap<>();
+        params.put("cod_fisc", dipendente.getCodiceFiscale());
+
+        CustomRequest newRequest = new CustomRequest(url ,params, context, this);
+        newRequest.sendPostRequest();
+
+    }
+
+    public List<Avviso> getData() {
+        return avvisi;
+    }
+
     @Override
     public void onSuccess(String result) {
-        System.out.println("done");
+        if(result.equals("ok_letto_saved")) {
+            Snackbar snackbar = Snackbar
+                    .make(lay, "L'avviso è stato contrassegnato come letto.", Snackbar.LENGTH_LONG);
+            snackbar.setActionTextColor(Color.YELLOW);
+            snackbar.show();
+            return;
+        }
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -70,6 +111,4 @@ public class NotificationRecycleViewAdapter extends RecyclerView.Adapter<Notific
 
         }
     }
-
-
 }
