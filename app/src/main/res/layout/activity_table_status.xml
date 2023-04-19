@@ -12,6 +12,7 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:textColor="@color/bianco"
         android:textSize="26dp"
         android:textAlignment="center"
@@ -19,16 +20,18 @@
         android:text="Benvenuto in cucina! Ordini in arrivo:" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_table_rvw"
+        android:id="@+id/activity_table_rw"
         android:layout_width="match_parent"
-        android:layout_height="603dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationAddettoCucina"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:background="@color/marrone_terziario"
         app:itemIconTint="@color/bianco"
         app:itemTextColor="@color/bianco"

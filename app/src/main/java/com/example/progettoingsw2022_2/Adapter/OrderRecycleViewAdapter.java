@@ -54,7 +54,6 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
         holder.tableNumber.setText(String.valueOf(ordini.get(position).getNumeroTavolo()));
         holder.orderDescription.setText("Order" + " #" + (ordini.get(position).getPiattiOrdinati()));
         holder.removeButton.setOnClickListener(view -> {
-
             ordini.get(position).setEvaso(true);
             setEvasoOnSpring(ordini.get(position).getIdOrdine().toString());
             ordini.remove(position);
