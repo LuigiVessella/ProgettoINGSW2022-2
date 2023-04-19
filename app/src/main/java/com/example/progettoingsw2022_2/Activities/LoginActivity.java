@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
     }
 
     private void inizializzaComponenti(){
-
+        inizializzaSingleton();
         loginActivityButton = findViewById(R.id.loginActButton);
         loginActivityButton.setEnabled(true);
         loading = findViewById(R.id.loadingGIF);
@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
 
     @Override
-    public void onSuccess(String result) {
+    public void onResponse(String result) {
 
         String stringPass = "firstpass.1";
 

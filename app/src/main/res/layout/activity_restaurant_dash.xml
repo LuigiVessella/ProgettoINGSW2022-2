@@ -46,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/grigio_scuro"
                 android:fontFamily="@font/roboto"
                 android:text="@string/add_waiter" />
 
@@ -93,6 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/grigio_scuro"
                 android:fontFamily="@font/roboto"
                 android:text="@string/manage_menu" />
 
@@ -142,7 +144,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_slab"
         android:text="@string/your_workers"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/waiterListScroll"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +163,7 @@
         android:elevation="10dp"
         android:fontFamily="@font/roboto"
         android:text="crea avviso"
-        android:textColor="@color/bianco"
+        android:textColor="@color/grigio_scuro"
         app:cornerRadius="40sp"
         app:iconTint="@color/bianco"
         app:layout_constraintBottom_toBottomOf="parent"

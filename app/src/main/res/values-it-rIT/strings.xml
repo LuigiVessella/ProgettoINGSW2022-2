@@ -66,7 +66,7 @@
     <string name="Search">Cerca</string>
     <string name="Prepackaged">Preconfezionato</string>
     <string name="add_course">Aggiungi portata</string>
-    <string name="your_workers">Il tuo personale:</string>
+    <string name="your_workers">Il tuo personale: (tieni premuto per eliminare)</string>
     <string name="editEmail">Cambia email</string>
     <string name="editPassword">Cambia password</string>
     <string name="old_field">Vecchia</string>
@@ -123,5 +123,6 @@
     <string name="per_tipo">PER TIPO</string>
     <string name="menuDialog">In che ordine vuoi che vengano salvati gli elementi nel menu?</string>
     <string name="nuovo_avviso">Nuovo avviso</string>
+    <string name="delete_menu">Delete menu</string>
 
 </resources>

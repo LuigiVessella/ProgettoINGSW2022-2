@@ -88,7 +88,7 @@ public class NotificationRecycleViewAdapter extends RecyclerView.Adapter<Notific
     }
 
     @Override
-    public void onSuccess(String result) {
+    public void onResponse(String result) {
         if(result.equals("ok_letto_saved")) {
             Snackbar snackbar = Snackbar
                     .make(lay, "L'avviso è stato contrassegnato come letto.", Snackbar.LENGTH_LONG);

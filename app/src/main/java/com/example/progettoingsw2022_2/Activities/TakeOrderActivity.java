@@ -260,7 +260,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
     }
 
-    public void onSuccess(String s){
+    public void onResponse(String s){
 
         updateCameriere(s);
     }

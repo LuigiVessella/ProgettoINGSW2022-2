@@ -106,7 +106,7 @@
     <string name="biagioshape" translatable="false">BiagioShape</string>
     <string name="add_product_label" translatable="false">Add product label</string>
     <string name="add_course">Add course</string>
-    <string name="your_workers">Your workers:</string>
+    <string name="your_workers">Your workers: (Long press to delete)</string>
     <string name="editEmail">Edit email</string>
     <string name="editPassword">Change password</string>
     <string name="old_field">Old</string>
@@ -167,6 +167,7 @@
     <string name="per_tipo">BY TYPE</string>
     <string name="menuDialog">"How do you want the items to be saved in the menu? "</string>
     <string name="nuovo_avviso">Nuovo avviso</string>
+    <string name="delete_menu">Delete menu</string>
 
 
 </resources>

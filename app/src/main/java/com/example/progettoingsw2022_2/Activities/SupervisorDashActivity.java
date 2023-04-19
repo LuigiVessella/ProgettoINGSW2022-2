@@ -149,7 +149,7 @@ public class SupervisorDashActivity extends AppCompatActivity implements VolleyC
     }
 
     @Override
-    public void onSuccess(String result) {
+    public void onResponse(String result) {
         if(result.equals("new_alerts")) {
             MenuItem item = bottomNavigationView.getMenu().findItem(R.id.notification_menu);
             item.setIcon(R.drawable.notification_circle_svgrepo_com);

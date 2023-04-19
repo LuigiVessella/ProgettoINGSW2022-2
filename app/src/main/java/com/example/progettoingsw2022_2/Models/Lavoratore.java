@@ -17,7 +17,6 @@ public abstract class Lavoratore {
     private String ruolo;
 
 
-
     public String getCodiceFiscale() {
         return this.codiceFiscale;
     }

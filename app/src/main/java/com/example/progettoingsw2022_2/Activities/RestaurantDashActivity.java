@@ -3,18 +3,23 @@ package com.example.progettoingsw2022_2.Activities;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Cameriere;
+import com.example.progettoingsw2022_2.Models.Lavoratore;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
@@ -74,13 +79,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
         addCameriereButton.setOnClickListener(view -> switchToAddCameriere());
         addMenuButton.setOnClickListener(view -> switchToMenuActivity());
 
-        create_alert_btt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                createNewAlert();
-            }
-        });
+        create_alert_btt.setOnClickListener(v -> createNewAlert());
 
         visualizzaDipendenti();
     }
@@ -92,32 +91,55 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
         if(ristorante == null || ristorante.getCamerieri() == null) return;
 
         if (!ristorante.getCamerieri().isEmpty()) {
-            int i = 0;
             for (Cameriere cameriere : ristorante.getCamerieri()) {
-                i++;
-                TextView txv = new TextView(this);
-                txv.setText(getString(R.string.WaiterString)+" "+ i +": " +  cameriere.getCognome() + " " + cameriere.getNome());
-                txv.setTextSize(17);
-
-                waiterLinearL.addView(txv);
+                waiterLinearL.addView(createResturantRow(cameriere));
             }
         }
         if(ristorante.getAddettoCucina() != null) {
-            TextView txv = new TextView(this);
-            txv.setText("Addetto cucina: "+  ristorante.getAddettoCucina().getCognome() + " " + ristorante.getAddettoCucina().getNome());
-            txv.setTextSize(17);
-
-            waiterLinearL.addView(txv);
+            waiterLinearL.addView(createResturantRow(ristorante.getAddettoCucina()));
         }
 
         if(ristorante.getSupervisore() != null) {
-            TextView txv = new TextView(this);
-            txv.setText("Supervisore: "+  ristorante.getSupervisore().getCognome() + " " + ristorante.getSupervisore().getNome());
-            txv.setTextSize(17);
-
-            waiterLinearL.addView(txv);
+            waiterLinearL.addView(createResturantRow(ristorante.getSupervisore()));
         }
     }
+
+    private LinearLayout createResturantRow(Lavoratore dipendente){
+        LinearLayout restRow = new LinearLayout(RestaurantDashActivity.this);
+        //Set layout params for resturant row
+        LinearLayout.LayoutParams rowParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        rowParams.setMargins(0,0,0,5);
+        restRow.setLayoutParams(rowParams);
+        restRow.setOrientation(LinearLayout.HORIZONTAL);
+
+        TextView restTitle = new TextView(RestaurantDashActivity.this);
+        restTitle.setText(dipendente.getNome());
+
+        //Set layout params for resturant name
+        restTitle.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,0.8f));
+
+        Button manageBtn = new Button(RestaurantDashActivity.this);
+
+        //Set layout params for manage button
+        manageBtn.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,0.2f));
+
+        manageBtn.setText("Elimina");
+        manageBtn.setBackgroundResource(R.drawable.corner_radius_botton);
+        manageBtn.setTextColor(Color.WHITE);
+        manageBtn.setTextSize(10);
+        manageBtn.setOnLongClickListener(v -> {
+            if(dipendente.getRuolo().equals("cameriere")) {
+                sendEliminaCameriereRequest(dipendente.getCodiceFiscale());
+            }
+            if(dipendente.getRuolo().equals("supervisore")) sendEliminaSupervisoreRequest(dipendente.getCodiceFiscale());
+            if(dipendente.getRuolo().equals("addetto_cucina")) sendEliminaAddettoCucinaRequest(dipendente.getCodiceFiscale());
+            return true;
+        });
+        restRow.addView(restTitle);
+        restRow.addView(manageBtn);
+        return restRow;
+    }
+
 
     private void switchToAddCameriere(){
         Intent newAct = new Intent(RestaurantDashActivity.this, SaveWorker.class);
@@ -165,14 +187,59 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
         newRequest.sendPostRequest();
     }
 
+
+    private void sendEliminaCameriereRequest(String codice_fiscale){
+        String url = "/camerieri/deleteCameriere";
+        Map<String, String> params = new HashMap<>();
+        params.put("cameriere_id", codice_fiscale);
+        CustomRequest newReq = new CustomRequest(url, params, this ,this);
+        newReq.sendPostRequest();
+    }
+    private void sendEliminaSupervisoreRequest(String codice_fiscale){
+        String url = "/supervisore/deleteSupervisore";
+        Map<String, String> params = new HashMap<>();
+        params.put("supervisore_id", codice_fiscale);
+        CustomRequest newReq = new CustomRequest(url, params, this ,this);
+        newReq.sendPostRequest();
+
+    }
+    private void sendEliminaAddettoCucinaRequest(String codice_fiscale){
+        String url = "/addettocucina/deleteAddettoCucina";
+
+        Map<String, String> params = new HashMap<>();
+        params.put("addetto_id", codice_fiscale);
+        CustomRequest newReq = new CustomRequest(url, params, this ,this);
+        newReq.sendPostRequest();
+
+    }
+
+
     @Override
-    public void onSuccess(String result) {
+    public void onResponse(String result) {
+        if(result.equals("addetto_deleted")){
+            AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).setAddettoCucina(null);
+            onResume();
+            return;
+        }
+        if(result.equals("supervisore_deleted")){
+            AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).setSupervisore(null);
+            onResume();
+            return;
+        }
+        if(result.contains("cameriere_deleted")) {
+            AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getCamerieri().removeIf(s->result.contains(s.getCodiceFiscale()));
+            onResume();
+            return;
+        }
 
         Gson gson = new Gson();
         Ristorante ristorante = gson.fromJson(result, new TypeToken<Ristorante>(){}.getType());
         if(ristorante != null ){
             AdminSingleton.getInstance().getAccount().getRistoranti().set(restNumber, ristorante);
+            return;
         }
 
     }
+
+
 }

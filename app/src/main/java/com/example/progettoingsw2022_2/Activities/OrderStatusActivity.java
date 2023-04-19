@@ -37,17 +37,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderStatusActivity extends AppCompatActivity implements VolleyCallback {
-
-
     private ArrayList<Ordine> ordini = new ArrayList<>();
-
     private OrderRecycleViewAdapter adapter;
     private RecyclerView recycleView;
     private Handler handler = new Handler();
     private Runnable runnable;
     private int delay = 5000;
-
-
     private String newAvvisiCheck = "NO";
     private BottomNavigationView bottomNavigationView;
 
@@ -66,7 +61,7 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
     private  void inizializzaComponenti(){
 
         bottomNavigationView = findViewById(R.id.bottomNavigationAddettoCucina);
-        recycleView = findViewById(R.id.activity_table_rvw);
+        recycleView = findViewById(R.id.activity_table_rw);
         if(CameriereSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, CameriereSingleton.getInstance().getAccount());
         if(SupervisoreSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, SupervisoreSingleton.getInstance().getAccount());
         if(AddettoCucinaSingleton.getInstance().getAccount() != null)
@@ -182,7 +177,7 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
     }
 
     @Override
-    public void onSuccess(String result) {
+    public void onResponse(String result) {
 
         if(result.equals("new_alerts")) {
             MenuItem item = bottomNavigationView.getMenu().findItem(R.id.notification_menu);

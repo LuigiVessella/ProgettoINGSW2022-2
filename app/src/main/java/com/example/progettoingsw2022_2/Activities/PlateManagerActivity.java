@@ -60,6 +60,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -102,7 +103,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         Switch preconfSwitch;
 
         String[] COMMON_FOOD = new String[] {
-                "Estathe", "Coca-Cola", "Pepsi", "Fanta", "Sprite"
+                "Estathe", "Coca Cola", "Pepsi", "Fanta", "Sprite", "Nutella", "Heineken"
         };
 
         ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 200);
@@ -126,8 +127,9 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         allergensEditText = addPlateDialog.findViewById(R.id.allergensItemMenu);
         tipo = addPlateDialog.findViewById(R.id.spinnerTipoMenu);
         tipoAlimento = addPlateDialog.findViewById(R.id.spinnerTipoAlimentoMenu);
+        Button deleteMenuButton = findViewById(R.id.deleteMenuButton);
 
-        ArrayAdapter<String> tipoPortataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Antipasto","Primo", "Secondo", "Dessert", "Frutta", "Bevanda"});
+        ArrayAdapter<String> tipoPortataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Antipasto", "Primo", "Secondo", "Dessert", "Frutta", "Bevanda"});
         tipoPortataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipo.setAdapter(tipoPortataAdapter);
 
@@ -192,6 +194,13 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
          });
 
 
+        deleteMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendDeleteMenuRequest();
+            }
+        });
+
 
         goProductButton.setOnClickListener(view -> {
             if(autoCompleteTextView.getText().length() > 3) {
@@ -202,6 +211,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         generateMenuCard.setOnClickListener(view -> {
             int scelta_ordinamento = menuDialog(this, R.string.menuDialog);
             //TODO: Gestire la funzione che ti fa l'ordinamento (con -1 return di default nel caso in cui esci dal dialog senza cliccare da nessuna parte)
+            createMenu();
         });
         addProductCard.setOnClickListener(view -> addPlateDialog.show());
 
@@ -241,7 +251,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
 
     private void createMenu(){
 
-        String fileName = "output.pdf";
+        String fileName = "menu.pdf";
         // Definisci il percorso della cartella "Download"
         File downloadFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         // Crea il percorso completo del file PDF utilizzando il nome del file e la cartella "Download"
@@ -281,24 +291,106 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             titleFont.setColor(BaseColor.WHITE);
             titleFont.setSize(36);
 
-            Paragraph space = new Paragraph("\n\n", titleFont);
+            Font subtitle = FontFactory.getFont("Lobster", "Cp1253", true);
+            subtitle.setColor(BaseColor.WHITE);
+            subtitle.setSize(24);
+
+            Paragraph space = new Paragraph("\n", titleFont);
             space.setAlignment(Element.ALIGN_CENTER);
 
             document.add(space);
 
-            //TODO: Prendere il nome del ristorante al posto della stringa statica
+            //TITOLO
             Paragraph title = new Paragraph("Menu' del giorno:", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
-
             document.add(title);
+
+            document.add(space);
+
+
+
+            //ANTIPASTO
+            Paragraph antipasti = new Paragraph("Antipasti:", subtitle);
+            antipasti.setAlignment(Element.ALIGN_CENTER);
+            document.add(antipasti);
 
             Font plateFont = new Font(Font.FontFamily.COURIER, 18, Font.ITALIC, BaseColor.WHITE);
             for (Piatto piatto : piatti) {
-                // Aggiungi la descrizione del piatto
-                // Aggiunge la descrizione del piatto "Pasta al Sugo" centrata nella pagina con un font personalizzato e uno spazio di 50 punti prima della descrizione
-                Paragraph plate = new Paragraph(""+ piatto.getNome_piatto() + "   " + piatto.getPrezzo() + "€\n", plateFont);
-                plate.setAlignment(Element.ALIGN_CENTER);
-                document.add(plate);
+                if(piatto.getTipo().equals("Antipasto")) {
+                    Paragraph plate = new Paragraph("" + piatto.getNome_piatto() + "   " + piatto.getPrezzo() + "€\n" + piatto.getDescrizione(), plateFont);
+                    plate.setAlignment(Element.ALIGN_CENTER);
+                    document.add(plate);
+                }
+            }
+
+            //PRIMI PIATTI
+            Paragraph primi = new Paragraph("Primi piatti:", subtitle);
+            primi.setAlignment(Element.ALIGN_CENTER);
+            document.add(primi);
+
+            for (Piatto piatto : piatti) {
+                if(piatto.getTipo().equals("Primo")) {
+                    Paragraph plate = new Paragraph("" + piatto.getNome_piatto() + "   " + piatto.getPrezzo() + "€\n" + piatto.getDescrizione(), plateFont);
+                    plate.setAlignment(Element.ALIGN_CENTER);
+                    document.add(plate);
+                }
+            }
+
+            //SECONDI PIATTI
+            Paragraph secondi = new Paragraph("Secondi piatti:", subtitle);
+            secondi.setAlignment(Element.ALIGN_CENTER);
+            document.add(secondi);
+
+
+            for (Piatto piatto : piatti) {
+                if(piatto.getTipo().equals("Secondo")) {
+                    Paragraph plate = new Paragraph("" + piatto.getNome_piatto() + "   " + piatto.getPrezzo() + "€\n" + piatto.getDescrizione(), plateFont);
+                    plate.setAlignment(Element.ALIGN_CENTER);
+                    document.add(plate);
+                }
+            }
+
+            //DESSERT
+            Paragraph dessert = new Paragraph("Dessert:", subtitle);
+            dessert.setAlignment(Element.ALIGN_CENTER);
+            document.add(dessert);
+
+
+            for (Piatto piatto : piatti) {
+                if(piatto.getTipo().equals("Dessert")) {
+                    Paragraph plate = new Paragraph("" + piatto.getNome_piatto() + "   " + piatto.getPrezzo() + "€\n" + piatto.getDescrizione(), plateFont);
+                    plate.setAlignment(Element.ALIGN_CENTER);
+                    document.add(plate);
+                }
+            }
+
+
+            //FRUTTA
+            Paragraph frutta = new Paragraph("Frutta:", subtitle);
+            frutta.setAlignment(Element.ALIGN_CENTER);
+            document.add(frutta);
+
+
+            for (Piatto piatto : piatti) {
+                if(piatto.getTipo().equals("Frutta")) {
+                    Paragraph plate = new Paragraph("" + piatto.getNome_piatto() + "   " + piatto.getPrezzo() + "€\n" + piatto.getDescrizione(), plateFont);
+                    plate.setAlignment(Element.ALIGN_CENTER);
+                    document.add(plate);
+                }
+            }
+
+
+            //BIBITE
+            Paragraph bibite = new Paragraph("Bibite:", subtitle);
+            bibite.setAlignment(Element.ALIGN_CENTER);
+            document.add(bibite);
+
+            for (Piatto piatto : piatti) {
+                if(piatto.getTipo().equals("Bevanda")) {
+                    Paragraph plate = new Paragraph("" + piatto.getNome_piatto() + "   " + piatto.getPrezzo() + "€\n" + piatto.getDescrizione(), plateFont);
+                    plate.setAlignment(Element.ALIGN_CENTER);
+                    document.add(plate);
+                }
             }
 
             document.close();
@@ -400,9 +492,33 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
     }
 
 
+    private void sendDeleteMenuRequest() {
+        String url = "/menu/deleteMenu";
+        Map<String, String> params = new HashMap<>();
+        params.put("menu_id", menu.getId_menu().toString());
+        CustomRequest newReq = new CustomRequest(url, params, this ,this);
+        newReq.sendPostRequest();
+    }
+
+
+
     @Override
-    public void onSuccess(String result) {
+    public void onResponse(String result) {
         Gson gson = new Gson();
+
+        if(result.equals("200")) {
+            System.out.println("SONO QUI\n");
+            Toast.makeText(this, "Menu eliminato", Toast.LENGTH_SHORT).show();
+            menu = null;
+            AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).setMenu(null);
+            finishAfterTransition();
+            return;
+        }
+
+        if(result.equals("400")) {
+            Toast.makeText(this, "Porcco dio hai sbagliato", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         //tengo traccia dei vari risultati delle varie richieste
         if(result.contains("locazione")) {
@@ -424,5 +540,8 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).setMenu(newMenu);
             inizializzaComponenti();
         }
+
+        return;
     }
+
 }

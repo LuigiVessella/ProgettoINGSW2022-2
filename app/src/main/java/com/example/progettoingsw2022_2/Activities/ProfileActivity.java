@@ -173,7 +173,7 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
     }
 
     @Override
-    public void onSuccess(String result){
+    public void onResponse(String result){
         Gson gson = new Gson();
         Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
 

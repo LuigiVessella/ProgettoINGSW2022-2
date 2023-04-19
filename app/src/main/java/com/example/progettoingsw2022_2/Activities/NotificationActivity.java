@@ -1,9 +1,8 @@
 package com.example.progettoingsw2022_2.Activities;
 
-import android.graphics.Color;
+
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,21 +11,17 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.progettoingsw2022_2.Adapter.NotificationRecycleViewAdapter;
 import com.example.progettoingsw2022_2.Adapter.SwipeToDeleteCallback;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
-import com.example.progettoingsw2022_2.Models.AddettoCucina;
 import com.example.progettoingsw2022_2.Models.Avviso;
 import com.example.progettoingsw2022_2.Models.Lavoratore;
 import com.example.progettoingsw2022_2.Models.Ristorante;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AddettoCucinaSingleton;
-import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
 import com.example.progettoingsw2022_2.SingletonModels.SupervisoreSingleton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -121,7 +116,7 @@ public class NotificationActivity extends AppCompatActivity implements VolleyCal
 
 
     @Override
-    public void onSuccess(String result) {
+    public void onResponse(String result) {
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<Avviso>>(){}.getType();
         List<Avviso> newAvvisi = new Gson().fromJson(result, listType);

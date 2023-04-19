@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sfondo_2"
+    android:orientation="vertical"
     tools:context=".Activities.PlateManagerActivity">
 
     <LinearLayout
         android:id="@+id/linearLayoutMenuTop"
         android:layout_width="match_parent"
-        android:layout_height="126dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.355"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.062">
+        android:layout_height="126dp">
 
         <ImageView
             android:id="@+id/logoBiagioTestMenu"
@@ -33,34 +28,38 @@
         android:id="@+id/createMenuButton"
         android:layout_width="203dp"
         android:layout_height="47dp"
-        android:enabled="false"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@drawable/button_color_scheme"
+        android:enabled="false"
         android:fontFamily="@font/roboto"
         android:text="@string/create_menu"
-        app:cornerRadius="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/addProductCard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutMenuTop" />
+        app:cornerRadius="40sp" />
+
+    <Button
+        android:id="@+id/deleteMenuButton"
+        android:layout_width="203dp"
+        android:layout_height="47dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@drawable/button_color_scheme"
+        android:drawableEnd="@drawable/ic_delete"
+        android:enabled="true"
+        android:fontFamily="@font/roboto"
+        android:text="@string/delete_menu"
+        app:cornerRadius="40sp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/addProductCard"
         android:layout_width="202dp"
         android:layout_height="164dp"
-        android:layout_row="0"
-        android:layout_rowWeight="1"
-        android:layout_column="0"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/marrone_terziario"
         app:cardCornerRadius="10dp"
         app:cardElevation="8dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.57">
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,21 +90,12 @@
         android:id="@+id/generateMenuCard"
         android:layout_width="202dp"
         android:layout_height="164dp"
-        android:layout_row="0"
-        android:layout_rowWeight="1"
-        android:layout_column="0"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill"
+        android:layout_gravity="center"
         android:backgroundTint="@color/marrone_terziario"
         android:clickable="true"
         app:cardCornerRadius="10dp"
         app:cardElevation="8dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85">
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,4 +122,4 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

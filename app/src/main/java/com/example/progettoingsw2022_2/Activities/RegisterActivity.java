@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
 
     }
     @Override
-    public void onSuccess(String result) {
+    public void onResponse(String result) {
 
         switch (result) {
             case "succefully_saved":
