@@ -66,6 +66,9 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
         recycleView = findViewById(R.id.activity_table_rw);
         if(CameriereSingleton.getInstance().getAccount() != null) {
             adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, CameriereSingleton.getInstance().getAccount());
+
+            //TODO: QUESTA RIGA DI CODICE FA CRASHARE L'APP
+
             welcomeText.setText(getString(R.string.welcomeOrderStatusWaiter));
         }
         if(SupervisoreSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, SupervisoreSingleton.getInstance().getAccount());
