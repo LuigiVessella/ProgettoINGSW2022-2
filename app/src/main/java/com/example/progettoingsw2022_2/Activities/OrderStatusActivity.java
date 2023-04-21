@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderStatusActivity extends AppCompatActivity implements VolleyCallback {
+    private TextView welcomeText = new TextView(this);
     private ArrayList<Ordine> ordini = new ArrayList<>();
     private OrderRecycleViewAdapter adapter;
     private RecyclerView recycleView;
@@ -62,7 +64,10 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
 
         bottomNavigationView = findViewById(R.id.bottomNavigationAddettoCucina);
         recycleView = findViewById(R.id.activity_table_rw);
-        if(CameriereSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, CameriereSingleton.getInstance().getAccount());
+        if(CameriereSingleton.getInstance().getAccount() != null) {
+            adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, CameriereSingleton.getInstance().getAccount());
+            welcomeText.setText(getString(R.string.welcomeOrderStatusWaiter));
+        }
         if(SupervisoreSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, SupervisoreSingleton.getInstance().getAccount());
         if(AddettoCucinaSingleton.getInstance().getAccount() != null)
         {

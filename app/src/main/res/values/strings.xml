@@ -168,6 +168,7 @@
     <string name="menuDialog">"How do you want the items to be saved in the menu? "</string>
     <string name="nuovo_avviso">Nuovo avviso</string>
     <string name="delete_menu">Delete menu</string>
+    <string name="welcomeOrderStatusWaiter">Here you can see your pending orders</string>
 
 
 </resources>

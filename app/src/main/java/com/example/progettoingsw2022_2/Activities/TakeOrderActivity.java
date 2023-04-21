@@ -1,5 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Helper.DialogController.onBackPressedDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
@@ -65,7 +67,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
         ArrayList<Integer> numeroTavoli = new ArrayList<>();
         for(int i  = 0; i < CameriereSingleton.getInstance().getAccount().getRistorante().getCoperti(); i++) {
-            numeroTavoli.add(i);
+            numeroTavoli.add(i+1);
         }
 
 
@@ -74,7 +76,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         numeroTavoloSpin.setAdapter(adapter);
 
         saveOrder.setOnClickListener(v -> save()); //Save and send the order
-        cancelOrder.setOnClickListener(v -> finishAfterTransition()); //Go back to waiter dashboard
+        cancelOrder.setOnClickListener(v -> backTransition(piattiOrdinati)); //Go back to waiter dashboard
         setMenu(); //Take menu items
 
         drawDishes(antipasti, menuList, R.string.antipasti);
@@ -220,6 +222,11 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
         finishAfterTransition();
 
+    }
+
+    public void backTransition(ArrayList<Piatto> p){
+        if(p.isEmpty()) finishAfterTransition();
+        else onBackPressedDialog(this, R.string.backWithoutSave);
     }
 
     public void drawDishes(ArrayList<Piatto> dishType, LinearLayout listaMenu, int stringa){
