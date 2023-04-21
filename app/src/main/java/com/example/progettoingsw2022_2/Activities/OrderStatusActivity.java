@@ -38,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderStatusActivity extends AppCompatActivity implements VolleyCallback {
-    private TextView welcomeText = new TextView(this);
+    private TextView welcomeText;
     private ArrayList<Ordine> ordini = new ArrayList<>();
     private OrderRecycleViewAdapter adapter;
     private RecyclerView recycleView;
@@ -52,7 +52,7 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        setContentView(R.layout.activity_table_status);
+        setContentView(R.layout.activity_order_status);
 
         if(AddettoCucinaSingleton.getInstance().getAccount() != null) getRistoranteAddettoCucina();
         else inizializzaComponenti();
@@ -64,13 +64,13 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
 
         bottomNavigationView = findViewById(R.id.bottomNavigationAddettoCucina);
         recycleView = findViewById(R.id.activity_table_rw);
+        welcomeText = findViewById(R.id.welcomeOrderStatusText);
+
         if(CameriereSingleton.getInstance().getAccount() != null) {
             adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, CameriereSingleton.getInstance().getAccount());
-
-            //TODO: QUESTA RIGA DI CODICE FA CRASHARE L'APP
-
             welcomeText.setText(getString(R.string.welcomeOrderStatusWaiter));
         }
+
         if(SupervisoreSingleton.getInstance().getAccount() != null) adapter = new OrderRecycleViewAdapter(OrderStatusActivity.this, ordini, SupervisoreSingleton.getInstance().getAccount());
         if(AddettoCucinaSingleton.getInstance().getAccount() != null)
         {
