@@ -189,8 +189,8 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
         System.out.println(jsonOrdine);
         JSONObject jsonObject = new JSONObject();
-        String url = "http://192.168.1.4:8080/ordini/addNew/" + CameriereSingleton.getInstance().getAccount().getCodiceFiscale();
-        //String url = "http://20.86.153.84:8080/ordini/addNew/" + CameriereSingleton.getInstance().getAccount().getCodiceFiscale();
+        //String url = "http://192.168.1.4:8080/ordini/addNew/" + CameriereSingleton.getInstance().getAccount().getCodiceFiscale();
+        String url = "http://20.86.153.84:8080/ordini/addNew/" + CameriereSingleton.getInstance().getAccount().getCodiceFiscale();
 
 
         try{

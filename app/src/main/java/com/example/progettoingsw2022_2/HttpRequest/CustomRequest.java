@@ -5,15 +5,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.progettoingsw2022_2.NetworkManager.VolleySingleton;
-import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +32,7 @@ public class CustomRequest {
     public void sendGetRequest() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
                     Log.i("VOLLEY", response);
-                    volleyCallback.onSuccess(response);
+                    volleyCallback.onResponse(response);
                 },
                 error -> {
                     Log.e("VOLLEY", error.toString());
@@ -72,7 +65,7 @@ public class CustomRequest {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
                     Log.i("VOLLEY", response);
-                    volleyCallback.onSuccess(response);
+                    volleyCallback.onResponse(response);
                 },
                 error -> {
                     Log.e("VOLLEY", error.toString());
@@ -102,7 +95,7 @@ public class CustomRequest {
         StringRequest stringRequest = new StringRequest(Request.Method.PATCH, url,
                 response -> {
                     Log.i("VOLLEY", response);
-                    volleyCallback.onSuccess(response);
+                    volleyCallback.onResponse(response);
                 },
                 error -> Log.e("VOLLEY", error.toString())) {
             @Override
@@ -121,4 +114,36 @@ public class CustomRequest {
 
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
+
+
+
+    public void sendDeleteRequest() {
+        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, url,
+                response -> {
+                    Log.i("VOLLEY", response);
+                    volleyCallback.onResponse(response);
+                },
+                error -> {
+                    Log.e("VOLLEY", error.toString());
+                    Toast.makeText(context, "Errore di connettività, uscire",Toast.LENGTH_LONG).show();
+
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                if(url.contains("openfoodfacts"))params.put("Content-Type", "application/json");
+                else params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+
+            }
+        };
+
+        VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
+
+    }
+
 }
