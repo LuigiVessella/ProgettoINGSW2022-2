@@ -148,7 +148,6 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         orderCount.setText("0");
         orderCount.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
-        //TODO: Dovrei mettere il counter a 0 nel caso in cui tieni premuto per resettare ma voglio prima capire sta concat cosa fa (perchè se si lavora a stringhe.. mhm
 
         dish.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

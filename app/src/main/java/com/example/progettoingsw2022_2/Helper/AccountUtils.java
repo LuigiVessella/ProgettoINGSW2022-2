@@ -48,7 +48,7 @@ public class AccountUtils {
         else return "OK";
     }
 
-    public static String checkPIVA(Context context,String pIva){
+    public static String checkPIVA(Context context, String pIva){
         if (pIva.length() == 0) return context.getString(R.string.fieldRequired);
         else if (!pIva.matches("^\\d{11}$")) return context.getString(R.string.fieldIncorrect);
         else return "OK";

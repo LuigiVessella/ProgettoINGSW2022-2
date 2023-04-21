@@ -28,7 +28,7 @@
     <string name="contentDescriptionMainLogo" translatable="false">logo</string>
     <string name="signupQuestion">Not signed?</string>
     <string name="registerBtn">register</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="nameRequired">Name*</string>
     <string name="PasswordRequired" translatable="false">Password*</string>

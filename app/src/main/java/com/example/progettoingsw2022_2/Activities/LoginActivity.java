@@ -185,7 +185,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             AddettoCucina addettoCucina = gson.fromJson(result, new TypeToken<AddettoCucina>(){}.getType());
             AddettoCucinaSingleton.getInstance().setAccount(addettoCucina);
             String toastText = getString(R.string.welcome) + " " + AddettoCucinaSingleton.getInstance().getAccount().getNome();
-            //TODO: inserire dashboard
+
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
 
             if(AddettoCucinaSingleton.getInstance().getAccount().getHashedPassword().equals(hashedPassword)) {

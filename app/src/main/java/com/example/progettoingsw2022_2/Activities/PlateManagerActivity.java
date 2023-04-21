@@ -209,7 +209,6 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         });
         generateMenuCard.setOnClickListener(view -> {
             int scelta_ordinamento = menuDialog(this, R.string.menuDialog);
-            //TODO: Gestire la funzione che ti fa l'ordinamento (con -1 return di default nel caso in cui esci dal dialog senza cliccare da nessuna parte)
             createMenu();
         });
         addProductCard.setOnClickListener(view -> addPlateDialog.show());

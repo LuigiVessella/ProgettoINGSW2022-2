@@ -84,7 +84,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
         visualizzaDipendenti();
     }
 
-    //TODO: cambiare con "visualizzaPersonale" quando implementati gli altri
+
     @SuppressLint("SetTextI18n")
     public void visualizzaDipendenti() {
         System.out.println("Sono in visualizza camerieri");

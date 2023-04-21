@@ -110,7 +110,7 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
                     EmailValidator validator = EmailValidator.getInstance();
                     if(newField.getText() == null || !validator.isValid(newField.getText().toString())) { newField.setError(getString(R.string.emailError)); }
                     else{
-                        //TODO:aggiornare email dell'account
+
                         Log.i("ProfileActivity/newEmail","SIUM");
                         sendNewEmailRequest(newField.getText().toString());
                         dialog.dismiss();
@@ -156,7 +156,7 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
                     else if (!newField.getText().toString().matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[.,_?!#])[a-zA-Z0-9.,_?!#]+$")) {
                         newField.setError(getString(R.string.passwordSimple));
                     } else {
-                        //TODO: aggiornare password dell'account
+
                         sendNewPasswordRequest(newField.getText().toString());
                         Log.i("ProfileActivity/newPassword", "SIUM");
                         dialog.dismiss();
