@@ -3,6 +3,7 @@ package com.example.progettoingsw2022_2.Activities;
 import static com.example.progettoingsw2022_2.Helper.DialogController.balloonBuilder;
 import static com.example.progettoingsw2022_2.Helper.DialogController.onBackPressedDialog;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -47,6 +48,7 @@ public class SaveWorker extends AppCompatActivity implements VolleyCallback {
         setContentView(R.layout.activity_save_worker);
         restNumber =  getIntent().getIntExtra("ristorante", restNumber);
         ristorante = AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         inizializeComponent();
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }

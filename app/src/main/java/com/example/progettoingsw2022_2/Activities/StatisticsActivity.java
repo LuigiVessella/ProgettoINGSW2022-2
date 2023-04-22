@@ -1,6 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
 import android.app.DatePickerDialog;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Spinner;
@@ -35,6 +36,7 @@ public class StatisticsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_statistics);
         DatePickerDialog datePickerDialog = new DatePickerDialog(this);
         datePickerDialog.show();

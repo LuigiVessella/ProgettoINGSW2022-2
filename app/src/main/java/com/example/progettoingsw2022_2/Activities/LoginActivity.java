@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -55,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_login);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         inizializzaComponenti();
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }

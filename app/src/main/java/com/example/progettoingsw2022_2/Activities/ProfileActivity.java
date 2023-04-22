@@ -3,6 +3,7 @@ package com.example.progettoingsw2022_2.Activities;
 import static com.example.progettoingsw2022_2.Helper.DialogController.balloonBuilder;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -50,6 +51,7 @@ public class ProfileActivity extends AppCompatActivity implements VolleyCallback
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_profile);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         if (AdminSingleton.getInstance().getAccount() != null) dipendente = AdminSingleton.getInstance().getAccount();
         if (SupervisoreSingleton.getInstance().getAccount() != null) dipendente = SupervisoreSingleton.getInstance().getAccount();
 

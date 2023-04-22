@@ -114,4 +114,15 @@
     <string name="notification">Notificaciones</string>
     <string name="balloonSupDashboard_1">Bienvenido a su Tablero,</string>
     <string name="balloonSupDashboard_2">¡Aquí encontrarás todo lo que necesitas para monitorear lo que sucede en el restaurante!</string>
+    <string name="alfabetico">ALFABÉTICO</string>
+    <string name="backWithoutSave">¿No se guardarán los cambios? ¿Estás seguro/a de que quieres salir?</string>
+    <string name="contorni">Guarniciones</string>
+    <string name="per_tipo">POR TIPO</string>
+    <string name="delete_menu">Borrar menú</string>
+    <string name="dialogExit">¿Estás seguro/a de que quieres salir?</string>
+    <string name="duplicate_restaurant">¡Atención! ¡El restaurante que intentas agregar ya está en tu lista de restaurantes!</string>
+    <string name="menuDialog">¿En qué orden deseas guardar los elementos en el menú?</string>
+    <string name="nuovo_avviso">Nueva notificación</string>
+    <string name="telNumberNotValid">¡Número de teléfono no válido!</string>
+    <string name="welcomeOrderStatusWaiter">Aquí puedes ver tus órdenes en proceso</string>
 </resources>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -51,6 +52,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_new_order);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         inizializeComponent();
     }
@@ -61,6 +63,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         piattiOrdinati = new ArrayList<>();
         Button cancelOrder = findViewById(R.id.cancelOrder);
         saveOrder = findViewById(R.id.saveOrder);
+        saveOrder.setEnabled(false);
         LinearLayout menuList = findViewById(R.id.menuList);
         loading = findViewById(R.id.loadingGIF);
         numeroTavoloSpin = findViewById(R.id.tableNumberSpinner);
@@ -90,7 +93,6 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
     //Take menu items and initialize dish's lists
     private void setMenu(){
-        Log.i("Test SetMenu","Ci entra");
         if (CameriereSingleton.getInstance().getAccount().getRistorante().getMenu() == null){
             Log.e("Check Menu","Il menu del ristorante del cameriere è null");
             finishAfterTransition();
@@ -154,6 +156,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
             public boolean onLongClick(View v) {
                 orderCount.setText(String.valueOf(0));
                 piattiOrdinati.removeAll(Collections.singleton(p));
+                if(piattiOrdinati.isEmpty()) saveOrder.setEnabled(false);
                 return true;
             }
         });
@@ -162,6 +165,7 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
             int count = Integer.parseInt(orderCount.getText().toString());
             orderCount.setText(String.valueOf(count+1));
             piattiOrdinati.add(p);
+            if(!saveOrder.isEnabled()) saveOrder.setEnabled(true);
         });
 
         LinearLayout dishLayout = new LinearLayout(this);

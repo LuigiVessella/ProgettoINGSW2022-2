@@ -141,7 +141,7 @@
     <string name="passwordHint2">*Password must contain at least 1 uppercase character, 1 letter and 1 special character</string>
     <string name="plateManagerBalloon">Add all the dishes into the menu, or see it in PDF</string>
     <string name="menuAval">MENU AVAILABLE</string>
-    <string name="fillAllFieldsWarning">Feel all the fields!</string>
+    <string name="fillAllFieldsWarning">Fill out all fields!</string>
     <string name="menuInDownload">Menu available in Download</string>
     <string name="NetworkError">Network Error</string>
     <string name="fieldIncorrect">Incorrect field!</string>
@@ -166,7 +166,7 @@
     <string name="alfabetico">ALPHABETICALLY</string>
     <string name="per_tipo">BY TYPE</string>
     <string name="menuDialog">"How do you want the items to be saved in the menu? "</string>
-    <string name="nuovo_avviso">Nuovo avviso</string>
+    <string name="nuovo_avviso">New message</string>
     <string name="delete_menu">Delete menu</string>
     <string name="welcomeOrderStatusWaiter">Here you can see your pending orders</string>
 

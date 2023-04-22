@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -42,6 +43,7 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_waiter_dashboard);
         TextView welcomeTextView = findViewById(R.id.waiterName);
         welcomeTextView.append(CameriereSingleton.getInstance().getAccount().getNome()+" "+ CameriereSingleton.getInstance().getAccount().getCognome());

@@ -123,7 +123,7 @@
     <string name="per_tipo">PER TIPO</string>
     <string name="menuDialog">In che ordine vuoi che vengano salvati gli elementi nel menu?</string>
     <string name="nuovo_avviso">Nuovo avviso</string>
-    <string name="delete_menu">Delete menu</string>
+    <string name="delete_menu">Cancella menu</string>
     <string name="welcomeOrderStatusWaiter">Qui puoi vedere i tuoi ordini in lavorazione</string>
 
 </resources>

@@ -7,6 +7,7 @@ import static com.example.progettoingsw2022_2.Helper.DialogController.balloonBui
 import static com.example.progettoingsw2022_2.Helper.DialogController.menuDialog;
 
 import android.app.Dialog;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -90,6 +91,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_plate_manager);
         restNumber = getIntent().getIntExtra("ristorante" ,0);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         inizializzaComponenti();
 
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);

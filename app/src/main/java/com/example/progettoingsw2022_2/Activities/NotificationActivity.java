@@ -1,6 +1,7 @@
 package com.example.progettoingsw2022_2.Activities;
 
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -51,6 +52,7 @@ public class NotificationActivity extends AppCompatActivity implements VolleyCal
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_notifications);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         coordinatorLayout = findViewById(R.id.coordinator_layout_not);
 

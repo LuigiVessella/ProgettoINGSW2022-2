@@ -5,6 +5,7 @@ import static com.example.progettoingsw2022_2.Helper.DialogController.changeActi
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -54,6 +55,7 @@ public class SupervisorDashActivity extends AppCompatActivity implements VolleyC
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_supervisor_dashboard);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         supervisore = SupervisoreSingleton.getInstance().getAccount();
         inizializzaComponenti();
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);

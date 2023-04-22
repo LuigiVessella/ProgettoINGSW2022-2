@@ -3,6 +3,7 @@ package com.example.progettoingsw2022_2.Activities;
 import static com.example.progettoingsw2022_2.Helper.DialogController.changeActivityDialog;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -53,6 +54,7 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_order_status);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         if(AddettoCucinaSingleton.getInstance().getAccount() != null) getRistoranteAddettoCucina();
         else inizializzaComponenti();

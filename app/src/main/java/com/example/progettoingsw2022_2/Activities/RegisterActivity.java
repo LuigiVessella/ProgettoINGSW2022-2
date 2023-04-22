@@ -3,6 +3,7 @@ package com.example.progettoingsw2022_2.Activities;
 import static com.example.progettoingsw2022_2.Helper.DialogController.balloonBuilder;
 import static com.example.progettoingsw2022_2.Helper.DialogController.onBackPressedDialog;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -43,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         inizializzaComponenti();
         new Handler().postDelayed(() -> myBalloon.showAlignRight(logo), 500);
     }

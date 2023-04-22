@@ -5,6 +5,7 @@ import static com.example.progettoingsw2022_2.Helper.DialogController.onBackPres
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.widget.Button;
@@ -31,6 +32,7 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_save_restaurant);
         admin = AdminSingleton.getInstance().getAccount();
         inizializzaComponenti();
