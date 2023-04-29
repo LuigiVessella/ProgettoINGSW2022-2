@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -144,7 +143,7 @@ public class RestaurantDashActivity extends AppCompatActivity implements VolleyC
 
 
     private void switchToAddCameriere(){
-        Intent newAct = new Intent(RestaurantDashActivity.this, SaveWorker.class);
+        Intent newAct = new Intent(RestaurantDashActivity.this, SaveWorkerActivity.class);
         newAct.putExtra("ristorante", restNumber);
         startActivity(newAct);
     }

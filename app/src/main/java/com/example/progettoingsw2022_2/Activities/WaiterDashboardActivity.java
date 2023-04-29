@@ -27,7 +27,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class WaiterDashboard extends AppCompatActivity implements VolleyCallback {
+public class WaiterDashboardActivity extends AppCompatActivity implements VolleyCallback {
 
     Handler handler = new Handler();
     Runnable runnable;
@@ -146,8 +146,8 @@ public class WaiterDashboard extends AppCompatActivity implements VolleyCallback
         }
 
 
-        orderStatusButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, OrderStatusActivity.class)));
+        orderStatusButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboardActivity.this, OrderStatusActivity.class)));
 
-        takeOrderButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboard.this, TakeOrderActivity.class)));
+        takeOrderButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboardActivity.this, TakeOrderActivity.class)));
     }
 }

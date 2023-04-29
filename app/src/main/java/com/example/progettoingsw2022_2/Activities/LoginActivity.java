@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
     }
 
     private void switchToWaiterDashboardActivity(){
-        Intent newAct = new Intent(LoginActivity.this, WaiterDashboard.class);
+        Intent newAct = new Intent(LoginActivity.this, WaiterDashboardActivity.class);
         startActivity(newAct);
         finish();
     }

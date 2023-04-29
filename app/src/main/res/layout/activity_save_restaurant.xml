@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sfondo_1_con_patina"
-    tools:context=".Activities.SaveRestaurant">
+    tools:context=".Activities.SaveRestaurantActivity">
 
 
     <EditText

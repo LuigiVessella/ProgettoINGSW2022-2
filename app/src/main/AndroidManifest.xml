@@ -31,19 +31,19 @@
             android:name=".Activities.PlateManagerActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.WaiterDashboard"
+            android:name=".Activities.WaiterDashboardActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.OrderStatusActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.SaveWorker"
+            android:name=".Activities.SaveWorkerActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.RestaurantDashActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.SaveRestaurant"
+            android:name=".Activities.SaveRestaurantActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.AdminDashboardActivity"

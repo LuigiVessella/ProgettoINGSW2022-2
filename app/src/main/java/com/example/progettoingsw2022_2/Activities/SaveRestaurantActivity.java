@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Helper.AccountUtils.getRestaurantFieldsErrors;
 import static com.example.progettoingsw2022_2.Helper.DialogController.onBackPressedDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,8 @@ import android.text.Editable;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,10 +26,11 @@ import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class SaveRestaurant extends AppCompatActivity implements VolleyCallback {
+public class SaveRestaurantActivity extends AppCompatActivity implements VolleyCallback {
 
     private EditText nomeText, copertiText, locazioneText, numeroTelefonoText;
     private Admin admin;
+    public ArrayList<Integer> error_codes = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,60 +49,14 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
         numeroTelefonoText = findViewById(R.id.telefonoRistoranteText);
         Button saveButton = findViewById(R.id.saveRestaurantButton);
 
-        saveButton.setOnClickListener(view -> sendSaveRestaurantRequest(admin.getEmail(), nomeText.getText(), copertiText.getText(), locazioneText.getText(), numeroTelefonoText.getText()));
+        saveButton.setOnClickListener(view -> saveRestaurant(admin.getEmail(), nomeText.getText(), copertiText.getText(), locazioneText.getText(), numeroTelefonoText.getText()));
     }
 
-    private void sendSaveRestaurantRequest(String email, Editable nome, Editable coperti, Editable locazione, Editable numeroTelefono) {
-        boolean hasError = false;
-        if (nomeText.getText().length() == 1) {
-            nomeText.setError(getString(R.string.fieldTooShort));
-            hasError = true;
-        }
-        if (nomeText.getText().length() == 0) {
-            nomeText.setError(getString(R.string.fieldRequired));
-            hasError = true;
-        }
-        if (copertiText.getText().length() == 0) {
-            copertiText.setError(getString(R.string.fieldRequired));
-            hasError = true;
-        }else {
-            try {
-                int numCoperti = Integer.parseInt(copertiText.getText().toString());
-                if (numCoperti > 1000 || numCoperti < 5) {
-                    copertiText.setError(getString(R.string.chooseANumberInRange));
-                    hasError = true;
-                }
-            } catch (NumberFormatException ex) {
-                ex.printStackTrace();
-            }
-        }
-        if (locazioneText.getText().length() == 0) {
-            locazioneText.setError(getString(R.string.fieldRequired));
-            hasError = true;
-        }
-        else if (locazioneText.getText().length() < 5) {
-            locazioneText.setError(getString(R.string.fieldTooShort));
-            hasError = true;
-        }
-        if (numeroTelefonoText.getText().length() == 0) {
-            numeroTelefonoText.setError(getString(R.string.fieldRequired));
-            hasError = true;
-        }
-        else if (numeroTelefonoText.getText().length() != 10){
-            numeroTelefonoText.setError(getString(R.string.telNumberNotValid));
-            hasError = true;
-        }
+    private void saveRestaurant(String email, Editable nome, Editable coperti, Editable locazione, Editable numeroTelefono) {
+        error_codes = getRestaurantFieldsErrors(nomeText.getText().toString(), copertiText.getText().toString(), locazioneText.getText().toString(), numeroTelefonoText.getText().toString());
+        if(error_codes.isEmpty()) {
 
-        List<Ristorante> miei_ristoranti = admin.getRistoranti();
-        for (Ristorante ristoranti : miei_ristoranti) {
-            if(ristoranti.getNome().equals(nome.toString()) && ristoranti.getLocazione().equals(locazione.toString())){
-                Toast.makeText(this, R.string.duplicate_restaurant, Toast.LENGTH_SHORT).show();
-                hasError = true;
-                break;
-            }
-        }
-
-        if(!hasError) {
+            //TODO: QUI CI ANDREBBE UNA ROBA DEL TIPO: ristorante.addRestaurant() e ci troviamo col pattern
 
             String url = "/ristorante/addNew";
             Map<String, String> params = new HashMap<>();
@@ -110,6 +68,7 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
             CustomRequest newPostRequest = new CustomRequest(url, params, this, this);
             newPostRequest.sendPostRequest();
         }
+        else errorHandler(error_codes);
     }
 
     @Override
@@ -134,6 +93,19 @@ public class SaveRestaurant extends AppCompatActivity implements VolleyCallback 
         finish();
 
         //new Handler().postDelayed(this::finishAfterTransition,800);
+    }
+
+    public void errorHandler(List<Integer> errors){
+        for (int codice :errors) {
+            if(codice == 1) nomeText.setError(getString(R.string.fieldTooShort));
+            if(codice == 2) nomeText.setError(getString(R.string.fieldRequired));
+            if(codice == 3) copertiText.setError(getString(R.string.fieldRequired));
+            if(codice == 4) copertiText.setError(getString(R.string.chooseANumberInRange));
+            if(codice == 5) locazioneText.setError(getString(R.string.fieldRequired));
+            if(codice == 6) locazioneText.setError(getString(R.string.fieldTooShort));
+            if(codice == 7) numeroTelefonoText.setError(getString(R.string.fieldRequired));
+            if(codice == 8) numeroTelefonoText.setError(getString(R.string.telNumberNotValid));
+        }
     }
 
     @Override

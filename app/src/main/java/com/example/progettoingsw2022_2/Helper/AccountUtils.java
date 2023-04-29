@@ -1,10 +1,14 @@
 package com.example.progettoingsw2022_2.Helper;
 
 import android.content.Context;
+import android.text.Editable;
 
 import com.example.progettoingsw2022_2.R;
 
 import org.apache.commons.validator.routines.EmailValidator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccountUtils {
 
@@ -54,5 +58,28 @@ public class AccountUtils {
         else return "OK";
     }
 
+        public static ArrayList<Integer> getRestaurantFieldsErrors(String nome, String coperti, String locazione, String numeroTelefono){
+            ArrayList<Integer> codici_errore = new ArrayList<>();
+            if (nome.length() == 1) codici_errore.add(1);
+            if (nome.length() == 0) codici_errore.add(2);
+            if (coperti.length() == 0) {
+                codici_errore.add(3);
+            }else {
+                try {
+                    int numCoperti = Integer.parseInt(coperti);
+                    if (numCoperti > 1000 || numCoperti < 5) codici_errore.add(4);
+                }
+                 catch (NumberFormatException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (locazione.length() == 0) codici_errore.add(5);
+            else if (locazione.length() < 5) codici_errore.add(6);
 
+            if (numeroTelefono.length() == 0) codici_errore.add(7);
+            else if (numeroTelefono.length() != 10) codici_errore.add(8);
+
+            return codici_errore;
+        }
 }
+

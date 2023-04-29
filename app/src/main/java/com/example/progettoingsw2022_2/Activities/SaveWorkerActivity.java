@@ -33,7 +33,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SaveWorker extends AppCompatActivity implements VolleyCallback {
+public class SaveWorkerActivity extends AppCompatActivity implements VolleyCallback {
 
     private EditText nomeText, cognomeText, emailText, codiceFiscaleText;
     private Ristorante ristorante;

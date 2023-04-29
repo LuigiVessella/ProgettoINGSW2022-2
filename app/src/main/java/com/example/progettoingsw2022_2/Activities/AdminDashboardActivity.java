@@ -68,8 +68,8 @@ public class AdminDashboardActivity extends AppCompatActivity {
         myBalloon = balloonBuilder(this, R.string.balloonAdminDashboard);
 
         addRestaurantCard.setOnClickListener(view -> {
-            Intent goProfile = new Intent(AdminDashboardActivity.this, SaveRestaurant.class);
-            startActivity(goProfile);
+            Intent goSaveRestaurant = new Intent(AdminDashboardActivity.this, SaveRestaurantActivity.class);
+            startActivity(goSaveRestaurant);
         });
 
         logOutCard.setOnClickListener(view -> changeActivityDialog(this, LoginActivity.class, R.string.dialogExit));
