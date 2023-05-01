@@ -53,7 +53,11 @@ public class SaveRestaurantActivity extends AppCompatActivity implements VolleyC
     }
 
     private void saveRestaurant(String email, Editable nome, Editable coperti, Editable locazione, Editable numeroTelefono) {
-        error_codes = getRestaurantFieldsErrors(nomeText.getText().toString(), copertiText.getText().toString(), locazioneText.getText().toString(), numeroTelefonoText.getText().toString());
+        String nomeRes = nomeText.getText().toString();
+        String copertiRes = copertiText.getText().toString();
+        String locazioneRes = locazioneText.getText().toString();
+        String tel = numeroTelefonoText.getText().toString();
+        error_codes = getRestaurantFieldsErrors(nomeRes, copertiRes, locazioneRes, tel);
         if(error_codes.isEmpty()) {
 
             //TODO: QUI CI ANDREBBE UNA ROBA DEL TIPO: ristorante.addRestaurant() e ci troviamo col pattern
@@ -71,11 +75,25 @@ public class SaveRestaurantActivity extends AppCompatActivity implements VolleyC
         else errorHandler(error_codes);
     }
 
+    public void errorHandler(List<Integer> errors){
+        for (int codice :errors) {
+            if(codice == 1) nomeText.setError(getString(R.string.fieldTooShort));
+            if(codice == 2) nomeText.setError(getString(R.string.fieldRequired));
+            if(codice == 3) copertiText.setError(getString(R.string.fieldRequired));
+            if(codice == 4) copertiText.setError(getString(R.string.chooseANumberInRange));
+            if(codice == 5) locazioneText.setError(getString(R.string.fieldRequired));
+            if(codice == 6) locazioneText.setError(getString(R.string.fieldTooShort));
+            if(codice == 7) numeroTelefonoText.setError(getString(R.string.fieldRequired));
+            if(codice == 8) numeroTelefonoText.setError(getString(R.string.telNumberNotValid));
+            if(codice == 9) copertiText.setError(getString(R.string.chooseANumberInRange));
+        }
+        errors.clear();
+    }
+
     @Override
     public void onResponse(String result) {
         updateRestaurantList(result);
     }
-
 
     private void updateRestaurantList(String volleyResult) {
 
@@ -93,19 +111,6 @@ public class SaveRestaurantActivity extends AppCompatActivity implements VolleyC
         finish();
 
         //new Handler().postDelayed(this::finishAfterTransition,800);
-    }
-
-    public void errorHandler(List<Integer> errors){
-        for (int codice :errors) {
-            if(codice == 1) nomeText.setError(getString(R.string.fieldTooShort));
-            if(codice == 2) nomeText.setError(getString(R.string.fieldRequired));
-            if(codice == 3) copertiText.setError(getString(R.string.fieldRequired));
-            if(codice == 4) copertiText.setError(getString(R.string.chooseANumberInRange));
-            if(codice == 5) locazioneText.setError(getString(R.string.fieldRequired));
-            if(codice == 6) locazioneText.setError(getString(R.string.fieldTooShort));
-            if(codice == 7) numeroTelefonoText.setError(getString(R.string.fieldRequired));
-            if(codice == 8) numeroTelefonoText.setError(getString(R.string.telNumberNotValid));
-        }
     }
 
     @Override

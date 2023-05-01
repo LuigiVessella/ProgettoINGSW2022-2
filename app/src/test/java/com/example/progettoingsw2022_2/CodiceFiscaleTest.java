@@ -1,33 +1,60 @@
 package com.example.progettoingsw2022_2;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import android.content.Context;
-
-import com.example.progettoingsw2022_2.Helper.AccountUtils;
+import static com.example.progettoingsw2022_2.Helper.AccountUtils.isCodiceFiscaleValido;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+
 
 public class CodiceFiscaleTest {
-
-    @Mock
-    Context mockContext;
-
-
-    public void codiceFiscaleIsCorrect(){
-        assertTrue(AccountUtils.isCodiceFiscaleValidoSimple("VSSLGU01D05G596V"));
-
-        assertFalse(AccountUtils.isCodiceFiscaleValidoSimple("AB45"));
+    @Test
+    public void testCodiceFiscaleValido() {
+        String cf = "SPRBGI99P20F839N"; //BIAGIO SPERANZA 20/09/1999 - NAPOLI
+        assertTrue(isCodiceFiscaleValido(cf));
     }
 
     @Test
-    public void checkIfPasswordCorrect(){
-        MockitoAnnotations.initMocks(this);
-        assertEquals( "OK", AccountUtils.checkPassword(mockContext, "Pas"));
+    public void testCodiceFiscaleValidoConSpazio() {
+        String cf = "SPRBGI9 9P20F8 39N"; //CODICE FISCALE CORRETTO MA CON AGGIUNTA DI SPAZI
+        assertFalse(isCodiceFiscaleValido(cf));
     }
 
+    @Test
+    public void testCodiceFiscaleNonValido() {
+        String cf = "BPRBGI99P20F839N"; //VARIAZIONE DI UN CARATTERE DEL CODICE FISCALE CORRETTO
+        assertFalse(isCodiceFiscaleValido(cf));
+    }
+
+    @Test
+    public void testCodiceFiscaleInventato() {
+        String cf = "BBHFTI09V87H011N"; //CODICE FISCALE COMPLETAMENTE INVENTATO
+        assertFalse(isCodiceFiscaleValido(cf));
+    }
+
+    @Test
+    public void testCodiceFiscaleCaratteriNonValidi() {
+        String cf = "$PRBGI.9P20F839%"; //CODICE FISCALE CON CARATTERI NON VALIDI
+        assertFalse(isCodiceFiscaleValido(cf));
+    }
+
+    @Test
+    public void testCodiceFiscaleConCaratteriEscape() {
+        String cf = "SPR\u0009BGI99P20F839N"; //CODICE FISCALE CON UN CARATTERE DI ESCAPE
+        assertFalse(isCodiceFiscaleValido(cf));
+    }
+
+    @Test
+    public void testCodiceFiscaleLunghezzaNonCorretta() {
+        assertAll(
+                () -> assertFalse(isCodiceFiscaleValido("SPRBGI99P20F839N4VB")), // CODICE FISCALE TROPPO LUNGO
+                () -> assertFalse(isCodiceFiscaleValido("SP")) // CODICE FISCALE TROPPO CORTO
+        );
+    }
+
+    @Test
+    public void testCodiceFiscaleNull() {
+        String cf = null; //CODICE FISCALE NULL
+        assertFalse(isCodiceFiscaleValido(cf));
+    }
 }
