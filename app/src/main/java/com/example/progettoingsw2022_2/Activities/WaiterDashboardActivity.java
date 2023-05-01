@@ -94,6 +94,9 @@ public class WaiterDashboardActivity extends AppCompatActivity implements Volley
             }
         });
 
+        Intent gotoTakeOrder = new Intent(WaiterDashboardActivity.this, TakeOrderActivity.class);
+        takeOrderButton.setOnClickListener(view -> startActivity(gotoTakeOrder));
+
     }
 
     private void setRistoranteCameriere(){
@@ -122,7 +125,6 @@ public class WaiterDashboardActivity extends AppCompatActivity implements Volley
 
     }
 
-
     @Override
     public void onResponse(String result) {
 
@@ -147,6 +149,6 @@ public class WaiterDashboardActivity extends AppCompatActivity implements Volley
 
 
         orderStatusButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboardActivity.this, OrderStatusActivity.class)));
-        takeOrderButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboardActivity.this, TakeOrderActivity.class)));
+
     }
 }

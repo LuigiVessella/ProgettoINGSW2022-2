@@ -60,8 +60,6 @@ public class SaveRestaurantActivity extends AppCompatActivity implements VolleyC
         error_codes = getRestaurantFieldsErrors(nomeRes, copertiRes, locazioneRes, tel);
         if(error_codes.isEmpty()) {
 
-            //TODO: QUI CI ANDREBBE UNA ROBA DEL TIPO: ristorante.addRestaurant() e ci troviamo col pattern
-
             String url = "/ristorante/addNew";
             Map<String, String> params = new HashMap<>();
             params.put("email", email);
