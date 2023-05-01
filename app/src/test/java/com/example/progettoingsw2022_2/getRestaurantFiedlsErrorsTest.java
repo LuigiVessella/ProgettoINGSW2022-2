@@ -21,11 +21,16 @@ public class getRestaurantFiedlsErrorsTest {
     }
 
     @Test
+    public void testgetRestaurantFieldsError(){
+        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "10", "Via Roma 1", "0123456789");
+        assertEquals(codici_errore, actualErrors); //Funziona poichè non ci sono codici di errore: l'ArrayList risulta vuoto
+    }
+
+    @Test
     public void testNomeCampoTroppoCorto() {
         codici_errore.add(1);
         ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("a", "10", "Via Roma 1", "0123456789");
         assertEquals(codici_errore, actualErrors);
-
     }
 
     @Test
@@ -33,7 +38,6 @@ public class getRestaurantFiedlsErrorsTest {
         codici_errore.add(2);
         ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("", "10", "Via Roma 1", "0123456789");
         assertEquals(codici_errore, actualErrors);
-
     }
 
     @Test
