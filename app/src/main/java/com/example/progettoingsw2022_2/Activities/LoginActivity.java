@@ -136,15 +136,15 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
     public void onResponse(String result) {
 
         String stringPass = "firstpass.1";
-
         String salt = "$2a$10$abcdefghijklmnopqrstuvw$";
         String hashedPassword = BCrypt.hashpw(stringPass,salt);
 
         if(result.equals("new_pass_saved")) {
             Toast.makeText(this, "Password aggiornata correttamente", Toast.LENGTH_SHORT).show();
-            finishAfterTransition();
+            finish();
             return;
         }
+
         Gson gson = new Gson();
 
         JsonParser parser = new JsonParser();
@@ -186,9 +186,6 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
             AddettoCucina addettoCucina = gson.fromJson(result, new TypeToken<AddettoCucina>(){}.getType());
             AddettoCucinaSingleton.getInstance().setAccount(addettoCucina);
-            String toastText = getString(R.string.welcome) + " " + AddettoCucinaSingleton.getInstance().getAccount().getNome();
-
-            Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
 
             if(AddettoCucinaSingleton.getInstance().getAccount().getHashedPassword().equals(hashedPassword)) {
                 System.out.println("sto qua\n");
@@ -202,8 +199,6 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         else {
             Supervisore supervisore = gson.fromJson(result, new TypeToken<Supervisore>(){}.getType());
             SupervisoreSingleton.getInstance().setAccount(supervisore);
-            String toastText = getString(R.string.welcome) + " " + SupervisoreSingleton.getInstance().getAccount().getNome();
-            Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
 
             if(SupervisoreSingleton.getInstance().getAccount().getHashedPassword().equals(hashedPassword)) {
                 changeFirstPassword(SupervisoreSingleton.getInstance().getAccount());

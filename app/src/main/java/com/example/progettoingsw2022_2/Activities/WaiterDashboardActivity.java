@@ -147,7 +147,6 @@ public class WaiterDashboardActivity extends AppCompatActivity implements Volley
 
 
         orderStatusButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboardActivity.this, OrderStatusActivity.class)));
-
         takeOrderButton.setOnClickListener(view -> startActivity(new Intent(WaiterDashboardActivity.this, TakeOrderActivity.class)));
     }
 }

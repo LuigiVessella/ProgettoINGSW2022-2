@@ -139,7 +139,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        changeActivityDialog(this, LoginActivity.class, R.string.dialogExit);
+        changeActivityDialog(AdminDashboardActivity.this, LoginActivity.class, R.string.dialogExit);
     }
 
 }
