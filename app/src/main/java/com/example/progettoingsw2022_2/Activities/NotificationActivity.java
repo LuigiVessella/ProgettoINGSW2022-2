@@ -115,8 +115,6 @@ public class NotificationActivity extends AppCompatActivity implements VolleyCal
         itemTouchhelper.attachToRecyclerView(recycleView);
     }
 
-
-
     @Override
     public void onResponse(String result) {
         Gson gson = new Gson();

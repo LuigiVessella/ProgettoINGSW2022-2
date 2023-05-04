@@ -70,7 +70,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
     private Button okButtonDialog, goProductButton, insertMenuButtonDialog;
 
     //EditText presenti nel layout:
-    private EditText itemMenuDescription, price, allergensEditText;
+    private EditText itemMenuDescription, price, allergensEditText, secondLanguageDescr;
     private Dialog addPlateDialog, addMenuDialog;
 
     //le stringhe usate per aggiungere un prodotto nel menu, quindi gli attributi:
@@ -119,6 +119,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         insertMenuButtonDialog = addMenuDialog.findViewById(R.id.btn_insert_menu);
         Button addMenuButt = findViewById(R.id.createMenuButton);
         itemMenuDescription = addPlateDialog.findViewById(R.id.descriptionItemMenu);
+        secondLanguageDescr = addPlateDialog.findViewById(R.id.descriptionSecondLanguage);
         autoCompleteTextView = addPlateDialog.findViewById(R.id.autoCompleteTextView);
         okButtonDialog = addPlateDialog.findViewById(R.id.btn_ok_dialog);
         cancelButtonDialog = addPlateDialog.findViewById(R.id.btn_cancel_dialog);
@@ -220,6 +221,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             //product_name e descrizione dipendono da openfood oppure dal contenuto personalizzato
             product_name = autoCompleteTextView.getText().toString();
             description = itemMenuDescription.getText().toString();
+            String descrSecond = secondLanguageDescr.getText().toString();
             prezzo = price.getText().toString();
 
             String tipoo = tipo.getSelectedItem().toString();
@@ -234,7 +236,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
             }
             else {
                 //quando premiamo ok prendiamo prima tutti i dati e poi mandiamo la richeista
-                sendAddPlateRequest(product_name, description, prezzo, allergens, ingredients_list, tipoo, tipAlimento);
+                sendAddPlateRequest(product_name, description, descrSecond, prezzo, allergens, ingredients_list, tipoo, tipAlimento);
                 addPlateDialog.dismiss();
             }
 
@@ -419,7 +421,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
 
     }
 
-    private void sendAddPlateRequest(String name, String description, String prezzo, String allergeni, String contiene, String tipoo, String tipoAlimento){
+    private void sendAddPlateRequest(String name, String description, String desc2, String prezzo, String allergeni, String contiene, String tipoo, String tipoAlimento){
         String url = "/piatto/addPiatto";
 
         Map<String, String> params = new HashMap<>();
@@ -428,6 +430,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         params.put("prezzo", prezzo);
         params.put("allergeni", allergeni);
         params.put("contiene", contiene);
+        params.put("descr_sec", desc2);
         params.put("codice_menu", AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getMenu().getId_menu().toString());
         params.put("tipo", tipoo);
         params.put("tipoPietanza", tipoAlimento);
