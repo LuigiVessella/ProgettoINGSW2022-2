@@ -139,17 +139,17 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
             cognomeText.setError(getString(R.string.fieldRequired));
             hasError = true;
         }
-        /*Check partita IVA
+        //Check partita IVA
         String errorPIVA = AccountUtils.checkPIVA(this,pIvaText.getText().toString());
         if (!errorPIVA.equals("OK")){
             pIvaText.setError(errorPIVA);
             hasError = true;
         }
         //Check codice fiscale
-        if (!AccountUtils.isCodiceFiscaleValidoSimple(codiceFiscaleText.getText().toString())) {
+        if (!AccountUtils.isCodiceFiscaleValido(codiceFiscaleText.getText().toString())) {
             codiceFiscaleText.setError(getString(R.string.CFinvalid));
             hasError = true;
-        } */
+        }
 
         //Check password
         Log.i("Register pass",passwordText.getText().toString());
