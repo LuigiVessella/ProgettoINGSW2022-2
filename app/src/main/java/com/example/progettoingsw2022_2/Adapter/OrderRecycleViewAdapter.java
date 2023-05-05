@@ -1,9 +1,7 @@
 package com.example.progettoingsw2022_2.Adapter;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.progettoingsw2022_2.Activities.TakeOrderActivity;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.Lavoratore;
@@ -29,7 +26,6 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
 
     private final Context context;
     private ArrayList<Ordine> ordini;
-
     private Lavoratore dipendenteLoggato;
 
     public OrderRecycleViewAdapter(Context context, ArrayList<Ordine> ordini, Lavoratore dipendente) {

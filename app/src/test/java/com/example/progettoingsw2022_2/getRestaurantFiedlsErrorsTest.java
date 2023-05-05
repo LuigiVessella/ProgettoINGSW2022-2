@@ -14,6 +14,8 @@ public class getRestaurantFiedlsErrorsTest {
 
     public ArrayList<Integer> codici_errore = new ArrayList<Integer>();
 
+
+    // L'ARRAYLIST DEVE ESSERE PULITO OGNI VOLTA CHE VIENE CONCLUSO UN CASO DI TEST
     @AfterEach
     public void clearArrayList(){
         codici_errore.clear();
