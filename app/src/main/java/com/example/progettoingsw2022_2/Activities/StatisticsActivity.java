@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -138,5 +139,26 @@ public class StatisticsActivity extends AppCompatActivity {
         //setting the location of legend outside the chart, default false if not set
         legend.setDrawInside(false);
 
+    }
+
+    public float media(int giorni, float incasso) {
+        float media = 0;
+        try {
+            if (giorni <= 0) {
+                throw new IllegalArgumentException("Il numero di giorni deve essere maggiore di 0.");
+            }
+            if (incasso <= 0) {
+                throw new IllegalArgumentException("Il prezzo deve essere maggiore di 0.");
+            }
+            media = incasso / giorni;
+            media = Math.round(media * 100) / 100f;
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(this, e.getMessage(),Toast.LENGTH_LONG).show();
+        } catch (ArithmeticException e) {
+            Toast.makeText(this, e.getMessage(),Toast.LENGTH_LONG).show();
+        } catch (NullPointerException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+        return media;
     }
 }

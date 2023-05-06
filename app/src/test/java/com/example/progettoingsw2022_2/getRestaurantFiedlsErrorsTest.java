@@ -15,6 +15,28 @@ public class getRestaurantFiedlsErrorsTest {
     public ArrayList<Integer> codici_errore = new ArrayList<Integer>();
 
 
+    /*
+     getRestaurantFieldsError è un metodo che prende 4 parametri di tipo Stringa: Nome, Coperti, Indirizzo, Numero di telefono: N, C, I, T.
+     Il valore di ritorno del metodo sarà un ArrayList di interi dove ognuno conterrà un valore
+
+     Per ogni campo possimo identificare delle classi di equivalenza: N = {VALIDO, TROPPO CORTO, NULL}
+                                                                                - TROPPO CORTO: Nome compostoda un solo carattere
+                                                                      C = {VALIDO, FUORI RANGE, NON VALIDO, NULL}
+                                                                                - FUORI RANGE: C > 1000 || C < 5
+                                                                                - NON VALIDO: C contiene o è interamente composto da caratteri non numerici
+                                                                      I = {VALIDO, TROPPO CORTO, NON VALIDO NULL}
+                                                                                - TROPPO CORTO: I < 5
+                                                                                - NON VALIDO: I contiene o è composto da caratteri speciali
+                                                                      T = {VALIDO, NON VALIDO, NULL}
+                                                                                - NON VALIDO: T non rispetta la regex che controlla che sia effettivamente un numero di telefono valido
+
+    Valutando l'implementazione del metodo verso cui stiamo eseguendo del testing con strategia Black-Box, riteniamo che il WEAK EQUIVALENCE CLASS TESTING sia il criterio di copertura più indicato, fornendo
+    8 Test Cases che riteniamo siano sufficienti a ritenere la batteria di testing esaustiva
+
+     */
+
+
+
     // L'ARRAYLIST DEVE ESSERE PULITO OGNI VOLTA CHE VIENE CONCLUSO UN CASO DI TEST
     @AfterEach
     public void clearArrayList(){
@@ -35,59 +57,12 @@ public class getRestaurantFiedlsErrorsTest {
     }
 
     @Test
-    public void testNomeCampoNullo() {
-        codici_errore.add(2);
-        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("", "10", "Via Roma 1", "0123456789");
-        assertEquals(codici_errore, actualErrors);
-    }
-
-    @Test
-    public void testNumeroCopertiNullo() {
-        codici_errore.add(3);
-        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "", "Via Roma 1", "0123456789");
-        assertEquals(codici_errore, actualErrors);
-    }
-
-    @Test
-    public void testNumeroCopertiTroppoAlto() {
+    public void testCampoCopertiFuoriRange(){
         codici_errore.add(4);
-        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "5000", "Via Roma 1", "0123456789");
-        assertEquals(codici_errore, actualErrors);
-    }
-
-    @Test
-    public void testNumeroCopertiTroppoBasso() {
-        codici_errore.add(4);
-        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "2", "Via Roma 1", "0123456789");
-        assertEquals(codici_errore, actualErrors);
-    }
-
-    @Test
-    public void testLocazioneCampoNullo() {
-        codici_errore.add(5);
-        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "10", "", "0123456789");
-        assertEquals(codici_errore, actualErrors);
-    }
-
-    @Test
-    public void testLocazioneCampoTroppoCorto() {
-        codici_errore.add(6);
-        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "10", "Via", "0123456789");
-        assertEquals(codici_errore, actualErrors);
-    }
-
-    @Test
-    public void testNumeroTelefonoCampoNullo() {
-        codici_errore.add(7);
-        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "10", "Via Roma 1", "");
-        assertEquals(codici_errore, actualErrors);
-    }
-
-    @Test
-    public void testNumeroTelefonoCampoTroppoCorto() {
-        codici_errore.add(8);
-        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "10", "Via Roma 1", "12345678");
-        assertEquals(codici_errore, actualErrors);
+        assertAll(
+                () -> assertEquals(codici_errore, getRestaurantFieldsErrors("Ristorante Test", "1", "Via Roma 1", "0123456789")),
+                () -> assertEquals(codici_errore, getRestaurantFieldsErrors("Ristorante Test", "100000", "Via Roma 1", "0123456789"))
+        );
     }
 
     @Test
@@ -97,6 +72,29 @@ public class getRestaurantFiedlsErrorsTest {
                 () -> assertEquals(codici_errore, getRestaurantFieldsErrors("Ristorante Test", "dieci", "Via Roma 1", "0123456789")),
                 () -> assertEquals(codici_errore, getRestaurantFieldsErrors("Ristorante Test", "10a", "Via Roma 1", "0123456789"))
         );
+    }
+
+
+    @Test
+    public void testLocazioneCampoTroppoCorto() {
+        codici_errore.add(6);
+        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "10", "Via", "0123456789");
+        assertEquals(codici_errore, actualErrors);
+    }
+
+    @Test
+    public void testLocazioneNonValido() {
+        codici_errore.add(10);
+        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "10", "Via_Napoli?", "0123456789");
+        assertEquals(codici_errore, actualErrors);
+    }
+
+
+    @Test
+    public void testNumeroTelefonoCampoTroppoCorto() {
+        codici_errore.add(8);
+        ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "10", "Via Roma 1", "12345678");
+        assertEquals(codici_errore, actualErrors);
     }
 
     @Test

@@ -84,6 +84,7 @@ public class SaveRestaurantActivity extends AppCompatActivity implements VolleyC
             if(codice == 7) numeroTelefonoText.setError(getString(R.string.fieldRequired));
             if(codice == 8) numeroTelefonoText.setError(getString(R.string.telNumberNotValid));
             if(codice == 9) copertiText.setError(getString(R.string.chooseANumberInRange));
+            if(codice == 10) locazioneText.setError(getString(R.string.fieldIncorrect));
         }
         errors.clear();
     }

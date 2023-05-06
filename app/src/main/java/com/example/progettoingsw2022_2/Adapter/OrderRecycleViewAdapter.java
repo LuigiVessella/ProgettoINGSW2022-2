@@ -1,11 +1,13 @@
 package com.example.progettoingsw2022_2.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,11 +52,27 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
         holder.tableNumber.setText(String.valueOf(ordini.get(position).getNumeroTavolo()));
         holder.orderDescription.setText("Order" + " #" + (ordini.get(position).getPiattiOrdinati()));
         holder.removeButton.setOnClickListener(view -> {
-            ordini.get(position).setEvaso(true);
-            setEvasoOnSpring(ordini.get(position).getIdOrdine().toString());
-            ordini.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, ordini.size());
+            Dialog evasoDaDialog = new Dialog(context);
+            evasoDaDialog.findViewById(R.id.evasoDaLinearLay);
+            Button setEvasoDaButton;
+            setEvasoDaButton = evasoDaDialog.findViewById(R.id.button_send_evasoda_dialog);
+            EditText setEvasoEditText;
+            setEvasoEditText = evasoDaDialog.findViewById(R.id.evasoda_text_dialog);
+            TextView setEvasoTextView;
+            setEvasoTextView = evasoDaDialog.findViewById(R.id.evasodaTextView);
+            evasoDaDialog.show();
+            setEvasoDaButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ordini.get(position).setEvasoDa(setEvasoEditText.getText().toString());
+                    ordini.get(position).setEvaso(true);
+                    setEvasoOnSpring(ordini.get(position).getIdOrdine().toString());
+                    ordini.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, ordini.size());
+                    evasoDaDialog.dismiss();
+                }
+            });
         });
 
         holder.sollecitaButton.setOnClickListener(new View.OnClickListener() {

@@ -59,7 +59,7 @@ public class AccountUtils {
 
         public static ArrayList<Integer> getRestaurantFieldsErrors(String nome, String coperti, String locazione, String numeroTelefono){
             ArrayList<Integer> codici_errore = new ArrayList<>();
-            String regex = "\\d+";
+            String regex = "^[^.,;:\\-_#\\[\\](){}|!=?'^<>§&%]*$";
             if (nome.length() == 1) codici_errore.add(1);
             if (nome.length() == 0) codici_errore.add(2);
             if (coperti.length() == 0) {
@@ -75,6 +75,7 @@ public class AccountUtils {
             }
             if (locazione.length() == 0) codici_errore.add(5);
             else if (locazione.length() < 5) codici_errore.add(6);
+            else if (!locazione.matches(regex)) codici_errore.add(10);
 
             if (numeroTelefono.length() == 0) codici_errore.add(7);
             else if (!numeroTelefono.matches("^\\d{10}$")) codici_errore.add(8);
