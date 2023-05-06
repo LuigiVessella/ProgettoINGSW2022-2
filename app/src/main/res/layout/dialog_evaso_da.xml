@@ -10,10 +10,10 @@
 
     <TextView
         android:id="@+id/evasodaTextView"
-        android:layout_width="146dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="Evaso da:"
+        android:text="@string/evaso_da_inserire_nome_cuoco"
         android:textSize="20sp" />
 
     <EditText

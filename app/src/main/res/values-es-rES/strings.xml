@@ -126,4 +126,5 @@
     <string name="telNumberNotValid">¡Número de teléfono no válido!</string>
     <string name="welcomeOrderStatusWaiter">Aquí puedes ver tus órdenes en proceso</string>
     <string name="evaso_da">Evaso da:</string>
+    <string name="evaso_da_inserire_nome_cuoco">insert chef name</string>
 </resources>

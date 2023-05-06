@@ -4,6 +4,9 @@ import android.app.DatePickerDialog;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,6 +26,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -30,9 +34,9 @@ public class StatisticsActivity extends AppCompatActivity {
 
     private List<Ordine> ordini;
     private BarChart barChart;
-
     private Spinner spinnerRisto;
-    private int restNumber = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +56,31 @@ public class StatisticsActivity extends AppCompatActivity {
         barChart = (BarChart) findViewById(R.id.chart);
         spinnerRisto = findViewById(R.id.spinnerRisto);
 
+        int numeroRistoranti = AdminSingleton.getInstance().getAccount().getRistoranti().size();
+        ArrayAdapter<Integer> numeroRistoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, numeroRistoranti);
+        spinnerRisto.setAdapter(numeroRistoAdapter);
+
+
+        spinnerRisto.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                inizializeCharts(Integer.parseInt(spinnerRisto.getSelectedItem().toString()));
+                countOrders(Integer.parseInt(spinnerRisto.getSelectedItem().toString()));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void inizializeCharts(int numeroRistorante){
+
         initBarChart();
 
-
         //prendiamoci sicuramente tutti gli ordini
-        for(Cameriere cameriere : AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).getCamerieri()){
+        for(Cameriere cameriere : AdminSingleton.getInstance().getAccount().getRistoranti().get(numeroRistorante).getCamerieri()){
             if(cameriere.getOrdini() != null) ordini.addAll(cameriere.getOrdini());
         }
 
@@ -67,16 +91,13 @@ public class StatisticsActivity extends AppCompatActivity {
             entries.add(new BarEntry(singleOrder.getNumeroTavolo(), singleOrder.getConto()));
         }
 
-
         BarDataSet dataSet = new BarDataSet(entries, "Tot. conto"); // add entries to dataset
         initBarDataSet(dataSet);
-
         BarData lineData = new BarData(dataSet);
-
         barChart.setData(lineData);
-        barChart.invalidate(); // refresh
-    }
+        barChart.invalidate(); //refresh
 
+    }
 
     private void initBarDataSet(BarDataSet barDataSet){
         //Changing the color of the bar
@@ -151,5 +172,25 @@ public class StatisticsActivity extends AppCompatActivity {
             media = Math.round(media * 100) / 100f;
 
         return media;
+    }
+
+    private void countOrders(int numeroRistorante){
+
+        HashMap<String, Integer> preparatoDaCount = new HashMap<>();
+        List<Ordine> listaOrdini = new ArrayList<>();
+
+        for(Cameriere cameriere : AdminSingleton.getInstance().getAccount().getRistoranti().get(numeroRistorante).getCamerieri()){
+            if(cameriere.getOrdini() != null) listaOrdini.addAll(cameriere.getOrdini());
+        }
+
+        for (Ordine ordine : listaOrdini) {
+            String preparatoDa = ordine.getEvasoDa();
+            if (preparatoDaCount.containsKey(preparatoDa)) {
+                preparatoDaCount.put(preparatoDa, preparatoDaCount.get(preparatoDa) + 1);
+            } else {
+                preparatoDaCount.put(preparatoDa, 1);
+            }
+        }
+
     }
 }
