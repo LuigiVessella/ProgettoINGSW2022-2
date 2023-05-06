@@ -58,19 +58,21 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
             setEvasoDaButton = evasoDaDialog.findViewById(R.id.button_send_evasoda_dialog);
             EditText setEvasoEditText;
             setEvasoEditText = evasoDaDialog.findViewById(R.id.evasoda_text_dialog);
-            TextView setEvasoTextView;
-            setEvasoTextView = evasoDaDialog.findViewById(R.id.evasodaTextView);
+
             evasoDaDialog.show();
             setEvasoDaButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ordini.get(position).setEvasoDa(setEvasoEditText.getText().toString());
-                    ordini.get(position).setEvaso(true);
-                    setEvasoOnSpring(ordini.get(position).getIdOrdine().toString());
-                    ordini.remove(position);
-                    notifyItemRemoved(position);
-                    notifyItemRangeChanged(position, ordini.size());
-                    evasoDaDialog.dismiss();
+                    if(!setEvasoEditText.getText().equals("")) {
+                        ordini.get(position).setEvasoDa(setEvasoEditText.getText().toString());
+                        ordini.get(position).setEvaso(true);
+                        setEvasoOnSpring(ordini.get(position).getIdOrdine().toString(), setEvasoEditText.getText().toString());
+                        ordini.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, ordini.size());
+                        evasoDaDialog.dismiss();
+                    }
+                    else setEvasoEditText.setError("inserire il nome di un cuoco");
                 }
             });
         });
@@ -94,10 +96,11 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
     }
 
 
-    private void setEvasoOnSpring(String idOrdine){
+    private void setEvasoOnSpring(String idOrdine, String evasoDa){
         String url = "/ordini/setEvaso/" + idOrdine;
-
         Map<String, String> params = new HashMap<>();
+
+        params.put("evasoDa", evasoDa);
         CustomRequest newRequest = new CustomRequest(url, params, context, this);
         newRequest.sendPostRequest();
     }

@@ -170,6 +170,7 @@
     <string name="delete_menu">Delete menu</string>
     <string name="welcomeOrderStatusWaiter">Here you can see your pending orders</string>
     <string name="evaso_da">Marked by:</string>
+    <string name="evaso_da_inserire_nome_cuoco">insert chef name</string>
 
 
 </resources>

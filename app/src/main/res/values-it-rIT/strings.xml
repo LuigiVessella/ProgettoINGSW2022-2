@@ -126,5 +126,6 @@
     <string name="delete_menu">Cancella menu</string>
     <string name="welcomeOrderStatusWaiter">Qui puoi vedere i tuoi ordini in lavorazione</string>
     <string name="evaso_da">Evaso da:</string>
+    <string name="evaso_da_inserire_nome_cuoco">inserire nome chef</string>
 
 </resources>
