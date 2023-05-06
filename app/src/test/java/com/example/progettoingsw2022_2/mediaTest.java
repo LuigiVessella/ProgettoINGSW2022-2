@@ -2,13 +2,10 @@ package com.example.progettoingsw2022_2;
 
 import com.example.progettoingsw2022_2.Driver.StatisticsActivityMock;
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import org.junit.jupiter.api.BeforeAll;
-
-
 
 
 public class mediaTest {
@@ -20,26 +17,81 @@ public class mediaTest {
         mock = new StatisticsActivityMock();
     }
 
+    //TESTING BLACK BOX
+
     @Test
     public void testMedia(){
         float result = mock.media(17, 50f);
         assertEquals(2.94f, result, 0.001f);
     }
     @Test
-    public void testGiorniNegativiIncassoPositivo(){
+    public void testGiornoNegativoIncassoPositivo(){
         assertThrows(IllegalArgumentException.class,
                 () -> mock.media(-3, 50.06f)
         );
     }
     @Test
-    public void testmìMedia1(){
-        float result = mock.media(17, 50f);
-        assertEquals(2.94f, result, 0.001f);
+    public void testGiornoPositivoIncassoNegativo(){
+        assertThrows(IllegalArgumentException.class,
+                () -> mock.media(3, -50.06f)
+        );
     }
     @Test
-    public void testmìMedia11(){
-        float result = mock.media(17, 50f);
-        assertEquals(2.94f, result, 0.001f);
+    public void testGiornoEIncassoNegativi(){
+        assertThrows(IllegalArgumentException.class,
+                () -> mock.media(-3, -50.06f)
+        );
+    }
+
+    @Test
+    public void testGiornoZero(){
+        assertAll(
+                () ->  assertThrows(ArithmeticException.class,
+                        () -> mock.media(0, 50.06f)
+                ),
+                () ->  assertThrows(ArithmeticException.class,
+                        () -> mock.media(0, -50.06f)
+                )
+        );
+    }
+
+    //TESTING WHITE BOX
+
+    @Test
+    public void testGiornoNull(){
+        Integer giorno = null;
+        assertAll(
+                () ->   assertThrows(NullPointerException.class,
+                        () -> mock.media(giorno, 0.30f)
+                ),
+                () ->   assertThrows(NullPointerException.class,
+                        () -> mock.media(giorno, -0.30f)
+                )
+        );
+    }
+    @Test
+    public void testIncassoNull(){
+        Float incasso = null;
+        assertAll(
+                () ->   assertThrows(NullPointerException.class,
+                        () -> mock.media(0, incasso)
+                ),
+                () ->   assertThrows(NullPointerException.class,
+                        () -> mock.media(3, incasso)
+                ),
+                () ->   assertThrows(NullPointerException.class,
+                        () -> mock.media(-3, incasso)
+                )
+        );
+    }
+
+    @Test
+    public void testCampiNull(){
+        Integer giorno = null;
+        Float incasso = null;
+        assertThrows(NullPointerException.class,
+                () -> mock.media(giorno, incasso)
+        );
     }
 
 
