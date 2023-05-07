@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,12 +35,14 @@ import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 public class StatisticsActivity extends AppCompatActivity {
@@ -47,7 +51,7 @@ public class StatisticsActivity extends AppCompatActivity {
     private BarChart barChart;
     private Spinner spinnerRisto;
     private TextView mediaText;
-
+    private Button selectDataButton;
     private LinearLayout scrollLinear;
 
 
@@ -70,6 +74,8 @@ public class StatisticsActivity extends AppCompatActivity {
         spinnerRisto = findViewById(R.id.spinnerRisto);
         mediaText = findViewById(R.id.incassiTextView);
         scrollLinear = findViewById(R.id.linearLayoutScrollForCharts);
+        selectDataButton = findViewById(R.id.selectDataButton);
+
 
         int numeroRistoranti = AdminSingleton.getInstance().getAccount().getRistoranti().size();
          List<Integer>numRistArray = new ArrayList<>();
@@ -82,13 +88,17 @@ public class StatisticsActivity extends AppCompatActivity {
         spinnerRisto.setAdapter(numeroRistoAdapter);
 
 
-
+        selectDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
         spinnerRisto.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 inizializeCharts(Integer.parseInt(spinnerRisto.getSelectedItem().toString()));
                 countOrders(Integer.parseInt(spinnerRisto.getSelectedItem().toString()));
-                setDateRange(5, Integer.parseInt(spinnerRisto.getSelectedItem().toString()));
             }
 
             @Override
@@ -144,7 +154,7 @@ public class StatisticsActivity extends AppCompatActivity {
         //remove the description label text located at the lower right corner
         Description description = new Description();
         description.setEnabled(true);
-        description.setText("ciao sono descrizione");
+        description.setText("");
         barChart.setDescription(description);
 
         //setting animation for y-axis, the bar will pop up from 0 to its value within the time we set
@@ -197,15 +207,14 @@ public class StatisticsActivity extends AppCompatActivity {
         return media;
     }
 
-    private void setDateRange(int giorni, int numeroRistorante){
+    //data inizio selezionata da utente. data fine giorno corrente. la media sarà su questi giorni
+    private void setDateRange(long giorni, Date dataInizio, int numeroRistorante){
         Log.i("stat", "sono setDataRange");
         int incassoTotale = 0;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
         Date dataFine = cal.getTime(); // Data di fine
-        cal.add(Calendar.DATE, -5); // Sottrai 5 giorni
-        Date dataInizio = cal.getTime(); // Data di inizio
 
         try {
             for (Ordine ordine : ordini) {
@@ -221,8 +230,8 @@ public class StatisticsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        double media = media(giorni, incassoTotale);
-        mediaText.setText(String.valueOf(media) + "€" + " incassati ");
+        double media = media((int) giorni, incassoTotale);
+        mediaText.setText(media + "€" + " incassati ");
 
     }
 
@@ -252,6 +261,40 @@ public class StatisticsActivity extends AppCompatActivity {
             txt.setTextSize(20);
             scrollLinear.addView(txt);
         }
+
+    }
+
+
+    private void showDatePickerDialog() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        // Imposta la data corrente come predefinita nel dialog
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // Crea un nuovo dialog di selezione della data e mostra
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, year1, month1, dayOfMonth1) -> {
+                    // Gestisci la data selezionata dall'utente
+                    // Esempio: aggiorna un campo di testo con la data selezionata
+                    String selectedDate = dayOfMonth1 + "/" + (month1 + 1) + "/" + year1;
+
+                    try {
+                        long diffInMillies = Math.abs(Calendar.getInstance().getTime().getTime() - dateFormat.parse(selectedDate).getTime());
+                        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+                        System.out.println("differenza giorni: " + diff);
+                        setDateRange(diff, dateFormat.parse(selectedDate), Integer.parseInt(spinnerRisto.getSelectedItem().toString()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                },
+                year, month, dayOfMonth);
+
+        datePickerDialog.show();
+        DatePicker datePicker = datePickerDialog.getDatePicker();
+        datePicker.setMaxDate(Calendar.getInstance().getTime().getTime());
 
     }
 }
