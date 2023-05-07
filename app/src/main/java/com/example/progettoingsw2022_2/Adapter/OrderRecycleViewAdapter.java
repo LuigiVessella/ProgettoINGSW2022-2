@@ -53,7 +53,7 @@ public class OrderRecycleViewAdapter extends RecyclerView.Adapter<OrderRecycleVi
         holder.orderDescription.setText("Order" + " #" + (ordini.get(position).getPiattiOrdinati()));
         holder.removeButton.setOnClickListener(view -> {
             Dialog evasoDaDialog = new Dialog(context);
-            evasoDaDialog.findViewById(R.id.evasoDaLinearLay);
+            evasoDaDialog.setContentView(R.layout.dialog_evaso_da);
             Button setEvasoDaButton;
             setEvasoDaButton = evasoDaDialog.findViewById(R.id.button_send_evasoda_dialog);
             EditText setEvasoEditText;

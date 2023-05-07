@@ -4,10 +4,13 @@ import android.app.DatePickerDialog;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,9 +28,17 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+
+import org.w3c.dom.Text;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class StatisticsActivity extends AppCompatActivity {
@@ -35,6 +46,9 @@ public class StatisticsActivity extends AppCompatActivity {
     private List<Ordine> ordini;
     private BarChart barChart;
     private Spinner spinnerRisto;
+    private TextView mediaText;
+
+    private LinearLayout scrollLinear;
 
 
     @Override
@@ -43,8 +57,7 @@ public class StatisticsActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_statistics);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this);
-        datePickerDialog.show();
+
 
         inizializzaComponenti();
 
@@ -55,10 +68,19 @@ public class StatisticsActivity extends AppCompatActivity {
         ordini = new ArrayList<>();
         barChart = (BarChart) findViewById(R.id.chart);
         spinnerRisto = findViewById(R.id.spinnerRisto);
+        mediaText = findViewById(R.id.incassiTextView);
+        scrollLinear = findViewById(R.id.linearLayoutScrollForCharts);
 
         int numeroRistoranti = AdminSingleton.getInstance().getAccount().getRistoranti().size();
-        ArrayAdapter<Integer> numeroRistoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, numeroRistoranti);
+         List<Integer>numRistArray = new ArrayList<>();
+
+        for(int i = 0; i < numeroRistoranti; i++) {
+            numRistArray.add(i);
+        }
+
+        ArrayAdapter<Integer> numeroRistoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, numRistArray);
         spinnerRisto.setAdapter(numeroRistoAdapter);
+
 
 
         spinnerRisto.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -66,17 +88,18 @@ public class StatisticsActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 inizializeCharts(Integer.parseInt(spinnerRisto.getSelectedItem().toString()));
                 countOrders(Integer.parseInt(spinnerRisto.getSelectedItem().toString()));
+                setDateRange(5, Integer.parseInt(spinnerRisto.getSelectedItem().toString()));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                Toast.makeText(StatisticsActivity.this, "Seleziona un ristorante", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void inizializeCharts(int numeroRistorante){
-
+        ordini.removeAll(ordini);
         initBarChart();
 
         //prendiamoci sicuramente tutti gli ordini
@@ -174,6 +197,36 @@ public class StatisticsActivity extends AppCompatActivity {
         return media;
     }
 
+    private void setDateRange(int giorni, int numeroRistorante){
+        Log.i("stat", "sono setDataRange");
+        int incassoTotale = 0;
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        Date dataFine = cal.getTime(); // Data di fine
+        cal.add(Calendar.DATE, -5); // Sottrai 5 giorni
+        Date dataInizio = cal.getTime(); // Data di inizio
+
+        try {
+            for (Ordine ordine : ordini) {
+                Date dataOrdine = dateFormat.parse(ordine.getDataOrdine());
+                if (dataOrdine.compareTo(dataInizio) >= 0 && dataOrdine.compareTo(dataFine) <= 0) {
+                    // L'ordine si trova nell'intervallo di date specificato
+                    // Esegui le operazioni desiderate sull'ordine
+                    incassoTotale += ordine.getConto();
+                    System.out.println("trovato ordine");
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        double media = media(giorni, incassoTotale);
+        mediaText.setText(String.valueOf(media) + "€" + " incassati ");
+
+    }
+
+
     private void countOrders(int numeroRistorante){
 
         HashMap<String, Integer> preparatoDaCount = new HashMap<>();
@@ -183,13 +236,21 @@ public class StatisticsActivity extends AppCompatActivity {
             if(cameriere.getOrdini() != null) listaOrdini.addAll(cameriere.getOrdini());
         }
 
-        for (Ordine ordine : listaOrdini) {
+        for (Ordine ordine : ordini) {
             String preparatoDa = ordine.getEvasoDa();
             if (preparatoDaCount.containsKey(preparatoDa)) {
                 preparatoDaCount.put(preparatoDa, preparatoDaCount.get(preparatoDa) + 1);
             } else {
                 preparatoDaCount.put(preparatoDa, 1);
             }
+        }
+
+
+        for (Map.Entry<String, Integer> entry : preparatoDaCount.entrySet()) {
+            TextView txt = new TextView(this);
+            txt.setText(entry.getKey() + " = " + entry.getValue());
+            txt.setTextSize(20);
+            scrollLinear.addView(txt);
         }
 
     }

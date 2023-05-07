@@ -145,25 +145,27 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             return;
         }
 
-        Gson gson = new Gson();
-
-        JsonParser parser = new JsonParser();
-        JsonElement jsonTree = parser.parse(result);
-        String ruolo = null;
-        Log.i("Json",jsonTree.toString());
-
-        if(jsonTree!= null) ruolo = jsonTree.getAsJsonObject().get("ruolo").getAsString();
-        inizializzaSingleton();
-        if(ruolo == null) {
-            Log.i("INFO LOGIN", "ricevuto null");
+        if(result == null || result.equals("null") || result.equals(""))
+        {
             emailLoginText.setError(getString(R.string.loginWrongCred));
             passwordLoginText.setText("");
             loginActivityButton.setEnabled(true);
             loading.setVisibility(View.INVISIBLE);
             AdminSingleton.getInstance().setAccount(null);
+            return;
         }
 
-        else if(ruolo.equals("cameriere")) {
+        Gson gson = new Gson();
+
+        JsonParser parser = new JsonParser();
+        JsonElement jsonTree = parser.parse(result);
+        String ruolo = "";
+        Log.i("Json",jsonTree.toString());
+
+        if(jsonTree != null && !jsonTree.equals("null")) ruolo = jsonTree.getAsJsonObject().get("ruolo").getAsString();
+        inizializzaSingleton();
+
+         if(ruolo.equals("cameriere")) {
 
             Cameriere cameriere = gson.fromJson(result, new TypeToken<Cameriere>(){}.getType());
             CameriereSingleton.getInstance().setAccount(cameriere);
