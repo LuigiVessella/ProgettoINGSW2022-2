@@ -22,6 +22,7 @@ import com.example.progettoingsw2022_2.Models.Cameriere;
 import com.example.progettoingsw2022_2.Models.Ordine;
 import com.example.progettoingsw2022_2.R;
 import com.example.progettoingsw2022_2.SingletonModels.AdminSingleton;
+import com.example.progettoingsw2022_2.SingletonModels.CameriereSingleton;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -31,11 +32,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
-import org.w3c.dom.Text;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -47,7 +45,7 @@ import java.util.concurrent.TimeUnit;
 
 public class StatisticsActivity extends AppCompatActivity {
 
-    private List<Ordine> ordini;
+    private ArrayList<Ordine> ordini;
     private BarChart barChart;
     private Spinner spinnerRisto;
     private TextView mediaText;
@@ -198,7 +196,7 @@ public class StatisticsActivity extends AppCompatActivity {
     public float media(int giorni, float incasso) throws IllegalArgumentException, ArithmeticException, NullPointerException {
         float media = 0;
 
-            if (giorni < 0) throw new IllegalArgumentException("Il numero di giorni deve essere maggiore di 0");
+            if (giorni < 0) throw new IllegalArgumentException("Il numero di giorni non può essere un numero negativo");
             if (giorni == 0) throw new ArithmeticException("Il numero di giorni non puo essere 0");
             if (incasso < 0) throw new IllegalArgumentException("l'incasso deve essere maggiore di 0.");
             media = incasso / giorni;
@@ -208,31 +206,24 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     //data inizio selezionata da utente. data fine giorno corrente. la media sarà su questi giorni
-    private void setDateRange(long giorni, Date dataInizio, int numeroRistorante){
-        Log.i("stat", "sono setDataRange");
+    public int getIncassoRangeGiorni(Date dataInizio, ArrayList<Ordine> orders) throws ParseException {
         int incassoTotale = 0;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
         Date dataFine = cal.getTime(); // Data di fine
 
-        try {
-            for (Ordine ordine : ordini) {
-                Date dataOrdine = dateFormat.parse(ordine.getDataOrdine());
-                if (dataOrdine.compareTo(dataInizio) >= 0 && dataOrdine.compareTo(dataFine) <= 0) {
-                    // L'ordine si trova nell'intervallo di date specificato
-                    // Esegui le operazioni desiderate sull'ordine
-                    incassoTotale += ordine.getConto();
-                    System.out.println("trovato ordine");
-                }
+        for (Ordine ordine : orders) {
+            Date dataOrdine = dateFormat.parse(ordine.getDataOrdine());
+            if (dataOrdine.compareTo(dataInizio) >= -1 && dataOrdine.compareTo(dataFine) <= 0) {
+                // L'ordine si trova nell'intervallo di date specificato
+                // Esegui le operazioni desiderate sull'ordine
+                incassoTotale += ordine.getConto();
+
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
 
-        double media = media((int) giorni, incassoTotale);
-        mediaText.setText(media + "€" + " incassati ");
-
+        return incassoTotale;
     }
 
 
@@ -245,7 +236,7 @@ public class StatisticsActivity extends AppCompatActivity {
             if(cameriere.getOrdini() != null) listaOrdini.addAll(cameriere.getOrdini());
         }
 
-        for (Ordine ordine : ordini) {
+        for (Ordine ordine : listaOrdini) {
             String preparatoDa = ordine.getEvasoDa();
             if (preparatoDaCount.containsKey(preparatoDa)) {
                 preparatoDaCount.put(preparatoDa, preparatoDaCount.get(preparatoDa) + 1);
@@ -285,9 +276,20 @@ public class StatisticsActivity extends AppCompatActivity {
                         long diffInMillies = Math.abs(Calendar.getInstance().getTime().getTime() - dateFormat.parse(selectedDate).getTime());
                         long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
                         System.out.println("differenza giorni: " + diff);
-                        setDateRange(diff, dateFormat.parse(selectedDate), Integer.parseInt(spinnerRisto.getSelectedItem().toString()));
+                        float incassoTotale = getIncassoRangeGiorni(dateFormat.parse(selectedDate), ordini);
+                        float incassoMedio = media((int)diff, incassoTotale);
+                        mediaText.setText(incassoMedio + "€" + " incassati ");
                     } catch (ParseException e) {
-                        e.printStackTrace();
+                        mediaText.setText("Formato data non corretto");
+                    }
+                    catch (IllegalArgumentException e) {
+                        mediaText.setText("Impossibile calcolare la media");
+                    }
+                    catch (NullPointerException e){
+                        mediaText.setText("Impossibile calcolare la media");
+                    }
+                    catch (ArithmeticException e) {
+                        mediaText.setText("Seleziona un numero corretto di giorni");
                     }
                 },
                 year, month, dayOfMonth);
