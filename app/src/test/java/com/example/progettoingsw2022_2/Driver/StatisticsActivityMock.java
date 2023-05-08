@@ -26,8 +26,7 @@ public class StatisticsActivityMock {
     public float media(int giorni, float incasso) throws IllegalArgumentException, ArithmeticException, NullPointerException {
         float media = 0;
 
-        if (giorni < 0)
-            throw new IllegalArgumentException("Il numero di giorni non può essere un numero negativo");
+        if (giorni < 0) throw new IllegalArgumentException("Il numero di giorni non può essere un numero negativo");
         if (giorni == 0) throw new ArithmeticException("Il numero di giorni non puo essere 0");
         if (incasso < 0) throw new IllegalArgumentException("l'incasso deve essere maggiore di 0.");
         media = incasso / giorni;
@@ -44,7 +43,12 @@ public class StatisticsActivityMock {
         Date dataFine = cal.getTime(); // Data di fine
 
         for (OrdineMock ordine : orders) {
-            Date dataOrdine = dateFormat.parse(ordine.getDataOrdine());
+            Date dataOrdine;
+            try {
+                dataOrdine = dateFormat.parse(ordine.getDataOrdine());
+            } catch (ParseException e) {
+                throw new ParseException("Impossibile fare il Parse della data", 0);
+            }
             if (dataOrdine.compareTo(dataInizio) >= -1 && dataOrdine.compareTo(dataFine) <= 0) {
                 // L'ordine si trova nell'intervallo di date specificato
                 // Esegui le operazioni desiderate sull'ordine

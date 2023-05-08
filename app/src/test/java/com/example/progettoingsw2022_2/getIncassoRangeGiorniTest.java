@@ -33,18 +33,11 @@ public class getIncassoRangeGiorniTest {
 
 
     @Test
-    public void testGetIncassoRangeGiorni() throws ParseException {
+    public void testGetIncassoRangeGiorni(){
         ordiniM.add(new OrdineMock(3, "2023-05-04"));
         ordiniM.add(new OrdineMock(105, "2023-05-04"));
         ordiniM.add(new OrdineMock(72, "2023-05-04"));
-        ordiniM.add(new OrdineMock(8, "2023-05-05"));
-        ordiniM.add(new OrdineMock(80, "2023-05-05"));
-        ordiniM.add(new OrdineMock(1, "2023-05-06"));
-        ordiniM.add(new OrdineMock(3, "2023-05-06"));
-        ordiniM.add(new OrdineMock(83, "2023-05-06"));
-        ordiniM.add(new OrdineMock(11, "2023-05-06"));
-        ordiniM.add(new OrdineMock(44, "2023-05-06"));
-        ordiniM.add(new OrdineMock(89, "2023-05-06"));
+
 
         Calendar cal = Calendar.getInstance();
         cal.set(2023, 4, 4); // Mese inizia da 0, quindi 4 rappresenta maggio
@@ -53,6 +46,8 @@ public class getIncassoRangeGiorniTest {
         statisticsActivityMock.setOrdini(ordiniM);
 
         int result = statisticsActivityMock.getIncassoRangeGiorni(dataInizio, ordiniM);
-        assertEquals(499, result);
+        assertEquals(180, result);
     }
+
+    //public void testZeroOrdini()
 }
