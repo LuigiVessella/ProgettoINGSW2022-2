@@ -6,6 +6,9 @@ import com.example.progettoingsw2022_2.Models.Ordine;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,25 +38,20 @@ public class StatisticsActivityMock {
         return media;
     }
 
-    public int getIncassoRangeGiorni(Date dataInizio, ArrayList<OrdineMock> orders) throws ParseException {
+    public int getIncassoRangeGiorni(LocalDate dataInizio, ArrayList<OrdineMock> orders) throws DateTimeParseException {
         int incassoTotale = 0;
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar cal = Calendar.getInstance();
-        Date dataFine = cal.getTime(); // Data di fine
+        LocalDate endDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         for (OrdineMock ordine : orders) {
-            Date dataOrdine;
             try {
-                dataOrdine = dateFormat.parse(ordine.getDataOrdine());
-            } catch (ParseException e) {
-                throw new ParseException("Impossibile fare il Parse della data", 0);
-            }
-            if (dataOrdine.compareTo(dataInizio) >= -1 && dataOrdine.compareTo(dataFine) <= 0) {
-                // L'ordine si trova nell'intervallo di date specificato
-                // Esegui le operazioni desiderate sull'ordine
-                incassoTotale += ordine.getConto();
-
+                LocalDate orderDate = LocalDate.parse(ordine.getDataOrdine(), formatter);
+                if (orderDate.isEqual(dataInizio) || orderDate.isAfter(dataInizio) && orderDate.isBefore(endDate)) {
+                    incassoTotale += ordine.getConto();
+                }
+            } catch (DateTimeParseException e) {
+                // La data non è nel formato atteso
+                throw new DateTimeParseException("Data non nel formato atteso", ordine.getDataOrdine(), 0);
             }
         }
 
