@@ -4,8 +4,11 @@ import android.util.Log;
 
 import com.example.progettoingsw2022_2.Models.Ordine;
 
+import org.mockito.internal.matchers.Null;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -26,7 +29,7 @@ public class StatisticsActivityMock {
     }
 
 
-    public float media(int giorni, float incasso) throws IllegalArgumentException, ArithmeticException, NullPointerException {
+    public float media(int giorni, float incasso){
         float media = 0;
 
         if (giorni < 0) throw new IllegalArgumentException("Il numero di giorni non può essere un numero negativo");
@@ -38,24 +41,20 @@ public class StatisticsActivityMock {
         return media;
     }
 
-    public int getIncassoRangeGiorni(LocalDate dataInizio, ArrayList<OrdineMock> orders) throws DateTimeParseException {
+    public int getIncassoRangeGiorni(LocalDate dataInizio, ArrayList<OrdineMock> orders){
         int incassoTotale = 0;
         LocalDate endDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+        if (orders == null) return 0;
         for (OrdineMock ordine : orders) {
-            try {
-                LocalDate orderDate = LocalDate.parse(ordine.getDataOrdine(), formatter);
-                if (orderDate.isEqual(dataInizio) || orderDate.isAfter(dataInizio) && orderDate.isBefore(endDate)) {
-                    incassoTotale += ordine.getConto();
-                }
-            } catch (DateTimeParseException e) {
-                // La data non è nel formato atteso
-                throw new DateTimeParseException("Data non nel formato atteso", ordine.getDataOrdine(), 0);
+            LocalDate orderDate = LocalDate.parse(ordine.getDataOrdine(), formatter);
+            if (orderDate.isEqual(dataInizio) || orderDate.isAfter(dataInizio) && orderDate.isBefore(endDate)) {
+                incassoTotale += ordine.getConto();
+
+
             }
         }
-
         return incassoTotale;
     }
-
 }

@@ -11,12 +11,40 @@ import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.text.ParseException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+/*
+ Metodologie di testing utilizzate: Black-Box e Weak equivalence class testing poichè: ci sono 4 tipi di input per il parametro Ordini:
+           1) Validi
+           2) null
+           3) Lista Vuota
+           4) con data Sbagliata in qualche modo
+
+ Invece per quanto riguarda la data di inizio può essere:
+           1) Valida, che a sua volta può essere
+                1.1) Verosimile e precedente agli ordini
+                1.2) Futura agli ordini
+                1.3) Inverosimilmente precedente agli ordini
+           2) Null
+
+
+ Oltre al caso di testing in cui si valuta il corretto funzionamento del metodo testandolo in condizioni normali, abbiamo voluto testare il metodo fornendo tutti i tipi di ordini testandoli
+ con una Data di Inizio Valida e Verosimile; e fornndo tutti i casi di Data Iniziale insieme ad un ordine corretto, arrivando a 7 casi di testing che riteniamo siano necessari:
+            {1.1 , 1}
+            {1.1 , 2}
+            {1.1 , 3}
+            {1.1 , 4}
+            {1.2 , 1}
+            {1.3 , 1}
+            {2 , 1}
+
+ */
 
 public class getIncassoRangeGiorniTest {
 
@@ -58,33 +86,60 @@ public class getIncassoRangeGiorniTest {
 
     }
 
-    /*
     @Test
-    public void testDataOrdiniInDiversoFormato() {
-        ordiniM.add(new OrdineMock(3, "04-19-2023"));
-        ordiniM.add(new OrdineMock(105, "30-30-2023"));
-        ordiniM.add(new OrdineMock(72, "2023-02-31"));
-
-
+    public void testOrdiniNull()  {
         LocalDate dataInizio = LocalDate.parse("2023-02-01", formatter);
+
+        int result = statisticsActivityMock.getIncassoRangeGiorni(dataInizio, null);
+        assertEquals(0, result);
+
+    }
+
+    @Test
+    public void testDataInizioNull()  {
+        ordiniM.add(new OrdineMock(3, "2023-05-04"));
+        ordiniM.add(new OrdineMock(105, "2023-05-04"));
+        ordiniM.add(new OrdineMock(72, "2023-02-04"));
+
+        assertThrows(NullPointerException.class,
+                () -> statisticsActivityMock.getIncassoRangeGiorni(null, ordiniM));
+    }
+
+    @Test
+    public void testDataInizioFutura() {
+        ordiniM.add(new OrdineMock(3, "2023-05-04"));
+        ordiniM.add(new OrdineMock(105, "2023-05-04"));
+        ordiniM.add(new OrdineMock(72, "2023-02-04"));
+
+        LocalDate dataInizio = LocalDate.parse("2033-02-05", formatter);
+
+        int result = statisticsActivityMock.getIncassoRangeGiorni(dataInizio, ordiniM);
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void testDataInizioIrrealistica() {
+        ordiniM.add(new OrdineMock(3, "2023-05-04"));
+        ordiniM.add(new OrdineMock(105, "2023-05-04"));
+        ordiniM.add(new OrdineMock(72, "2023-02-04"));
+
+        LocalDate dataInizio = LocalDate.parse("0133-02-05", formatter);
 
         int result = statisticsActivityMock.getIncassoRangeGiorni(dataInizio, ordiniM);
         assertEquals(180, result);
     }
 
-     */
-
     @Test
-    public void testDataOrdiniInFormatoSbagliato() throws ParseException{
+    public void testDataOrdiniInFormatoSbagliato(){
         ArrayList<OrdineMock> ordiniM_1 = new ArrayList<>();
         ArrayList<OrdineMock> ordiniM_2 = new ArrayList<>();
         ArrayList<OrdineMock> ordiniM_3 = new ArrayList<>();
         ArrayList<OrdineMock> ordiniM_4 = new ArrayList<>();
 
         ordiniM_1.add(new OrdineMock(3, "2023"));
-        ordiniM_2.add(new OrdineMock(105, "05-2023"));
+        ordiniM_2.add(new OrdineMock(105, "02/05/2023"));
         ordiniM_3.add(new OrdineMock(72, "due-aprile-2023"));
-        ordiniM_4.add(new OrdineMock(105, "31-22-2023"));
+        ordiniM_4.add(new OrdineMock(105, "2023-32-31"));
 
 
         LocalDate dataInizio = LocalDate.parse("2023-02-01", formatter);
@@ -99,7 +154,7 @@ public class getIncassoRangeGiorniTest {
                 () ->   assertThrows(DateTimeParseException.class,
                         () -> statisticsActivityMock.getIncassoRangeGiorni(dataInizio, ordiniM_3)
                 ),
-                () ->   assertThrows(DateTimeParseException.class,
+                () ->   assertThrows(DateTimeException.class,
                         () -> statisticsActivityMock.getIncassoRangeGiorni(dataInizio, ordiniM_4)
                 )
 
@@ -109,4 +164,5 @@ public class getIncassoRangeGiorniTest {
         ordiniM_3.clear();
         ordiniM_4.clear();
     }
+
 }

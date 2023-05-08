@@ -198,7 +198,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
     }
 
-    public float media(int giorni, float incasso) throws IllegalArgumentException, ArithmeticException, NullPointerException {
+    public float media(int giorni, float incasso){
         float media = 0;
 
             if (giorni < 0) throw new IllegalArgumentException("Il numero di giorni non può essere un numero negativo");
@@ -211,23 +211,18 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     //data inizio selezionata da utente. data fine giorno corrente. la media sarà su questi giorni
-    public int getIncassoRangeGiorni(LocalDate dataInizio, ArrayList<Ordine> orders) throws DateTimeParseException {
+    public int getIncassoRangeGiorni(LocalDate dataInizio, ArrayList<Ordine> orders){
         int incassoTotale = 0;
         LocalDate endDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+        if (orders == null) return 0;
         for (Ordine ordine : orders) {
-            try {
-                LocalDate orderDate = LocalDate.parse(ordine.getDataOrdine(), formatter);
-                if (orderDate.isEqual(dataInizio) || orderDate.isAfter(dataInizio) && orderDate.isBefore(endDate)) {
-                    incassoTotale += ordine.getConto();
-                }
-            } catch (DateTimeParseException e) {
-                // La data non è nel formato atteso
-                throw new DateTimeParseException("Data non nel formato atteso", ordine.getDataOrdine(), 0);
+            LocalDate orderDate = LocalDate.parse(ordine.getDataOrdine(), formatter);
+            if (orderDate.isEqual(dataInizio) || orderDate.isAfter(dataInizio) && orderDate.isBefore(endDate)) {
+                incassoTotale += ordine.getConto();
             }
         }
-
         return incassoTotale;
     }
 
