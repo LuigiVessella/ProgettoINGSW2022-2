@@ -34,6 +34,9 @@ import com.github.mikephil.charting.data.BarEntry;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -206,20 +209,20 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     //data inizio selezionata da utente. data fine giorno corrente. la media sarà su questi giorni
-    public int getIncassoRangeGiorni(Date dataInizio, ArrayList<Ordine> orders) throws ParseException {
+    public int getIncassoRangeGiorni(LocalDate dataInizio, ArrayList<Ordine> orders) throws DateTimeParseException {
         int incassoTotale = 0;
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar cal = Calendar.getInstance();
-        Date dataFine = cal.getTime(); // Data di fine
+        LocalDate endDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         for (Ordine ordine : orders) {
-            Date dataOrdine = dateFormat.parse(ordine.getDataOrdine());
-            if (dataOrdine.compareTo(dataInizio) >= -1 && dataOrdine.compareTo(dataFine) <= 0) {
-                // L'ordine si trova nell'intervallo di date specificato
-                // Esegui le operazioni desiderate sull'ordine
-                incassoTotale += ordine.getConto();
-
+            try {
+                LocalDate orderDate = LocalDate.parse(ordine.getDataOrdine(), formatter);
+                if (orderDate.isEqual(dataInizio) || orderDate.isAfter(dataInizio) && orderDate.isBefore(endDate)) {
+                    incassoTotale += ordine.getConto();
+                }
+            } catch (DateTimeParseException e) {
+                // La data non è nel formato atteso
+                throw new DateTimeParseException("Data non nel formato atteso", ordine.getDataOrdine(), 0);
             }
         }
 
@@ -257,7 +260,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
 
     private void showDatePickerDialog() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         // Imposta la data corrente come predefinita nel dialog
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -271,12 +274,13 @@ public class StatisticsActivity extends AppCompatActivity {
                     // Gestisci la data selezionata dall'utente
                     // Esempio: aggiorna un campo di testo con la data selezionata
                     String selectedDate = dayOfMonth1 + "/" + (month1 + 1) + "/" + year1;
+                    LocalDate startDate = LocalDate.parse(selectedDate, dateFormat);
 
                     try {
                         long diffInMillies = Math.abs(Calendar.getInstance().getTime().getTime() - dateFormat.parse(selectedDate).getTime());
                         long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
                         System.out.println("differenza giorni: " + diff);
-                        float incassoTotale = getIncassoRangeGiorni(dateFormat.parse(selectedDate), ordini);
+                        float incassoTotale = getIncassoRangeGiorni(startDate, ordini);
                         float incassoMedio = media((int)diff, incassoTotale);
                         mediaText.setText(incassoMedio + "€" + " incassati ");
                     } catch (ParseException e) {

@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.progettoingsw2022_2"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "2.0"
