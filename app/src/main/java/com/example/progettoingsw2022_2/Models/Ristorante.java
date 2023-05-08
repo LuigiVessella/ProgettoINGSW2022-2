@@ -9,9 +9,7 @@ public class Ristorante {
     private String locazione;
     private Admin proprietario;
     private List<Cameriere> camerieri;
-
     private List<Avviso> avvisi;
-
     private AddettoCucina addettoCucina;
     private Supervisore supervisore;
     private Menu menu;

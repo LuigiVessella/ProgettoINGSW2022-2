@@ -35,8 +35,10 @@ import com.github.mikephil.charting.data.BarEntry;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -275,18 +277,16 @@ public class StatisticsActivity extends AppCompatActivity {
                     // Esempio: aggiorna un campo di testo con la data selezionata
                     String selectedDate = dayOfMonth1 + "/" + (month1 + 1) + "/" + year1;
                     LocalDate startDate = LocalDate.parse(selectedDate, dateFormat);
+                    LocalDate fineDate = Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
                     try {
-                        long diffInMillies = Math.abs(Calendar.getInstance().getTime().getTime() - dateFormat.parse(selectedDate).getTime());
+                        long diffInMillies = ChronoUnit.DAYS.between(fineDate, startDate);
                         long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
                         System.out.println("differenza giorni: " + diff);
                         float incassoTotale = getIncassoRangeGiorni(startDate, ordini);
                         float incassoMedio = media((int)diff, incassoTotale);
                         mediaText.setText(incassoMedio + "€" + " incassati ");
-                    } catch (ParseException e) {
-                        mediaText.setText("Formato data non corretto");
-                    }
-                    catch (IllegalArgumentException e) {
+                    } catch (IllegalArgumentException e) {
                         mediaText.setText("Impossibile calcolare la media");
                     }
                     catch (NullPointerException e){
