@@ -10,7 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 
 import java.util.ArrayList;
 
-public class getRestaurantFiedlsErrorsTest {
+public class GetRestaurantFiedlsErrorsTest {
 
     public ArrayList<Integer> codici_errore = new ArrayList<Integer>();
 

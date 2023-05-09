@@ -33,16 +33,19 @@ public class AccountUtils {
     public static ArrayList<Integer> checkCredentials(String mail, String pswrd){
         ArrayList<Integer> errors = new ArrayList<>();
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#_!$%?.,;:])[\\w#_!$%?.,;:]{8,}$";
-        pswrd = pswrd.replaceAll("\\s", "");
-        if (pswrd.isEmpty()) {
-            errors.add(9);
-        } else if (pswrd.length()<8) {
-            errors.add(10);
-        } else if (!pswrd.matches(regex)) {
-            errors.add(11); }
-
+        if(pswrd == null) errors.add(9);
+        else {
+            pswrd = pswrd.replaceAll("\\s", "");
+            if (pswrd.isEmpty()) {
+                errors.add(9);
+            } else if (pswrd.length() < 8) {
+                errors.add(10);
+            } else if (!pswrd.matches(regex)) {
+                errors.add(11);
+            }
+        }
         EmailValidator validator = EmailValidator.getInstance();
-        if (mail.length() == 0) errors.add(12);
+        if (mail == null || mail.length() == 0) errors.add(12);
         else if(!validator.isValid(mail)) errors.add(13);
 
         return errors;

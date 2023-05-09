@@ -10,14 +10,11 @@ import org.junit.jupiter.api.AfterEach;
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import java.text.ParseException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 /*
  Metodologie di testing utilizzate: Black-Box e Weak equivalence class testing poichè: ci sono 4 tipi di input per il parametro Ordini:
@@ -46,7 +43,7 @@ import java.util.Date;
 
  */
 
-public class getIncassoRangeGiorniTest {
+public class GetIncassoRangeGiorniTest {
 
     StatisticsActivityMock statisticsActivityMock;
     ArrayList<OrdineMock> ordiniM;

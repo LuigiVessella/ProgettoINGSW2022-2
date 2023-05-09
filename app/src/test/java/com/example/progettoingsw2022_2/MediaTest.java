@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class mediaTest {
+public class MediaTest {
 
     StatisticsActivityMock mock;
 
