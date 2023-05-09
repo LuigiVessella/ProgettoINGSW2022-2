@@ -510,7 +510,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         Gson gson = new Gson();
 
         if(result.equals("200")) {
-            System.out.println("SONO QUI\n");
+
             Toast.makeText(this, "Menu eliminato", Toast.LENGTH_SHORT).show();
             menu = null;
             AdminSingleton.getInstance().getAccount().getRistoranti().get(restNumber).setMenu(null);
@@ -519,7 +519,7 @@ public class PlateManagerActivity extends AppCompatActivity implements VolleyCal
         }
 
         if(result.equals("400")) {
-            Toast.makeText(this, "Porcco dio hai sbagliato", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Impossibile eliminare il menu", Toast.LENGTH_SHORT).show();
             return;
         }
 

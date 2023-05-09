@@ -50,7 +50,10 @@ public class CustomRequest {
                 Map<String, String> params = new HashMap<>();
 
                 if(url.contains("openfoodfacts"))params.put("Content-Type", "application/json");
-                else params.put("Content-Type", "application/x-www-form-urlencoded");
+                else {
+                    params.put("Content-Type", "application/x-www-form-urlencoded");
+                    params.put("app_code", "Ratatuille23");
+                }
                 return params;
 
             }
@@ -80,7 +83,10 @@ public class CustomRequest {
             public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 if(url.contains("openfoodfacts"))params.put("Content-Type", "application/json");
-                else params.put("Content-Type", "application/x-www-form-urlencoded");
+                else {
+                    params.put("Content-Type", "application/x-www-form-urlencoded");
+                    params.put("app_code", "Ratatuille23");
+                }
                 return params;
 
             }
