@@ -1,5 +1,6 @@
 package com.example.progettoingsw2022_2.Activities;
 
+import static com.example.progettoingsw2022_2.Helper.AccountUtils.getRegistrationFieldsErrors;
 import static com.example.progettoingsw2022_2.Helper.DialogController.balloonBuilder;
 import static com.example.progettoingsw2022_2.Helper.DialogController.onBackPressedDialog;
 
@@ -25,7 +26,10 @@ import com.example.progettoingsw2022_2.R;
 import com.google.android.material.textfield.TextInputEditText;
 import org.mindrot.jbcrypt.BCrypt;
 import com.skydoves.balloon.*;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import pl.droidsonroids.gif.GifImageView;
@@ -38,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
     private TextView welcomeTexView;
     private Balloon myBalloon;
     private GifImageView loading;
+    public ArrayList<Integer> error_codes = new ArrayList<Integer>();
     LinearLayout layoutLogo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,56 +127,31 @@ public class RegisterActivity extends AppCompatActivity implements VolleyCallbac
     private void onClick(View view) {
         okButton.setEnabled(false);
         loading.setVisibility(View.VISIBLE);
-        boolean hasError = false;
-        if (nomeText.getText().length() <= 3) {
-            nomeText.setError(getString(R.string.NameShortError));
-            hasError = true;
-        }
-        if (nomeText.getText().length() == 0) {
-            nomeText.setError(getString(R.string.fieldRequired));
-            hasError = true;
-        }
-        if (cognomeText.getText().length() <= 3) {
-            cognomeText.setError(getString(R.string.SurnameShortError));
-            hasError = true;
-        }
-        if (cognomeText.getText().length() == 0) {
-            cognomeText.setError(getString(R.string.fieldRequired));
-            hasError = true;
-        }
-        //Check partita IVA
-        String errorPIVA = AccountUtils.checkPIVA(this,pIvaText.getText().toString());
-        if (!errorPIVA.equals("OK")){
-            pIvaText.setError(errorPIVA);
-            hasError = true;
-        }
-        //Check codice fiscale
-        if (!AccountUtils.isCodiceFiscaleValido(codiceFiscaleText.getText().toString())) {
-            codiceFiscaleText.setError(getString(R.string.CFinvalid));
-            hasError = true;
-        }
-
-        //Check password
-        Log.i("Register pass",passwordText.getText().toString());
-        String errorPass = AccountUtils.checkPassword(this,passwordText.getText().toString());
-        if(!errorPass.equals("OK")){
-            passwordText.setError(errorPass);
-            hasError = true;
-        }
-        //Check email
-        String errorMail = AccountUtils.checkEmail(this,emailText.getText().toString());
-        if (!errorMail.equals("OK")) {
-                emailText.setError(errorMail);
-                hasError = true;
-        }
-
+        error_codes = getRegistrationFieldsErrors(nomeText.getText().toString(), cognomeText.getText().toString(), pIvaText.getText().toString(), codiceFiscaleText.getText().toString(), passwordText.getText().toString(), emailText.getText().toString());
         okButton.setEnabled(true);
         loading.setVisibility(View.INVISIBLE);
-        if (!hasError) {
-            sendRegisterRequest(nomeText.getText(), cognomeText.getText(), pIvaText.getText(), passwordText.getText(), codiceFiscaleText.getText(), emailText.getText());
-        }
+        if (error_codes.isEmpty()) sendRegisterRequest(nomeText.getText(), cognomeText.getText(), pIvaText.getText(), passwordText.getText(), codiceFiscaleText.getText(), emailText.getText());
+        else errorHandler(error_codes);
     }
 
+    public void errorHandler(List<Integer> errors){
+        for (int codice :errors) {
+            if(codice == 1) nomeText.setError(getString(R.string.fieldTooShort));
+            if(codice == 2) nomeText.setError(getString(R.string.fieldRequired));
+            if(codice == 3) cognomeText.setError(getString(R.string.fieldTooShort));
+            if(codice == 4) cognomeText.setError(getString(R.string.fieldRequired));
+            if(codice == 5) pIvaText.setError(getString(R.string.fieldRequired));
+            if(codice == 6) pIvaText.setError(getString(R.string.fieldIncorrect));
+            if(codice == 7) codiceFiscaleText.setError(getString(R.string.fieldRequired));
+            if(codice == 8) codiceFiscaleText.setError(getString(R.string.fieldIncorrect));
+            if(codice == 9) passwordText.setError(getString(R.string.chooseANumberInRange));
+            if(codice == 10) passwordText.setError(getString(R.string.fieldTooShort));
+            if(codice == 11) passwordText.setError(getString(R.string.fieldIncorrect));
+            if(codice == 12) emailText.setError(getString(R.string.fieldRequired));
+            if(codice == 13) emailText.setError(getString(R.string.fieldIncorrect));
+        }
+        errors.clear();
+    }
     @Override
     public void onBackPressed() {
         if(nomeText.getText().length() == 0 && cognomeText.getText().length() == 0 && pIvaText.getText().length() == 0 && emailText.getText().length() == 0&& codiceFiscaleText.getText().length() == 0&& passwordText.getText().length() == 0) super.onBackPressed();

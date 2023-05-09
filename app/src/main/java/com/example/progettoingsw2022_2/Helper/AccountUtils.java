@@ -1,6 +1,7 @@
 package com.example.progettoingsw2022_2.Helper;
 
 import android.content.Context;
+import android.view.View;
 
 import com.example.progettoingsw2022_2.R;
 
@@ -29,32 +30,58 @@ public class AccountUtils {
         }
         return s % 26 + 'A' == cf.charAt(15);
     }
-    public static boolean isCodiceFiscaleValidoSimple(String cf) { return cf.matches("^[\\dA-Z]{16}$"); }
-
-    public static String checkPassword(Context context, String pass){
-
+    public static ArrayList<Integer> checkCredentials(String mail, String pswrd){
+        ArrayList<Integer> errors = new ArrayList<>();
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#_!$%?.,;:])[\\w#_!$%?.,;:]{8,}$";
-        pass = pass.replaceAll("\\s", "");
-        if (pass.isEmpty()) {
-            return context.getString(R.string.fieldRequired);
-        } else if (pass.length()<8) {
-            return context.getString(R.string.passwordShort);
-        } else if (!pass.matches(regex)) {
-            return context.getString(R.string.passwordSimple); }
-        else return "OK";
-    }
+        pswrd = pswrd.replaceAll("\\s", "");
+        if (pswrd.isEmpty()) {
+            errors.add(9);
+        } else if (pswrd.length()<8) {
+            errors.add(10);
+        } else if (!pswrd.matches(regex)) {
+            errors.add(11); }
 
-    public static String checkEmail(Context context, String email){
         EmailValidator validator = EmailValidator.getInstance();
-        if (email.length() == 0) return context.getString(R.string.fieldRequired);
-        else if(!validator.isValid(email)) return context.getString(R.string.emailError);
-        else return "OK";
+        if (mail.length() == 0) errors.add(12);
+        else if(!validator.isValid(mail)) errors.add(13);
+
+        return errors;
     }
 
-    public static String checkPIVA(Context context, String pIva){
-        if (pIva.length() == 0) return context.getString(R.string.fieldRequired);
-        else if (!pIva.matches("^\\d{11}$")) return context.getString(R.string.fieldIncorrect);
-        else return "OK";
+
+    public static ArrayList<Integer> getRegistrationFieldsErrors(String nome, String cognome, String pIva, String cf, String pass, String email){
+        ArrayList<Integer> errors = new ArrayList<>();
+
+        if (nome.length() <= 3) {
+            errors.add(1);
+        }
+        if (nome.length() == 0) {
+            errors.add(2);
+        }
+        if (cognome.length() <= 3) {
+            errors.add(3);
+        }
+        if (cognome.length() == 0) {
+            errors.add(4);
+        }
+        int errorIva = checkPIVA(pIva);
+        if (errorIva == 1) errors.add(5);
+        if (errorIva == 2) errors.add(6);
+        //Check codice fiscale
+
+        if (cf.length() == 0) errors.add(7);
+        else if (!isCodiceFiscaleValido(cf)) errors.add(8);
+
+        errors.addAll(checkCredentials(email, pass));
+
+        return errors;
+    }
+
+
+    public static int checkPIVA(String pIva){
+        if (pIva.length() == 0) return 1;
+        else if (!pIva.matches("^\\d{11}$")) return 2;
+        else return 0;
     }
 
         public static ArrayList<Integer> getRestaurantFieldsErrors(String nome, String coperti, String locazione, String numeroTelefono){
