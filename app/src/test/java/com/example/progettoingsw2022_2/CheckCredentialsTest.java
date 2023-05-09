@@ -77,13 +77,52 @@ public class CheckCredentialsTest {
     }
 
     @Test
-    public void testErroriMultipli(){
+    public void testErroriMultipli_9_12(){
+        codici_errore.add(9);
+        codici_errore.add(12);
+
+        assertEquals(codici_errore, checkCredentials("", ""));
+    }
+
+    @Test
+    public void testErroriMultipli_9_13(){
         codici_errore.add(9);
         codici_errore.add(13);
 
         assertEquals(codici_errore, checkCredentials("@studenti.@libero@com", ""));
     }
 
+    @Test
+    public void testErroriMultipli_10_12(){
+        codici_errore.add(10);
+        codici_errore.add(12);
+
+        assertEquals(codici_errore, checkCredentials("", "Ab.34"));
+    }
+
+    @Test
+    public void testErroriMultipli_10_13(){
+        codici_errore.add(10);
+        codici_errore.add(13);
+
+        assertEquals(codici_errore, checkCredentials("emailcompletamentesbagliata", "Ab.34"));
+    }
+
+    @Test
+    public void testErroriMultipli_11_12(){
+        codici_errore.add(11);
+        codici_errore.add(12);
+
+        assertEquals(codici_errore, checkCredentials("", "Password.Password"));
+    }
+
+    @Test
+    public void testErroriMultipli_11_13(){
+        codici_errore.add(11);
+        codici_errore.add(13);
+
+        assertEquals(codici_errore, checkCredentials("@studenti.@libero@com", "@studenti.it"));
+    }
 }
 
 
