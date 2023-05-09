@@ -52,18 +52,11 @@ public class AccountUtils {
     public static ArrayList<Integer> getRegistrationFieldsErrors(String nome, String cognome, String pIva, String cf, String pass, String email){
         ArrayList<Integer> errors = new ArrayList<>();
 
-        if (nome.length() <= 3) {
-            errors.add(1);
-        }
-        if (nome.length() == 0) {
-            errors.add(2);
-        }
-        if (cognome.length() <= 3) {
-            errors.add(3);
-        }
-        if (cognome.length() == 0) {
-            errors.add(4);
-        }
+        if (nome.length() <= 3) errors.add(1);
+        if (nome.length() == 0) errors.add(2);
+        if (cognome.length() <= 3) errors.add(3);
+        if (cognome.length() == 0) errors.add(4);
+
         int errorIva = checkPIVA(pIva);
         if (errorIva == 1) errors.add(5);
         if (errorIva == 2) errors.add(6);
