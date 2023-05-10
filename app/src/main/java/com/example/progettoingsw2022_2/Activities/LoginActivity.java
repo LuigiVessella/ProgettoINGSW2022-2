@@ -236,8 +236,6 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
 
         dialogChangePass.show();
 
-
-
     }
 
     private void sendNewPassRequest(String url, String newPass){

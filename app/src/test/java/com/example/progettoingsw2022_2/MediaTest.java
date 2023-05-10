@@ -10,7 +10,7 @@ import org.junit.Test;
 /*
    CLASSI DI EQUIVALENZA:
 
-      INCASSO: {NULL, NEGATIVO, POSITIVO}i
+      INCASSO: {NULL, NEGATIVO, POSITIVO}
 
       GIORNI: {NULL, NEGATIVO, ZERO, POSITIVO}
 
@@ -69,7 +69,7 @@ public class MediaTest {
         );
     }
 
-/*     ==== BLACKBOX ====
+/*     ==== WHITEBOX ====
 
 ------------------------------------------------------------------------------ */
 
