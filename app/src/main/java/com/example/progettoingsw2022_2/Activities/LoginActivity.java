@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.progettoingsw2022_2.Helper.AccountUtils;
 import com.example.progettoingsw2022_2.HttpRequest.CustomRequest;
 import com.example.progettoingsw2022_2.HttpRequest.VolleyCallback;
 import com.example.progettoingsw2022_2.Models.AddettoCucina;
@@ -228,8 +229,8 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                sendNewPassRequest(urlFinal, newPass.getText().toString());
+                if(AccountUtils.checkNewPassword(newPass.getText().toString())) sendNewPassRequest(urlFinal, newPass.getText().toString());
+                else newPass.setError(getString(R.string.invalidPassword));
             }
         });
 

@@ -17,31 +17,31 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /*
- Metodologie di testing utilizzate: Black-Box e Weak equivalence class testing poichè: ci sono 4 tipi di input per il parametro Ordini:
-           1) Validi
-           2) null
-           3) Lista Vuota
-           4) con data Sbagliata in qualche modo
+   CLASSI DI EQUIVALENZA:
 
- Invece per quanto riguarda la data di inizio può essere:
-           1) Valida, che a sua volta può essere
-                1.1) Verosimile e precedente agli ordini
-                1.2) Futura agli ordini
-                1.3) Inverosimilmente precedente agli ordini
-           2) Null
+      DATA_INIZIO: {VALIDA, NULL}
+        - Valida: a sua volta può essere
+             1.1) Verosimile e precedente agli ordini
+             1.2) Futura agli ordini
+             1.3) Inverosimilmente precedente agli ordini
 
+      ORDINI: {VALIDI, NULL, LISTA VUOTA, CON DATA SBAGLIATA}
 
- Oltre al caso di testing in cui si valuta il corretto funzionamento del metodo testandolo in condizioni normali, abbiamo voluto testare il metodo fornendo tutti i tipi di ordini testandoli
- con una Data di Inizio Valida e Verosimile; e fornndo tutti i casi di Data Iniziale insieme ad un ordine corretto, arrivando a 7 casi di testing che riteniamo siano necessari:
-            {1.1 , 1}
-            {1.1 , 2}
-            {1.1 , 3}
-            {1.1 , 4}
-            {1.2 , 1}
-            {1.3 , 1}
-            {2 , 1}
+ --------------------------------------------------------------------------------
 
- */
+   STRATEGIE DI TESTING UTILIZZATE:
+      BlackBox secondo il criterio WECT
+
+   CASI DI TESTING RITENUTI NECESSARI:
+     {VALIDA , VALIDI} : 1 Caso
+     {VALIDA , NULL} : 1 Caso
+     {VALIDA , LISTA VUOTA} : 1 Caso
+     {VALIDA , CON DATA SBAGLIATA} : 4 Casi
+     {DATA FUTURA , VALIDI} : 1 Caso
+     {DATA INVEROSIMILMENTE PRECEDENTE , VALIDI} : 1 Caso
+     {NULL , VALIDI} : 1 Caso
+
+ ---------------------------------------------------------------------------- */
 
 public class GetIncassoRangeGiorniTest {
 

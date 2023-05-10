@@ -7,6 +7,22 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import org.junit.Before;
 import org.junit.Test;
 
+/*
+   CLASSI DI EQUIVALENZA:
+
+      INCASSO: {NULL, NEGATIVO, POSITIVO}i
+
+      GIORNI: {NULL, NEGATIVO, ZERO, POSITIVO}
+
+ --------------------------------------------------------------------------------
+
+   STRATEGIE DI TESTING UTILIZZATE:
+      BlackBox e WhiteBox secondo il criterio SECT
+
+
+     ==== BLACKBOX ====
+
+ ------------------------------------------------------------------------------ */
 
 public class MediaTest {
 
@@ -16,8 +32,6 @@ public class MediaTest {
     public void setUp(){
         mock = new StatisticsActivityMock();
     }
-
-    //TESTING BLACK BOX
 
     @Test
     public void testMedia(){
@@ -55,7 +69,9 @@ public class MediaTest {
         );
     }
 
-    //TESTING WHITE BOX
+/*     ==== BLACKBOX ====
+
+------------------------------------------------------------------------------ */
 
     @Test
     public void testGiornoNull(){

@@ -51,6 +51,23 @@ public class AccountUtils {
         return errors;
     }
 
+    public static boolean checkNewPassword(String pswrd) {
+        ArrayList<Integer> errors = new ArrayList<>();
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#_!$%?.,;:])[\\w#_!$%?.,;:]{8,}$";
+        if (pswrd == null) return false;
+        else {
+            pswrd = pswrd.replaceAll("\\s", "");
+            if (pswrd.isEmpty()) {
+                return false;
+            } else if (pswrd.length() < 8) {
+                return false;
+            } else if (!pswrd.matches(regex)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public static ArrayList<Integer> getRegistrationFieldsErrors(String nome, String cognome, String pIva, String cf, String pass, String email){
         ArrayList<Integer> errors = new ArrayList<>();

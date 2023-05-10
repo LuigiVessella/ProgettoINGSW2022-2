@@ -18,17 +18,6 @@ import java.util.Date;
 
 public class StatisticsActivityMock {
 
-    private ArrayList<OrdineMock> ordini;
-
-    public ArrayList<OrdineMock> getOrdini() {
-        return ordini;
-    }
-
-    public void setOrdini(ArrayList<OrdineMock> ordini) {
-        this.ordini = ordini;
-    }
-
-
     public float media(int giorni, float incasso){
         float media = 0;
 

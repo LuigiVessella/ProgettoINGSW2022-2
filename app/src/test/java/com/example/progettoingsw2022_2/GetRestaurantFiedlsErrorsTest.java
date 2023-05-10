@@ -14,28 +14,50 @@ public class GetRestaurantFiedlsErrorsTest {
 
     public ArrayList<Integer> codici_errore = new ArrayList<Integer>();
 
+/*
+   CLASSI DI EQUIVALENZA:
 
-    /*
-     getRestaurantFieldsError è un metodo che prende 4 parametri di tipo Stringa: Nome, Coperti, Indirizzo, Numero di telefono: N, C, I, T.
-     Il valore di ritorno del metodo sarà un ArrayList di interi dove ognuno conterrà un valore
+      NOME: {VALIDO, VUOTO, TROPPO CORTO}
 
-     Per ogni campo possimo identificare delle classi di equivalenza: N = {VALIDO, TROPPO CORTO, NULL}
-                                                                                - TROPPO CORTO: Nome compostoda un solo carattere
-                                                                      C = {VALIDO, FUORI RANGE, NON VALIDO, NULL}
-                                                                                - FUORI RANGE: C > 1000 || C < 5
-                                                                                - NON VALIDO: C contiene o è interamente composto da caratteri non numerici
-                                                                      I = {VALIDO, TROPPO CORTO, NON VALIDO NULL}
-                                                                                - TROPPO CORTO: I < 5
-                                                                                - NON VALIDO: I contiene o è composto da caratteri speciali
-                                                                      T = {VALIDO, NON VALIDO, NULL}
-                                                                                - NON VALIDO: T non rispetta la regex che controlla che sia effettivamente un numero di telefono valido
+      COPERTI: {VALIDO, VUOTO, FUORI-RANGE, NON VALIDO}
+        - FUORI RANGE: <5 && > 1000
+        - NON VALIDO: Non composto da soli numeri
 
-    Valutando l'implementazione del metodo verso cui stiamo eseguendo del testing con strategia Black-Box, riteniamo che il WEAK EQUIVALENCE CLASS TESTING sia il criterio di copertura più indicato, fornendo
-    8 Test Cases che riteniamo siano sufficienti a ritenere la batteria di testing esaustiva
+      INDIRIZZO: {VALIDO, VUOTO, TROPPO CORTO, NON VALIDO}
+        - NON VALIDO: Contiene caratteri speciali
 
-     */
+      TELEFONO: {VALIDO, VUOTO, NON VALIDO}
 
+ --------------------------------------------------------------------------------
 
+   CODICI DI ERRORE:
+    1 = NOME TROPPO CORTO (1 CARATTERE MINIMO)
+    2 = NOME MANCANTE
+    3 = NUMERO DI COPERTI MANCANTE
+    4 = NUMERO DI COPERTI FUORI RANGE
+    5 = INDIRIZZO MANCANTE
+    6 = INDIRIZZO TROPPO CORTA (MINIMO 5 CARATTERI)
+    7 = NUMERO DI TELEFONO MANCANTE
+    8 = NUMERO DI TELEFONO NON VALIDO (10 CIFRE NUMERICHE RICHIESTE)
+    9 = NUMERO DI COPERTI ERRATO
+    10 = INDIRIZZO NON VALIDO
+
+-------------------------------------------------------------------------------------
+
+   STRATEGIE DI TESTING UTILIZZATE:
+      BlackBox secondo il criterio WECT
+
+   CASI DI TESTING RITENUTI NECESSARI:
+     {VALIDO, VALIDO, VALIDO, VALIDO} : 1 Caso
+     {TROPPO CORTO, VALIDO, VALIDO, VALIDO} : 1 Caso
+     {VALIDO, FUORI-RANGE, VALIDO, VALIDO} : 2 Casi
+     {VALIDO, NON VALIDO, VALIDO, VALIDO} : 2 Casi
+     {VALIDO, VALIDO, TROPPO CORTO, VALIDO} : 1 Caso
+     {VALIDO, VALIDO, NON VALIDO, VALIDO} : 1 Caso
+     {VALIDO, VALIDO, VALIDO, NON VALIDO} : 1 Caso
+     {NULL, NULL, NULL, NULL} : 1 Caso
+
+ ---------------------------------------------------------------------------- */
 
     // L'ARRAYLIST DEVE ESSERE PULITO OGNI VOLTA CHE VIENE CONCLUSO UN CASO DI TEST
     @AfterEach
@@ -91,7 +113,7 @@ public class GetRestaurantFiedlsErrorsTest {
 
 
     @Test
-    public void testNumeroTelefonoCampoTroppoCorto() {
+    public void testNumeroTelefonoNonValido() {
         codici_errore.add(8);
         ArrayList<Integer> actualErrors = getRestaurantFieldsErrors("Ristorante Test", "10", "Via Roma 1", "12345678");
         assertEquals(codici_errore, actualErrors);

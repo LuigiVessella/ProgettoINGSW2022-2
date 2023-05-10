@@ -1,5 +1,11 @@
 package com.example.progettoingsw2022_2.Driver;
 
+/*
+     IN QUESTO CASO LA CLASSE ORDINE MOCK CONTIENE SOLO
+     GLI ATTRIBUTI DI ORDINE CHE ENTRANO IN GIOCO ALL'INTERNO
+     DEL METODO getIncassoRangeGiorni
+ */
+
 public class OrdineMock {
 
     private int conto;
@@ -10,20 +16,11 @@ public class OrdineMock {
         this.dataOrdine = dataOrdine;
     }
 
-
     public int getConto() {
         return conto;
     }
 
-    public void setConto(int conto) {
-        this.conto = conto;
-    }
-
     public String getDataOrdine() {
         return dataOrdine;
-    }
-
-    public void setDataOrdine(String dataOrdine) {
-        this.dataOrdine = dataOrdine;
     }
 }

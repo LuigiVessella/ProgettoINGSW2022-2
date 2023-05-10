@@ -12,8 +12,34 @@ import java.util.ArrayList;
 
 public class CheckCredentialsTest {
 
-    //  CODICI DI ERRORE: 9 = PASSWORD VUOTA, 10 = PASSWORD TROPPO CORTA, 11 = PASSWORD NON VALIDA (REGEX)
-    //                    12 = EMAIL VUOTA, 13 = EMAIL NON VALIDA
+    /*
+
+   CLASSI DI EQUIVALENZA:
+
+         PASSWORD: {VALIDA, VUOTA, TROPPO CORTA, NON RISPETTA LA REGEX}
+           - VALIDA = Almeno 8 caratteri di cui 1 Maiuscola,
+           1 Minuscola, 1 Carattere speciale, 1 numero
+
+         EMAIL: {VALIDA, VUOTA, NON VALIDA}
+           - VALIDA = Deve rispettare la sintassi
+           di un email corretta
+
+ ------------------------------------------------------------------------------------
+
+   CODICI DI ERRORE:
+      9 = PASSWORD VUOTA,
+      10 = PASSWORD TROPPO CORTA,
+      11 = PASSWORD NON VALIDA (REGEX)
+      12 = EMAIL VUOTA,
+      13 = EMAIL NON VALIDA
+
+-------------------------------------------------------------------------------------
+
+   STRATEGIE DI TESTING UTILIZZATE:
+      BlackBox secondo il criterio SECT
+
+     */
+
 
     public ArrayList<Integer> codici_errore = new ArrayList<Integer>();
 
