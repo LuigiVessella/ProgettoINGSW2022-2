@@ -34,7 +34,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class TakeOrderActivity extends AppCompatActivity implements VolleyCallback {
@@ -194,8 +196,8 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
 
         System.out.println(jsonOrdine);
         JSONObject jsonObject = new JSONObject();
-        String url = "http://192.168.1.4:8080/ordini/addNew/" + CameriereSingleton.getInstance().getAccount().getCodiceFiscale();
-        //String url = "http://20.86.153.84:8080/ordini/addNew/" + CameriereSingleton.getInstance().getAccount().getCodiceFiscale();
+        //String url = "http://192.168.1.4:8080/ordini/addNew/" + CameriereSingleton.getInstance().getAccount().getCodiceFiscale();
+        String url = "http://20.86.153.84:8080/ordini/addNew/" + CameriereSingleton.getInstance().getAccount().getCodiceFiscale();
 
 
         try{
@@ -217,6 +219,16 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
             @Override
             public String getBodyContentType() {
                 return "application/json"; // tipo di contenuto della richiesta HTTP
+            }
+
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+
+                params.put("app_code", "Ratatuille23");
+
+                return params;
+
             }
         };
 

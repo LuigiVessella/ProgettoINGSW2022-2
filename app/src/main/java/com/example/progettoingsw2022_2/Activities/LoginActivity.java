@@ -177,7 +177,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
         }
         else if (ruolo.equals("amministratore")){
             Admin admin = gson.fromJson(result, new TypeToken<Admin>(){}.getType());
-
+             System.out.println("sono amdin\n");
             AdminSingleton.getInstance().setAccount(admin);
             String toastText = getString(R.string.welcome) + " " + AdminSingleton.getInstance().getAccount().getNome();
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
@@ -191,7 +191,7 @@ public class LoginActivity extends AppCompatActivity implements VolleyCallback {
             AddettoCucinaSingleton.getInstance().setAccount(addettoCucina);
 
             if(AddettoCucinaSingleton.getInstance().getAccount().getHashedPassword().equals(hashedPassword)) {
-                System.out.println("sto qua\n");
+                System.out.println("sono addetto cucina\n");
                 changeFirstPassword(AddettoCucinaSingleton.getInstance().getAccount());
             }
             else switchToOrderStatusAct();
