@@ -93,6 +93,7 @@ public class SupervisorDashActivity extends AppCompatActivity implements VolleyC
                         return true;
 
                     case R.id.back_menu:
+                        onBackPressed();
                         return true;
                 }
                 return false;

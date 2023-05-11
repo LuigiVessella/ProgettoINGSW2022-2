@@ -86,6 +86,7 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
                             return true;
 
                         case R.id.back_menu:
+                            onBackPressed();
                             return true;
                     }
                     return false;

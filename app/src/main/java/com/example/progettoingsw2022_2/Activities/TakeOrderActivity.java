@@ -38,7 +38,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class TakeOrderActivity extends AppCompatActivity implements VolleyCallback {
 
     private Ordine newOrdine;

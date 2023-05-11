@@ -83,8 +83,6 @@ public class SaveWorkerActivity extends AppCompatActivity implements VolleyCallb
 
         myBalloon = balloonBuilder(this, R.string.balloonRegisterEmployee);
 
-        //TODO: Non dimentichiamoci di aggiungere i controlli per cf e quel che sia. Inoltre devo anche ricordarmi di ottimizzare i controlli in accountUtil in modo da pulire questi if a cascata
-
         okButton.setOnClickListener(view -> {
             boolean hasError = false;
             EmailValidator validator_mail = EmailValidator.getInstance();

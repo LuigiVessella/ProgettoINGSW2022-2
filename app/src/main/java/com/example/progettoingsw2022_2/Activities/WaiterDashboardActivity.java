@@ -88,6 +88,7 @@ public class WaiterDashboardActivity extends AppCompatActivity implements Volley
                         return true;
 
                     case R.id.back_menu:
+                        onBackPressed();
                         return true;
                 }
                 return false;

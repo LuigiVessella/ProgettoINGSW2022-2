@@ -47,7 +47,6 @@ public class DialogController {
             dialog.dismiss();
         });
 
-
         // Creare e mostrare il dialogo
         AlertDialog dialog = builder.create();
         dialog.show();

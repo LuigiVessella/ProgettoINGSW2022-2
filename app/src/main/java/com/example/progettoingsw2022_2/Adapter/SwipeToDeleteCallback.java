@@ -80,7 +80,6 @@ abstract public class SwipeToDeleteCallback extends ItemTouchHelper.Callback {
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 
-
     }
 
     private void clearCanvas(Canvas c, Float left, Float top, Float right, Float bottom) {
