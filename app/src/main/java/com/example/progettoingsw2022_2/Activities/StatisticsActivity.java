@@ -73,6 +73,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
     private void inizializzaComponenti(){
 
+
         ordini = new ArrayList<>();
         barChart = (BarChart) findViewById(R.id.chart);
         spinnerRisto = findViewById(R.id.spinnerRisto);
@@ -213,12 +214,14 @@ public class StatisticsActivity extends AppCompatActivity {
 
     //data inizio selezionata da utente. data fine giorno corrente. la media sarà su questi giorni
     public int getIncassoRangeGiorni(LocalDate dataInizio, ArrayList<Ordine> orders){
+        System.out.println("sono qui\n");
         int incassoTotale = 0;
-        LocalDate endDate = LocalDate.now();
+        LocalDate endDate = LocalDate.now().plusDays(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         if (orders == null) return 0;
         for (Ordine ordine : orders) {
+            System.out.println(ordine.getConto());
             LocalDate orderDate = LocalDate.parse(ordine.getDataOrdine(), formatter);
             if (orderDate.isEqual(dataInizio) || orderDate.isAfter(dataInizio) && orderDate.isBefore(endDate)) {
                 incassoTotale += ordine.getConto();
@@ -276,14 +279,14 @@ public class StatisticsActivity extends AppCompatActivity {
 
                     LocalDate startDate = LocalDate.parse(selectedDate, dateFormat);
 
-                    LocalDate fineDate = Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
+                    LocalDate fineDate = Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusDays(2);
+                    System.out.println(fineDate.toString());
                     try {
                         long diffInDays = ChronoUnit.DAYS.between(startDate, fineDate);
                         TextView ultimiGiorni = findViewById(R.id.mediaIncassiText);
                         ultimiGiorni.setText("Media incassi ultimi " + diffInDays +" giorni:");
                         float incassoTotale = getIncassoRangeGiorni(startDate, ordini);
-                        float incassoMedio = media((int)diffInDays, incassoTotale);
+                        float incassoMedio = media((int)diffInDays-1, incassoTotale);
                         mediaText.setText(incassoMedio + "€" + " incassati ");
                     } catch (IllegalArgumentException e) {
                         mediaText.setText("Impossibile calcolare la media");
