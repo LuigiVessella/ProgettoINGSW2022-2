@@ -241,7 +241,9 @@ public class StatisticsActivity extends AppCompatActivity {
         }
 
         for (Ordine ordine : listaOrdini) {
-            String preparatoDa = ordine.getEvasoDa();
+            String preparatoDa = "";
+            if(ordine.getEvasoDa() != null || ordine.equals(""))  preparatoDa = ordine.getEvasoDa();
+            else preparatoDa = "non cucinati";
             if (preparatoDaCount.containsKey(preparatoDa)) {
                 preparatoDaCount.put(preparatoDa, preparatoDaCount.get(preparatoDa) + 1);
             } else {

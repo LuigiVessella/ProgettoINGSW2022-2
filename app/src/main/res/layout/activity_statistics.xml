@@ -79,7 +79,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/roboto_slab"
                     android:gravity="center"
-                    android:text="Media incassi ultimi 5 giorni:"
+                    android:text="Media incassi:"
                     android:textAlignment="textEnd"
                     android:textSize="18sp" />
 
@@ -103,7 +103,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_slab"
-                android:text="Evasioni per chef:"
+                android:text="Preparazioni per chef:"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
