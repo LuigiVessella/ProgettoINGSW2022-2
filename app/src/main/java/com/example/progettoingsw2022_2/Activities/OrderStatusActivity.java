@@ -126,7 +126,9 @@ public class OrderStatusActivity extends AppCompatActivity implements VolleyCall
 
     private void setUpOrders(){
 
-        if(CameriereSingleton.getInstance().getAccount()!= null) ordini.addAll(CameriereSingleton.getInstance().getAccount().getOrdini());
+        if(CameriereSingleton.getInstance().getAccount()!= null) {
+            ordini.addAll(CameriereSingleton.getInstance().getAccount().getOrdini());
+        }
 
         else if(SupervisoreSingleton.getInstance().getAccount()!= null){
             Log.i("check ordini", "sium");
