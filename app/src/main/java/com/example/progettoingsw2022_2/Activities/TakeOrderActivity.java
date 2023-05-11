@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import pl.droidsonroids.gif.GifImageView;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -234,7 +236,9 @@ public class TakeOrderActivity extends AppCompatActivity implements VolleyCallba
         //aggiungi la richiesta alla coda delle richieste di Volley
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
-        finishAfterTransition();
+        //finishAfterTransition();
+        Toast.makeText(this, "Ordine salvato", Toast.LENGTH_SHORT).show();
+        saveOrder.setEnabled(true);
 
     }
 
