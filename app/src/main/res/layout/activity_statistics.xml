@@ -80,7 +80,6 @@
                     android:fontFamily="@font/roboto_slab"
                     android:gravity="center"
                     android:text="Media incassi:"
-                    android:textAlignment="textEnd"
                     android:textSize="18sp" />
 
                 <TextView

@@ -254,7 +254,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
         for (Map.Entry<String, Integer> entry : preparatoDaCount.entrySet()) {
             TextView txt = new TextView(this);
-            txt.setText(entry.getKey() + " = " + entry.getValue());
+            txt.setText("    " + entry.getKey() + " = " + entry.getValue());
             txt.setTextSize(20);
             scrollLinear.addView(txt);
         }
