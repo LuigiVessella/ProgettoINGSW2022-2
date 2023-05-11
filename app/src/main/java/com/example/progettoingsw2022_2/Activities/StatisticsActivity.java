@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -279,7 +280,8 @@ public class StatisticsActivity extends AppCompatActivity {
 
                     try {
                         long diffInDays = ChronoUnit.DAYS.between(startDate, fineDate);
-
+                        TextView ultimiGiorni = findViewById(R.id.mediaIncassiText);
+                        ultimiGiorni.setText("Media incassi ultimi " + diffInDays +" giorni:");
                         float incassoTotale = getIncassoRangeGiorni(startDate, ordini);
                         float incassoMedio = media((int)diffInDays, incassoTotale);
                         mediaText.setText(incassoMedio + "€" + " incassati ");
