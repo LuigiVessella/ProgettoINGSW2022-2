@@ -270,16 +270,18 @@ public class StatisticsActivity extends AppCompatActivity {
                 (view, year1, month1, dayOfMonth1) -> {
                     // Gestisci la data selezionata dall'utente
                     // Esempio: aggiorna un campo di testo con la data selezionata
-                    String selectedDate = dayOfMonth1 + "/" + (month1 + 1) + "/" + year1;
+                    //String selectedDate = dayOfMonth1 + "-" + (month1 + 1) + "-" + year1;
+                    String selectedDate = year1 + "-" + String.format("%02d", month1 + 1) + "-" + String.format("%02d", dayOfMonth1);
+
                     LocalDate startDate = LocalDate.parse(selectedDate, dateFormat);
+
                     LocalDate fineDate = Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
                     try {
-                        long diffInMillies = ChronoUnit.DAYS.between(fineDate, startDate);
-                        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-                        System.out.println("differenza giorni: " + diff);
+                        long diffInDays = ChronoUnit.DAYS.between(startDate, fineDate);
+
                         float incassoTotale = getIncassoRangeGiorni(startDate, ordini);
-                        float incassoMedio = media((int)diff, incassoTotale);
+                        float incassoMedio = media((int)diffInDays, incassoTotale);
                         mediaText.setText(incassoMedio + "€" + " incassati ");
                     } catch (IllegalArgumentException e) {
                         mediaText.setText("Impossibile calcolare la media");
